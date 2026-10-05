@@ -1,0 +1,13 @@
+.pond-live-ai{box-sizing:border-box;max-width:100%;min-width:0;margin-top:16px;padding:16px;border:1px solid #83a9a5;border-radius:12px;background:#f2faf8;color:#17332f;font-size:14px;overflow-wrap:anywhere}
+.pond-live-ai[hidden],.pond-live-ai [hidden]{display:none!important}
+.pond-live-ai h3{margin:0 0 8px;font-size:16px}
+.pond-live-ai form{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin:12px 0}
+.pond-live-ai label{flex:1;min-width:min(180px,100%);font-size:14px}
+.pond-live-ai input,.pond-live-ai textarea,.pond-live-ai select{box-sizing:border-box;width:100%;min-width:0;min-height:44px;font:inherit;padding:9px;border:1px solid #b4ccc6;border-radius:8px;background:#fff;color:#17332f}
+.pond-live-ai textarea{min-height:72px;resize:vertical}
+.pond-live-ai button{min-height:44px;min-width:44px;border:1px solid #5f8e82;border-radius:8px;background:#e1efe9;color:#17332f;padding:8px 12px;cursor:pointer;font:inherit}
+.pond-live-ai button:disabled{opacity:.55;cursor:wait}
+.pond-live-answer{display:block;white-space:pre-wrap;line-height:1.65;margin:12px 0;font-size:14px}
+html[data-pond-ui=true] .pond-live-ai :is(p,label,input,textarea,select,button,output){font-size:14px}
+html[data-pond-ui=true] .pond-live-ai p{color:#17332f;line-height:1.5}
+@media(max-width:767px){.pond-live-ai{padding:12px}.pond-live-ai form{align-items:stretch}.pond-live-ai form>button{width:100%}}

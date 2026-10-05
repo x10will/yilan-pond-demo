@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101923"><meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icons/pond-192.png"><link rel="apple-touch-icon" href="./icons/pond-apple-touch.png">
+<link rel="stylesheet" href="./vendor/panel-core/core.css"><link rel="stylesheet" href="./farm-panel.css"><title>AI智慧農業環境監測暨動態決策系統</title>
+<script src="./deployment-config.js"></script><script type="importmap">{"imports":{"panel-core":"./vendor/panel-core/core.js"}}</script>
+<script id="farm-boot-guard">
+// Runs before the module graph: even a cached module with a bad MIME type can recover.
+// Will's 2026-10-04 operator review asks for one unregister/reload on boot failure.
+(() => {
+ const base=new URL('./',location.href),key='panel-boot-recovery:'+base.pathname;
+ let failed=false,complete=false,timer,unsubscribe;
+ const finish=()=>{
+  if(failed)return;complete=true;clearTimeout(timer);unsubscribe?.();
+  try{sessionStorage.removeItem(key);}catch{}
+ };
+ const show=error=>{
+  const home=document.getElementById('app');if(!home)return;
+  const box=document.createElement('div');box.setAttribute('role','alert');
+  const title=document.createElement('p');title.textContent='模擬資料載入失敗，請重新整理';
+  const details=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('pre');
+  summary.textContent='技術細節';text.textContent=String(error?.stack||error?.message||error);
+  details.append(summary,text);box.append(title,details);home.replaceChildren(box);
+ };
+ const fail=async error=>{
+  if(failed||complete)return;failed=true;clearTimeout(timer);unsubscribe?.();
+  console.error('模擬資料載入失敗',error);
+  let tried=false;
+  try{tried=sessionStorage.getItem(key)==='1';if(!tried)sessionStorage.setItem(key,'1');}
+  catch{tried=new URL(location.href).searchParams.has('__bootRecovery');}
+  if(tried){show(error);return;}
+  try{
+   const reg=await navigator.serviceWorker?.getRegistration(base.href);
+   if(reg?.scope===base.href)await reg.unregister();
+   const prefix='panel-core-'+encodeURIComponent(base.pathname)+'-';
+   if(globalThis.caches)await Promise.all((await caches.keys()).filter(name=>name.startsWith(prefix)).map(name=>caches.delete(name)));
+  }catch{ /* A failed cleanup must not leave the presenter stuck without the one retry. */ }
+  try{if(sessionStorage.getItem(key)==='1'){location.reload();return;}}catch{}
+  const retry=new URL(location.href);retry.searchParams.set('__bootRecovery','1');location.replace(retry.href);
+ };
+ window.__farmBoot={fail,get recovering(){return failed;},watch(app){
+  if(app.map.readyInfo){finish();return;}
+  unsubscribe=app.map.subscribe('ready',finish);
+ }};
+ window.addEventListener('error',event=>{
+  if(event.target?.tagName==='SCRIPT'||event.error)void fail(event.error||`Module load failed: ${event.target?.src||event.message}`);
+ },true);
+ window.addEventListener('unhandledrejection',event=>void fail(event.reason));
+ window.addEventListener('message',event=>{
+  if(event.origin===location.origin&&event.data?.type==='FARM_BOOT_FAILED'&&
+    [...document.querySelectorAll('iframe.map-frame')].some(frame=>frame.contentWindow===event.source))void fail(event.data.error);
+ });
+ timer=setTimeout(()=>void fail(new Error('The scene did not finish loading')),60000);
+})();
+</script>
+<meta name="apple-mobile-web-app-title" content="AI智慧農業環境監測暨動態決策系統"></head><body><main id="app" aria-label="AI智慧農業環境監測暨動態決策系統"></main><script type="module" src="./app.js"></script></body></html>
