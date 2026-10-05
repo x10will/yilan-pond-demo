@@ -236,6 +236,8 @@ html[data-pond-ui=true] .pond-camera-controls{display:flex;align-items:center;fl
 html[data-pond-ui=true] .pond-camera-controls button{min-height:30px;padding:4px 7px;font-size:11px;border-color:#5d8277;background:#204439}
 html[data-pond-ui=true] .pond-camera-notice{flex:1;min-width:150px;font-size:10px;color:#b9d8ce}
 html[data-pond-ui=true] .pond-camera-mode[aria-pressed=true]{background:#32536b;border-color:#98c6dd}
+html[data-pond-ui=true] .pond-camera-toast{position:fixed;top:88px;left:50%;transform:translateX(-50%);z-index:80;box-sizing:border-box;width:max-content;max-width:calc(100vw - 24px);padding:12px 16px;border:1px solid #b3f1d3;border-radius:12px;background:#164b3cf5;color:#fff;font:600 14px/1.5 system-ui;box-shadow:0 4px 18px #0005;pointer-events:none}
+html[data-pond-ui=true] .pond-camera-toast[hidden]{display:none}
 html[data-pond-ui=true] .pond-comparison{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;table-layout:fixed}
 html[data-pond-ui=true] .pond-comparison caption{text-align:left;padding-bottom:8px;font-size:12px;color:#a9c8d7}
 html[data-pond-ui=true] .pond-comparison th,html[data-pond-ui=true] .pond-comparison td{text-align:center;padding:10px 4px;border-bottom:1px solid #355060}

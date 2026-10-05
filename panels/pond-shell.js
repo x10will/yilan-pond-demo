@@ -175,18 +175,30 @@ export function bindPondInspectionMovement(frame, mode, heading) {
   return stop;
 }
 
-// Lock camera gestures rather than the iframe: native click picking must remain
-// available in guided chapters. No DT internals or runtime transforms are edited.
-export function bindPondCameraInput(frame, mode) {
+// Let the viewer receive the initiating down and every subsequent move. Switch
+// before its movement handler runs, without replaying synthetic input or changing
+// canonical time. A tap/click alone keeps the current tour chapter.
+export function bindPondCameraInput(frame, mode, inspect = () => {}) {
   const doc = frame.contentDocument;
   if (!doc) return;
-  const lock = event => {
-    if (mode() !== 'guided' || event.target?.tagName !== 'CANVAS') return;
-    event.stopImmediatePropagation();
-    if (event.type === 'wheel') event.preventDefault();
-  };
-  for (const name of ['pointerdown', 'mousedown', 'touchstart', 'wheel', 'dblclick', 'contextmenu'])
-    doc.addEventListener(name, lock, {capture: true, passive: false});
+  const pointers = new Map();
+  doc.addEventListener('pointerdown', event => {
+    if (event.target?.tagName !== 'CANVAS') return;
+    pointers.set(event.pointerId, {x:event.clientX, y:event.clientY});
+    if (mode() === 'guided' && pointers.size > 1) inspect();
+  }, true);
+  doc.addEventListener('pointermove', event => {
+    const start = pointers.get(event.pointerId);
+    if (mode() === 'guided' && start && Math.hypot(event.clientX - start.x, event.clientY - start.y) > 3) inspect();
+  }, true);
+  for (const name of ['pointerup', 'pointercancel']) doc.addEventListener(name, event => pointers.delete(event.pointerId), true);
+  frame.contentWindow?.addEventListener?.('blur', () => pointers.clear());
+  doc.addEventListener('wheel', event => {
+    if (mode() === 'guided' && event.target?.tagName === 'CANVAS') inspect();
+  }, {capture:true, passive:true});
+  doc.addEventListener('dblclick', event => {
+    if (mode() === 'guided' && event.target?.tagName === 'CANVAS') inspect();
+  }, true);
   doc.addEventListener('keydown', event => {
     if (mode() === 'guided' && !textEntry(event.target)
       && /^(?:[wasdqe]|Arrow\w+|Control|Meta|[1-9])$/i.test(event.key)) {
@@ -283,7 +295,10 @@ export function installPondShell(container, app) {
   };
   bindPondTwinSelection(app.map, entity => {
     selectedEntity = entity || null;
-    if (isPhone() && entity?.id) showPhonePanel('selection');
+    if (entity?.id) {
+      if (isPhone()) showPhonePanel('selection');
+      else ensurePondPanel(container, app, 'selection', entity);
+    }
     restoreFocus();
   });
   app.map.subscribe('viewChanged', view => { if (Number.isFinite(view?.heading)) cameraHeading = view.heading; });
@@ -353,6 +368,25 @@ export function installPondShell(container, app) {
   const frames = new WeakMap();
   const entries = new Set();
   let candidate, latest;
+  const toast = el('div', null, 'pond-camera-toast'); toast.hidden = true;
+  toast.setAttribute('role', 'status'); toast.setAttribute('aria-live', 'polite'); container.append(toast);
+  let toastTimer;
+  const switchCamera = (next, announce = false) => {
+    if (cameraMode === next) return;
+    app.clock.pause(); cameraMode = next;
+    if (next === 'guided') {
+      for (const entry of entries) entry.cameraSignature = null;
+      toast.hidden = true; clearTimeout(toastTimer);
+    }
+    update(app.clock.time);
+    if (next === 'guided') app.clock.play();
+    if (announce) {
+      toast.textContent = locale() === 'en' ? 'Free inspection · Press “Return to tour” to continue the story'
+        : '已切換為自由檢視 · 按『返回導覽』繼續故事';
+      toast.hidden = false; clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { toast.hidden = true; }, 5500);
+    }
+  };
   const seek = app.clock.seek.bind(app.clock);
   app.clock.seek = milliseconds => {
     // Stop before panel-core transports time, so the viewer never receives a
@@ -372,7 +406,7 @@ export function installPondShell(container, app) {
       if (entry.storyNav) entry.storyNav.hidden = true;
       return;
     }
-    // Guided mode locks camera gestures; picking stays available in both modes.
+    // Authored chapter poses resume when the visitor returns to the tour.
     frame.tabIndex = 0;
     if (!entry.storyNav) {
       const nav = el('section', null, 'pond-guided-story'); nav.setAttribute('aria-label', '模擬情境章節');
@@ -398,12 +432,7 @@ export function installPondShell(container, app) {
       details.onclick = () => showPhonePanel(container.dataset.pondPhonePanel ? null : 'pond-notifications');
       controls.append(mode, cameraReset, notice, provenance, details);
       mode.onclick = () => {
-        app.clock.pause();
-        cameraMode = cameraMode === 'guided' ? 'inspection' : 'guided';
-        for (const iframe of container.querySelectorAll('iframe.map-frame')) {
-          const current = frames.get(iframe); if (current) current.cameraSignature = null;
-        }
-        update(app.clock.time); restoreFocus(mode);
+        switchCamera(cameraMode === 'guided' ? 'inspection' : 'guided'); restoreFocus(mode);
       };
       const stepper = el('div', null, 'pond-guided-stepper');
       const previous = el('button', '上一章', 'pond-guided-previous'); previous.type = 'button';
@@ -485,7 +514,7 @@ export function installPondShell(container, app) {
     entry.panelSelect.setAttribute('aria-label', label('destination'));
     entry.cameraMode.setAttribute('aria-pressed', String(cameraMode === 'inspection'));
     entry.cameraNotice.textContent = cameraMode === 'guided'
-      ? (english ? 'Tour camera locked · Select equipment · Pauses each chapter; press Play to continue' : '導覽鏡頭鎖定 · 可點設備 · 每章暫停，按播放繼續')
+      ? (english ? 'Drag or zoom to inspect · Select equipment for details' : '拖曳或縮放即可自由檢視 · 點設備看詳情')
       : (english ? 'Inspection camera · Move with WASD / drag · Select equipment for details' : '檢視鏡頭 · WASD／拖曳可移動 · 點設備看詳情');
     entry.storyPrevious.disabled = index <= 0;
     entry.storyNext.disabled = index < 0 || index >= chapters.length - 1;
@@ -554,7 +583,7 @@ export function installPondShell(container, app) {
       const doc = frame.contentDocument;
       if (!doc?.head) return;
       if (entry.inputDocument !== doc) {
-        entry.inputDocument = doc; bindPondCameraInput(frame, () => cameraMode);
+        entry.inputDocument = doc; bindPondCameraInput(frame, () => cameraMode, () => switchCamera('inspection', true));
         entry.stopMovement?.();
         entry.stopMovement = bindPondInspectionMovement(frame, () => cameraMode, () => cameraHeading);
         doc.addEventListener('click', event => {

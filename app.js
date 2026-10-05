@@ -32,6 +32,7 @@ if (site.site_id !== 'farm') {
  if (site.presentation?.kind === 'pond-night') {
   const {installPondShell} = await import('./panels/pond-shell.js');
   installPondShell(document.querySelector('#app'),window.app);
+  document.getElementById('pond-boot-loading')?.remove();
   const {installPondLiveAI} = await import('./panels/pond-live-ai.js');
   void installPondLiveAI(document.querySelector('#app'),window.app);
  }

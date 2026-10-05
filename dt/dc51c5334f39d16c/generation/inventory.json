@@ -6,7 +6,7 @@
     "@mkkellogg/gaussian-splats-3d": "0.4.7"
   },
   "files": {
-    "config.json": "eed3ac3bdaccb9af33af5154668202e8582b86ded1ed031c114c69fe35c6c1a2",
+    "config.json": "4edaac87d95b5315f2e96a4e8230f7aec21bd2d32a7214e9690ff59c72929c8d",
     "runtime/docs/viewer-3d/actor-models.js": "868bae2a5c01e59c5fb34824eaa1df2b290e0eac6aabc53b81a6015f2ae75427",
     "runtime/docs/viewer-3d/base.html": "c8c47de555373901e226bb0af7ce085cc97668b7c5e37510815e9be6e7c51232",
     "runtime/docs/viewer-3d/base.js": "d89cb41fefa3d7df922c21dcadaec3b3a7a848805224d185c77d829b217ab695",

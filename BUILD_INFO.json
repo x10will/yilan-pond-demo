@@ -1,12 +1,12 @@
 {
-  "built_at": "2026-10-04T17:04:28+00:00",
-  "build": "ef54377190afecc9",
-  "dt_base": "dt/bbb59e32b1067bcc/",
-  "label": "yilan-content-local-final-v3",
-  "farm_commit": "ebd39482bf824738b7ed4269c2559f23e1f13ad2",
+  "built_at": "2026-10-05T07:46:21+00:00",
+  "build": "cc879f13a101ad18",
+  "dt_base": "dt/dc51c5334f39d16c/",
+  "label": "yilan-pond-fix-r3-20261005",
+  "farm_commit": "02ac871cde3afe06f04a6cf2cc12a09ccd466c72",
   "farm_panel_dirty": false,
   "dt_generation": {
-    "name": "dt-yilan-pages-fix-r2-20261005",
+    "name": "dt-yilan-pages-fix-r3-20261005",
     "sourceRevision": "7116d70b9517e7d2aad1925c669b0e5341724469",
     "mounts": [
       "yilan-pond-canonical",
@@ -14,13 +14,13 @@
       "yilan-pond-no-response-static",
       "yilan-pond-static"
     ],
-    "digest": "48e406a3f034617fb0193507f067fdc6ad5e1a645213bd27aadec75f2336eb8a"
+    "digest": "b1921f1a7cf78486aca19fbd923f5e859c8da96f12ff54007b0387b48ca208c1"
   },
   "staging": {
-    "farm_commit": "6763decc66b90a3fe3d5f0c8bc119a38cafa74b9",
+    "farm_commit": "3dcf6a1e04cc9ae869a5a66b8a700e1192c014c7",
     "dt_commit": "7116d70b9517e7d2aad1925c669b0e5341724469",
     "status": "local-assembled",
-    "recorded_at": "2026-10-04T16:26:48.295582+00:00"
+    "recorded_at": "2026-10-05T07:23:02.548495+00:00"
   },
   "panel_core": {
     "sourceCommit": "84fc525548df6d5b38b40cc3db9d0ed53fc5a028",
@@ -411,73 +411,73 @@
     "2026-10-04 merged workshop: authored earth vertex paint; frozen narration has 0 real generations / 13 scripted fallbacks (A). See dated merge decision and frozen Wimba evidence."
   ],
   "transforms": [
-    "dt/bbb59e32b1067bcc/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
-    "dt/bbb59e32b1067bcc/docs/viewer-3d/index.html: boot-error relay added to generated shell"
+    "dt/dc51c5334f39d16c/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
+    "dt/dc51c5334f39d16c/docs/viewer-3d/index.html: boot-error relay added to generated shell"
   ],
   "leak_scan_not_scanned": "GLB BIN chunks (vertex data, where short path patterns match by chance); each GLB JSON chunk is scanned",
   "meshopt": "not packed: the site sets meshopt: true but no --meshopt-tool was given",
   "precached": 173,
   "files": 459,
-  "bytes": 19899861,
+  "bytes": 19905892,
   "gzip": {
     "files": 422,
-    "bytes": 2262236
+    "bytes": 2264079
   },
   "workshop_budget": {
     "authority": "Will, 2026-10-04 pond Pages-ready brief",
     "file_limit_exclusive": 50000000,
     "total_limit_exclusive": 120000000,
-    "total_uncompressed_bytes": 19917946,
+    "total_uncompressed_bytes": 19923975,
     "stretch_goal_bytes": 60000000,
     "stretch_goal_met": true,
     "files": 882,
     "largest_files": [
       {
-        "path": "dt/bbb59e32b1067bcc/data/yilan-pond-canonical/composed-frames.json",
+        "path": "dt/dc51c5334f39d16c/data/yilan-pond-canonical/composed-frames.json",
         "byte_count": 3242190
       },
       {
-        "path": "dt/bbb59e32b1067bcc/data/yilan-pond-no-response-canonical/composed-frames.json",
+        "path": "dt/dc51c5334f39d16c/data/yilan-pond-no-response-canonical/composed-frames.json",
         "byte_count": 3164956
       },
       {
-        "path": "dt/bbb59e32b1067bcc/node_modules/three/build/three.module.js",
+        "path": "dt/dc51c5334f39d16c/node_modules/three/build/three.module.js",
         "byte_count": 1314681
       },
       {
-        "path": "dt/bbb59e32b1067bcc/data/yilan-pond-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/dc51c5334f39d16c/data/yilan-pond-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
       },
       {
-        "path": "dt/bbb59e32b1067bcc/data/yilan-pond-no-response-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/dc51c5334f39d16c/data/yilan-pond-no-response-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
       },
       {
-        "path": "dt/bbb59e32b1067bcc/data/yilan-pond-no-response-static/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/dc51c5334f39d16c/data/yilan-pond-no-response-static/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
       },
       {
-        "path": "dt/bbb59e32b1067bcc/data/yilan-pond-static/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/dc51c5334f39d16c/data/yilan-pond-static/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
       },
       {
-        "path": "dt/bbb59e32b1067bcc/node_modules/three/build/three.module.min.js",
+        "path": "dt/dc51c5334f39d16c/node_modules/three/build/three.module.min.js",
         "byte_count": 691648
       },
       {
-        "path": "dt/bbb59e32b1067bcc/node_modules/@mkkellogg/gaussian-splats-3d/build/gaussian-splats-3d.module.js",
+        "path": "dt/dc51c5334f39d16c/node_modules/@mkkellogg/gaussian-splats-3d/build/gaussian-splats-3d.module.js",
         "byte_count": 616821
       },
       {
-        "path": "dt/bbb59e32b1067bcc/data/yilan-pond-canonical/inputs/pond-ai-wimba-20261004.json",
+        "path": "dt/dc51c5334f39d16c/data/yilan-pond-canonical/inputs/pond-ai-wimba-20261004.json",
         "byte_count": 561590
       },
       {
-        "path": "dt/bbb59e32b1067bcc/data/yilan-pond-static/inputs/pond-ai-wimba-20261004.json",
+        "path": "dt/dc51c5334f39d16c/data/yilan-pond-static/inputs/pond-ai-wimba-20261004.json",
         "byte_count": 561590
       },
       {
-        "path": "dt/bbb59e32b1067bcc/docs/viewer-3d/main.js",
+        "path": "dt/dc51c5334f39d16c/docs/viewer-3d/main.js",
         "byte_count": 304210
       }
     ],

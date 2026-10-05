@@ -55,6 +55,7 @@ const english = {
   '腳本備援':'Script fallback',
   '目前影格狀態':'Current frame state', '目前取樣 · 模擬':'Current samples · Simulated',
   '設備與取樣的出處':'Equipment and sample sources', '技術細節':'Technical details', '模擬資料來源':'Simulation source',
+  '靜態範圍':'Static footprint', '目前 DO':'Current DO', '魚塭與取樣的出處':'Pond and sample sources',
   '腳本備援（A；模擬情境；非操作建議）':'Script fallback (A; simulated scenario; not operating advice)',
   'ⓘ AI 生成與出處':'ⓘ AI generation and sources', 'ⓘ 腳本備援（A）與出處':'ⓘ Script fallback (A) and sources',
   '模型':'Model', '提示 SHA-256':'Prompt SHA-256', '保留腳本原因':'Script fallback reasons',
@@ -148,7 +149,12 @@ export function pondProjection(candidate, milliseconds) {
   const projection = projectionAt(candidate, milliseconds);
   const frame = candidate.artifacts['composed-frames.json'].canonical_frames[projection.frameIndex];
   const events = new Map(frame.event_occurrences.map(row => [row.occurrence_id, row]));
-  const result = {...projection, notifications: projection.notifications.map(row => ({...row,
+  // Retained candidates predate the adapter's faceCatalog field. Their fully
+  // verified snapshot supplies these static labels/sources only; readings and
+  // transforms continue to come exclusively from the canonical projection.
+  const faces = projection.faceCatalog || candidate.artifacts['static-snapshot.json']?.topology?.faces;
+  const result = {...projection, ...(faces ? {faceCatalog: structuredClone(faces)} : {}),
+    notifications: projection.notifications.map(row => ({...row,
     subjectIds: events.get(row.id)?.subject_ids || events.get(row.id)?.affected_twin_ids || []}))};
   selectedProjections.set(candidate, {milliseconds, projection: result});
   return result;
@@ -637,13 +643,20 @@ function sourceLink(link, fallback) {
 
 function drawTwinFacts(content, details, projection, site) {
   const {twin, pondIds, telemetry, transform, sources} = details;
+  const pond = twin.type === 'Face' && twin.kind === 'pond';
   const facts = el('dl', null, 'pond-twin-facts');
   const add = (label, value) => facts.append(el('dt', label), el('dd', value));
   add('種類', pondTwinKindLabel(twin.kind));
   add('魚塭', pondIds.length ? pondIds.map(id => compactLabel(projection.entityLabels[id] || id)).join('、') : '共用設施／人員');
-  add('靜態錨點', pondAnchorLabel(projection, twin.anchor));
-  const state = telemetry.find(row => row.metric === 'equipment_state');
-  add('目前影格狀態', state ? (pondEquipmentStates[state.state] || site.state_labels?.[state.state] || state.state) : '尚無影格狀態');
+  if (pond) {
+    add('靜態範圍', pondEntityLabel(projection, twin.id));
+    const oxygen = telemetry.find(row => row.metric === 'dissolved_oxygen');
+    add('目前 DO', oxygen ? pondReading(oxygen, site) : '此時沒有已提供的樣本');
+  } else {
+    add('靜態錨點', pondAnchorLabel(projection, twin.anchor));
+    const state = telemetry.find(row => row.metric === 'equipment_state');
+    add('目前影格狀態', state ? (pondEquipmentStates[state.state] || site.state_labels?.[state.state] || state.state) : '尚無影格狀態');
+  }
   for (const [key, value] of Object.entries(twin.specs || {})) add(specLabels[key] || '規格值', value);
   for (const [kind, targets] of Object.entries(twin.relationships || {})) {
     const values = (Array.isArray(targets) ? targets : [targets]);
@@ -655,7 +668,7 @@ function drawTwinFacts(content, details, projection, site) {
     + `${pondReading(row, site)} · ${row.sampled_at.replace('T', ' ')}`));
   if (!telemetry.length) samples.append(el('p', '此時沒有已提供的樣本'));
   content.append(samples);
-  const provenance = el('section', null, 'pond-twin-provenance'); provenance.append(el('h4', '設備與取樣的出處'));
+  const provenance = el('section', null, 'pond-twin-provenance'); provenance.append(el('h4', pond ? '魚塭與取樣的出處' : '設備與取樣的出處'));
   for (const {ref, link} of sources) provenance.append(sourceLink(link, ref));
   if (!sources.length) provenance.append(el('p', '此候選沒有提供出處連結'));
   content.append(provenance);

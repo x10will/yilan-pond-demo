@@ -12,6 +12,14 @@ export const aiNarrationGenerated = row => row.status === 'generated'
 export function appendAINarration(content, projection, {ui = el} = {}) {
   const narration = projection.aiNarration;
   const rows = narration ? [narration.chapter, narration.suggestion].filter(Boolean) : [];
+  const chapterStart = projection.story?.chapters?.find(item => item.id === narration?.chapter?.chapter_id)
+    || projection.story?.chapter;
+  const proposal = projection.notifications?.find(item => `event:${item.id}` === narration?.suggestion?.beat_id);
+  const chapterMoment = Date.parse(chapterStart?.scenario_time);
+  const proposalMoment = Date.parse(proposal?.sampledAt);
+  const sameMoment = Number.isFinite(chapterMoment) && chapterMoment === proposalMoment
+    && narration?.chapter?.chapter_id === narration?.suggestion?.chapter_id;
+  let chapterSource;
   for (const row of rows.filter(item => item.chapter_id === projection.story?.chapter?.id)) {
     const box = el('article', null, 'pond-suggestion pond-generated-narration');
     const generated = aiNarrationGenerated(row);
@@ -25,8 +33,13 @@ export function appendAINarration(content, projection, {ui = el} = {}) {
     const timestamp = row.kind === 'suggestion' ? event?.sampledAt : chapter?.scenario_time;
     const moment = String(timestamp || '').match(/T(\d{2}:\d{2})/)?.[1];
     if (moment) box.append(ui('small', row.kind === 'suggestion' ? `${moment} 提案時` : `章節開始 ${moment}`, 'pond-narration-moment'));
+    const mergedProposal = row === narration.suggestion && sameMoment && chapterSource;
     const info = el('details', null, 'pond-event-source'); info.dataset.detailKey = `ai:${row.beat_id}`;
-    info.append(ui('summary', generated ? 'ⓘ AI 生成與出處' : 'ⓘ 腳本備援（A）與出處'));
+    info.append(ui('summary', mergedProposal ? '事件時間與出處' : generated ? 'ⓘ AI 生成與出處' : 'ⓘ 腳本備援（A）與出處'));
+    if (mergedProposal) {
+      info.append(el('p', row.beat_id), el('p', row.text, 'pond-event-detail'));
+      if (moment) info.append(ui('small', `${moment} 提案時`, 'pond-narration-moment'));
+    }
     const lineage = row.lineage || {};
     info.append(ui('p', `模型：${lineage.model_id || '未生成'} · ${lineage.endpoint_host || lineage.backend || '離線備援'}`),
       ui('p', `日期：${lineage.generated_at || '未提供'} · 人工審閱：${lineage.human_review ? '已標記' : '未標記'}`),
@@ -48,6 +61,10 @@ export function appendAINarration(content, projection, {ui = el} = {}) {
     const source = ui('a', '完整提示、原始回覆與凍結紀錄');
     source.href = new URL(lineage.frozen_path, CANONICAL_BASE).href;
     source.target = '_blank'; source.rel = 'noopener'; info.append(source);
-    box.append(info); content.append(box);
+    // Same-time proposal prose stays behind chapter provenance; its original
+    // event text, lineage and frozen-record link remain inspectable there.
+    if (mergedProposal) chapterSource.append(info);
+    else { box.append(info); content.append(box); }
+    if (row === narration.chapter) chapterSource = info;
   }
 }

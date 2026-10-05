@@ -280,7 +280,9 @@ export default async function install(api, input) {
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
     geometry.computeVertexNormals(); return geometry;
   };
-  const pondWarnings = new Map();
+  const pondWarnings = new Map(), pondSelections = new Map();
+  const selectionMaterial = own(new THREE.MeshBasicMaterial({color: '#ffe382', transparent: true,
+    opacity: 0.98, side: THREE.DoubleSide, depthWrite: false, toneMapped: false}));
   const roundedWaterPolygon = points => points.flatMap((corner, i) => {
     const before = points[(i + points.length - 1) % points.length], after = points[(i + 1) % points.length];
     const incoming = Math.hypot(before[0] - corner[0], before[1] - corner[1]);
@@ -328,6 +330,10 @@ export default async function install(api, input) {
     }
     if (config.ponds.includes(row)) {
       pick(mesh, row, 'Face');
+      const selection = new THREE.Mesh(warningGeometry(visual.polygon), selectionMaterial);
+      selection.name = `farm-pond-face-selection-${row.id}`;
+      selection.position.z = row.z + 0.68; selection.visible = false; selection.raycast = () => {};
+      world.add(selection); pondSelections.set(row.id, selection);
       const warning = new THREE.Mesh(warningGeometry(visual.polygon), warningMaterial);
       warning.position.z = row.z + 0.58; warning.visible = false;
       warning.name = `farm-pond-warning-${row.id}`; warning.raycast = () => {};
@@ -751,14 +757,12 @@ export default async function install(api, input) {
   }
   scene.add(world);
 
-  const selectionGeometry = own(new THREE.RingGeometry(1, 1.08, 48));
-  const selectionMaterial = own(new THREE.MeshBasicMaterial({color: '#fff1a6', transparent: true,
-    opacity: 0.95, side: THREE.DoubleSide, depthWrite: false}));
+  const selectionGeometry = own(new THREE.RingGeometry(1, 1.3, 48));
   for (const row of equipment.values()) {
     const ring = new THREE.Mesh(selectionGeometry, selectionMaterial);
     ring.name = 'farm-pond-twin-selection'; ring.visible = false; ring.raycast = () => {};
-    const radius = ({aerator: 3.25, 'backup-aerator': 3.25, feeder: 0.9, worker: 1.2,
-      pump: 2, sluice: 2.7, 'work-shed': 7})[row.kind] ?? 2.3;
+    const radius = ({aerator: 3.6, 'backup-aerator': 3.6, feeder: 1.5, worker: 1.5,
+      pump: 2.4, sluice: 3, 'work-shed': 7})[row.kind] ?? 2.3;
     ring.scale.set(radius, radius, 1);
     // Above water and bank surfaces, without changing any twin transform.
     ring.position.z = ['aerator', 'backup-aerator'].includes(row.kind) ? 0.85 : 0.08;
@@ -933,8 +937,9 @@ export default async function install(api, input) {
   };
   const offCommand = api.onAppCommand((name, payload) => {
     if (name === SELECT_COMMAND && !disposed) {
-      const id = equipment.has(payload?.id) ? payload.id : null;
+      const id = equipment.has(payload?.id) || pondSelections.has(payload?.id) ? payload.id : null;
       for (const row of equipment.values()) row.selection.visible = row.id === id;
+      for (const [pondId, selection] of pondSelections) selection.visible = pondId === id;
       world.userData.selectedTwinId = id;
       return;
     }

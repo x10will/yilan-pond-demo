@@ -7,7 +7,7 @@ export const POND_SELECT_TWIN = 'farm-pond-select-twin';
 const kindLabels = {aerator:'水車', 'backup-aerator':'備援水車', 'aerator-circuit':'水車迴路',
   'control-panel':'控制箱', feeder:'投餌機', 'generator-power':'備援發電機',
   'mains-power':'市電', pump:'進水泵', sluice:'水閘', 'drain-sluice':'排水閘',
-  'inlet-sluice':'進水閘', 'weather-station':'氣象站', 'work-shed':'工作屋', worker:'場務人員', sensor:'感測器'};
+  'inlet-sluice':'進水閘', 'weather-station':'氣象站', 'work-shed':'工作屋', worker:'場務人員', sensor:'感測器', pond:'魚塭'};
 const namedAnchors = {'shed-footprint':'工作屋範圍', 'shed-entry':'工作屋入口',
   'canal-inlet-south':'南側進水溝', 'canal-inlet-west':'西側進水溝',
   'canal-drain-centre':'中央排水溝', 'canal-drain-east':'東側排水溝', 'canal-drain-north':'北側排水溝'};
@@ -46,7 +46,7 @@ export function appendPondTwinTechnicalDetails(content, inspection, {el,
   details.append(el('summary', locale === 'en' ? 'Technical details' : '技術細節'));
   const {twin, transform, sources} = inspection;
   for (const text of [`ID: ${twin.id}`, `kind: ${twin.kind}`,
-    `anchor: ${twin.anchor?.kind}: ${twin.anchor?.id}`,
+    ...(twin.type === 'Face' ? ['type: Face'] : [`anchor: ${twin.anchor?.kind}: ${twin.anchor?.id}`]),
     ...(transform ? [`canonical position: ${transform.position.join(', ')}`] : []),
     ...Object.entries(twin.relationships || {}).map(([kind, ids]) =>
       `${kind}: ${(Array.isArray(ids) ? ids : [ids]).join(', ')}`),
@@ -56,14 +56,15 @@ export function appendPondTwinTechnicalDetails(content, inspection, {el,
 }
 
 export function twinInspection(projection, id) {
-  const twin = projection.twinCatalog?.find(row => row.id === id);
+  const twin = projection.twinCatalog?.find(row => row.id === id)
+    || projection.faceCatalog?.find(row => row.id === id && row.type === 'Face' && row.kind === 'pond');
   if (!twin) return null;
   const sourcePath = ref => String(ref).split('@sha256:')[0];
   const telemetry = (projection.telemetry || []).filter(row => row.entity_id === id);
   const refs = [...new Set([...(twin.provenance_refs || []),
     ...telemetry.flatMap(row => row.provenance_refs || [])])];
   const serves = twin.relationships?.serves;
-  const pondIds = Array.isArray(serves) ? serves : serves ? [serves] : [];
+  const pondIds = twin.type === 'Face' ? [twin.id] : Array.isArray(serves) ? serves : serves ? [serves] : [];
   return {
     twin,
     pondIds,
