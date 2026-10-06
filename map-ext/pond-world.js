@@ -1,5 +1,5 @@
 // Farm-owned, original pond presentation. Static geometry is authored site data;
-// only farm-pond-world-state may supply time, twin placement/state or warning subjects.
+// only farm-pond-world-state may supply replay time, twin placement/state or warning subjects.
 // Wheel movement, foam and local lamp accents are decorative. DT alone applies
 // projection.environment to scene lighting, sky and fog.
 export const COMMAND = 'farm-pond-world-state';
@@ -13,6 +13,9 @@ const TAU = Math.PI * 2;
 const WORKER_PRESENTATION_SCALE = 1.75;
 const WARNING_KINDS = new Set(['equipment-fault', 'simulated-low-oxygen-risk']);
 const RUNNING_STATES = new Set(['on', 'running']);
+// Will, 2026-10-07: foam and paddle spin are animation, not simulated state.
+const PADDLE_SPEED = TAU * 1.37;
+const PADDLE_ACCELERATION = PADDLE_SPEED / 1.5;
 const PRESET_ACCENTS = {
   night: {water: 0.2, windows: 4, lamps: 100, glow: 0.42, status: 2.5},
   dawn: {water: 0.6, windows: 0.25, lamps: 6, glow: 0.025, status: 0.3},
@@ -115,7 +118,6 @@ export default async function install(api, input) {
   // diffuse lighting. Focal water and emissive status materials stay separate.
   const diffuse = (color, options = {}) => own(new THREE.MeshLambertMaterial({color, flatShading: true, ...options}));
   const materials = Object.fromEntries(Object.entries(palette).map(([key, color]) => [key, diffuse(color)]));
-  materials.foam.emissive.set(palette.foam); materials.foam.emissiveIntensity = 0;
   const warningMaterial = material(palette.warning, {emissive: palette.warning, emissiveIntensity: 0.35});
   const faultMaterial = material(palette.fault, {emissive: palette.fault, emissiveIntensity: 0.45});
   const statusMaterials = {on: material('#b5d991', {emissive: '#90bc6d', emissiveIntensity: 0.5}),
@@ -627,38 +629,79 @@ export default async function install(api, input) {
     const record = {id: row.id, kind: row.kind, group, wheels, joints, lamp: statusLamp(group),
       halo: isAerator ? halo(group, [0, -0.6, 2.05], 2.2, statusHalos.off) : null, state: null,
       marker: isAerator ? stoppedMarker(group) : null,
-      angle: 0, lastElapsed: null, warning: false, config: row};
+      angle: 0, speed: 0, lastElapsed: null, warning: false, config: row};
     if (wheels.length) aerators.push(record);
     if (equipment.has(row.id)) throw new TypeError(`pond-world/v1: duplicate twin ${row.id}`);
     equipment.set(row.id, record); pick(group, row, 'Asset');
   }
 
-  // Author-provided wall-current curves are decorative geometry. Freeze them
-  // in each wheel's model coordinates, then apply the canonical group matrix;
-  // static authored placement never supplies the current runtime position.
-  const foamPerAerator = 22;
-  let foamCount = 0;
+  // Static authored circulation paths become soft ribbons in twin-local space.
+  // The canonical root supplies every runtime transform, including backup moves.
+  // Shared scrolling noise costs no textures, particles or per-frame geometry.
+  const foamPhase = {value: 0}, foamBrightness = {value: 0.45};
   for (const row of aerators) {
     const authored = row.config, scale = authored.scale ?? 1, angle = authored.rotation;
-    row.foamOffset = foamCount; row.foamCount = authored.foam_path ? 104 : row.kind === 'backup-aerator' ? 36 : foamPerAerator;
-    if (authored.foam_path) {
-      const curve = new THREE.CatmullRomCurve3(authored.foam_path.map(([x, y]) => {
+    const points = authored.foam_path
+      ? authored.foam_path.map(([x, y]) => {
         const dx = x - authored.position[0], dy = y - authored.position[1];
         return new THREE.Vector3((dx * Math.cos(angle) + dy * Math.sin(angle)) / scale,
           (-dx * Math.sin(angle) + dy * Math.cos(angle)) / scale, 0.25 / scale);
-      }));
-      row.foamPoints = curve.getSpacedPoints(row.foamCount - 1);
-    }
-    foamCount += row.foamCount;
-  }
-  // One foam batch, no reflection target or particle loop.
-  const foam = foamCount ? new THREE.InstancedMesh(geometries.sphere, materials.foam, foamCount) : null;
-  if (foam) {
-    foam.name = 'farm-pond-canonical-churn'; foam.raycast = () => {}; foam.frustumCulled = false;
-    world.add(foam);
-    for (let i = 0; i < foamCount; i++) {
-      dummy.scale.set(0, 0, 0); dummy.updateMatrix(); foam.setMatrixAt(i, dummy.matrix);
-    }
+      })
+      : [new THREE.Vector3(0, 0, 0.25 / scale), new THREE.Vector3(0, -6, 0.25 / scale)];
+    const curve = new THREE.CatmullRomCurve3(points);
+    const length = curve.getLength() * scale;
+    const samples = curve.getSpacedPoints(authored.foam_path ? 80 : 12);
+    const vertices = [], uvs = [], indices = [];
+    samples.forEach((point, i) => {
+      const progress = i / (samples.length - 1);
+      const before = samples[Math.max(0, i - 1)], after = samples[Math.min(samples.length - 1, i + 1)];
+      const tangent = after.clone().sub(before).normalize();
+      const width = (authored.foam_path ? 1.15 / scale : 2.2) * (1 - progress * 0.68);
+      for (const side of [-1, 1]) {
+        vertices.push(point.x - tangent.y * width * side, point.y + tangent.x * width * side, point.z);
+        uvs.push(progress * length, (side + 1) / 2);
+      }
+      if (i) { const a = (i - 1) * 2; indices.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+    });
+    const geometry = own(new THREE.BufferGeometry());
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+    geometry.setIndex(indices); geometry.computeVertexNormals();
+    const mat = own(new THREE.MeshBasicMaterial({color: palette.foam, transparent: true,
+      opacity: 0, depthWrite: false, side: THREE.DoubleSide, forceSinglePass: true}));
+    mat.onBeforeCompile = shader => {
+      shader.uniforms.uFoamPhase = foamPhase; shader.uniforms.uFoamBrightness = foamBrightness;
+      shader.uniforms.uFoamLength = {value: length};
+      shader.vertexShader = `varying vec2 vFoamUV;\n${shader.vertexShader}`
+        .replace('#include <begin_vertex>', '#include <begin_vertex>\nvFoamUV = uv;');
+      shader.fragmentShader = `varying vec2 vFoamUV;
+        uniform float uFoamPhase, uFoamBrightness, uFoamLength;
+        float foamHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+        float foamNoise(vec2 p) {
+          vec2 cell = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+          return mix(mix(foamHash(cell), foamHash(cell + vec2(1.0, 0.0)), f.x),
+            mix(foamHash(cell + vec2(0.0, 1.0)), foamHash(cell + vec2(1.0, 1.0)), f.x), f.y);
+        }
+        ${shader.fragmentShader}`
+        .replace('#include <color_fragment>', `#include <color_fragment>
+          vec2 drift = vec2(vFoamUV.x - uFoamPhase * 0.9, vFoamUV.y * 3.5);
+          float broad = foamNoise(drift * vec2(0.8, 1.0));
+          float fine = foamNoise(drift * 3.1 + vec2(broad * 1.3, uFoamPhase * 0.13));
+          float across = abs(vFoamUV.y * 2.0 - 1.0);
+          float edge = 1.0 - smoothstep(0.28 + broad * 0.22, 0.72 + broad * 0.25, across);
+          float progress = clamp(vFoamUV.x / max(uFoamLength, 0.01), 0.0, 1.0);
+          float churn = exp(-vFoamUV.x * 0.65);
+          float density = smoothstep(0.25, 0.78, broad * 0.65 + fine * 0.35);
+          float taper = pow(1.0 - progress, 1.2) * smoothstep(0.0, 0.18, vFoamUV.x);
+          diffuseColor.a *= edge * taper * (0.18 + density * 0.52 + churn * 0.22);
+          diffuseColor.rgb *= uFoamBrightness * (0.78 + fine * 0.22);`);
+    };
+    mat.customProgramCacheKey = () => 'farm-pond-soft-foam-v1';
+    const ribbon = new THREE.Mesh(geometry, mat);
+    ribbon.name = 'farm-pond-aerator-foam'; ribbon.visible = false; ribbon.raycast = () => {};
+    ribbon.userData = {entity_id: row.id, simulation_label: '模擬', source_ref: config.source_ref,
+      presentation: 'Decorative render-clock foam; visibility follows this twin canonical state'};
+    row.group.add(ribbon); row.foam = ribbon;
   }
 
   const roofGeometry = own(new THREE.BufferGeometry());
@@ -872,7 +915,7 @@ export default async function install(api, input) {
     // Missing environment stays neutral; timestamps never choose a preset.
     const accents = PRESET_ACCENTS[preset] ?? {water: 0.5, windows: 0, lamps: 0, glow: 0, status: 0};
     waterAccent.value = accents.water;
-    materials.foam.emissiveIntensity = accents.glow * 0.55;
+    foamBrightness.value = 0.28 + accents.water * 0.62;
     windowMaterial.emissiveIntensity = accents.windows;
     workerLampMaterial.emissiveIntensity = accents.windows;
     workerGlowMaterial.opacity = accents.glow * 0.7; workerHaloMaterial.opacity = accents.glow;
@@ -885,36 +928,9 @@ export default async function install(api, input) {
     for (const accent of lightAccents) accent.visible = accent.material.opacity > 0;
     world.userData.nightAccents = {...accents};
   };
-  const updateFoam = () => {
-    if (!foam) return;
-    aerators.forEach(row => {
-      const running = RUNNING_STATES.has(row.state);
-      row.group.updateMatrix();
-      const phase = row.angle;
-      for (let i = 0; i < row.foamCount; i++) {
-        const localX = (i % 2 ? -1 : 1) * (1.7 + Math.sin(phase + i * 2.1) * 0.35);
-        const localY = (Math.floor(i / 2) - (row.foamCount / 2 - 1) / 2) * 0.31 + Math.sin(phase * 0.73 + i) * 0.16;
-        let size = (0.2 + (1 + Math.sin(i * 1.7 + phase)) * 0.09) * (row.kind === 'backup-aerator' ? 1.5 : 1);
-        if (row.foamPoints) {
-          const point = row.foamPoints[i], s = row.config.scale ?? 1;
-          dummy.position.copy(point);
-          dummy.position.x += Math.sin(phase * 0.22 + i * 1.7) * 0.22 / s;
-          dummy.position.y += Math.cos(phase * 0.18 + i * 2.3) * 0.28 / s;
-          size /= s;
-        } else {
-          dummy.position.set(localX, localY, 0.11 + Math.max(0, Math.sin(i + phase)) * 0.12);
-        }
-        dummy.rotation.set(0, 0, 0);
-        dummy.scale.set(running ? size * 1.7 : 0, running ? size * 0.55 : 0, running ? size * 0.26 : 0);
-        dummy.updateMatrix(); dummy.matrix.premultiply(row.group.matrix);
-        foam.setMatrixAt(row.foamOffset + i, dummy.matrix);
-      }
-    });
-    foam.instanceMatrix.needsUpdate = true;
-  };
   const counts = {ponds: config.ponds.length, contextPonds: config.context_ponds.length, paddies: config.paddies.length,
     equipment: equipment.size, aerators: aerators.length, sheds: config.sheds.length, vegetation: config.vegetation.length,
-    feeders: config.assets.filter(row => row.kind === 'feeder').length, foamInstances: foamCount,
+    feeders: config.assets.filter(row => row.kind === 'feeder').length, foamRibbons: aerators.length,
     pathLamps: config.lamps.length, contextDikes: config.context_dikes.length, staticBatches: batches.size};
   world.userData.counts = counts;
   const readPlacements = payload => {
@@ -962,7 +978,6 @@ export default async function install(api, input) {
         warnings.get(id).push(event.kind);
       }
     }
-    const phase = payload.elapsedSeconds * 2.7;
     waterPhase.value = payload.elapsedSeconds * 0.7;
     for (const row of equipment.values()) {
       const placement = placements?.get(row.id);
@@ -979,10 +994,6 @@ export default async function install(api, input) {
       }
       const state = states.get(row.id) ?? null;
       const running = RUNNING_STATES.has(state);
-      // Running articulation uses the selected canonical playback time. The
-      // authored stopped pose is fixed, so direct seeks and replay agree.
-      row.angle = running ? phase : 0;
-      for (const wheel of row.wheels) wheel.rotation.x = row.angle;
       row.state = state; row.lastElapsed = payload.elapsedSeconds; row.warning = warnings.has(row.id);
       row.lamp.visible = state !== null && row.kind !== 'worker';
       row.lamp.material = state === 'fault' ? faultMaterial : row.warning ? warningMaterial
@@ -1000,12 +1011,11 @@ export default async function install(api, input) {
         row.marker.scale.set(markerSize / row.group.scale.x, markerSize / row.group.scale.y, 1);
       }
       row.group.userData.canonical_state = state; row.group.userData.warning_kinds = warnings.get(row.id) ?? [];
-      row.group.userData.decorative_rotation = row.angle;
     }
     for (const [id, warning] of pondWarnings) { warning.visible = warnings.has(id); warning.userData.warning_kinds = warnings.get(id) ?? []; }
     const preset = typeof payload.environment?.preset_hint === 'string' ? payload.environment.preset_hint : null;
     const firstCommand = !world.visible;
-    world.visible = true; updateFoam();
+    world.visible = true;
     if (firstCommand) findPlaceholders();
     applyLocalAccents(preset);
     const observed = {simulation_label: '模擬', source_ref: config.source_ref, sampledAt: payload.sampledAt,
@@ -1022,9 +1032,31 @@ export default async function install(api, input) {
   });
   // Late static meshes and distance LOD need four discovery passes per second,
   // not two complete scene traversals and fresh summaries every rendered frame.
-  // This clock controls static display cost only; runtime state stays canonical.
-  let lastContextUpdate = -Infinity;
+  // Discovery timing controls display cost; render animation changes only local
+  // visual parts. Equipment state and root transforms stay canonical.
+  let lastContextUpdate = -Infinity, lastAnimationTime = null;
   const offFrame = api.onFrame(time => {
+    if (Number.isFinite(time)) {
+      const dt = lastAnimationTime === null ? 0 : Math.max(0, (time - lastAnimationTime) / 1000);
+      lastAnimationTime = time;
+      if (world.visible) {
+        foamPhase.value += dt;
+        for (const row of aerators) {
+          // Only the copied per-twin canonical state selects the animation target.
+          // Replay time, environment, alerts and other twins do not drive spin.
+          const running = RUNNING_STATES.has(row.state), target = running ? PADDLE_SPEED : 0;
+          const previous = row.speed;
+          const ramp = Math.min(dt, Math.abs(target - previous) / PADDLE_ACCELERATION);
+          row.speed = previous + Math.sign(target - previous) * PADDLE_ACCELERATION * ramp;
+          row.angle += (previous + row.speed) * ramp / 2 + target * (dt - ramp);
+          for (const wheel of row.wheels) wheel.rotation.x = row.angle;
+          row.group.userData.decorative_rotation = row.angle;
+          const opacity = row.foam.material.opacity;
+          row.foam.material.opacity = running ? Math.min(1, opacity + dt) : Math.max(0, opacity - dt);
+          row.foam.visible = row.foam.material.opacity > 0;
+        }
+      }
+    }
     if (!Number.isFinite(time) || time - lastContextUpdate >= 250) {
       lastContextUpdate = Number.isFinite(time) ? time : lastContextUpdate;
       findPlaceholders(); updateContext();

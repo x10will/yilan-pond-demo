@@ -1,0 +1,25 @@
+{
+  "schema_version": "geofabrik-extract-coverage/v1",
+  "recorded_at_utc": "2026-10-01T14:02:29.541505+00:00",
+  "source_url": "https://download.geofabrik.de/asia/taiwan.poly",
+  "source_saved_at_utc": "2026-10-01T14:00:37.181469+00:00",
+  "source_saved_time_basis": "filesystem modification time at completed HTTP save",
+  "boundary": {
+    "path": "inputs/osm/geofabrik-taiwan-boundary-20261001.poly",
+    "sha256": "30cca02a331b79fb9d47a46163dfe83b44fcfdcddd718e9c7df11f66aee64976",
+    "byte_count": 511
+  },
+  "extract_sha256": "517a963d5d811d971cd914002b06241994d427f1c9d4e7b10bbf492a991f389d",
+  "bbox": {
+    "south": 24.59,
+    "west": 121.6,
+    "north": 24.93,
+    "east": 121.87
+  },
+  "bbox_fully_covered": true,
+  "check": "shapely Polygon.covers on the official Geofabrik Taiwan .poly and the entire requested rectangle",
+  "authority_scope": "extract coverage, not completeness or accuracy of on-site OSM mapping",
+  "attribution": "© OpenStreetMap contributors",
+  "license": "Open Database License (ODbL) 1.0",
+  "attribution_url": "https://www.openstreetmap.org/copyright"
+}
