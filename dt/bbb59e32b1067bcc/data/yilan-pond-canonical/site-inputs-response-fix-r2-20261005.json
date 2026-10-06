@@ -1,0 +1,19 @@
+{
+  "output_dir": "outputs/pond-night-response-fix-r2-20261005",
+  "paths": {
+    "assets": "inputs/pond-response-assets-fix-content-20261004.json",
+    "decision": "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+    "geometry": "inputs/pond-twins-geometry-20261004.geojson",
+    "scenario": "scenarios/pond-night-response-fix-content-20261004.json",
+    "topology": "inputs/pond-twins-topology-20261004.json"
+  },
+  "pond_ai": {
+    "frozen_path": "inputs/pond-ai-codex-sol61-20261004-01.json",
+    "decision_path": "decisions/2026-10-04-pond-fix-integrate.md",
+    "generation_decision_path": "decisions/2026-10-04-pond-ai-codex-backend.md",
+    "portable_frozen_path": "inputs/pond-ai-codex-sol61-20261004-01-public.json"
+  },
+  "schema_version": "farm-site-inputs/v1",
+  "simulation_label": "模擬",
+  "site_id": "yilan-pond"
+}

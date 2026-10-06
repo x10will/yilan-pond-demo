@@ -1,0 +1,13 @@
+{
+  "output_dir": "outputs/pond-night-no-response-fix-r2-20261005",
+  "paths": {
+    "assets": "inputs/pond-response-assets-fix-content-20261004.json",
+    "decision": "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+    "geometry": "inputs/pond-twins-geometry-20261004.geojson",
+    "scenario": "scenarios/pond-night-no-response-fix-content-20261004.json",
+    "topology": "inputs/pond-twins-topology-20261004.json"
+  },
+  "schema_version": "farm-site-inputs/v1",
+  "simulation_label": "模擬",
+  "site_id": "yilan-pond"
+}

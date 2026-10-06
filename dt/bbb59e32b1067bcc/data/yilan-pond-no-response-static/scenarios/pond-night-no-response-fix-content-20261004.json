@@ -1,0 +1,900 @@
+{
+  "schema_version": "farm-pond-night-scenario/v1",
+  "site_id": "yilan-pond",
+  "scenario_id": "pond-night",
+  "simulation_label": "模擬",
+  "decision_ref": {
+    "path": "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+    "declaration_format": "fenced-json",
+    "scenario_id": "pond-night"
+  },
+  "source_notice": "人工編寫的宜蘭意象模擬場景；非現地測繪、OSM 或影像推定，所有值僅供十分鐘原型展示。",
+  "authoring": {
+    "author": "Claude Opus 5.5 CTO delegated lane, executed by Codex",
+    "recorded_on": "2026-10-04",
+    "decision_path": "decisions/2026-10-04-pond-twin-inventory-and-model.md"
+  },
+  "telemetry_profiles": [
+    {
+      "entity_id": "pond-1",
+      "metric": "water_temperature",
+      "unit": "°C",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          24
+        ],
+        [
+          595,
+          24
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-1",
+      "metric": "ph",
+      "unit": "pH",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          7.8
+        ],
+        [
+          595,
+          7.8
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-1",
+      "metric": "salinity",
+      "unit": "ppt",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          12
+        ],
+        [
+          595,
+          12
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-1",
+      "metric": "water_level",
+      "unit": "m",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          1.5
+        ],
+        [
+          595,
+          1.5
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-2",
+      "metric": "water_temperature",
+      "unit": "°C",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          24
+        ],
+        [
+          595,
+          24
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-2",
+      "metric": "ph",
+      "unit": "pH",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          7.8
+        ],
+        [
+          595,
+          7.8
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-2",
+      "metric": "salinity",
+      "unit": "ppt",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          12
+        ],
+        [
+          595,
+          12
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-2",
+      "metric": "water_level",
+      "unit": "m",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          1.5
+        ],
+        [
+          595,
+          1.5
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-3",
+      "metric": "water_temperature",
+      "unit": "°C",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          24
+        ],
+        [
+          595,
+          24
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-3",
+      "metric": "ph",
+      "unit": "pH",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          7.8
+        ],
+        [
+          595,
+          7.8
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-3",
+      "metric": "salinity",
+      "unit": "ppt",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          12
+        ],
+        [
+          595,
+          12
+        ]
+      ]
+    },
+    {
+      "entity_id": "pond-3",
+      "metric": "water_level",
+      "unit": "m",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          1.5
+        ],
+        [
+          595,
+          1.5
+        ]
+      ]
+    },
+    {
+      "entity_id": "weather-site",
+      "metric": "air_temperature",
+      "unit": "°C",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes_ref": "air_temperature_keyframes"
+    },
+    {
+      "entity_id": "weather-site",
+      "metric": "rainfall",
+      "unit": "mm/h",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          0.0
+        ],
+        [
+          200,
+          0.0
+        ],
+        [
+          400,
+          0.6
+        ],
+        [
+          595,
+          1.2
+        ]
+      ]
+    },
+    {
+      "entity_id": "weather-site",
+      "metric": "wind_speed",
+      "unit": "m/s",
+      "interpolation": "linear-at-bake",
+      "decimal_places": 2,
+      "keyframes": [
+        [
+          0,
+          1.8
+        ],
+        [
+          200,
+          2.4
+        ],
+        [
+          400,
+          4.0
+        ],
+        [
+          595,
+          5.2
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-1-1",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-1-2",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-1-3",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-1-4",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "feeder-1-1",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "standby"
+        ],
+        [
+          595,
+          "standby"
+        ]
+      ]
+    },
+    {
+      "entity_id": "feeder-1-2",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "standby"
+        ],
+        [
+          595,
+          "standby"
+        ]
+      ]
+    },
+    {
+      "entity_id": "pump-1",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "off"
+        ],
+        [
+          595,
+          "off"
+        ]
+      ]
+    },
+    {
+      "entity_id": "sluice-1",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "closed"
+        ],
+        [
+          595,
+          "closed"
+        ]
+      ]
+    },
+    {
+      "entity_id": "circuit-1-a",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "circuit-1-b",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-2-1",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-2-2",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-2-3",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-2-4",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "feeder-2-1",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "standby"
+        ],
+        [
+          595,
+          "standby"
+        ]
+      ]
+    },
+    {
+      "entity_id": "feeder-2-2",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "standby"
+        ],
+        [
+          595,
+          "standby"
+        ]
+      ]
+    },
+    {
+      "entity_id": "pump-2",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "off"
+        ],
+        [
+          595,
+          "off"
+        ]
+      ]
+    },
+    {
+      "entity_id": "sluice-2",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "closed"
+        ],
+        [
+          595,
+          "closed"
+        ]
+      ]
+    },
+    {
+      "entity_id": "circuit-2-a",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "circuit-2-b",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-3-1",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-3-2",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-3-3",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "aerator-3-4",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "feeder-3-1",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "standby"
+        ],
+        [
+          595,
+          "standby"
+        ]
+      ]
+    },
+    {
+      "entity_id": "feeder-3-2",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "standby"
+        ],
+        [
+          595,
+          "standby"
+        ]
+      ]
+    },
+    {
+      "entity_id": "pump-3",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "off"
+        ],
+        [
+          595,
+          "off"
+        ]
+      ]
+    },
+    {
+      "entity_id": "sluice-3",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "closed"
+        ],
+        [
+          595,
+          "closed"
+        ]
+      ]
+    },
+    {
+      "entity_id": "circuit-3-a",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          200,
+          "fault"
+        ],
+        [
+          595,
+          "fault"
+        ]
+      ]
+    },
+    {
+      "entity_id": "circuit-3-b",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "on"
+        ],
+        [
+          595,
+          "on"
+        ]
+      ]
+    },
+    {
+      "entity_id": "workshop-shed",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "normal"
+        ],
+        [
+          595,
+          "normal"
+        ]
+      ]
+    },
+    {
+      "entity_id": "control-panel",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "normal"
+        ],
+        [
+          595,
+          "normal"
+        ]
+      ]
+    },
+    {
+      "entity_id": "power-mains",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "normal"
+        ],
+        [
+          595,
+          "normal"
+        ]
+      ]
+    },
+    {
+      "entity_id": "power-generator",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "standby"
+        ],
+        [
+          595,
+          "standby"
+        ]
+      ]
+    },
+    {
+      "entity_id": "weather-site",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "normal"
+        ],
+        [
+          595,
+          "normal"
+        ]
+      ]
+    },
+    {
+      "entity_id": "worker-pond-response",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "idle"
+        ],
+        [
+          595,
+          "idle"
+        ]
+      ]
+    },
+    {
+      "entity_id": "backup-aerator-3",
+      "metric": "equipment_state",
+      "interpolation": "step-at-bake",
+      "keyframes": [
+        [
+          0,
+          "standby"
+        ],
+        [
+          595,
+          "standby"
+        ]
+      ]
+    }
+  ],
+  "events": [
+    {
+      "occurrence_id": "pond-night-aerator-fault",
+      "event_kind": "equipment-fault",
+      "elapsed_seconds_ref": "fault_seconds",
+      "title_ref": "fault_title",
+      "detail_ref": "fault_detail",
+      "subject_ids": [
+        "pond-3",
+        "circuit-3-a",
+        "aerator-3-1",
+        "aerator-3-2",
+        "aerator-3-3"
+      ]
+    },
+    {
+      "occurrence_id": "pond-night-low-oxygen-risk",
+      "event_kind": "simulated-low-oxygen-risk",
+      "title_ref": "risk_title",
+      "detail_ref": "risk_detail",
+      "subject_ids": [
+        "pond-3"
+      ],
+      "trigger": {
+        "kind": "oxygen-threshold",
+        "pond_id": "pond-3",
+        "threshold_mg_l": 4.0
+      }
+    }
+  ],
+  "environment_keyframes": [
+    {
+      "elapsed_seconds": 0,
+      "preset_hint": "night",
+      "sun": {
+        "azimuth_deg": 100,
+        "elevation_deg": -18
+      }
+    },
+    {
+      "elapsed_seconds": 500,
+      "preset_hint": "dawn",
+      "sun": {
+        "azimuth_deg": 100,
+        "elevation_deg": 2
+      }
+    }
+  ],
+  "pond_simulation": {
+    "model": "oxygen-mass-balance/v1",
+    "parameters_path": "inputs/pond-oxygen-parameters-20261004.json"
+  },
+  "telemetry_decision_ref": {
+    "path": "decisions/2026-10-04-pond-twin-water-baselines.md"
+  },
+  "pond_response": {
+    "story_path": "inputs/pond-response-story-fix-content-20261004.json",
+    "decision_path": "decisions/2026-10-04-pond-use-case-cto-review.md",
+    "enabled": false
+  }
+}
