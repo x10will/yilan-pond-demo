@@ -137,13 +137,18 @@ export function focusPondViewer(frame, mode, target) {
 // Camera presentation only. DT's current WASD uses metres per render frame;
 // consume native keys here and use its documented metre-translation hook.
 // viewChanged supplies heading in degrees (sampled by DT every 250 ms).
-export function bindPondInspectionMovement(frame, mode, heading) {
-  const doc = frame.contentDocument, win = frame.contentWindow, held = new Set();
+export function bindPondInspectionMovement(frame, mode, heading, inspect = () => {}) {
+  const doc = frame.contentDocument, win = frame.contentWindow, host = frame.ownerDocument, held = new Set();
+  const listeners = [];
+  const listen = (target, name, callback, capture = false) => {
+    if (!target?.addEventListener) return;
+    target.addEventListener(name, callback, capture); listeners.push([target, name, callback, capture]);
+  };
   let animation, previous;
   const stop = () => { held.clear(); if (animation != null) win.cancelAnimationFrame?.(animation); animation = null; };
   const tick = now => {
     animation = null;
-    if (mode() !== 'inspection' || !held.size || doc.hidden) { stop(); return; }
+    if (mode() !== 'inspection' || !held.size || doc.hidden || host?.hidden) { stop(); return; }
     const seconds = Math.max(0, Math.min(.1, (now - previous) / 1000)); previous = now;
     const angle = heading() * Math.PI / 180;
     const forward = Number(held.has('w')) - Number(held.has('s'));
@@ -158,21 +163,33 @@ export function bindPondInspectionMovement(frame, mode, heading) {
     }
     animation = win.requestAnimationFrame(tick);
   };
-  doc.addEventListener('keydown', event => {
+  const down = event => {
     const key = event.key.toLowerCase();
-    if (mode() !== 'inspection' || textEntry(event.target) || !/^[wasdqe]$/.test(key)) return;
+    if (textEntry(event.target) || event.ctrlKey || event.metaKey || event.altKey || event.isComposing
+      || !/^[wasdqe]$/.test(key) || typeof win.__dtEmbed?.translateCameraTarget !== 'function') return;
+    if (mode() === 'guided') inspect();
+    if (mode() !== 'inspection') return;
     event.preventDefault(); event.stopImmediatePropagation(); held.add(key);
     if (animation == null) { previous = win.performance.now(); animation = win.requestAnimationFrame(tick); }
-  }, true);
-  doc.addEventListener('keyup', event => {
+  };
+  const up = event => {
     const key = event.key.toLowerCase();
     if (!held.has(key)) return;
     event.preventDefault(); event.stopImmediatePropagation(); held.delete(key);
     if (!held.size) stop();
-  }, true);
-  win.addEventListener('blur', stop);
-  doc.addEventListener('visibilitychange', stop);
-  return stop;
+  };
+  // A panel selection may focus its host header; a cold opening focuses BODY.
+  // Handle the actual document receiving the key without replaying DOM events.
+  for (const source of new Set([doc, host])) {
+    listen(source, 'keydown', down, true); listen(source, 'keyup', up, true);
+    listen(source, 'visibilitychange', stop);
+    listen(source, 'focusin', event => { if (textEntry(event.target)) stop(); }, true);
+  }
+  listen(win, 'blur', stop); listen(host?.defaultView, 'blur', stop);
+  return () => {
+    stop();
+    for (const [target, name, callback, capture] of listeners) target.removeEventListener?.(name, callback, capture);
+  };
 }
 
 // Let the viewer receive the initiating down and every subsequent move. Switch
@@ -201,7 +218,7 @@ export function bindPondCameraInput(frame, mode, inspect = () => {}) {
   }, true);
   doc.addEventListener('keydown', event => {
     if (mode() === 'guided' && !textEntry(event.target)
-      && /^(?:[wasdqe]|Arrow\w+|Control|Meta|[1-9])$/i.test(event.key)) {
+      && /^(?:Arrow\w+|Control|Meta|[1-9])$/i.test(event.key)) {
       event.stopImmediatePropagation(); event.preventDefault();
     }
   }, true);
@@ -627,7 +644,8 @@ export function installPondShell(container, app) {
       if (entry.inputDocument !== doc) {
         entry.inputDocument = doc; bindPondCameraInput(frame, () => cameraMode, () => switchCamera('inspection', true));
         entry.stopMovement?.();
-        entry.stopMovement = bindPondInspectionMovement(frame, () => cameraMode, () => cameraHeading);
+        entry.stopMovement = bindPondInspectionMovement(frame, () => cameraMode, () => cameraHeading,
+          () => switchCamera('inspection', true));
         doc.addEventListener('click', event => {
           if (!event.target.closest?.('#btn-reset')) return;
           cameraMode = 'guided'; entry.cameraSignature = null; showPhonePanel(null);

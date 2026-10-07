@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-10-07T12:18:09+00:00",
-  "build": "82dcb163c8dbd4ff",
-  "dt_base": "dt/79ca49f430fc62b0/",
-  "label": "yilan-pond-compact-local",
-  "farm_commit": "e38c96758aadafa263d719f90f644ac921f7bbf5",
+  "built_at": "2026-10-07T14:31:56+00:00",
+  "build": "26455b296924d82f",
+  "dt_base": "dt/11e0c6578c6ba54d/",
+  "label": "yilan-pond-wasd-local",
+  "farm_commit": "6f803249615779a2129a8fc89e63cdbc1a3f0e56",
   "farm_panel_dirty": false,
   "dt_generation": {
     "name": "dt-yilan-merge-tc-r2-20261007",
@@ -456,73 +456,73 @@
     "2026-10-07 merge: compressed regional background plus wheel v2 canonical frames; decisions/2026-10-07-pond-merge-tc.md."
   ],
   "transforms": [
-    "dt/79ca49f430fc62b0/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
-    "dt/79ca49f430fc62b0/docs/viewer-3d/index.html: boot-error relay added to generated shell"
+    "dt/11e0c6578c6ba54d/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
+    "dt/11e0c6578c6ba54d/docs/viewer-3d/index.html: boot-error relay added to generated shell"
   ],
   "leak_scan_not_scanned": "GLB BIN chunks (vertex data, where short path patterns match by chance); each GLB JSON chunk is scanned",
   "meshopt": "not packed: the site sets meshopt: true but no --meshopt-tool was given",
   "precached": 189,
   "files": 379,
-  "bytes": 47811515,
+  "bytes": 47812540,
   "gzip": {
     "files": 350,
-    "bytes": 21719119
+    "bytes": 21719409
   },
   "workshop_budget": {
     "authority": "Will, 2026-10-04 pond Pages-ready brief",
     "file_limit_exclusive": 50000000,
     "total_limit_exclusive": 120000000,
-    "total_uncompressed_bytes": 47832606,
+    "total_uncompressed_bytes": 47833628,
     "stretch_goal_bytes": 60000000,
     "stretch_goal_met": true,
     "files": 730,
     "largest_files": [
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-static/meshes/context-water.glb",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-static/meshes/context-water.glb",
         "byte_count": 18770388
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-static/meshes/context-water.glb.gz",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-static/meshes/context-water.glb.gz",
         "byte_count": 12738731
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-static/meshes/context-buildings.glb",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-static/meshes/context-buildings.glb",
         "byte_count": 6580944
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-static/meshes/context-buildings.glb.gz",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-static/meshes/context-buildings.glb.gz",
         "byte_count": 4497235
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-static/meshes/context-roads.glb",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-static/meshes/context-roads.glb",
         "byte_count": 3817320
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-canonical/composed-frames.json",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-canonical/composed-frames.json",
         "byte_count": 3242430
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-no-response-canonical/composed-frames.json",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-no-response-canonical/composed-frames.json",
         "byte_count": 3164998
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-static/meshes/context-roads.glb.gz",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-static/meshes/context-roads.glb.gz",
         "byte_count": 2229538
       },
       {
-        "path": "dt/79ca49f430fc62b0/node_modules/three/build/three.module.js",
+        "path": "dt/11e0c6578c6ba54d/node_modules/three/build/three.module.js",
         "byte_count": 1314681
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-no-response-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-no-response-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
       },
       {
-        "path": "dt/79ca49f430fc62b0/data/yilan-pond-static/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/11e0c6578c6ba54d/data/yilan-pond-static/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
       }
     ],
