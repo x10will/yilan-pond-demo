@@ -1,0 +1,40 @@
+{
+  "model": "oxygen-mass-balance/v1",
+  "simulation_label": "模擬",
+  "decision_path": "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+  "integration_step_demo_seconds": 5,
+  "reference_temperature_c": 24,
+  "respiration_q10": 2,
+  "night_photosynthesis_kg_h": 0,
+  "oxygen_ceiling_mg_l": 8,
+  "decimal_places": 4,
+  "ponds": [
+    {
+      "id": "pond-1",
+      "area_m2": 1600,
+      "depth_m": 1.5,
+      "fish_biomass_kg": 12000,
+      "fish_respiration_g_kg_h": 0.3,
+      "sediment_respiration_g_m2_h": 0.75,
+      "initial_do_mg_l": 6.5
+    },
+    {
+      "id": "pond-2",
+      "area_m2": 1600,
+      "depth_m": 1.5,
+      "fish_biomass_kg": 12000,
+      "fish_respiration_g_kg_h": 0.3,
+      "sediment_respiration_g_m2_h": 0.75,
+      "initial_do_mg_l": 6.3
+    },
+    {
+      "id": "pond-3",
+      "area_m2": 1600,
+      "depth_m": 1.5,
+      "fish_biomass_kg": 12000,
+      "fish_respiration_g_kg_h": 0.3,
+      "sediment_respiration_g_m2_h": 0.75,
+      "initial_do_mg_l": 6.4
+    }
+  ]
+}

@@ -308,6 +308,26 @@ html[data-pond-ui=true] .pond-key-numbers dd{margin:1px 0 0;font-weight:650;colo
 html[data-pond-ui=true] :is(.pond-phone-details-toggle,.pond-phone-panel-picker){display:none}
 html[data-pond-ui=true] .pond-guided-story[hidden],html[data-pond-ui=true] .pond-guided-story [hidden]{display:none!important}
 html[data-pond-ui=true] .replay-controls[data-ended=true] button:first-child{background:#326858;border-color:#a2dec9}
+/* Will, 2026-10-07: desktop controls occupy two rows so the map owns the card. */
+@media(min-width:768px){
+ html[data-pond-ui=true] .panel-map .replay-controls{display:flex;flex-wrap:nowrap;gap:5px;padding:6px 10px}
+ html[data-pond-ui=true] .panel-map .replay-controls input[type=range]{flex:1;min-width:60px;min-height:32px;width:0;margin:0}
+ html[data-pond-ui=true] .panel-map .replay-controls :is(button,select){min-height:32px;min-width:28px;padding:3px 6px;font-size:11px;white-space:nowrap}
+ html[data-pond-ui=true] .panel-map .replay-controls select{min-width:82px;width:auto}
+ html[data-pond-ui=true] .panel-map .replay-controls output{flex-shrink:0;font-size:11px;padding:0}
+ html[data-pond-ui=true] .pond-guided-story{display:flex;align-items:center;gap:5px;padding:6px 10px}
+ html[data-pond-ui=true] .pond-guided-heading{flex:1;min-width:0;font-size:12px}
+ html[data-pond-ui=true] .pond-guided-sequence{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ html[data-pond-ui=true] .pond-guided-story>:is(.pond-guided-title,.pond-guided-caption,.pond-key-numbers,.pond-story-language),
+ html[data-pond-ui=true] .pond-guided-time,html[data-pond-ui=true] .pond-camera-notice{display:none}
+ html[data-pond-ui=true] :is(.pond-camera-controls,.pond-guided-stepper){display:contents}
+ html[data-pond-ui=true] .pond-guided-story :is(button,.pond-guided-list>summary){min-height:32px;padding:3px 6px;font-size:11px;white-space:nowrap}
+ html[data-pond-ui=true] .pond-guided-stepper button{flex:0 0 28px;font-size:20px;line-height:1}
+ html[data-pond-ui=true] .pond-guided-list{flex-shrink:0}
+ html[data-pond-ui=true] .pond-camera-controls>button{flex-shrink:0}
+ html[data-pond-ui=true] .pond-guided-list>summary{border:1px solid #466773;border-radius:7px;background:#173746}
+ html[data-pond-ui=true] .pond-guided-list>div{left:10px;right:10px}
+}
 @media(max-width:767px){
  html[data-pond-ui=true] .pond-shell-load-failure{position:fixed;inset:auto 0 0;z-index:30;max-height:50dvh;overflow:auto;pointer-events:auto}
  html[data-pond-ui=true]{--pond-phone-sheet-height:300px}

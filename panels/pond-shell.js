@@ -474,12 +474,22 @@ export function installPondShell(container, app) {
         cameraMode:mode, region, cameraReset, cameraNotice:notice, provenance, details, summary, panelSelect, close});
     }
     if (isPhone()) {
+      if (entry.compactDesktop) {
+        entry.storyNav.insertBefore(entry.cameraMode.parentElement, entry.storyPrevious.parentElement);
+        entry.compactDesktop = false;
+      }
       // Keep the sheet inside core's isolated stacking root so open panel
       // menus can rise above it. A sibling outside that root always wins.
       const home = container.querySelector('.panel-core-app') || container;
       if (entry.storyNav.parentElement !== home) home.append(entry.storyNav);
       if (playback?.parentElement !== entry.storyNav) entry.storyNav.append(playback);
     } else {
+      if (!entry.compactDesktop) {
+        // Keyboard focus follows the same chapter-then-view order as the row.
+        entry.storyNav.insertBefore(entry.storyPrevious.parentElement, entry.cameraMode.parentElement);
+        entry.storyNav.insertBefore(entry.storyList, entry.cameraMode.parentElement);
+        entry.compactDesktop = true;
+      }
       if (entry.storyNav.parentElement !== entry.storyHome) entry.storyHome.append(entry.storyNav);
       const home = frame.closest('.panel-card');
       if (playback && home && playback.parentElement !== home) home.insertBefore(playback, home.querySelector('.panel-body'));
@@ -502,7 +512,13 @@ export function installPondShell(container, app) {
     const index = chapters.findIndex(row => row.id === story.chapter.id);
     entry.storyNav.hidden = false; entry.storyNav.dataset.chapterId = story.chapter.id;
     const english = locale() === 'en';
-    entry.storySequence.textContent = english ? `Chapter ${index + 1} / ${chapters.length}` : `第 ${index + 1} / ${chapters.length} 章`;
+    const chapterTime = wallTime(story.chapter.scenario_time);
+    const chapterTitle = story.chapter.title.startsWith(chapterTime)
+      ? story.chapter.title.slice(chapterTime.length).trim().replace(/^·\s*/, '') : story.chapter.title;
+    entry.storySequence.textContent = isPhone()
+      ? (english ? `Chapter ${index + 1} / ${chapters.length}` : `第 ${index + 1} / ${chapters.length} 章`)
+      : `${index + 1}/${chapters.length} · ${chapterTitle}`;
+    entry.storySequence.title = `${story.chapter.title} · ${story.chapter.caption}`;
     entry.storyTime.textContent = app.clock.time >= app.clock.duration ? (english ? 'Demo ended · 10:00' : '示範已結束 · 10:00')
       : `${wallTime(story.chapter.scenario_time)} · ${playbackTime(app.clock.time)} · ${english ? 'Simulated' : '模擬'}`;
     entry.languageNote.hidden = !english;
@@ -520,8 +536,12 @@ export function installPondShell(container, app) {
     entry.cameraMode.textContent = label(cameraMode === 'guided' ? 'inspect' : 'guided');
     entry.region.hidden = !frame.contentWindow?.DT_SITE?.viewpoints?.['07-region'];
     entry.region.textContent = english ? 'Yilan landscape (context)' : '宜蘭全景（背景）';
-    entry.cameraReset.textContent = label('camera'); entry.cameraReset.hidden = cameraMode !== 'inspection';
-    entry.storyPrevious.textContent = label('previous'); entry.storyNext.textContent = label('next');
+    entry.cameraReset.textContent = label('camera'); entry.cameraReset.hidden = isPhone() && cameraMode !== 'inspection';
+    entry.storyPrevious.textContent = isPhone() ? label('previous') : '‹';
+    entry.storyNext.textContent = isPhone() ? label('next') : '›';
+    for (const [button, key] of [[entry.storyPrevious, 'previous'], [entry.storyNext, 'next']]) {
+      button.title = label(key); button.setAttribute('aria-label', label(key));
+    }
     entry.details.textContent = label('details'); entry.provenance.textContent = label('provenance');
     entry.summary.textContent = label('chapters'); entry.close.textContent = label('map');
     entry.panelSelect.setAttribute('aria-label', label('destination'));
@@ -529,6 +549,7 @@ export function installPondShell(container, app) {
     entry.cameraNotice.textContent = cameraMode === 'guided'
       ? (english ? 'Drag or zoom to inspect · Select equipment for details' : '拖曳或縮放即可自由檢視 · 點設備看詳情')
       : (english ? 'Inspection camera · Move with WASD / drag · Select equipment for details' : '檢視鏡頭 · WASD／拖曳可移動 · 點設備看詳情');
+    entry.cameraMode.title = entry.cameraNotice.textContent;
     entry.storyPrevious.disabled = index <= 0;
     entry.storyNext.disabled = index < 0 || index >= chapters.length - 1;
     entry.storyPrevious.onclick = () => selectChapter(chapters[Math.max(0, index - 1)]);
@@ -584,6 +605,14 @@ export function installPondShell(container, app) {
         badge.dataset.entityId = id;
         if (!degraded && (fault || risk)) badge.classList.add('pond-critical');
         entry.status.append(badge);
+      }
+      // A chapter-end result belongs beside the map readings, only once its
+      // authored canonical summary exists. Keep the phone's existing sheet.
+      if (!isPhone() && latest.story?.summary) {
+        for (const {label, value} of pondKeyNumbers(latest).slice(1)) {
+          if (value === '章末摘要') continue;
+          entry.status.append(el('span', `${pondText(label, locale())} · ${pondText(value, locale())}`, 'pond-map-badge pond-map-result'));
+        }
       }
     }
   };
