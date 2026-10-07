@@ -63,7 +63,7 @@
   if(event.origin===location.origin&&event.data?.type==='FARM_BOOT_FAILED'&&
     [...document.querySelectorAll('iframe.map-frame')].some(frame=>frame.contentWindow===event.source))void fail(event.data.error);
  });
- timer=setTimeout(()=>void fail(new Error('The scene did not finish loading')),60000);
+ timer=setTimeout(()=>void fail(new Error('The scene did not finish loading')),600000);
 })();
 </script>
 <meta name="apple-mobile-web-app-title" content="AI智慧農業環境監測暨動態決策系統"></head><body><section id="pond-boot-loading" role="status" aria-live="polite"><div><h1>AI智慧農業環境監測暨動態決策系統</h1><p>宜蘭魚塭（模擬）</p><div class="pond-loading-track" aria-hidden="true"></div><small>正在載入模擬場景與資料，請稍候…</small></div></section><main id="app" aria-label="AI智慧農業環境監測暨動態決策系統"></main><script type="module" src="./app.js"></script></body></html>

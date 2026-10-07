@@ -824,6 +824,9 @@ export default async function install(api, input) {
   const contextMeshes = new Map(), contextWaterMaterials = new Map();
   const compactContext = object => {
     const original = object.geometry, position = original?.attributes?.position;
+    // The 2026-10-07 compressed terrain already has distance-dependent detail.
+    // Keep its distant landscape visible behind the ponds on the opening view.
+    if (object.userData?.regional_context_compressed) return;
     if (contextMeshes.has(object) || object.userData?.authority_scope !== 'context-only'
         || !position || position.count < 10000 || original.groups.length || Array.isArray(object.material)) return;
     object.updateWorldMatrix(true, false);

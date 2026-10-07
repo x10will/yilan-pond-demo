@@ -419,6 +419,17 @@ export function installPondShell(container, app) {
       const numbers = el('dl', null, 'pond-key-numbers'); numbers.setAttribute('aria-label', '目前章節重點數字（模擬）');
       const controls = el('div', null, 'pond-camera-controls');
       const mode = el('button', '檢視設備', 'pond-camera-mode'); mode.type = 'button';
+      const region = el('button', '宜蘭全景（背景）', 'pond-regional-view'); region.type = 'button'; region.hidden = true;
+      region.onclick = () => {
+        const viewer = frame.contentWindow?.__dtEmbed;
+        const declared = frame.contentWindow?.DT_SITE?.viewpoints?.['07-region'];
+        const view = isPhone() && declared?.portrait ? declared.portrait : declared;
+        if (!viewer?.ready || !view) return;
+        switchCamera('inspection');
+        viewer.setCameraPose(view.pos, view.target);
+        cameraHeading = Math.atan2(view.target[0] - view.pos[0], view.target[1] - view.pos[1]) * 180 / Math.PI;
+        restoreFocus(region);
+      };
       const cameraReset = el('button', null, 'pond-camera-reset'); cameraReset.type = 'button';
       cameraReset.onclick = () => {
         for (const current of entries) { current.cameraSignature = null; applyCamera(current, true); }
@@ -430,7 +441,7 @@ export function installPondShell(container, app) {
       const details = el('button', '詳情', 'pond-phone-details-toggle'); details.type = 'button';
       details.setAttribute('aria-expanded', 'false');
       details.onclick = () => showPhonePanel(container.dataset.pondPhonePanel ? null : 'pond-notifications');
-      controls.append(mode, cameraReset, notice, provenance, details);
+      controls.append(mode, region, cameraReset, notice, provenance, details);
       mode.onclick = () => {
         switchCamera(cameraMode === 'guided' ? 'inspection' : 'guided'); restoreFocus(mode);
       };
@@ -460,7 +471,7 @@ export function installPondShell(container, app) {
       Object.assign(entry, {storyNav:nav, storySequence:sequence, storyTime:time, storyTitle:title,
         storyCaption:caption, languageNote, storyPrevious:previous, storyNext:next, storyList:chapters,
         storyItems:chapterItems, storyChapters:null, storyHome:frame.parentElement, storyNumbers:numbers,
-        cameraMode:mode, cameraReset, cameraNotice:notice, provenance, details, summary, panelSelect, close});
+        cameraMode:mode, region, cameraReset, cameraNotice:notice, provenance, details, summary, panelSelect, close});
     }
     if (isPhone()) {
       // Keep the sheet inside core's isolated stacking root so open panel
@@ -507,6 +518,8 @@ export function installPondShell(container, app) {
     }
     entry.storyNav.dataset.cameraMode = cameraMode;
     entry.cameraMode.textContent = label(cameraMode === 'guided' ? 'inspect' : 'guided');
+    entry.region.hidden = !frame.contentWindow?.DT_SITE?.viewpoints?.['07-region'];
+    entry.region.textContent = english ? 'Yilan landscape (context)' : '宜蘭全景（背景）';
     entry.cameraReset.textContent = label('camera'); entry.cameraReset.hidden = cameraMode !== 'inspection';
     entry.storyPrevious.textContent = label('previous'); entry.storyNext.textContent = label('next');
     entry.details.textContent = label('details'); entry.provenance.textContent = label('provenance');

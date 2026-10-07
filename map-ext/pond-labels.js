@@ -41,12 +41,17 @@ export default async function install(api) {
   // Embed mode admits overlays inside its existing canvas container.
   document.getElementById('canvas-container').append(overlay);
   const replaced = [];
-  api.scene.traverse(sprite => {
+  const replaceLabels = () => api.scene.traverse(sprite => {
     if (sprite.isSprite && sprite.userData.context_id === layer.stable_id &&
-        (ids.has(sprite.userData.label_id) || sprite.userData.label_id === 'yilan-workshop-context')) {
+        (ids.has(sprite.userData.label_id) || sprite.userData.label_id === 'yilan-workshop-context') &&
+        !replaced.some(([known]) => known === sprite)) {
       replaced.push([sprite, sprite.material.opacity]); sprite.material.opacity = 0;
     }
   });
+  replaceLabels();
+  // DT's supported progressive loader can deliver its labels after this
+  // overlay. Apply the same presentation replacement when details finish.
+  window.addEventListener('dt:details-loaded', replaceLabels);
   api.onAppCommand((name, rows) => {
     if (name !== 'farm-pond-label-status') return;
     for (const label of pondLabels) {
@@ -139,6 +144,7 @@ export default async function install(api) {
   api.appEvent('farm-pond-labels-ready', {});
   return () => {
     disposeWorld?.();
+    window.removeEventListener('dt:details-loaded', replaceLabels);
     overlay.remove();
     for (const [sprite, opacity] of replaced) sprite.material.opacity = opacity;
   };
