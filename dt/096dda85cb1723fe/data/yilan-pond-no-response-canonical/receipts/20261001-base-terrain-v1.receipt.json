@@ -1,0 +1,411 @@
+{
+  "artifacts": [
+    {
+      "byte_count": 8391865,
+      "path": "inputs/context/base-terrain-20261001-v1/lineage.json",
+      "sha256": "346c3f5759621d36c5f9d8d8309c0282cb4b156b72d8bf781aac808644f25595"
+    },
+    {
+      "byte_count": 20482880,
+      "path": "inputs/context/base-terrain-20261001-v1/meshes/buildings.glb",
+      "sha256": "b55687589482f15e522d3421b3f7169cff28c096c22a256f6ce122f1e0760e03"
+    },
+    {
+      "byte_count": 12486676,
+      "path": "inputs/context/base-terrain-20261001-v1/meshes/roads.glb",
+      "sha256": "30288f708453b9f655bb48104dc78c5b833b3a52fd2213ed17901f6de8a0fc47"
+    },
+    {
+      "byte_count": 136759320,
+      "path": "inputs/context/base-terrain-20261001-v1/meshes/terrain.glb",
+      "sha256": "3254af9503b9af4508a68dfeac9f152004cfe439970903ab4e62e693e2027142"
+    },
+    {
+      "byte_count": 65635928,
+      "path": "inputs/context/base-terrain-20261001-v1/meshes/water.glb",
+      "sha256": "3f5013f477257f93798d93e9a80729b73bbead36cd975ac4c7913b795c2d00f3"
+    },
+    {
+      "byte_count": 73001,
+      "path": "inputs/context/base-terrain-20261001-v1/provenance.json",
+      "sha256": "7e9266be9a8a0c2acc6bca6fb7cadff8bf70da961855b4e84e839b53108af05f"
+    },
+    {
+      "byte_count": 730,
+      "path": "inputs/context/base-terrain-20261001-v1/stage-seals/admission-preflight.json",
+      "sha256": "a5e718f8c07cd3b219a94bbc7693dca92ee7ff2a591fff633881ea8388d354cf"
+    },
+    {
+      "byte_count": 1474,
+      "path": "inputs/context/base-terrain-20261001-v1/stage-seals/package.json",
+      "sha256": "8948252c66b2a97bed9106727c24b048908054996672ae35cb96226b06da0134"
+    },
+    {
+      "byte_count": 1007,
+      "path": "inputs/context/base-terrain-20261001-v1/stage-seals/pipeline-manifest.json",
+      "sha256": "92205a4be9fa980170e1fd4b82c154f8d1016f6e8c5deb9e5f5dc57cab569f1f"
+    },
+    {
+      "byte_count": 907,
+      "path": "inputs/context/base-terrain-20261001-v1/stage-seals/s1-paint.json",
+      "sha256": "cec163802561838b043dcda80c695d0e965f07acf937185bdb1cfe8f0988e413"
+    },
+    {
+      "byte_count": 755,
+      "path": "inputs/context/base-terrain-20261001-v1/stage-seals/s1-terrain.json",
+      "sha256": "206b8aeedb38a6191a728aabfa3966201d8f5cfa5ecbb4e3f65e1fd804f064b9"
+    },
+    {
+      "byte_count": 917,
+      "path": "inputs/context/base-terrain-20261001-v1/stage-seals/s2-s5-network.json",
+      "sha256": "499d2c8ab3b8d44cda2fa8fd08efddc4be299e22a8c1178ec1fa10e75d018977"
+    },
+    {
+      "byte_count": 763,
+      "path": "inputs/context/base-terrain-20261001-v1/stage-seals/s6-reconcile.json",
+      "sha256": "2f114ab5024ac835d7a39c9dc5a1f97ac00a24a7cba1a62d1f1a865bd362ff6d"
+    },
+    {
+      "byte_count": 1073,
+      "path": "inputs/context/base-terrain-20261001-v1/stage-seals/s7-dressing.json",
+      "sha256": "2d9e671f53ea47da3921dcb7adb7e6043d74c91763b52af4d89d6de5075c9dfb"
+    }
+  ],
+  "authority_scope": "context-only; official DTM and authored workshop pad",
+  "browser_acceptance": false,
+  "counts": {
+    "buildings": 9441,
+    "roads": 6989,
+    "water_features": 9015
+  },
+  "inputs": [
+    {
+      "byte_count": 6723521,
+      "path": "inputs/osm/geofabrik-20261001-v1/buildings.json",
+      "sha256": "30ff5f23c3f491be43fcb82e022b742fbb8798208b8a8e39e7bfda885b054bea"
+    },
+    {
+      "byte_count": 48103,
+      "path": "inputs/osm/geofabrik-20261001-v1/coastline.json",
+      "sha256": "7450c768b5ba1b65264b24bbf0de71f1cfd6341e23c4d73e89d8a7602ebac25c"
+    },
+    {
+      "byte_count": 23263232,
+      "path": "inputs/osm/geofabrik-20261001-v1/waterways.json",
+      "sha256": "12adf0a9bf9fc639cfb6b75f4dae1f62481f639db9b8551fefbcfca27a8a6cbe"
+    },
+    {
+      "byte_count": 3238507,
+      "path": "inputs/osm/geofabrik-20261001-v1/water_bodies.json",
+      "sha256": "4f783e7b82459cede5679be6a76d4868672c9a1cda2d565c84b9f0211705b4eb"
+    },
+    {
+      "byte_count": 6721832,
+      "path": "inputs/osm/geofabrik-20261001-v1/roads.json",
+      "sha256": "f5caa5f5c9c0851341a3219f56ae7dc5919b6dceaadeafe3d37783e4e5e56388"
+    },
+    {
+      "byte_count": 9336,
+      "path": "inputs/osm/geofabrik-20261001-v1/acquisition.json",
+      "sha256": "6d79aad5ae9d354124c1303d4a4788e139d5a809c7df832c8518a28fc0256b68"
+    },
+    {
+      "byte_count": 4949,
+      "path": "decisions/2026-10-01-yilan-moi2025-terrain.md",
+      "sha256": "21a20848c32cfedd999c4184d0a5e4f3c1fc7dc65951448f1600caaeb94b3b80"
+    },
+    {
+      "byte_count": 1945,
+      "path": "sites/yilan-pond/terrain-scene-20261001.json",
+      "sha256": "83214511a81c8c4ebe52060ded31f09551909853e5192337a48c88866dc64b2f"
+    },
+    {
+      "byte_count": 8176,
+      "path": "inputs/dem/moi-2025-yilan.acquisition.json",
+      "sha256": "bf43099d7964ac6ea5c87fc2b393c89629d0b014e2de84e4c3e463a34d3a278d"
+    },
+    {
+      "byte_count": 991,
+      "path": "inputs/dem/source-notice.md",
+      "sha256": "b06fed640e3b45ca4d416a22be28d5d82d55a50f0618d60a8541e435200e01f8"
+    },
+    {
+      "byte_count": 268985841,
+      "path": ".local_build/dem/taiwan-20m-2025-merged.zip",
+      "sha256": "2e1cd738b3c3abbcfdbce79ac18a5818a6ec80aa32c2813f0e21cfd909be295c"
+    }
+  ],
+  "output_bytes": 243837296,
+  "pipeline": "DT run_site_bake_profile with seven site-owned callbacks",
+  "recorded_at_utc": "2026-10-01T16:02:09.790222+00:00",
+  "schema_version": "site-base-scene-execution/v1",
+  "terrain": {
+    "authority_scope": "context-only",
+    "bbox_clipped": true,
+    "bbox_xy_m": [
+      -21634.918825437548,
+      -17365.919999999867,
+      5661.4740851624365,
+      20482.880000000117
+    ],
+    "clamping": {
+      "coastal_floor_m": 0.1,
+      "coastal_max_distance_m": 110.0,
+      "coastal_missing_sample_count": 413,
+      "coastal_nonpositive_sample_count": 69,
+      "far_inland_missing_sample_count": 0,
+      "inland_floor_m": 0,
+      "inland_negative_sample_count": 11822,
+      "land_sample_count": 2293218,
+      "sea_sample_count": 297247
+    },
+    "clipped_grid_cell_count": 8756,
+    "coast_transition_m": 20.0,
+    "coastline_policy": "exact frozen OSM mask; no coastline growth",
+    "float32_collapsed_face_count_removed": {
+      "land": 0,
+      "sea": 0
+    },
+    "geoid_offset_m": 0.0,
+    "grid_origin": {
+      "lat": 24.746,
+      "lng": 121.814
+    },
+    "land": {
+      "triangle_count": 4590891,
+      "vertex_count": 2337653,
+      "z_range_m": [
+        0.0,
+        1413.8753662109375
+      ]
+    },
+    "mesh_step_m": 20.0,
+    "notice": "DEM context with authored display clamping and workshop pad; not surveyed farm geometry",
+    "sampling_authority": "barycentric interpolation of exported GLB triangles",
+    "sea": {
+      "triangle_count": 598955,
+      "vertex_count": 322338,
+      "z_range_m": [
+        0,
+        0
+      ]
+    },
+    "sea_flat_zero": true,
+    "smoothing": {
+      "authority": "DT terrain_mesh.generate_terrain",
+      "gaussian_sigma_grid_cells": 1.5,
+      "maximum_peak_shave_m": 2,
+      "policy": "normalized convolution before site coast/pad shaping"
+    },
+    "source_datum": "Source metre elevations retained without vertical transformation; merged GeoTIFF has no explicit vertical datum tag; the source receipt records inspected TWVD2001 sheet evidence",
+    "source_metadata": {
+      "archive_metadata_xml": "<mdb:MD_Metadata xmlns:mcc=\"http://standards.iso.org/iso/19115/-3/mcc/1.0\" xmlns:cit=\"http://standards.iso.org/iso/19115/-3/cit/2.0\" xmlns:lan=\"http://standards.iso.org/iso/19115/-3/lan/1.0\" xmlns:mas=\"http://standards.iso.org/iso/19115/-3/mas/1.0\" xmlns:mac=\"http://standards.iso.org/iso/19115/-3/mac/2.0\" xmlns:mco=\"http://standards.iso.org/iso/19115/-3/mco/1.0\" xmlns:gex=\"http://standards.iso.org/iso/19115/-3/gex/1.0\" xmlns:mdb=\"http://standards.iso.org/iso/19115/-3/mdb/2.0\" xmlns:mmi=\"http://standards.iso.org/iso/19115/-3/mmi/1.0\" xmlns:mpc=\"http://standards.iso.org/iso/19115/-3/mpc/1.0\" xmlns:mrc=\"http://standards.iso.org/iso/19115/-3/mrc/2.0\" xmlns:mrd=\"http://standards.iso.org/iso/19115/-3/mrd/1.0\" xmlns:mri=\"http://standards.iso.org/iso/19115/-3/mri/1.0\" xmlns:mrl=\"http://standards.iso.org/iso/19115/-3/mrl/2.0\" xmlns:mrs=\"http://standards.iso.org/iso/19115/-3/mrs/1.0\" xmlns:msr=\"http://standards.iso.org/iso/19115/-3/msr/2.0\" xmlns:srv=\"http://standards.iso.org/iso/19115/-3/srv/2.0\" xmlns:mex=\"http://standards.iso.org/iso/19115/-3/mex/1.0\" xmlns:gco=\"http://standards.iso.org/iso/19115/-3/gco/1.0\" xmlns:gcx=\"http://standards.iso.org/iso/19115/-3/gcx/1.0\" xmlns:md1=\"http://standards.iso.org/iso/19115/-3/md1/2.0\" xmlns:md2=\"http://standards.iso.org/iso/19115/-3/md2/2.0\" xmlns:mda=\"http://standards.iso.org/iso/19115/-3/mda/2.0\" xmlns:mds=\"http://standards.iso.org/iso/19115/-3/mds/2.0\" xmlns:mdt=\"http://standards.iso.org/iso/19115/-3/mdt/1.0\" xmlns:cat=\"http://standards.iso.org/iso/19115/-3/cat/1.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://standards.iso.org/iso/19115/-3/md2/2.0 http://standards.iso.org/iso/19115/-3/md2/2.0/md2.xsd\">\r\n<mdb:metadataIdentifier>\r\n<mcc:MD_Identifier>\r\n<mcc:code>\r\n<gco:CharacterString>TW-09-A01000000A-000003</gco:CharacterString>\r\n</mcc:code>\r\n</mcc:MD_Identifier>\r\n</mdb:metadataIdentifier>\r\n<mdb:defaultLocale>\r\n<lan:PT_Locale>\r\n<lan:language>\r\n<lan:LanguageCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/lan/LanguageCode.xml\" codeListValue=\"chi\">Chinese</lan:LanguageCode>\r\n</lan:language>\r\n<lan:characterEncoding>\r\n<lan:MD_CharacterSetCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/lan/CharacterSetCode.xml\" codeListValue=\"utf8\">UTF-8</lan:MD_CharacterSetCode>\r\n</lan:characterEncoding>\r\n</lan:PT_Locale>\r\n</mdb:defaultLocale>\r\n<mdb:parentMetadata/>\r\n<mdb:contact>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#CI_RoleCode\" codeListValue=\"pointOfContact\">pointOfContact</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部地政司</gco:CharacterString>\r\n</cit:name>\r\n<cit:contactInfo>\r\n<cit:CI_Contact>\r\n<cit:phone>\r\n<cit:CI_Telephone>\r\n<cit:number>\r\n<gco:CharacterString>+886-2-2356-6100</gco:CharacterString>\r\n</cit:number>\r\n<cit:numberType>\r\n<cit:CI_TelephoneTypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#CI_TelephoneTypeCode\" codeListValue=\"voice\">voice</cit:CI_TelephoneTypeCode>\r\n</cit:numberType>\r\n</cit:CI_Telephone>\r\n</cit:phone>\r\n<cit:address>\r\n<cit:CI_Address>\r\n<cit:country>\r\n<gco:CharacterString>中華民國</gco:CharacterString>\r\n</cit:country>\r\n<cit:electronicMailAddress>\r\n<gco:CharacterString>moi1184@moi.gov.tw</gco:CharacterString>\r\n</cit:electronicMailAddress>\r\n</cit:CI_Address>\r\n</cit:address>\r\n</cit:CI_Contact>\r\n</cit:contactInfo>\r\n<cit:individual>\r\n<cit:CI_Individual>\r\n<cit:name>\r\n<gco:CharacterString>黃泊森</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Individual>\r\n</cit:individual>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n<cit:party>\r\n<cit:CI_Individual>\r\n<cit:partyIdentifier>\r\n<mcc:MD_Identifier>\r\n<mcc:code>\r\n<gco:CharacterString/>\r\n</mcc:code>\r\n</mcc:MD_Identifier>\r\n</cit:partyIdentifier>\r\n</cit:CI_Individual>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mdb:contact>\r\n<mdb:dateInfo>\r\n<cit:CI_Date>\r\n<cit:date>\r\n<gco:DateTime>2025-09-09T10:55:32</gco:DateTime>\r\n</cit:date>\r\n<cit:dateType>\r\n<cit:CI_DateTypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#creation\" codeListValue=\"publication\"/>\r\n</cit:dateType>\r\n</cit:CI_Date>\r\n</mdb:dateInfo>\r\n<mdb:metadataStandard>\r\n<cit:CI_Citation>\r\n<cit:title>\r\n<gco:CharacterString>TWSMP 3.0</gco:CharacterString>\r\n</cit:title>\r\n</cit:CI_Citation>\r\n</mdb:metadataStandard>\r\n<mdb:spatialRepresentationInfo>\r\n<msr:MD_VectorSpatialRepresentation>\r\n<msr:geometricObjects>\r\n<msr:MD_GeometricObjects>\r\n<msr:geometricObjectType/>\r\n</msr:MD_GeometricObjects>\r\n</msr:geometricObjects>\r\n</msr:MD_VectorSpatialRepresentation>\r\n</mdb:spatialRepresentationInfo>\r\n<mdb:referenceSystemInfo>\r\n<mrs:MD_ReferenceSystem>\r\n<mrs:referenceSystemIdentifier>\r\n<mcc:MD_Identifier>\r\n<mcc:authority>\r\n<cit:CI_Citation>\r\n<cit:title>\r\n<gco:CharacterString>EPSG:3826(TWD97/121分帶)</gco:CharacterString>\r\n</cit:title>\r\n</cit:CI_Citation>\r\n</mcc:authority>\r\n<mcc:code>\r\n<gco:CharacterString>EPSG:3826</gco:CharacterString>\r\n</mcc:code>\r\n</mcc:MD_Identifier>\r\n</mrs:referenceSystemIdentifier>\r\n<mrs:referenceSystemType>\r\n<mrs:MD_ReferenceSystemTypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_ReferenceSystemTypeCode\" codeListValue=\"geographicIdentifier\"/>\r\n</mrs:referenceSystemType>\r\n</mrs:MD_ReferenceSystem>\r\n</mdb:referenceSystemInfo>\r\n<mdb:metadataExtensionInfo>\r\n<mex:MD_MetadataExtensionInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>categoryTheme</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>主題分類編號 3 碼 6 類。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>001</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>categoryCode</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>分類編號。服務分類編號3碼18類，須依政府入口網之服務分類編號記錄。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>I00</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>categoryDataset</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>甲類資料為開放資料作為識別資料集為甲類（開放）資料，或為乙類資料清單。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>A</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>type</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料集類型。說明資料格式類型。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>rawdata</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>license</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料集授權方式。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>政府資料開放授權條款-第一版</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>cost</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>使用資料所應付之費用。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>free</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>dataProvider</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>為資料集之提供人於電子化政府服務平臺公務帳號。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString/>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>detectFrequency</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料集之檢測頻率，系統依據檢測頻率定期檢測資料集更新與否以及資料集品質狀態。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString/>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>dataQuality</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料集之資料品質狀態。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString/>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>coverageStartedDate</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料集檔案內容開始收錄資料之年月日。這裡係指資料(data)之開始收錄日期。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString/>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>coverageEndedDate</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料集檔案內容結束收錄資料之年月日。這裡係指資料(data)之結束收錄日期。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString/>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>resourceDescription</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料資源描述。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>2025年版全臺灣20公尺網格數值地形模型DTM資料_</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>resourceAmount</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料筆數。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>0</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>resourceNotes</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料額外說明。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString/>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>qcLevel</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>開放資料檢測階層。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString/>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>resourceModified</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料資源最後更新時間。資料資源最後更新時間。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>optional</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString/>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>fielddescription</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>欄位之名稱及簡要說明。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>N</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>圖資類型 : 數值高程模型資料，係指除去植物覆蓋及人工建物後，由地球表面礦物質最上層所形成的天然表面 </gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>attribute</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>多元屬性。對應分類屬性，可以允許多元屬性。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>optional</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>N</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>土地利用\\土地覆蓋,航遙測資料,基本圖</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>level</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>多元分級。對應國家空間資料資產之分級定義。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>N</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>核心</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>lma</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>管理能力。依據圖資生命週期評估結果，分成尚未發展、初等管理能力、中等管理能力、高等管理能力等四級。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>optional</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>初等管理能力</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>publish</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>限制開放欄位。在部分研究規劃圖資尚未完成前先不開放，以開放為原則，限制開放為例外。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>optional</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>開放</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>openlevel</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>開放資料星等。國家空間資料資產與開放資料星等的對應；若國家空間資料資產為非開放資料，就註記「非開放資料」，其餘寫對應可寫「一星、二星、三星、四星、五星」。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>optional</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>三星</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n<mex:extendedElementInformation>\r\n<mex:MD_ExtendedElementInformation>\r\n<mex:name>\r\n<gco:CharacterString>dbbgroup</gco:CharacterString>\r\n</mex:name>\r\n<mex:definition>\r\n<gco:CharacterString>資料庫分組。對應九大資料庫分組名稱。</gco:CharacterString>\r\n</mex:definition>\r\n<mex:obligation>\r\n<mex:MD_ObligationCode>mandatory</mex:MD_ObligationCode>\r\n</mex:obligation>\r\n<mex:dataType>\r\n<mex:MD_DatatypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_DatatypeCode\" codeListValue=\"CharacterString\"/>\r\n</mex:dataType>\r\n<mex:maximumOccurrence>\r\n<gco:CharacterString>1</gco:CharacterString>\r\n</mex:maximumOccurrence>\r\n<mex:domainValue>\r\n<gco:CharacterString>09</gco:CharacterString>\r\n</mex:domainValue>\r\n<mex:parentEntity>\r\n<gco:CharacterString>MD_Metadata</gco:CharacterString>\r\n</mex:parentEntity>\r\n<mex:rule>\r\n<gco:CharacterString>本項目屬核心搜尋項目</gco:CharacterString>\r\n</mex:rule>\r\n<mex:source>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeList.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mex:source>\r\n</mex:MD_ExtendedElementInformation>\r\n</mex:extendedElementInformation>\r\n</mex:MD_MetadataExtensionInformation>\r\n</mdb:metadataExtensionInfo>\r\n<mdb:identificationInfo>\r\n<mri:MD_DataIdentification>\r\n<mri:citation>\r\n<cit:CI_Citation>\r\n<cit:title>\r\n<gco:CharacterString>2025年版全臺灣20公尺網格數值地形模型DTM資料</gco:CharacterString>\r\n</cit:title>\r\n<cit:date>\r\n<cit:CI_Date>\r\n<cit:date>\r\n<gco:DateTime>2025-09-08T10:55:07</gco:DateTime>\r\n</cit:date>\r\n<cit:dateType>\r\n<cit:CI_DateTypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#CI_DateTypeCode\" codeListValue=\"publication\">publication</cit:CI_DateTypeCode>\r\n</cit:dateType>\r\n</cit:CI_Date>\r\n</cit:date>\r\n<cit:citedResponsibleParty>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部地政司</gco:CharacterString>\r\n</cit:name>\r\n<cit:contactInfo>\r\n<cit:CI_Contact>\r\n<cit:phone>\r\n<cit:CI_Telephone>\r\n<cit:number>\r\n<gco:CharacterString>+886-2-2356-6100</gco:CharacterString>\r\n</cit:number>\r\n<cit:numberType>\r\n<cit:CI_TelephoneTypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#CI_TelephoneTypeCode\" codeListValue=\"voice\">voice</cit:CI_TelephoneTypeCode>\r\n</cit:numberType>\r\n</cit:CI_Telephone>\r\n</cit:phone>\r\n<cit:address>\r\n<cit:CI_Address>\r\n<cit:country>\r\n<gco:CharacterString>中華民國</gco:CharacterString>\r\n</cit:country>\r\n<cit:electronicMailAddress>\r\n<gco:CharacterString>moi1184@moi.gov.tw</gco:CharacterString>\r\n</cit:electronicMailAddress>\r\n</cit:CI_Address>\r\n</cit:address>\r\n</cit:CI_Contact>\r\n</cit:contactInfo>\r\n<cit:individual>\r\n<cit:CI_Individual>\r\n<cit:name>\r\n<gco:CharacterString>黃泊森</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Individual>\r\n</cit:individual>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n<cit:party>\r\n<cit:CI_Individual>\r\n<cit:partyIdentifier>\r\n<mcc:MD_Identifier>\r\n<mcc:code>\r\n<gco:CharacterString/>\r\n</mcc:code>\r\n</mcc:MD_Identifier>\r\n</cit:partyIdentifier>\r\n</cit:CI_Individual>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</cit:citedResponsibleParty>\r\n</cit:CI_Citation>\r\n</mri:citation>\r\n<mri:abstract>\r\n<gco:CharacterString>臺灣本島地區之20公尺網格間距數值地形模型（DTM）資料，每一個網格點記錄該點之平面坐標與高程資料</gco:CharacterString>\r\n</mri:abstract>\r\n<mri:status>\r\n<mcc:MD_ProgressCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_ProgressCode\" codeListValue=\"onGoing\"/>\r\n</mri:status>\r\n<mri:pointOfContact>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#CI_RoleCode\" codeListValue=\"pointOfContact\">pointOfContact</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部地政司</gco:CharacterString>\r\n</cit:name>\r\n<cit:contactInfo>\r\n<cit:CI_Contact>\r\n<cit:phone>\r\n<cit:CI_Telephone>\r\n<cit:number>\r\n<gco:CharacterString>+886-2-2356-6100</gco:CharacterString>\r\n</cit:number>\r\n<cit:numberType>\r\n<cit:CI_TelephoneTypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#CI_TelephoneTypeCode\" codeListValue=\"voice\">voice</cit:CI_TelephoneTypeCode>\r\n</cit:numberType>\r\n</cit:CI_Telephone>\r\n</cit:phone>\r\n<cit:address>\r\n<cit:CI_Address>\r\n<cit:country>\r\n<gco:CharacterString>中華民國</gco:CharacterString>\r\n</cit:country>\r\n<cit:electronicMailAddress>\r\n<gco:CharacterString>moi1184@moi.gov.tw</gco:CharacterString>\r\n</cit:electronicMailAddress>\r\n</cit:CI_Address>\r\n</cit:address>\r\n</cit:CI_Contact>\r\n</cit:contactInfo>\r\n<cit:individual>\r\n<cit:CI_Individual>\r\n<cit:name>\r\n<gco:CharacterString>黃泊森</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Individual>\r\n</cit:individual>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n<cit:party>\r\n<cit:CI_Individual>\r\n<cit:partyIdentifier>\r\n<mcc:MD_Identifier>\r\n<mcc:code>\r\n<gco:CharacterString/>\r\n</mcc:code>\r\n</mcc:MD_Identifier>\r\n</cit:partyIdentifier>\r\n</cit:CI_Individual>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mri:pointOfContact>\r\n<mri:spatialRepresentationType>\r\n<mcc:MD_SpatialRepresentationTypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_SpatialRepresentationTypeCode\" codeListValue=\"grid\"/>\r\n</mri:spatialRepresentationType>\r\n<mri:spatialResolution>\r\n<mri:MD_Resolution>\r\n<mri:equivalentScale>\r\n<mri:MD_RepresentativeFraction>\r\n<mri:denominator>\r\n<gco:Integer>0</gco:Integer>\r\n</mri:denominator>\r\n</mri:MD_RepresentativeFraction>\r\n</mri:equivalentScale>\r\n</mri:MD_Resolution>\r\n</mri:spatialResolution>\r\n<mri:topicCategory>\r\n<mri:MD_TopicCategoryCode>elevation</mri:MD_TopicCategoryCode>\r\n</mri:topicCategory>\r\n<mri:topicCategory>\r\n<mri:MD_TopicCategoryCode>imageryBaseMapsEarthCover</mri:MD_TopicCategoryCode>\r\n</mri:topicCategory>\r\n<mri:topicCategory>\r\n<mri:MD_TopicCategoryCode>location</mri:MD_TopicCategoryCode>\r\n</mri:topicCategory>\r\n<mri:extent>\r\n<gex:EX_Extent>\r\n<gex:geographicElement>\r\n<gex:EX_GeographicBoundingBox>\r\n<gex:westBoundLongitude>\r\n<gco:Decimal>119.88190897</gco:Decimal>\r\n</gex:westBoundLongitude>\r\n<gex:eastBoundLongitude>\r\n<gco:Decimal>122.244813473</gco:Decimal>\r\n</gex:eastBoundLongitude>\r\n<gex:southBoundLatitude>\r\n<gco:Decimal>21.859099236</gco:Decimal>\r\n</gex:southBoundLatitude>\r\n<gex:northBoundLatitude>\r\n<gco:Decimal>25.332818825</gco:Decimal>\r\n</gex:northBoundLatitude>\r\n</gex:EX_GeographicBoundingBox>\r\n</gex:geographicElement>\r\n</gex:EX_Extent>\r\n</mri:extent>\r\n<mri:resourceMaintenance>\r\n<mmi:MD_MaintenanceInformation>\r\n<mmi:maintenanceAndUpdateFrequency>\r\n<mmi:MD_MaintenanceFrequencyCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_MaintenanceFrequencyCode\" codeListValue=\"irregular\"/>\r\n</mmi:maintenanceAndUpdateFrequency>\r\n</mmi:MD_MaintenanceInformation>\r\n</mri:resourceMaintenance>\r\n<mri:descriptiveKeywords>\r\n<mri:MD_Keywords>\r\n<mri:keyword>\r\n<gco:CharacterString>DTM </gco:CharacterString>\r\n</mri:keyword>\r\n<mri:keyword>\r\n<gco:CharacterString> DEM </gco:CharacterString>\r\n</mri:keyword>\r\n<mri:keyword>\r\n<gco:CharacterString> 數值地形模型</gco:CharacterString>\r\n</mri:keyword>\r\n</mri:MD_Keywords>\r\n</mri:descriptiveKeywords>\r\n<mri:resourceConstraints>\r\n<mco:MD_Constraints>\r\n<mco:useLimitation>\r\n<gco:CharacterString/>\r\n</mco:useLimitation>\r\n</mco:MD_Constraints>\r\n</mri:resourceConstraints>\r\n<mri:defaultLocale>\r\n<lan:PT_Locale>\r\n<lan:language>\r\n<lan:LanguageCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/lan/LanguageCode.xml\" codeListValue=\"zh\">zh</lan:LanguageCode>\r\n</lan:language>\r\n<lan:characterEncoding>\r\n<lan:MD_CharacterSetCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/lan/CharacterSetCode.xml\" codeListValue=\"utf8\">UTF-8</lan:MD_CharacterSetCode>\r\n</lan:characterEncoding>\r\n</lan:PT_Locale>\r\n</mri:defaultLocale>\r\n</mri:MD_DataIdentification>\r\n</mdb:identificationInfo>\r\n<mdb:contentInfo>\r\n<mrc:MD_FeatureCatalogueDescription>\r\n<mrc:featureTypes>\r\n<mrc:MD_FeatureTypeInfo>\r\n<mrc:featureTypeName>\r\n<gco:ScopedName>臺灣本島</gco:ScopedName>\r\n</mrc:featureTypeName>\r\n</mrc:MD_FeatureTypeInfo>\r\n</mrc:featureTypes>\r\n</mrc:MD_FeatureCatalogueDescription>\r\n</mdb:contentInfo>\r\n<mdb:distributionInfo>\r\n<mrd:MD_Distribution>\r\n<mrd:distributionFormat>\r\n<mrd:MD_Format>\r\n<mrd:formatSpecificationCitation>\r\n<cit:CI_Citation>\r\n<cit:title>\r\n<gco:CharacterString>TIFF</gco:CharacterString>\r\n</cit:title>\r\n</cit:CI_Citation>\r\n</mrd:formatSpecificationCitation>\r\n</mrd:MD_Format>\r\n</mrd:distributionFormat>\r\n<mrd:distributor>\r\n<mrd:MD_Distributor>\r\n<mrd:distributorContact>\r\n<cit:CI_Responsibility>\r\n<cit:role>\r\n<cit:CI_RoleCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#CI_RoleCode\" codeListValue=\"distributor\">distributor</cit:CI_RoleCode>\r\n</cit:role>\r\n<cit:party>\r\n<cit:CI_Organisation>\r\n<cit:name>\r\n<gco:CharacterString>內政部地政司</gco:CharacterString>\r\n</cit:name>\r\n<cit:contactInfo>\r\n<cit:CI_Contact>\r\n<cit:phone>\r\n<cit:CI_Telephone>\r\n<cit:number>\r\n<gco:CharacterString>+886-2-2356-6100</gco:CharacterString>\r\n</cit:number>\r\n<cit:numberType>\r\n<cit:CI_TelephoneTypeCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#CI_TelephoneTypeCode\" codeListValue=\"voice\">voice</cit:CI_TelephoneTypeCode>\r\n</cit:numberType>\r\n</cit:CI_Telephone>\r\n</cit:phone>\r\n<cit:address>\r\n<cit:CI_Address>\r\n<cit:country>\r\n<gco:CharacterString>中華民國</gco:CharacterString>\r\n</cit:country>\r\n<cit:electronicMailAddress>\r\n<gco:CharacterString>moi1184@moi.gov.tw</gco:CharacterString>\r\n</cit:electronicMailAddress>\r\n</cit:CI_Address>\r\n</cit:address>\r\n<cit:onlineResource>\r\n<cit:CI_OnlineResource>\r\n<cit:linkage>\r\n<gco:CharacterString>https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=72047ba9-c161-442e-b641-904220c740b4</gco:CharacterString>\r\n</cit:linkage>\r\n</cit:CI_OnlineResource>\r\n</cit:onlineResource>\r\n</cit:CI_Contact>\r\n</cit:contactInfo>\r\n<cit:individual>\r\n<cit:CI_Individual>\r\n<cit:name>\r\n<gco:CharacterString>黃泊森</gco:CharacterString>\r\n</cit:name>\r\n</cit:CI_Individual>\r\n</cit:individual>\r\n</cit:CI_Organisation>\r\n</cit:party>\r\n<cit:party>\r\n<cit:CI_Individual>\r\n<cit:partyIdentifier>\r\n<mcc:MD_Identifier>\r\n<mcc:code>\r\n<gco:CharacterString/>\r\n</mcc:code>\r\n</mcc:MD_Identifier>\r\n</cit:partyIdentifier>\r\n</cit:CI_Individual>\r\n</cit:party>\r\n</cit:CI_Responsibility>\r\n</mrd:distributorContact>\r\n<mrd:distributionOrderProcess>\r\n<mrd:MD_StandardOrderProcess>\r\n<mrd:fees>\r\n<gco:CharacterString>取得圖資之收費及相關規定。</gco:CharacterString>\r\n</mrd:fees>\r\n</mrd:MD_StandardOrderProcess>\r\n</mrd:distributionOrderProcess>\r\n<mrd:distributorTransferOptions>\r\n<mrd:MD_DigitalTransferOptions>\r\n<mrd:onLine>\r\n<cit:CI_OnlineResource>\r\n<cit:linkage>\r\n<gco:CharacterString>https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=72047ba9-c161-442e-b641-904220c740b4</gco:CharacterString>\r\n</cit:linkage>\r\n</cit:CI_OnlineResource>\r\n</mrd:onLine>\r\n</mrd:MD_DigitalTransferOptions>\r\n</mrd:distributorTransferOptions>\r\n</mrd:MD_Distributor>\r\n</mrd:distributor>\r\n</mrd:MD_Distribution>\r\n</mdb:distributionInfo>\r\n<mdb:metadataMaintenance>\r\n<mmi:MD_MaintenanceInformation>\r\n<mmi:maintenanceAndUpdateFrequency>\r\n<mmi:MD_MaintenanceFrequencyCode codeList=\"http://standards.iso.org/iso/19115/resources/Codelist/cat/codeLists.xml#MD_MaintenanceFrequencyCode\" codeListValue=\"irregular\"/>\r\n</mmi:maintenanceAndUpdateFrequency>\r\n<mmi:maintenanceNote>\r\n<gco:CharacterString/>\r\n</mmi:maintenanceNote>\r\n</mmi:MD_MaintenanceInformation>\r\n</mdb:metadataMaintenance>\r\n</mdb:MD_Metadata>\t ",
+      "crs_policy": "Explicit caller-selected TWD97 TM2 zone; original GeoTIFF claims retained",
+      "effective_crs": "EPSG:3826",
+      "format": "GeoTIFF",
+      "geotiff_tags": {
+        "33550": [
+          20.0,
+          20.0,
+          1.0
+        ],
+        "33922": [
+          0.0,
+          0.0,
+          0.0,
+          150980.0,
+          2799160.0,
+          0.0
+        ],
+        "34735": [
+          1,
+          1,
+          0,
+          31,
+          1024,
+          0,
+          1,
+          1,
+          1025,
+          0,
+          1,
+          2,
+          1026,
+          34737,
+          13,
+          0,
+          2048,
+          0,
+          1,
+          4326,
+          2054,
+          0,
+          1,
+          9102,
+          2056,
+          0,
+          1,
+          7030,
+          2057,
+          34736,
+          1,
+          0,
+          2058,
+          34736,
+          1,
+          1,
+          2059,
+          34736,
+          1,
+          2,
+          3072,
+          0,
+          1,
+          32767,
+          3074,
+          0,
+          1,
+          32767,
+          3075,
+          0,
+          1,
+          1,
+          3076,
+          0,
+          1,
+          9001,
+          3078,
+          34736,
+          1,
+          3,
+          3079,
+          34736,
+          1,
+          4,
+          3080,
+          34736,
+          1,
+          5,
+          3081,
+          34736,
+          1,
+          6,
+          3082,
+          34736,
+          1,
+          7,
+          3083,
+          34736,
+          1,
+          8,
+          3084,
+          34736,
+          1,
+          9,
+          3085,
+          34736,
+          1,
+          10,
+          3086,
+          34736,
+          1,
+          11,
+          3087,
+          34736,
+          1,
+          12,
+          3088,
+          34736,
+          1,
+          13,
+          3089,
+          34736,
+          1,
+          14,
+          3090,
+          34736,
+          1,
+          15,
+          3091,
+          34736,
+          1,
+          16,
+          3092,
+          34736,
+          1,
+          17,
+          3094,
+          34736,
+          1,
+          18,
+          3095,
+          34736,
+          1,
+          19,
+          4099,
+          0,
+          1,
+          9001
+        ],
+        "34736": [
+          6378137.0,
+          6356752.314245,
+          298.257223560493,
+          0.0,
+          0.0,
+          121.0,
+          0.0,
+          250000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.9999,
+          0.0,
+          0.0
+        ],
+        "34737": "GCS_WGS_1984|"
+      },
+      "input_sha256": "2e1cd738b3c3abbcfdbce79ac18a5818a6ec80aa32c2813f0e21cfd909be295c",
+      "member": "DEM_tawiwan_V2025.tif",
+      "member_sha256": "59e5e980000d6e3f5a7734c6af197934a1a5432482b6caa789a1ec90b624015d",
+      "raster_type": "PixelIsPoint",
+      "source_nodata": -32767.0
+    },
+    "source_receipt_path": "inputs/dem/moi-2025-yilan.acquisition.json",
+    "source_sample_range_m": [
+      -3.0,
+      1415.8754209669567
+    ],
+    "source_spacing_m": [
+      20.0,
+      20.0
+    ],
+    "surveyed": false,
+    "vertical_exaggeration": 1.0,
+    "viewer_geometry_count": 1,
+    "workshop_pad": {
+      "authority": "authored workshop flattening after DT smoothing; not surveyed",
+      "bounds_xy": [
+        -20,
+        -20,
+        120,
+        100
+      ],
+      "interior_grid_vertex_count": 49,
+      "sample_xy": [
+        0,
+        0
+      ],
+      "source_sample_m": 1.683419886247877,
+      "transition_m": 40,
+      "z_m": 1.683
+    },
+    "zone": 121
+  }
+}

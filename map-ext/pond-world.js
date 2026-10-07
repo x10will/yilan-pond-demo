@@ -1049,8 +1049,9 @@ export default async function install(api, input) {
           const ramp = Math.min(dt, Math.abs(target - previous) / PADDLE_ACCELERATION);
           row.speed = previous + Math.sign(target - previous) * PADDLE_ACCELERATION * ramp;
           row.angle += (previous + row.speed) * ramp / 2 + target * (dt - ramp);
-          for (const wheel of row.wheels) wheel.rotation.x = row.angle;
-          row.group.userData.decorative_rotation = row.angle;
+          // At the bottom, negative X rotation pushes toward local -Y, downstream along the foam.
+          for (const wheel of row.wheels) wheel.rotation.x = -row.angle;
+          row.group.userData.decorative_rotation = -row.angle;
           const opacity = row.foam.material.opacity;
           row.foam.material.opacity = running ? Math.min(1, opacity + dt) : Math.max(0, opacity - dt);
           row.foam.visible = row.foam.material.opacity > 0;
