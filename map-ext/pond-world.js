@@ -101,6 +101,10 @@ function readConfig(config) {
 
 export default async function install(api, input) {
   const config = readConfig(input);
+  const groundColor = api.site?.farmPondGroundColor;
+  if (groundColor !== undefined && !/^#[\da-f]{6}$/i.test(groundColor)) {
+    throw new TypeError('farmPondGroundColor must be a site-authored six-digit hex colour');
+  }
   const canonicalPlacement = config.twin_inventory_version === 1;
   const {THREE, scene} = api;
   const palette = {...DEFAULT_PALETTE, ...config.palette};
@@ -821,7 +825,7 @@ export default async function install(api, input) {
   const center = [(Math.min(...points.map(p => p[0])) + Math.max(...points.map(p => p[0]))) / 2,
     (Math.min(...points.map(p => p[1])) + Math.max(...points.map(p => p[1]))) / 2];
   const bounds = [center[0] - 450, center[1] - 450, center[0] + 450, center[1] + 450];
-  const contextMeshes = new Map(), contextWaterMaterials = new Map();
+  const contextMeshes = new Map(), contextWaterMaterials = new Map(), terrainMaterials = new Map();
   const compactContext = object => {
     const original = object.geometry, position = original?.attributes?.position;
     // The 2026-10-07 compressed terrain already has distance-dependent detail.
@@ -883,6 +887,15 @@ export default async function install(api, input) {
   const updateContext = () => {
     scene.traverse(object => {
       if (!object.isMesh) return;
+      // Will, 2026-10-07: interpolated static terrain paint looks smeared.
+      // Use the site's neutral display palette on the retained compressed
+      // ground only; geometry, normals and canonical environment stay intact.
+      if (groundColor && object.userData?.regional_context_compressed && !Array.isArray(object.material)
+          && !terrainMaterials.has(object)) {
+        const original = object.material, neutral = own(original.clone());
+        neutral.vertexColors = false; neutral.color.set(groundColor); neutral.needsUpdate = true;
+        terrainMaterials.set(object, original); object.material = neutral;
+      }
       compactContext(object);
       if (canonicalPlacement && object.userData?.authority_scope === 'context-only'
           && object.userData.layer === 'water' && !Array.isArray(object.material)) {
@@ -1073,6 +1086,7 @@ export default async function install(api, input) {
     scene.remove(world);
     for (const [object, row] of contextMeshes) { object.geometry = row.original; object.material = row.originalMaterial; }
     for (const [object, mat] of contextWaterMaterials) object.material = mat;
+    for (const [object, mat] of terrainMaterials) object.material = mat;
     for (const [object, visible] of hidden) object.visible = visible;
     for (const resource of resources) resource.dispose();
     world.traverse(object => { if (object.isInstancedMesh) object.dispose(); });

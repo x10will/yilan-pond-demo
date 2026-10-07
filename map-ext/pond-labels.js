@@ -20,13 +20,16 @@ export default async function install(api) {
   const catalog = await (await fetch(window.DT_assetUrl(layer.path))).json();
   const ids = new Set(manifest.target_face_ids);
   const overlay = document.createElement('div'); overlay.className = 'pond-footprint-labels';
-  const labels = catalog.filter(row => ids.has(row.id)).map(row => {
+  const labels = catalog.filter(row => ids.has(row.id) || api.site.farmPondHtmlContextLabels === true
+    && row.type === 'candidate-context').map(row => {
     const element = document.createElement('span'); element.className = 'pond-footprint-label';
     element.dataset.entityId = row.id; element.textContent = row.name.replace(/（模擬）/g, '').trim();
+    if (row.type === 'candidate-context') element.classList.add('pond-context-label');
     overlay.append(element);
     return {id: row.id, element, anchor: new api.THREE.Vector3(row.x, row.y, row.z)};
   });
-  const pondLabels = [...labels];
+  const pondLabels = labels.filter(row => ids.has(row.id));
+  const replacedIds = new Set([...labels.map(row => row.id), 'yilan-workshop-context']);
   const renderLabel = label => {
     const row = label.statusRow; if (!row) return;
     const status = document.createElement('span'); status.className = 'pond-label-status';
@@ -43,7 +46,7 @@ export default async function install(api) {
   const replaced = [];
   const replaceLabels = () => api.scene.traverse(sprite => {
     if (sprite.isSprite && sprite.userData.context_id === layer.stable_id &&
-        (ids.has(sprite.userData.label_id) || sprite.userData.label_id === 'yilan-workshop-context') &&
+        replacedIds.has(sprite.userData.label_id) &&
         !replaced.some(([known]) => known === sprite)) {
       replaced.push([sprite, sprite.material.opacity]); sprite.material.opacity = 0;
     }
@@ -63,8 +66,15 @@ export default async function install(api) {
   // stay static; the host sends statuses from the selected verified frame.
   api.onFrame(() => {
     for (const row of labels) {
+      if (row.model) row.model.getWorldPosition(row.anchor);
       const point = row.anchor.clone().project(api.camera);
       row.element.hidden = row.warningOnly && (!row.active || row.merged) || point.z < -1 || point.z > 1 || Math.abs(point.x) > 1 || Math.abs(point.y) > 1;
+      if (row.model) {
+        // Model plaques follow the already-rendered canonical twin root. This
+        // projects its existing artwork anchor; it does not set any transform.
+        for (let object = row.model; object; object = object.parent) if (!object.visible) row.element.hidden = true;
+        if (api.camera.position.distanceTo(row.anchor) > 350) row.element.hidden = true;
+      }
       const phoneWidth = innerWidth <= 767 ? innerWidth : null;
       if (row.phoneWidth !== phoneWidth) {
         row.phoneWidth = phoneWidth;
@@ -85,6 +95,18 @@ export default async function install(api) {
       }
       row.element.style.left = `${left}px`;
       row.element.style.top = `${top}px`;
+    }
+    // The two nearby model plaques can share screen space at desktop scaling.
+    // Separate their text boxes only; their artwork/world anchors stay intact.
+    const plaques = labels.filter(row => row.model && !row.element.hidden);
+    if (plaques.length === 2) {
+      const first = plaques[0].element.getBoundingClientRect();
+      const second = plaques[1].element.getBoundingClientRect();
+      if (first.left < second.right && first.right > second.left &&
+          first.top < second.bottom && first.bottom > second.top) {
+        const element = plaques[0].element;
+        element.style.top = `${parseFloat(element.style.top) - (first.bottom - second.top) - 4}px`;
+      }
     }
   });
   let disposeWorld;
@@ -140,6 +162,19 @@ export default async function install(api) {
       }
     });
     disposeWorld = await installWorld(api, config);
+    if (api.site.farmPondHtmlContextLabels === true) {
+      // Will's 2026-10-07 request includes every blurred label. These two
+      // plaques otherwise shrink raster text to a few pixels in close views.
+      api.scene.getObjectByName('farm-pond-world')?.traverse(sprite => {
+        if (!sprite.isSprite || sprite.name !== 'simulated-twin-presentation-label') return;
+        const element = document.createElement('span'); element.className = 'pond-footprint-label pond-model-label';
+        element.textContent = sprite.userData.label;
+        if (!element.textContent.includes('模擬')) element.textContent += '（模擬）';
+        element.hidden = true; overlay.append(element);
+        labels.push({element, model: sprite, anchor: new api.THREE.Vector3()});
+        replaced.push([sprite, sprite.material.opacity]); sprite.material.opacity = 0;
+      });
+    }
   }
   api.appEvent('farm-pond-labels-ready', {});
   return () => {
