@@ -14,19 +14,77 @@ export function clampPondPhoneLabel(x, y, width, height, viewportWidth, viewport
   };
 }
 
+const labelOffsets = [{dx:0, dy:0}];
+for (let dy = -144; dy <= 144; dy += 8) for (let dx = -144; dx <= 144; dx += 8) {
+  if (dx || dy) labelOffsets.push({dx, dy});
+}
+labelOffsets.sort((a, b) => a.dx * a.dx + a.dy * a.dy - b.dx * b.dx - b.dy * b.dy
+  || a.dy - b.dy || Math.abs(a.dx) - Math.abs(b.dx) || a.dx - b.dx);
+
+// Will, 2026-10-08: pond names take priority; move presentation boxes only.
+// Fixed order and half-pixel projection keep a stationary camera stationary.
+export function layoutPondLabels(rows, viewportWidth, viewportHeight, obstacles = []) {
+  const margin = 8, gap = 4;
+  const intersects = (a, b) => a.left < b.left + b.width + gap && a.left + a.width + gap > b.left
+    && a.top < b.top + b.height + gap && a.top + a.height + gap > b.top;
+  const ordered = rows.map((row, order) => ({...row, order}))
+    .sort((a, b) => a.priority - b.priority || a.order - b.order);
+  const place = sequence => {
+    const occupied = [...obstacles], result = new Map();
+    for (const row of sequence) {
+      const {id, width, height} = row;
+      const clamp = (value, high) => Math.max(margin, Math.min(high, value));
+      const left = clamp(Math.round((row.x - width / 2) * 2) / 2, viewportWidth - margin - width);
+      const top = clamp(Math.round((row.y - (row.above ? height + 5 : height / 2)) * 2) / 2,
+        viewportHeight - margin - height);
+      let placement = {id, left, top, width, height, hidden:true};
+      const distance = row.priority === 0 ? 144 : 96;
+      for (const {dx, dy} of labelOffsets) {
+        if (dx * dx + dy * dy > distance * distance) continue;
+        const candidate = {id, left:left + dx, top:top + dy, width, height, hidden:false};
+        if (candidate.left < margin || candidate.top < margin
+          || candidate.left + width > viewportWidth - margin
+          || candidate.top + height > viewportHeight - margin
+          || occupied.some(box => intersects(candidate, box))) continue;
+        placement = candidate; occupied.push(candidate); break;
+      }
+      result.set(id, placement);
+    }
+    return result;
+  };
+  let result = place(ordered);
+  const ponds = ordered.filter(row => row.priority === 0);
+  const others = ordered.filter(row => row.priority !== 0);
+  const count = placements => ponds.filter(row => !placements.get(row.id).hidden).length;
+  // Three pond names can fit even when the first greedy choice blocks the
+  // third. Retry their fixed orders before yielding any pond's space.
+  for (const sequence of [ponds, [...ponds].reverse()]) {
+    for (let start = 0; start < sequence.length && count(result) < ponds.length; start++) {
+      const candidate = place([...sequence.slice(start), ...sequence.slice(0, start), ...others]);
+      if (count(candidate) > count(result)) result = candidate;
+    }
+  }
+  return rows.map(row => result.get(row.id));
+}
+
 export default async function install(api) {
   const manifest = await (await fetch(window.DT_assetUrl(api.site.contextLayerManifest))).json();
   const layer = manifest.layers['supported-labels'];
   const catalog = await (await fetch(window.DT_assetUrl(layer.path))).json();
   const ids = new Set(manifest.target_face_ids);
   const overlay = document.createElement('div'); overlay.className = 'pond-footprint-labels';
+  overlay.classList.add('pond-label-layout');
+  const leaders = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  leaders.classList.add('pond-label-leaders'); leaders.setAttribute('aria-hidden', 'true');
+  overlay.append(leaders);
   const labels = catalog.filter(row => ids.has(row.id) || api.site.farmPondHtmlContextLabels === true
     && row.type === 'candidate-context').map(row => {
     const element = document.createElement('span'); element.className = 'pond-footprint-label';
     element.dataset.entityId = row.id; element.textContent = row.name.replace(/（模擬）/g, '').trim();
     if (row.type === 'candidate-context') element.classList.add('pond-context-label');
     overlay.append(element);
-    return {id: row.id, element, anchor: new api.THREE.Vector3(row.x, row.y, row.z)};
+    return {id: row.id, element, priority: ids.has(row.id) ? 0 : 2,
+      anchor: new api.THREE.Vector3(row.x, row.y, row.z)};
   });
   const pondLabels = labels.filter(row => ids.has(row.id));
   const replacedIds = new Set([...labels.map(row => row.id), 'yilan-workshop-context']);
@@ -64,7 +122,8 @@ export default async function install(api) {
   });
   // Camera projection affects only HTML label placement. Static catalog anchors
   // stay static; the host sends statuses from the selected verified frame.
-  api.onFrame(() => {
+  const offFrame = api.onFrame(() => {
+    const visible = [];
     for (const row of labels) {
       if (row.model) row.model.getWorldPosition(row.anchor);
       const point = row.anchor.clone().project(api.camera);
@@ -75,38 +134,44 @@ export default async function install(api) {
         for (let object = row.model; object; object = object.parent) if (!object.visible) row.element.hidden = true;
         if (api.camera.position.distanceTo(row.anchor) > 350) row.element.hidden = true;
       }
-      const phoneWidth = innerWidth <= 767 ? innerWidth : null;
-      if (row.phoneWidth !== phoneWidth) {
-        row.phoneWidth = phoneWidth;
-        // Intrinsic width prevents absolute shrink-to-fit from collapsing a
-        // label near the right edge before its position is clamped.
-        row.element.style.width = phoneWidth ? 'max-content' : '';
-        row.element.style.maxWidth = phoneWidth ? `${Math.max(0, phoneWidth - 16)}px` : '';
-        row.element.style.whiteSpace = phoneWidth ? 'normal' : '';
-        row.element.style.overflowWrap = phoneWidth ? 'anywhere' : '';
-        row.element.style.boxSizing = phoneWidth ? 'border-box' : '';
-      }
-      let left = (point.x + 1) * innerWidth / 2, top = (1 - point.y) * innerHeight / 2;
-      if (phoneWidth && !row.element.hidden) {
-        const position = clampPondPhoneLabel(left, top, row.element.offsetWidth, row.element.offsetHeight,
-          innerWidth, innerHeight, {warning: row.element.classList.contains('pond-label-warning'),
-            equipment: row.element.classList.contains('pond-equipment-warning')});
-        left = position.left; top = position.top;
-      }
-      row.element.style.left = `${left}px`;
-      row.element.style.top = `${top}px`;
+      if (row.element.hidden) { if (row.leader) row.leader.style.display = 'none'; continue; }
+      row.x = (point.x + 1) * innerWidth / 2; row.y = (1 - point.y) * innerHeight / 2;
+      row.element.style.maxWidth = `${Math.max(0, innerWidth - 16)}px`;
+      const rect = row.element.getBoundingClientRect();
+      visible.push({id:row.id, x:row.x, y:row.y, width:rect.width, height:rect.height,
+        priority:row.priority, above:row.element.classList.contains('pond-label-warning')});
     }
-    // The two nearby model plaques can share screen space at desktop scaling.
-    // Separate their text boxes only; their artwork/world anchors stay intact.
-    const plaques = labels.filter(row => row.model && !row.element.hidden);
-    if (plaques.length === 2) {
-      const first = plaques[0].element.getBoundingClientRect();
-      const second = plaques[1].element.getBoundingClientRect();
-      if (first.left < second.right && first.right > second.left &&
-          first.top < second.bottom && first.bottom > second.top) {
-        const element = plaques[0].element;
-        element.style.top = `${parseFloat(element.style.top) - (first.bottom - second.top) - 4}px`;
+    const obstacles = [];
+    const reserve = (element, offsetX = 0, offsetY = 0, scaleX = 1, scaleY = 1) => {
+      const rect = element.getBoundingClientRect(), style = element.ownerDocument.defaultView.getComputedStyle(element);
+      if (!rect.width || !rect.height || style.visibility === 'hidden' || style.display === 'none') return;
+      const box = {left:(rect.left - offsetX) * scaleX, top:(rect.top - offsetY) * scaleY,
+        width:rect.width * scaleX, height:rect.height * scaleY};
+      if (box.left < innerWidth && box.top < innerHeight && box.left + box.width > 0 && box.top + box.height > 0) obstacles.push(box);
+    };
+    for (const element of document.querySelectorAll('#dt-embed-navigation')) reserve(element);
+    // Same-origin host chips occupy the same pixels as the iframe. Reserve
+    // their actual rectangles, including wrapped chapter-end readings.
+    const frame = window.frameElement;
+    if (frame) {
+      const rect = frame.getBoundingClientRect();
+      for (const element of frame.parentElement.querySelectorAll('.pond-map-status > *, .farm-credit, .farm-credit-full')) {
+        reserve(element, rect.left, rect.top, innerWidth / rect.width, innerHeight / rect.height);
       }
+    }
+    const placements = layoutPondLabels(visible, innerWidth, innerHeight, obstacles);
+    for (const box of placements) {
+      const row = labels.find(row => row.id === box.id);
+      row.element.hidden = box.hidden;
+      row.element.style.left = `${box.left}px`; row.element.style.top = `${box.top}px`;
+      if (!row.leader) {
+        row.leader = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        row.leader.dataset.entityId = row.id; leaders.append(row.leader);
+      }
+      const endX = Math.max(box.left, Math.min(box.left + box.width, row.x));
+      const endY = Math.max(box.top, Math.min(box.top + box.height, row.y));
+      row.leader.style.display = box.hidden || Math.hypot(endX - row.x, endY - row.y) < 6 ? 'none' : '';
+      for (const [name, value] of Object.entries({x1:row.x, y1:row.y, x2:endX, y2:endY})) row.leader.setAttribute(name, value);
     }
   });
   let disposeWorld;
@@ -132,7 +197,7 @@ export default async function install(api) {
       element.textContent = `⚠ ${row.label.replace(/（模擬）/g, '').trim()}`;
       element.setAttribute('aria-label', `${row.label} · 故障`);
       overlay.append(element);
-      const label = {id:row.id, element, anchor:new api.THREE.Vector3(...row.position), warningOnly:true, active:false};
+      const label = {id:row.id, element, priority:1, anchor:new api.THREE.Vector3(...row.position), warningOnly:true, active:false};
       label.anchor.z += 3;
       labels.push(label); return label;
     });
@@ -171,13 +236,19 @@ export default async function install(api) {
         element.textContent = sprite.userData.label;
         if (!element.textContent.includes('模擬')) element.textContent += '（模擬）';
         element.hidden = true; overlay.append(element);
-        labels.push({element, model: sprite, anchor: new api.THREE.Vector3()});
+        let twin = sprite;
+        while (twin && !twin.userData.entity_id) twin = twin.parent;
+        const id = twin?.userData.entity_id || `model-plaque-${labels.length}`;
+        element.dataset.entityId = id;
+        if (sprite.userData.source_ref) element.dataset.sourceRef = sprite.userData.source_ref;
+        labels.push({id, element, priority:1, model: sprite, anchor: new api.THREE.Vector3()});
         replaced.push([sprite, sprite.material.opacity]); sprite.material.opacity = 0;
       });
     }
   }
   api.appEvent('farm-pond-labels-ready', {});
   return () => {
+    offFrame?.();
     disposeWorld?.();
     window.removeEventListener('dt:details-loaded', replaceLabels);
     overlay.remove();

@@ -665,6 +665,9 @@ export function installPondShell(container, app) {
           .pond-equipment-warning{transform:translate(-50%,0);padding:3px 6px;font-size:11px;border-radius:12px;z-index:1}
           .pond-label-equipment{display:block;font-size:11px;text-align:center;line-height:1.4}
           .pond-label-equipment:empty{display:none}
+          .pond-label-layout .pond-footprint-label{transform:none!important;margin:0!important;width:max-content;white-space:normal;overflow-wrap:anywhere;box-sizing:border-box}
+          .pond-label-leaders{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+          .pond-label-leaders line{stroke:#bddbe5;stroke-width:1.5;stroke-opacity:.85}
           @media(max-width:767px){.pond-footprint-label{font-size:14px;padding:4px 6px}.pond-label-status,.pond-label-equipment{font-size:14px}.pond-equipment-warning{transform:translate(-100%,0)}}
           @media(max-width:767px){#dt-embed-navigation{display:flex!important;flex-wrap:nowrap!important;left:auto!important}}
         `;
