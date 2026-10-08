@@ -279,10 +279,8 @@ function observedPanel(id, title, draw, {load = () => canonicalAdapter(), site =
       meta.append(badge(), when);
       const content = el('div', null, 'pond-panel-content');
       root.append(meta, content); container.append(root);
-      let candidate, comparison, comparisonError, comparisonPromise, milliseconds = 0, disposed = false, signature,
+      let candidate, comparison, comparisonError, milliseconds = 0, disposed = false, signature,
         selectedId = ctx.getSelectedEntity?.()?.id || null;
-      const compare = () => comparisonPromise ||= Promise.resolve().then(loadComparison).then(value => { comparison = value; })
-        .catch(error => { comparisonError = error.message; }).then(() => { render(); });
       const interaction = {
         get selectedId() { return selectedId; },
         get comparison() { return comparison; },
@@ -300,9 +298,6 @@ function observedPanel(id, title, draw, {load = () => canonicalAdapter(), site =
       const render = () => {
         if (!candidate || disposed) return;
         const projection = pondProjection(candidate, milliseconds);
-        // Both curves are shown only by the canonical closing summary. Will's
-        // 2026-10-08 first-visit fix defers the unused Pages run until that view.
-        if (id === 'pond-notifications' && site.presentation?.delivery?.pages && projection.story?.summary) void compare();
         const locale = ctx.locale || globalThis.document?.documentElement?.lang || 'zh-Hant';
         const next = JSON.stringify([projection.telemetry, projection.notifications, projection.story, projection.aiNarration,
           selectedId, selectedId && projection.assetTransforms?.find(row => row.id === selectedId),
@@ -335,7 +330,11 @@ function observedPanel(id, title, draw, {load = () => canonicalAdapter(), site =
       const ready = load().then(async value => {
         if (disposed) return;
         candidate = value; render();
-        if (id === 'pond-notifications' && !site.presentation?.delivery?.pages) await compare();
+        if (id === 'pond-notifications') {
+          try { comparison = await loadComparison(); }
+          catch (error) { comparisonError = error.message; }
+          render();
+        }
       }).catch(error => {
         if (!disposed) {
           when.textContent = '';
