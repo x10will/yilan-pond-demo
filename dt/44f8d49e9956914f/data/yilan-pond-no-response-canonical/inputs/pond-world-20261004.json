@@ -1,0 +1,1005 @@
+{
+  "schema_version": "pond-world/v1",
+  "simulation_label": "模擬",
+  "source_ref": "decisions/2026-10-04-pond-world-presentation.md",
+  "ponds": [
+    {
+      "id": "pond-1",
+      "label": "魚塭 1（模擬）",
+      "polygon": [
+        [
+          0,
+          0
+        ],
+        [
+          40,
+          0
+        ],
+        [
+          40,
+          30
+        ],
+        [
+          0,
+          30
+        ]
+      ],
+      "z": 1.993
+    },
+    {
+      "id": "pond-2",
+      "label": "魚塭 2（模擬）",
+      "polygon": [
+        [
+          50,
+          0
+        ],
+        [
+          90,
+          0
+        ],
+        [
+          90,
+          30
+        ],
+        [
+          50,
+          30
+        ]
+      ],
+      "z": 1.993
+    },
+    {
+      "id": "pond-3",
+      "label": "魚塭 3（模擬）",
+      "polygon": [
+        [
+          25,
+          40
+        ],
+        [
+          65,
+          40
+        ],
+        [
+          65,
+          70
+        ],
+        [
+          25,
+          70
+        ]
+      ],
+      "z": 1.993
+    }
+  ],
+  "assets": [
+    {
+      "id": "aerator-1",
+      "label": "水車 1（模擬）",
+      "kind": "aerator",
+      "position": [
+        10,
+        10,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "pump-1",
+      "label": "泵 1（模擬）",
+      "kind": "pump",
+      "position": [
+        5,
+        5,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "sluice-1",
+      "label": "水閘 1（模擬）",
+      "kind": "sluice",
+      "position": [
+        35,
+        5,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "aerator-2",
+      "label": "水車 2（模擬）",
+      "kind": "aerator",
+      "position": [
+        60,
+        10,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "pump-2",
+      "label": "泵 2（模擬）",
+      "kind": "pump",
+      "position": [
+        55,
+        5,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "sluice-2",
+      "label": "水閘 2（模擬）",
+      "kind": "sluice",
+      "position": [
+        85,
+        5,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "aerator-3",
+      "label": "水車 3（模擬）",
+      "kind": "aerator",
+      "position": [
+        35,
+        50,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "pump-3",
+      "label": "泵 3（模擬）",
+      "kind": "pump",
+      "position": [
+        30,
+        45,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "sluice-3",
+      "label": "水閘 3（模擬）",
+      "kind": "sluice",
+      "position": [
+        60,
+        45,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "power-mains",
+      "label": "市電（模擬）",
+      "kind": "mains-power",
+      "position": [
+        2,
+        25,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "power-generator",
+      "label": "備用發電機（模擬）",
+      "kind": "generator-power",
+      "position": [
+        6,
+        25,
+        1.983
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "weather-site",
+      "label": "場區天氣（模擬）",
+      "kind": "weather-station",
+      "position": [
+        10,
+        25,
+        1.983
+      ],
+      "rotation": 0
+    }
+  ],
+  "context_ponds": [
+    {
+      "id": "context-pond-west",
+      "label": "西側鄰塭意象（模擬）",
+      "polygon": [
+        [
+          -18,
+          0
+        ],
+        [
+          -8,
+          0
+        ],
+        [
+          -8,
+          28
+        ],
+        [
+          -18,
+          28
+        ]
+      ],
+      "z": 1.993
+    },
+    {
+      "id": "context-pond-northwest",
+      "label": "北側鄰塭 1（模擬）",
+      "polygon": [
+        [
+          -17,
+          81
+        ],
+        [
+          16,
+          81
+        ],
+        [
+          16,
+          96
+        ],
+        [
+          -17,
+          96
+        ]
+      ],
+      "z": 1.993
+    },
+    {
+      "id": "context-pond-north",
+      "label": "北側鄰塭 2（模擬）",
+      "polygon": [
+        [
+          25,
+          81
+        ],
+        [
+          62,
+          81
+        ],
+        [
+          62,
+          96
+        ],
+        [
+          25,
+          96
+        ]
+      ],
+      "z": 1.993
+    },
+    {
+      "id": "context-pond-northeast",
+      "label": "北側鄰塭 3（模擬）",
+      "polygon": [
+        [
+          71,
+          81
+        ],
+        [
+          105,
+          81
+        ],
+        [
+          105,
+          96
+        ],
+        [
+          71,
+          96
+        ]
+      ],
+      "z": 1.993
+    },
+    {
+      "id": "context-pond-east",
+      "label": "東側鄰塭意象（模擬）",
+      "polygon": [
+        [
+          100,
+          44
+        ],
+        [
+          109,
+          44
+        ],
+        [
+          109,
+          71
+        ],
+        [
+          100,
+          71
+        ]
+      ],
+      "z": 1.993
+    },
+    {
+      "id": "context-water-east-shore",
+      "label": "東側水岸意象（模擬）",
+      "polygon": [
+        [
+          113,
+          -16
+        ],
+        [
+          118,
+          -16
+        ],
+        [
+          118,
+          96
+        ],
+        [
+          113,
+          96
+        ]
+      ],
+      "z": 1.993
+    }
+  ],
+  "paddies": [
+    {
+      "id": "paddy-southwest",
+      "label": "南側田畦 1（模擬）",
+      "polygon": [
+        [
+          -17,
+          -18
+        ],
+        [
+          18,
+          -18
+        ],
+        [
+          18,
+          -8
+        ],
+        [
+          -17,
+          -8
+        ]
+      ],
+      "z": 1.713
+    },
+    {
+      "id": "paddy-south",
+      "label": "南側田畦 2（模擬）",
+      "polygon": [
+        [
+          26,
+          -18
+        ],
+        [
+          64,
+          -18
+        ],
+        [
+          64,
+          -8
+        ],
+        [
+          26,
+          -8
+        ]
+      ],
+      "z": 1.713
+    },
+    {
+      "id": "paddy-southeast",
+      "label": "南側田畦 3（模擬）",
+      "polygon": [
+        [
+          73,
+          -18
+        ],
+        [
+          109,
+          -18
+        ],
+        [
+          109,
+          -8
+        ],
+        [
+          73,
+          -8
+        ]
+      ],
+      "z": 1.713
+    },
+    {
+      "id": "paddy-west",
+      "label": "西側田畦（模擬）",
+      "polygon": [
+        [
+          -17,
+          43
+        ],
+        [
+          -6,
+          43
+        ],
+        [
+          -6,
+          72
+        ],
+        [
+          -17,
+          72
+        ]
+      ],
+      "z": 1.713
+    },
+    {
+      "id": "paddy-east",
+      "label": "東側田畦（模擬）",
+      "polygon": [
+        [
+          73,
+          44
+        ],
+        [
+          93,
+          44
+        ],
+        [
+          93,
+          71
+        ],
+        [
+          73,
+          71
+        ]
+      ],
+      "z": 1.713
+    }
+  ],
+  "paths": [
+    {
+      "points": [
+        [
+          -5,
+          35
+        ],
+        [
+          20,
+          35
+        ]
+      ],
+      "width": 2.6,
+      "z": 1.813
+    },
+    {
+      "points": [
+        [
+          20,
+          35
+        ],
+        [
+          95,
+          35
+        ]
+      ],
+      "width": 2.6,
+      "z": 1.813
+    },
+    {
+      "points": [
+        [
+          20,
+          35
+        ],
+        [
+          20,
+          75
+        ]
+      ],
+      "width": 2.6,
+      "z": 1.813
+    },
+    {
+      "points": [
+        [
+          -3,
+          -4
+        ],
+        [
+          95,
+          -4
+        ],
+        [
+          95,
+          76
+        ],
+        [
+          -3,
+          76
+        ],
+        [
+          -3,
+          -4
+        ]
+      ],
+      "width": 3.2,
+      "z": 1.813
+    },
+    {
+      "points": [
+        [
+          45,
+          -4
+        ],
+        [
+          45,
+          35
+        ]
+      ],
+      "width": 3,
+      "z": 1.813
+    },
+    {
+      "points": [
+        [
+          -3,
+          58
+        ],
+        [
+          20,
+          58
+        ]
+      ],
+      "width": 2.4,
+      "z": 1.813
+    },
+    {
+      "points": [
+        [
+          109,
+          -18
+        ],
+        [
+          109,
+          98
+        ]
+      ],
+      "width": 2.6,
+      "z": 1.813
+    },
+    {
+      "points": [
+        [
+          -18,
+          78
+        ],
+        [
+          110,
+          78
+        ]
+      ],
+      "width": 2.4,
+      "z": 1.813
+    }
+  ],
+  "vegetation": [
+    {
+      "position": [
+        -12,
+        -3,
+        1.683
+      ],
+      "scale": 1.0,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        -10,
+        36,
+        1.683
+      ],
+      "scale": 0.85,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        -12,
+        77,
+        1.683
+      ],
+      "scale": 0.95,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        5,
+        76,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        14,
+        76,
+        1.683
+      ],
+      "scale": 0.9,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        67,
+        76,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        93,
+        77,
+        1.683
+      ],
+      "scale": 1.0,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        107,
+        36,
+        1.683
+      ],
+      "scale": 0.95,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        105,
+        -3,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        20,
+        -3,
+        1.683
+      ],
+      "scale": 0.7,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        70,
+        -3,
+        1.683
+      ],
+      "scale": 0.75,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        -3,
+        69,
+        1.683
+      ],
+      "scale": 0.7,
+      "kind": "tree"
+    },
+    {
+      "position": [
+        111,
+        -12,
+        1.683
+      ],
+      "scale": 0.75,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        111,
+        1,
+        1.683
+      ],
+      "scale": 0.95,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        111,
+        14,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        111,
+        28,
+        1.683
+      ],
+      "scale": 1.0,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        111,
+        42,
+        1.683
+      ],
+      "scale": 0.85,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        111,
+        55,
+        1.683
+      ],
+      "scale": 1.0,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        111,
+        68,
+        1.683
+      ],
+      "scale": 0.85,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        111,
+        82,
+        1.683
+      ],
+      "scale": 1.0,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        111,
+        94,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        -7,
+        9,
+        1.683
+      ],
+      "scale": 0.7,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        -7,
+        22,
+        1.683
+      ],
+      "scale": 0.85,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        99,
+        53,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        99,
+        65,
+        1.683
+      ],
+      "scale": 0.7,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        36,
+        79,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        54,
+        79,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "reeds"
+    },
+    {
+      "position": [
+        -10,
+        -5,
+        1.683
+      ],
+      "scale": 1.0,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        10,
+        -5,
+        1.683
+      ],
+      "scale": 0.75,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        35,
+        -5,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        60,
+        -5,
+        1.683
+      ],
+      "scale": 0.9,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        85,
+        -5,
+        1.683
+      ],
+      "scale": 0.8,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        99,
+        -5,
+        1.683
+      ],
+      "scale": 0.85,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        -5,
+        42,
+        1.683
+      ],
+      "scale": 0.6,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        -5,
+        72,
+        1.683
+      ],
+      "scale": 0.7,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        17,
+        49,
+        1.683
+      ],
+      "scale": 0.65,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        16,
+        70,
+        1.683
+      ],
+      "scale": 0.7,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        69,
+        44,
+        1.683
+      ],
+      "scale": 0.6,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        69,
+        63,
+        1.683
+      ],
+      "scale": 0.7,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        96,
+        72,
+        1.683
+      ],
+      "scale": 0.75,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        107,
+        76,
+        1.683
+      ],
+      "scale": 0.7,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        15,
+        79,
+        1.683
+      ],
+      "scale": 0.6,
+      "kind": "grass"
+    },
+    {
+      "position": [
+        67,
+        79,
+        1.683
+      ],
+      "scale": 0.7,
+      "kind": "grass"
+    }
+  ],
+  "sheds": [
+    {
+      "id": "workshop-shed",
+      "label": "暖色農務小屋（模擬）",
+      "position": [
+        8,
+        61,
+        1.683
+      ],
+      "rotation": 0,
+      "scale": 1.25
+    }
+  ],
+  "palette": {
+    "water": "#5eabb0",
+    "bank": "#cfbe8c",
+    "paddy": "#99b973",
+    "tree": "#799e68",
+    "reeds": "#9ba665",
+    "grass": "#a8ba77",
+    "shed": "#d6a56e",
+    "roof": "#9c7164"
+  }
+}

@@ -32,12 +32,14 @@ if (site.site_id !== 'farm') {
  if (site.presentation?.kind === 'pond-night') {
   const {installPondShell} = await import('./panels/pond-shell.js');
   installPondShell(document.querySelector('#app'),window.app);
+  await (await import('./site.js')).waitForPondScene(site);
   document.getElementById('pond-boot-loading')?.remove();
   const {installPondLiveAI} = await import('./panels/pond-live-ai.js');
   void installPondLiveAI(document.querySelector('#app'),window.app);
  }
 }
 globalThis.__farmBoot?.watch(window.app);
+await (await import('./site.js')).afterPondFirstView(window.app);
 if('serviceWorker' in navigator&&!globalThis.__farmBoot?.recovering){
  // One build per tab (gate review of #109, 2026-09-27, Major 2): whenever a worker takes this
  // tab, ask for its build; a tab whose own build differs saves its layout and reloads, so no tab

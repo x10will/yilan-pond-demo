@@ -1,25 +1,25 @@
 {
-  "built_at": "2026-10-08T16:36:04+00:00",
-  "build": "9a4de0ab6a1c75d3",
-  "dt_base": "dt/c31e657aeec0f0b6/",
-  "label": "yilan-pond-overlap-local",
-  "farm_commit": "29a5c0d4df17a1eeaf4ee22f71a9d4f4b38780a1",
+  "built_at": "2026-10-08T17:19:49+00:00",
+  "build": "d444a193ff3ad0a5",
+  "dt_base": "dt/44f8d49e9956914f/",
+  "label": "yilan-pond-merge-lo-local",
+  "farm_commit": "b476f05458cd42b767d9a3c83cf8a5a528cc9f0b",
   "farm_panel_dirty": false,
   "dt_generation": {
-    "name": "dt-yilan-merge-tc-r2-20261007",
+    "name": "dt-yilan-load-r4-20261008",
     "sourceRevision": "7116d70b9517e7d2aad1925c669b0e5341724469",
     "mounts": [
       "yilan-pond-canonical",
       "yilan-pond-no-response-canonical",
       "yilan-pond-static"
     ],
-    "digest": "9526a9ceeb1e39ff9eee532d106fb32b6043fd5f8006e6a543bbb2f299887e2d"
+    "digest": "434676a10916db6080cdb0556c5f30a41b30a72433dbe1f079bb23becd8c4b67"
   },
   "staging": {
-    "farm_commit": "911c92aeaf4d148577c037d7f1b8d3764b983439",
+    "farm_commit": "ccef37a1edcb5b502e4a9b05c2adf65c2af604e7",
     "dt_commit": "7116d70b9517e7d2aad1925c669b0e5341724469",
     "status": "local-assembled",
-    "recorded_at": "2026-10-07T09:40:16.030672+00:00"
+    "recorded_at": "2026-10-08T16:36:04.919594+00:00"
   },
   "panel_core": {
     "sourceCommit": "84fc525548df6d5b38b40cc3db9d0ed53fc5a028",
@@ -168,6 +168,11 @@
         "sha256": "8a50e193dca2bac1497a763a668356945b53cada8152ca5f27ff29bf3db010f4"
       },
       {
+        "byte_count": 1251,
+        "path": "decisions/2026-10-09-pond-load-lineage.md",
+        "sha256": "6068af9fe866854975c91173dc2a8a3b81f8b8f226bfa4a98a41a8c210cc685b"
+      },
+      {
         "byte_count": 73001,
         "path": "inputs/context/base-terrain-20261001-v1/provenance.json",
         "sha256": "7e9266be9a8a0c2acc6bca6fb7cadff8bf70da961855b4e84e839b53108af05f"
@@ -181,6 +186,11 @@
         "byte_count": 4420,
         "path": "inputs/context/pages-ready-v2-20261004/lineage.json",
         "sha256": "1da4a6ea7dc75784db8a5b45f16a324beb27f2d8232f587610b27396eff24046"
+      },
+      {
+        "byte_count": 17106,
+        "path": "inputs/context/regional-split-20261008/lineage.json",
+        "sha256": "124eb21bdf7030c1d8c5a39ad20f2ec6b312ffa47b60670b19d0bb777be44c6f"
       },
       {
         "byte_count": 13592,
@@ -383,6 +393,16 @@
         "sha256": "9e4c44499f8b03608bca006a4fd5a6fa5f9ba46a3ae2fb877a68fda5738de024"
       },
       {
+        "byte_count": 20192,
+        "path": "receipts/20261008-yilan-regional-split-derivation.receipt.json",
+        "sha256": "df060ae4e81f6be26fe8f2d9d008004c1ec0a3de1fe13e522afecc11f72283a9"
+      },
+      {
+        "byte_count": 960,
+        "path": "receipts/20261009-pond-load-r4-near-water-presentation.receipt.json",
+        "sha256": "6d0b4a13610c4325015c7d74a8a388b263f75eda11da9b88d30b07d089f2ac47"
+      },
+      {
         "byte_count": 16015,
         "path": "scenarios/pond-night-response-fix-content-20261004.json",
         "sha256": "a64b1fc52e350fb4994c94ffb62b0cb0d58ec904e1b30fd36536fcfe2399314e"
@@ -413,9 +433,9 @@
         "sha256": "83214511a81c8c4ebe52060ded31f09551909853e5192337a48c88866dc64b2f"
       },
       {
-        "byte_count": 45792,
+        "byte_count": 50257,
         "path": "static-manifest.json",
-        "sha256": "f4f419e1fe68cdd4bdb029fe63cac918168a99e0d91bab9fab366674a7d7a65b"
+        "sha256": "b89b3e50318c743416ea262b4d2e9064662bc17430849ce8b93dba71ab98e602"
       },
       {
         "byte_count": 43349,
@@ -454,77 +474,1761 @@
     "區域候選全名沿用 inputs/regional-anchors.json：柯林漁廠（柯林）、仁山漁廠（仁山植物園附近概略位置）、蘭鱈三隻魚（員山概略位置）、寶爸的墨瑞鱈（頭城概略位置）。顯示短名為柯林、仁山、蘭鱈、寶爸，皆為作者建立的背景·模擬標籤，不是現地測繪、農場導航或場域資料。",
     "07-region uses the complete terrain bounds [-21634.918825437548, -17365.919999999867, 5661.4740851624365, 20482.880000000117] m; its 55° perspective poses are fitted at 894×273, 390×368 and conservative 390×600.",
     "2026-10-07 merge: compressed regional background plus wheel v2 canonical frames; decisions/2026-10-07-pond-merge-tc.md.",
-    "2026-10-07 清晰度調整：保留既有區域地形幾何與高程，以人工模擬的單一土色呈現；田區、水域、道路與設備各自保留清楚邊界。桌面以最高 2× 顯示解析度繪製，低耗能裝置維持 1×。區域背景標籤使用相同靜態錨點的 HTML 文字。決策與資料來源見 decisions/2026-10-07-pond-blur-presentation.md；非真實土地利用分類。"
+    "2026-10-07 清晰度調整：保留既有區域地形幾何與高程，以人工模擬的單一土色呈現；田區、水域、道路與設備各自保留清楚邊界。桌面以最高 2× 顯示解析度繪製，低耗能裝置維持 1×。區域背景標籤使用相同靜態錨點的 HTML 文字。決策與資料來源見 decisions/2026-10-07-pond-blur-presentation.md；非真實土地利用分類。",
+    "2026-10-08: exact nearby context loads first; distant OSM background is simplified and quantized. See decisions/2026-10-08-pond-load.md."
   ],
   "transforms": [
-    "dt/c31e657aeec0f0b6/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
-    "dt/c31e657aeec0f0b6/docs/viewer-3d/index.html: boot-error relay added to generated shell"
+    "dt/44f8d49e9956914f/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
+    "dt/44f8d49e9956914f/docs/viewer-3d/index.html: boot-error relay added to generated shell"
   ],
   "leak_scan_not_scanned": "GLB BIN chunks (vertex data, where short path patterns match by chance); each GLB JSON chunk is scanned",
   "meshopt": "not packed: the site sets meshopt: true but no --meshopt-tool was given",
-  "precached": 189,
-  "files": 379,
-  "bytes": 47821615,
+  "precached": 34,
+  "pond_transport": {
+    "data/yilan-pond-canonical/candidate-packaging-merge-tc-r2-20261007.json": {
+      "path": "data/yilan-pond-canonical/candidate-packaging-merge-tc-r2-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 22668,
+        "sha256": "13bc41f6a1591c15388e164c454ce71ae8cf390860177b04a36524daf8617d6b"
+      },
+      "transport": {
+        "byte_count": 5347,
+        "sha256": "9e8e3bbd23b4e09b5c5d4219b51448d5fa68c3d23e3807fff7f38e1ed20f70f6"
+      }
+    },
+    "data/yilan-pond-canonical/composed-frames.json": {
+      "path": "data/yilan-pond-canonical/composed-frames.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 3242430,
+        "sha256": "a52dd03a072c0fdd66280cc098b0dadd8b0a521d8bd416af5e363982761368da"
+      },
+      "transport": {
+        "byte_count": 96105,
+        "sha256": "a85341059fafc04b3e74d90abbbec000346b492ea4f1a5b77b3b37afc0f9a132"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/base-terrain-20261001-v1/provenance.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/base-terrain-20261001-v1/provenance.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 73001,
+        "sha256": "7e9266be9a8a0c2acc6bca6fb7cadff8bf70da961855b4e84e839b53108af05f"
+      },
+      "transport": {
+        "byte_count": 10865,
+        "sha256": "35a335cc08fe1cec7b5160b0af3c2d94b6697c9da93a4f5bc03e690f3ce96c0a"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/merge-ai-ground-v2-20261004/lineage.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/merge-ai-ground-v2-20261004/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1436,
+        "sha256": "7678b858b35dd4e6746ce9127c683820d6b768d368884f162ac131243218d055"
+      },
+      "transport": {
+        "byte_count": 803,
+        "sha256": "492b94364ab93d1798c6604c31bcbb715dc9fcbfa131138ec5c656385c383956"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/pages-ready-v2-20261004/lineage.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/pages-ready-v2-20261004/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 4420,
+        "sha256": "1da4a6ea7dc75784db8a5b45f16a324beb27f2d8232f587610b27396eff24046"
+      },
+      "transport": {
+        "byte_count": 1448,
+        "sha256": "e72fbf71f5290c13e5a64cdeba91732b0f73ff9bf2dc0d1df447aeec25281402"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/regional-split-20261008/lineage.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/regional-split-20261008/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 17106,
+        "sha256": "124eb21bdf7030c1d8c5a39ad20f2ec6b312ffa47b60670b19d0bb777be44c6f"
+      },
+      "transport": {
+        "byte_count": 3438,
+        "sha256": "fcdda0c5c87823623e697e0339c2a642fcf23ed746c2115e497e093272d32af9"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/lineage.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 13592,
+        "sha256": "24c0f92e080caf655acd9d2da89d8ed93615af78df92aa6b021b1493455e7d11"
+      },
+      "transport": {
+        "byte_count": 2427,
+        "sha256": "7223fc57a444b46b80c63d6c8c0d70365bd564d74310a5a5854cf83585c02f5d"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/buildings.proof.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/buildings.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1332,
+        "sha256": "d9bd29e33b357092782fd90d754e6b4a113ebe02509c18363c6c12414fc443ab"
+      },
+      "transport": {
+        "byte_count": 684,
+        "sha256": "004a942e1ac21e560e00c12a4f9a8074b86dc39fe510e10fb21510f70ca10952"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/roads.proof.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/roads.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1328,
+        "sha256": "c68d517eac2a7ec54061be3411a109bb836b763717759a92b74835e71a7db14f"
+      },
+      "transport": {
+        "byte_count": 682,
+        "sha256": "5da07903b51994b2e230f92932f0f4133af3e30e63e6059181db94cd1f31f679"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/terrain.proof.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/terrain.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1339,
+        "sha256": "60f769d2007af723df8c7819e9bc883411e7fa6714b1771d0c23aa74ff2e2534"
+      },
+      "transport": {
+        "byte_count": 697,
+        "sha256": "4f9a74e7b832f791efb44d9c3ceba96625b4d1b3d07f58b615cc0047bf1c4a7a"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/water.proof.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/water.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1336,
+        "sha256": "0c5dcaf1411e6d1eb9af2cb56c0c1a6bbb1716bfcdded560329ed824c248e166"
+      },
+      "transport": {
+        "byte_count": 687,
+        "sha256": "ecf313bf9dbf7369b97fc121187e4ee73aded9df3b2f35851063a9d93ee93eef"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/provenance.json": {
+      "path": "data/yilan-pond-canonical/inputs/context/terrain-compressed-20261007-v2/provenance.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 2754,
+        "sha256": "54b0597d5d99c7c86eb3c0fa96e4118efe39ba732e4591ac6aaac9a1a75ee32d"
+      },
+      "transport": {
+        "byte_count": 1511,
+        "sha256": "1496c0936689a99845d79768396bbec96e2d1b755d67a079aeb41a1db43a233c"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/dem/moi-2025-yilan.acquisition.json": {
+      "path": "data/yilan-pond-canonical/inputs/dem/moi-2025-yilan.acquisition.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 8176,
+        "sha256": "bf43099d7964ac6ea5c87fc2b393c89629d0b014e2de84e4c3e463a34d3a278d"
+      },
+      "transport": {
+        "byte_count": 3086,
+        "sha256": "01ff2ba5a180a946855bdf6a354c98e6b051c9500bec70eb4098f7cd4fe3e87b"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/osm/geofabrik-20261001-v1/acquisition.json": {
+      "path": "data/yilan-pond-canonical/inputs/osm/geofabrik-20261001-v1/acquisition.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 9336,
+        "sha256": "6d79aad5ae9d354124c1303d4a4788e139d5a809c7df832c8518a28fc0256b68"
+      },
+      "transport": {
+        "byte_count": 2882,
+        "sha256": "6dfb71eb5b840f62b0e0e7d57cad6ee4c26256924f6c3430f30d9f01779ce734"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 880881,
+        "sha256": "b93ac5ee0f1b18f083a2112d00bc428a5f699909ae5eb7471ece43187b416bb1"
+      },
+      "transport": {
+        "byte_count": 52645,
+        "sha256": "a58372d536bbcaff82d169a73b5c158cbff39061bbbd75de0735c6dab5c7fa45"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-ai-wimba-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-ai-wimba-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 561590,
+        "sha256": "98265ae4b845e57d5b8fd704ce2477767a0ef965e3d346724298edca99ab6725"
+      },
+      "transport": {
+        "byte_count": 32778,
+        "sha256": "747de9277fab2b5c59654a9227d836dad0f4fb2adde01bf4a2e5b308b275a4a8"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-response-assets-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-response-assets-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38260,
+        "sha256": "1d55467d4842d43a5e84bb8bf3d347cf80fc52242507a1579a84a2b63053ab1d"
+      },
+      "transport": {
+        "byte_count": 2306,
+        "sha256": "c8f3d8737a363cd863059ac40e8713fb95b2d7416b4fb900c15f1520727503e0"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-response-assets-cto-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-response-assets-cto-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38252,
+        "sha256": "7b7fb1c88f4a5b207e86b0bcadfca0a9d84fc5e81fc87fab2c0f004023b51477"
+      },
+      "transport": {
+        "byte_count": 2307,
+        "sha256": "b47e82d9428827cbdcfb2f7fd81a0a12c138fcbaee26c5add8201b54ab0ce170"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-response-assets-fix-content-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-response-assets-fix-content-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38268,
+        "sha256": "f4aa7b856607466973bb15f69b3a108ba2090f90b99092749cfbafb8ce2c1426"
+      },
+      "transport": {
+        "byte_count": 2313,
+        "sha256": "bb327b5f0b6a4054fd2b2a6f2297f8ef27fced79e3d3d914cb84339237cef88a"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-response-assets-wheels-v2-20261007.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-response-assets-wheels-v2-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38508,
+        "sha256": "c60b2faf2c4c73b6e366b832a26aee86ff82d5bf027897e56dc5db3c7dad5a49"
+      },
+      "transport": {
+        "byte_count": 2348,
+        "sha256": "b8754b5182f44a78bd33b87eab174a087b0cc3b4e6a896105bbf458fd01271e6"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-response-story-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-response-story-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 12415,
+        "sha256": "640d6d7fd7d3c6833b4ec96853875dea76b84d65d0e5c9486df3ea87dd809898"
+      },
+      "transport": {
+        "byte_count": 2200,
+        "sha256": "bfb8d96f4f243dd5596f5b285da18b4928955252cc3bb8fcab8cffcc9bbc40b1"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-response-story-cto-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-response-story-cto-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14251,
+        "sha256": "8d5712517b9dd24848da67234936e5baf908bef1ba03b4882967a55377eaa3a5"
+      },
+      "transport": {
+        "byte_count": 2326,
+        "sha256": "e400fd12b3f0aa898a053a51ea247fa0fe5991820f918dc2b01d9146b31db17e"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-response-story-fix-content-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-response-story-fix-content-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14665,
+        "sha256": "5ebda52e2ffbec651c29039eedc2b059d84dc30e58e0ef57c6ac342add335982"
+      },
+      "transport": {
+        "byte_count": 2436,
+        "sha256": "f4cf9bdd82add3e487ae2b9d27177052c08ccb6f207cbb3bc3faea40f21756c7"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-response-story-wheels-20261007.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-response-story-wheels-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14688,
+        "sha256": "baa635c6d9ab4bd1584bc6ddb7e71aa5706474167942a39d842158e94964bd10"
+      },
+      "transport": {
+        "byte_count": 2466,
+        "sha256": "376975d8a2b7deca410e1dfbc916f527bb059735126be1dddc32ad39597004d9"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-twins-assets-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-twins-assets-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 36114,
+        "sha256": "0c6ec73358c8fc9718f8e034b6663b29f044114a35c952b31d5fe17264820976"
+      },
+      "transport": {
+        "byte_count": 2090,
+        "sha256": "33b40ff7bbd70db6bc26bf08d374ccb8f95a79722140149bed7b9aa7b078dd5d"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-twins-topology-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-twins-topology-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 15061,
+        "sha256": "4a589ba551304f4f5a9143f2cb783a5d5774ef55fc5207fbf4828c8d9daa5c64"
+      },
+      "transport": {
+        "byte_count": 1132,
+        "sha256": "2583d3e578ba7475d2c74a47c5556bc536602b99bc73a53beda6c29776ec248f"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-world-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14280,
+        "sha256": "ab6ef0441b83c0682e3a772727c9ec0dbf806625e96bd7a380765d7615644847"
+      },
+      "transport": {
+        "byte_count": 1515,
+        "sha256": "39af31d6b9056c9af616ecf31118678841501d21aec348bd8b26cc3ac6b9adee"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-world-cto-v1-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-cto-v1-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 259149,
+        "sha256": "e81942e79235afd93e5a74d97cce2489fa54a80dcd15bde067669ea84792d6c3"
+      },
+      "transport": {
+        "byte_count": 24966,
+        "sha256": "f5e74a2bfe330a58b7ced6be2b0d34fdb26e597acd8cf580d0ba6e88da1be60d"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-world-merge-ai-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-merge-ai-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30601,
+        "sha256": "1c68031f98e2424c995c093ba43d25fea958acbdad3ee1e4e504f7732d1ad225"
+      },
+      "transport": {
+        "byte_count": 3265,
+        "sha256": "f222bcb55253c33f546387f3640bf7463f9429c84142cae6b71eacf66b3f6010"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-world-response-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-response-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30310,
+        "sha256": "229d29de03d5bd8b725bbe4cc0fba99edee46ff9f822b42dd9c550eda2e66405"
+      },
+      "transport": {
+        "byte_count": 3119,
+        "sha256": "2a0a12c5fe2b8c6e2e88723e6233d9b70dd43387dcd6d0dee542ccb4525a9f85"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-world-response-cto-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-response-cto-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30423,
+        "sha256": "f89fe1710d50d3aea5b77f2b0eceb01cfbdb1f195140aa976fc05656818e4986"
+      },
+      "transport": {
+        "byte_count": 3231,
+        "sha256": "e98f8780b0e38e6243bc7120aad2b346d96f37b3c750c57ebf3f0f73d9ecf288"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-world-reviewer-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-reviewer-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30607,
+        "sha256": "f744d9cc17a20a3e37c5d3ced1eea96014d12436175d77d7d80168225b1fd882"
+      },
+      "transport": {
+        "byte_count": 3273,
+        "sha256": "a0b4ef9e422b0c786adb1d765ffc38b021313648bad63ed02fb22d986e6c2fde"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-world-twins-20261004.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-twins-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 29576,
+        "sha256": "21ccd1aa1c7a62a3f78dec996b538d6183c08bd053abd6dc381feb553f4c645c"
+      },
+      "transport": {
+        "byte_count": 2965,
+        "sha256": "82fa32833f4ec8d7104300694ae384e75d0782061a51de9b34a7a7005a8f4c0a"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-world-wheels-20261007.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-wheels-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30650,
+        "sha256": "aac342e6cb7c12438f101f62c91b2905095c19afe2b96e4fae078974ae6a00f3"
+      },
+      "transport": {
+        "byte_count": 3281,
+        "sha256": "d3215b6700b9c73f911d56d9410f810031953e715a3e461e8d6ca610686e86e0"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/regional-anchors.json": {
+      "path": "data/yilan-pond-canonical/inputs/regional-anchors.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 2948,
+        "sha256": "1db79f3980a8aab7717bdf2fb1a8b2f628df1717eff247defe5f3896b399f1cb"
+      },
+      "transport": {
+        "byte_count": 1244,
+        "sha256": "a25397f810d6e087057791914354f57e0e9f147490ed22e984667b86d9d03bd1"
+      }
+    },
+    "data/yilan-pond-canonical/manifest.json": {
+      "path": "data/yilan-pond-canonical/manifest.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 54370,
+        "sha256": "a06ca324f7df6a1943a77993638b095d7bf410c2f45b5e061bb22a167c150b69"
+      },
+      "transport": {
+        "byte_count": 12038,
+        "sha256": "3fcf45aa3d13dab287df4689e4ce3c8e422fbbaf6c78613d78ce1714dc6c6808"
+      }
+    },
+    "data/yilan-pond-canonical/receipts/20261001-base-terrain-v1.receipt.json": {
+      "path": "data/yilan-pond-canonical/receipts/20261001-base-terrain-v1.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 64143,
+        "sha256": "c0b0f01b22d085d927616e66ea11674475bd00d44a5ecd22d2805c3f19dff6e8"
+      },
+      "transport": {
+        "byte_count": 8553,
+        "sha256": "d8bb5399e2257c7c55e7a0a7c01a76a3aaf6cbbc06c444d0ff24ec8dc15b1a72"
+      }
+    },
+    "data/yilan-pond-canonical/receipts/20261001-geofabrik-extract-coverage.receipt.json": {
+      "path": "data/yilan-pond-canonical/receipts/20261001-geofabrik-extract-coverage.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1096,
+        "sha256": "cfa6d8892fc4f8c12581d89a15c46e6a9ad73adb0c4d15e8214d6e7dd95a1674"
+      },
+      "transport": {
+        "byte_count": 646,
+        "sha256": "73a767081127cb1b0254e7402497f88427cb62e0c97e9b82c79dfa28540b0ddd"
+      }
+    },
+    "data/yilan-pond-canonical/receipts/20261007-yilan-terrain-compressed-r2-derivation.receipt.json": {
+      "path": "data/yilan-pond-canonical/receipts/20261007-yilan-terrain-compressed-r2-derivation.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14725,
+        "sha256": "9e4c44499f8b03608bca006a4fd5a6fa5f9ba46a3ae2fb877a68fda5738de024"
+      },
+      "transport": {
+        "byte_count": 2589,
+        "sha256": "4f8909cdced9a3e0f9b8f22732ded95c19446b1041743eabe7a9193f596397ab"
+      }
+    },
+    "data/yilan-pond-canonical/receipts/20261008-yilan-regional-split-derivation.receipt.json": {
+      "path": "data/yilan-pond-canonical/receipts/20261008-yilan-regional-split-derivation.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 20192,
+        "sha256": "df060ae4e81f6be26fe8f2d9d008004c1ec0a3de1fe13e522afecc11f72283a9"
+      },
+      "transport": {
+        "byte_count": 3844,
+        "sha256": "e5b9db412f0a451d9cac155c7daab6ddd46959e5e6052eaef374de395ee8229e"
+      }
+    },
+    "data/yilan-pond-canonical/scenarios/pond-night-response-fix-content-20261004.json": {
+      "path": "data/yilan-pond-canonical/scenarios/pond-night-response-fix-content-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 16015,
+        "sha256": "a64b1fc52e350fb4994c94ffb62b0cb0d58ec904e1b30fd36536fcfe2399314e"
+      },
+      "transport": {
+        "byte_count": 1494,
+        "sha256": "d0a0446f55683aa268f30638157f0fc023df97c952206f356612cf7de4c3435f"
+      }
+    },
+    "data/yilan-pond-canonical/scenarios/pond-night-response-wheels-20261007.json": {
+      "path": "data/yilan-pond-canonical/scenarios/pond-night-response-wheels-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 16015,
+        "sha256": "7aa1833d7b28a58d2985c0a37dec7c3d8812685afd4b2a08402e8c4d2fbc0b13"
+      },
+      "transport": {
+        "byte_count": 1495,
+        "sha256": "97ca1523b6838396452742f8121488bc0696b8c5ecdf6cd7e04d3477256a25fa"
+      }
+    },
+    "data/yilan-pond-canonical/sites/yilan-pond/terrain-compression-20261007-r2.json": {
+      "path": "data/yilan-pond-canonical/sites/yilan-pond/terrain-compression-20261007-r2.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1415,
+        "sha256": "836200a5a5f4d084c0cdfd9f964d94157bba6d01df270e30c207ffcc0b7abf38"
+      },
+      "transport": {
+        "byte_count": 695,
+        "sha256": "1e0c6491b250e40b93a763e22650fe9ff7f90b44e6446fc35de073325a7fae31"
+      }
+    },
+    "data/yilan-pond-canonical/sites/yilan-pond/terrain-presentation-20261002.json": {
+      "path": "data/yilan-pond-canonical/sites/yilan-pond/terrain-presentation-20261002.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1616,
+        "sha256": "0e96b9eb0b2df6ce80f7bc28c2406f854ebde39b2ebaeb89fdd4f49f58438ffa"
+      },
+      "transport": {
+        "byte_count": 977,
+        "sha256": "7310a764877c23206800f466afac7571ec300a50c4a778decb0e149fc08ee11d"
+      }
+    },
+    "data/yilan-pond-canonical/sites/yilan-pond/terrain-scene-20261001.json": {
+      "path": "data/yilan-pond-canonical/sites/yilan-pond/terrain-scene-20261001.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1945,
+        "sha256": "83214511a81c8c4ebe52060ded31f09551909853e5192337a48c88866dc64b2f"
+      },
+      "transport": {
+        "byte_count": 707,
+        "sha256": "e21f086e9f51e126695f84a550e610816293cd9628d54fd44599aa16b328745e"
+      }
+    },
+    "data/yilan-pond-canonical/static-manifest.json": {
+      "path": "data/yilan-pond-canonical/static-manifest.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 50257,
+        "sha256": "b89b3e50318c743416ea262b4d2e9064662bc17430849ce8b93dba71ab98e602"
+      },
+      "transport": {
+        "byte_count": 10176,
+        "sha256": "b6a81b5ac3cd46571d10f955cda568e9292f4cab41523f33b58190b2b3137ade"
+      }
+    },
+    "data/yilan-pond-canonical/static-snapshot.json": {
+      "path": "data/yilan-pond-canonical/static-snapshot.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 43349,
+        "sha256": "c496f038292fad2db5bbe9c91f93ed8829ddb14eee2bcbb59b778f2af3049180"
+      },
+      "transport": {
+        "byte_count": 4352,
+        "sha256": "aa48b274ec9fc99aeec2e2a8393273d3c9981d8fd0bf263505fb0ce5ccce2b15"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/candidate-packaging-merge-tc-r2-20261007-no-response.json": {
+      "path": "data/yilan-pond-no-response-canonical/candidate-packaging-merge-tc-r2-20261007-no-response.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 22276,
+        "sha256": "7f307f94df0040aee4b547bf7d3ff6c968bdca4872d0468ff45803ee77d32843"
+      },
+      "transport": {
+        "byte_count": 5230,
+        "sha256": "2e09db24ae18998fc0fdea9d89441610b737b33003cad1aff75e4e3007668c7a"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/composed-frames.json": {
+      "path": "data/yilan-pond-no-response-canonical/composed-frames.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 3164998,
+        "sha256": "d0b79070979bcade0a6c6b3dae01922c5c02926f46a63fb47ec1ebbf00e49bda"
+      },
+      "transport": {
+        "byte_count": 83126,
+        "sha256": "d16ac47177098072f6876fc498f19245d4d450325d9603c3924efb40ccf960b9"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/base-terrain-20261001-v1/provenance.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/base-terrain-20261001-v1/provenance.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 73001,
+        "sha256": "7e9266be9a8a0c2acc6bca6fb7cadff8bf70da961855b4e84e839b53108af05f"
+      },
+      "transport": {
+        "byte_count": 10865,
+        "sha256": "35a335cc08fe1cec7b5160b0af3c2d94b6697c9da93a4f5bc03e690f3ce96c0a"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/merge-ai-ground-v2-20261004/lineage.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/merge-ai-ground-v2-20261004/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1436,
+        "sha256": "7678b858b35dd4e6746ce9127c683820d6b768d368884f162ac131243218d055"
+      },
+      "transport": {
+        "byte_count": 803,
+        "sha256": "492b94364ab93d1798c6604c31bcbb715dc9fcbfa131138ec5c656385c383956"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/pages-ready-v2-20261004/lineage.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/pages-ready-v2-20261004/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 4420,
+        "sha256": "1da4a6ea7dc75784db8a5b45f16a324beb27f2d8232f587610b27396eff24046"
+      },
+      "transport": {
+        "byte_count": 1448,
+        "sha256": "e72fbf71f5290c13e5a64cdeba91732b0f73ff9bf2dc0d1df447aeec25281402"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/regional-split-20261008/lineage.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/regional-split-20261008/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 17106,
+        "sha256": "124eb21bdf7030c1d8c5a39ad20f2ec6b312ffa47b60670b19d0bb777be44c6f"
+      },
+      "transport": {
+        "byte_count": 3438,
+        "sha256": "fcdda0c5c87823623e697e0339c2a642fcf23ed746c2115e497e093272d32af9"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/lineage.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 13592,
+        "sha256": "24c0f92e080caf655acd9d2da89d8ed93615af78df92aa6b021b1493455e7d11"
+      },
+      "transport": {
+        "byte_count": 2427,
+        "sha256": "7223fc57a444b46b80c63d6c8c0d70365bd564d74310a5a5854cf83585c02f5d"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/buildings.proof.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/buildings.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1332,
+        "sha256": "d9bd29e33b357092782fd90d754e6b4a113ebe02509c18363c6c12414fc443ab"
+      },
+      "transport": {
+        "byte_count": 684,
+        "sha256": "004a942e1ac21e560e00c12a4f9a8074b86dc39fe510e10fb21510f70ca10952"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/roads.proof.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/roads.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1328,
+        "sha256": "c68d517eac2a7ec54061be3411a109bb836b763717759a92b74835e71a7db14f"
+      },
+      "transport": {
+        "byte_count": 682,
+        "sha256": "5da07903b51994b2e230f92932f0f4133af3e30e63e6059181db94cd1f31f679"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/terrain.proof.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/terrain.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1339,
+        "sha256": "60f769d2007af723df8c7819e9bc883411e7fa6714b1771d0c23aa74ff2e2534"
+      },
+      "transport": {
+        "byte_count": 697,
+        "sha256": "4f9a74e7b832f791efb44d9c3ceba96625b4d1b3d07f58b615cc0047bf1c4a7a"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/water.proof.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/proofs/water.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1336,
+        "sha256": "0c5dcaf1411e6d1eb9af2cb56c0c1a6bbb1716bfcdded560329ed824c248e166"
+      },
+      "transport": {
+        "byte_count": 687,
+        "sha256": "ecf313bf9dbf7369b97fc121187e4ee73aded9df3b2f35851063a9d93ee93eef"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/provenance.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/context/terrain-compressed-20261007-v2/provenance.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 2754,
+        "sha256": "54b0597d5d99c7c86eb3c0fa96e4118efe39ba732e4591ac6aaac9a1a75ee32d"
+      },
+      "transport": {
+        "byte_count": 1511,
+        "sha256": "1496c0936689a99845d79768396bbec96e2d1b755d67a079aeb41a1db43a233c"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/dem/moi-2025-yilan.acquisition.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/dem/moi-2025-yilan.acquisition.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 8176,
+        "sha256": "bf43099d7964ac6ea5c87fc2b393c89629d0b014e2de84e4c3e463a34d3a278d"
+      },
+      "transport": {
+        "byte_count": 3086,
+        "sha256": "01ff2ba5a180a946855bdf6a354c98e6b051c9500bec70eb4098f7cd4fe3e87b"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/osm/geofabrik-20261001-v1/acquisition.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/osm/geofabrik-20261001-v1/acquisition.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 9336,
+        "sha256": "6d79aad5ae9d354124c1303d4a4788e139d5a809c7df832c8518a28fc0256b68"
+      },
+      "transport": {
+        "byte_count": 2882,
+        "sha256": "6dfb71eb5b840f62b0e0e7d57cad6ee4c26256924f6c3430f30d9f01779ce734"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 880881,
+        "sha256": "b93ac5ee0f1b18f083a2112d00bc428a5f699909ae5eb7471ece43187b416bb1"
+      },
+      "transport": {
+        "byte_count": 52645,
+        "sha256": "a58372d536bbcaff82d169a73b5c158cbff39061bbbd75de0735c6dab5c7fa45"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-response-assets-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-response-assets-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38260,
+        "sha256": "1d55467d4842d43a5e84bb8bf3d347cf80fc52242507a1579a84a2b63053ab1d"
+      },
+      "transport": {
+        "byte_count": 2306,
+        "sha256": "c8f3d8737a363cd863059ac40e8713fb95b2d7416b4fb900c15f1520727503e0"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-response-assets-cto-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-response-assets-cto-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38252,
+        "sha256": "7b7fb1c88f4a5b207e86b0bcadfca0a9d84fc5e81fc87fab2c0f004023b51477"
+      },
+      "transport": {
+        "byte_count": 2307,
+        "sha256": "b47e82d9428827cbdcfb2f7fd81a0a12c138fcbaee26c5add8201b54ab0ce170"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-response-assets-fix-content-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-response-assets-fix-content-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38268,
+        "sha256": "f4aa7b856607466973bb15f69b3a108ba2090f90b99092749cfbafb8ce2c1426"
+      },
+      "transport": {
+        "byte_count": 2313,
+        "sha256": "bb327b5f0b6a4054fd2b2a6f2297f8ef27fced79e3d3d914cb84339237cef88a"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-response-assets-wheels-v2-20261007.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-response-assets-wheels-v2-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38508,
+        "sha256": "c60b2faf2c4c73b6e366b832a26aee86ff82d5bf027897e56dc5db3c7dad5a49"
+      },
+      "transport": {
+        "byte_count": 2348,
+        "sha256": "b8754b5182f44a78bd33b87eab174a087b0cc3b4e6a896105bbf458fd01271e6"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-response-story-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-response-story-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 12415,
+        "sha256": "640d6d7fd7d3c6833b4ec96853875dea76b84d65d0e5c9486df3ea87dd809898"
+      },
+      "transport": {
+        "byte_count": 2200,
+        "sha256": "bfb8d96f4f243dd5596f5b285da18b4928955252cc3bb8fcab8cffcc9bbc40b1"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-response-story-cto-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-response-story-cto-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14251,
+        "sha256": "8d5712517b9dd24848da67234936e5baf908bef1ba03b4882967a55377eaa3a5"
+      },
+      "transport": {
+        "byte_count": 2326,
+        "sha256": "e400fd12b3f0aa898a053a51ea247fa0fe5991820f918dc2b01d9146b31db17e"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-response-story-fix-content-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-response-story-fix-content-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14665,
+        "sha256": "5ebda52e2ffbec651c29039eedc2b059d84dc30e58e0ef57c6ac342add335982"
+      },
+      "transport": {
+        "byte_count": 2436,
+        "sha256": "f4cf9bdd82add3e487ae2b9d27177052c08ccb6f207cbb3bc3faea40f21756c7"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-response-story-wheels-20261007.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-response-story-wheels-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14688,
+        "sha256": "baa635c6d9ab4bd1584bc6ddb7e71aa5706474167942a39d842158e94964bd10"
+      },
+      "transport": {
+        "byte_count": 2466,
+        "sha256": "376975d8a2b7deca410e1dfbc916f527bb059735126be1dddc32ad39597004d9"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-twins-assets-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-twins-assets-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 36114,
+        "sha256": "0c6ec73358c8fc9718f8e034b6663b29f044114a35c952b31d5fe17264820976"
+      },
+      "transport": {
+        "byte_count": 2090,
+        "sha256": "33b40ff7bbd70db6bc26bf08d374ccb8f95a79722140149bed7b9aa7b078dd5d"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-twins-topology-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-twins-topology-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 15061,
+        "sha256": "4a589ba551304f4f5a9143f2cb783a5d5774ef55fc5207fbf4828c8d9daa5c64"
+      },
+      "transport": {
+        "byte_count": 1132,
+        "sha256": "2583d3e578ba7475d2c74a47c5556bc536602b99bc73a53beda6c29776ec248f"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14280,
+        "sha256": "ab6ef0441b83c0682e3a772727c9ec0dbf806625e96bd7a380765d7615644847"
+      },
+      "transport": {
+        "byte_count": 1515,
+        "sha256": "39af31d6b9056c9af616ecf31118678841501d21aec348bd8b26cc3ac6b9adee"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-cto-v1-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-cto-v1-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 259149,
+        "sha256": "e81942e79235afd93e5a74d97cce2489fa54a80dcd15bde067669ea84792d6c3"
+      },
+      "transport": {
+        "byte_count": 24966,
+        "sha256": "f5e74a2bfe330a58b7ced6be2b0d34fdb26e597acd8cf580d0ba6e88da1be60d"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-merge-ai-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-merge-ai-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30601,
+        "sha256": "1c68031f98e2424c995c093ba43d25fea958acbdad3ee1e4e504f7732d1ad225"
+      },
+      "transport": {
+        "byte_count": 3265,
+        "sha256": "f222bcb55253c33f546387f3640bf7463f9429c84142cae6b71eacf66b3f6010"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-response-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-response-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30310,
+        "sha256": "229d29de03d5bd8b725bbe4cc0fba99edee46ff9f822b42dd9c550eda2e66405"
+      },
+      "transport": {
+        "byte_count": 3119,
+        "sha256": "2a0a12c5fe2b8c6e2e88723e6233d9b70dd43387dcd6d0dee542ccb4525a9f85"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-response-cto-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-response-cto-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30423,
+        "sha256": "f89fe1710d50d3aea5b77f2b0eceb01cfbdb1f195140aa976fc05656818e4986"
+      },
+      "transport": {
+        "byte_count": 3231,
+        "sha256": "e98f8780b0e38e6243bc7120aad2b346d96f37b3c750c57ebf3f0f73d9ecf288"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-reviewer-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-reviewer-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30607,
+        "sha256": "f744d9cc17a20a3e37c5d3ced1eea96014d12436175d77d7d80168225b1fd882"
+      },
+      "transport": {
+        "byte_count": 3273,
+        "sha256": "a0b4ef9e422b0c786adb1d765ffc38b021313648bad63ed02fb22d986e6c2fde"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-twins-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-twins-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 29576,
+        "sha256": "21ccd1aa1c7a62a3f78dec996b538d6183c08bd053abd6dc381feb553f4c645c"
+      },
+      "transport": {
+        "byte_count": 2965,
+        "sha256": "82fa32833f4ec8d7104300694ae384e75d0782061a51de9b34a7a7005a8f4c0a"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-wheels-20261007.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-wheels-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30650,
+        "sha256": "aac342e6cb7c12438f101f62c91b2905095c19afe2b96e4fae078974ae6a00f3"
+      },
+      "transport": {
+        "byte_count": 3281,
+        "sha256": "d3215b6700b9c73f911d56d9410f810031953e715a3e461e8d6ca610686e86e0"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/regional-anchors.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/regional-anchors.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 2948,
+        "sha256": "1db79f3980a8aab7717bdf2fb1a8b2f628df1717eff247defe5f3896b399f1cb"
+      },
+      "transport": {
+        "byte_count": 1244,
+        "sha256": "a25397f810d6e087057791914354f57e0e9f147490ed22e984667b86d9d03bd1"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/manifest.json": {
+      "path": "data/yilan-pond-no-response-canonical/manifest.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 52749,
+        "sha256": "6022e3100dd60e309abe5e3e808b1316f7615095d2d1e2682d8a6efa64d8a0eb"
+      },
+      "transport": {
+        "byte_count": 11918,
+        "sha256": "6e1933b552009f7a7ae758c90ec29c2dbf955a8efd72d27bf52f95b588307a00"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/receipts/20261001-base-terrain-v1.receipt.json": {
+      "path": "data/yilan-pond-no-response-canonical/receipts/20261001-base-terrain-v1.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 64143,
+        "sha256": "c0b0f01b22d085d927616e66ea11674475bd00d44a5ecd22d2805c3f19dff6e8"
+      },
+      "transport": {
+        "byte_count": 8553,
+        "sha256": "d8bb5399e2257c7c55e7a0a7c01a76a3aaf6cbbc06c444d0ff24ec8dc15b1a72"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/receipts/20261001-geofabrik-extract-coverage.receipt.json": {
+      "path": "data/yilan-pond-no-response-canonical/receipts/20261001-geofabrik-extract-coverage.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1096,
+        "sha256": "cfa6d8892fc4f8c12581d89a15c46e6a9ad73adb0c4d15e8214d6e7dd95a1674"
+      },
+      "transport": {
+        "byte_count": 646,
+        "sha256": "73a767081127cb1b0254e7402497f88427cb62e0c97e9b82c79dfa28540b0ddd"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/receipts/20261007-yilan-terrain-compressed-r2-derivation.receipt.json": {
+      "path": "data/yilan-pond-no-response-canonical/receipts/20261007-yilan-terrain-compressed-r2-derivation.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14725,
+        "sha256": "9e4c44499f8b03608bca006a4fd5a6fa5f9ba46a3ae2fb877a68fda5738de024"
+      },
+      "transport": {
+        "byte_count": 2589,
+        "sha256": "4f8909cdced9a3e0f9b8f22732ded95c19446b1041743eabe7a9193f596397ab"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/receipts/20261008-yilan-regional-split-derivation.receipt.json": {
+      "path": "data/yilan-pond-no-response-canonical/receipts/20261008-yilan-regional-split-derivation.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 20192,
+        "sha256": "df060ae4e81f6be26fe8f2d9d008004c1ec0a3de1fe13e522afecc11f72283a9"
+      },
+      "transport": {
+        "byte_count": 3844,
+        "sha256": "e5b9db412f0a451d9cac155c7daab6ddd46959e5e6052eaef374de395ee8229e"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/scenarios/pond-night-no-response-fix-content-20261004.json": {
+      "path": "data/yilan-pond-no-response-canonical/scenarios/pond-night-no-response-fix-content-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 16016,
+        "sha256": "710eadaa7fc899ab25159f0dd8e1ec63252767c5e20ec2966802e15ddba8f033"
+      },
+      "transport": {
+        "byte_count": 1495,
+        "sha256": "8beafba288799591195cf95a062ca6f356bbfc6cd88ea1c968f2047b9badc26a"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/scenarios/pond-night-no-response-wheels-20261007.json": {
+      "path": "data/yilan-pond-no-response-canonical/scenarios/pond-night-no-response-wheels-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 16016,
+        "sha256": "941db6a4bb855ebca8cae7ef930fb75420d027f7501108e2734653b40a8fdff6"
+      },
+      "transport": {
+        "byte_count": 1496,
+        "sha256": "09f3c7b098a3bf996063297084acb8157700fa7d671bee3ddcd141d2782759b0"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/sites/yilan-pond/terrain-compression-20261007-r2.json": {
+      "path": "data/yilan-pond-no-response-canonical/sites/yilan-pond/terrain-compression-20261007-r2.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1415,
+        "sha256": "836200a5a5f4d084c0cdfd9f964d94157bba6d01df270e30c207ffcc0b7abf38"
+      },
+      "transport": {
+        "byte_count": 695,
+        "sha256": "1e0c6491b250e40b93a763e22650fe9ff7f90b44e6446fc35de073325a7fae31"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/sites/yilan-pond/terrain-presentation-20261002.json": {
+      "path": "data/yilan-pond-no-response-canonical/sites/yilan-pond/terrain-presentation-20261002.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1616,
+        "sha256": "0e96b9eb0b2df6ce80f7bc28c2406f854ebde39b2ebaeb89fdd4f49f58438ffa"
+      },
+      "transport": {
+        "byte_count": 977,
+        "sha256": "7310a764877c23206800f466afac7571ec300a50c4a778decb0e149fc08ee11d"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/sites/yilan-pond/terrain-scene-20261001.json": {
+      "path": "data/yilan-pond-no-response-canonical/sites/yilan-pond/terrain-scene-20261001.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1945,
+        "sha256": "83214511a81c8c4ebe52060ded31f09551909853e5192337a48c88866dc64b2f"
+      },
+      "transport": {
+        "byte_count": 707,
+        "sha256": "e21f086e9f51e126695f84a550e610816293cd9628d54fd44599aa16b328745e"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/static-manifest.json": {
+      "path": "data/yilan-pond-no-response-canonical/static-manifest.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 50257,
+        "sha256": "b89b3e50318c743416ea262b4d2e9064662bc17430849ce8b93dba71ab98e602"
+      },
+      "transport": {
+        "byte_count": 10176,
+        "sha256": "b6a81b5ac3cd46571d10f955cda568e9292f4cab41523f33b58190b2b3137ade"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/static-snapshot.json": {
+      "path": "data/yilan-pond-no-response-canonical/static-snapshot.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 42832,
+        "sha256": "7b36dba945350fe3e3eb241e1bfd27d6ed2aef3846bfa25fd3c4f84181471dde"
+      },
+      "transport": {
+        "byte_count": 4137,
+        "sha256": "d8ed4cdeda7e49a144875451f33e0218fd41349bfa65cf0f2bc981921366c288"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/base-terrain-20261001-v1/provenance.json": {
+      "path": "data/yilan-pond-static/inputs/context/base-terrain-20261001-v1/provenance.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 73001,
+        "sha256": "7e9266be9a8a0c2acc6bca6fb7cadff8bf70da961855b4e84e839b53108af05f"
+      },
+      "transport": {
+        "byte_count": 10865,
+        "sha256": "35a335cc08fe1cec7b5160b0af3c2d94b6697c9da93a4f5bc03e690f3ce96c0a"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/merge-ai-ground-v2-20261004/lineage.json": {
+      "path": "data/yilan-pond-static/inputs/context/merge-ai-ground-v2-20261004/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1436,
+        "sha256": "7678b858b35dd4e6746ce9127c683820d6b768d368884f162ac131243218d055"
+      },
+      "transport": {
+        "byte_count": 803,
+        "sha256": "492b94364ab93d1798c6604c31bcbb715dc9fcbfa131138ec5c656385c383956"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/pages-ready-v2-20261004/lineage.json": {
+      "path": "data/yilan-pond-static/inputs/context/pages-ready-v2-20261004/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 4420,
+        "sha256": "1da4a6ea7dc75784db8a5b45f16a324beb27f2d8232f587610b27396eff24046"
+      },
+      "transport": {
+        "byte_count": 1448,
+        "sha256": "e72fbf71f5290c13e5a64cdeba91732b0f73ff9bf2dc0d1df447aeec25281402"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/regional-split-20261008/lineage.json": {
+      "path": "data/yilan-pond-static/inputs/context/regional-split-20261008/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 17106,
+        "sha256": "124eb21bdf7030c1d8c5a39ad20f2ec6b312ffa47b60670b19d0bb777be44c6f"
+      },
+      "transport": {
+        "byte_count": 3438,
+        "sha256": "fcdda0c5c87823623e697e0339c2a642fcf23ed746c2115e497e093272d32af9"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/lineage.json": {
+      "path": "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/lineage.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 13592,
+        "sha256": "24c0f92e080caf655acd9d2da89d8ed93615af78df92aa6b021b1493455e7d11"
+      },
+      "transport": {
+        "byte_count": 2427,
+        "sha256": "7223fc57a444b46b80c63d6c8c0d70365bd564d74310a5a5854cf83585c02f5d"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/proofs/buildings.proof.json": {
+      "path": "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/proofs/buildings.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1332,
+        "sha256": "d9bd29e33b357092782fd90d754e6b4a113ebe02509c18363c6c12414fc443ab"
+      },
+      "transport": {
+        "byte_count": 684,
+        "sha256": "004a942e1ac21e560e00c12a4f9a8074b86dc39fe510e10fb21510f70ca10952"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/proofs/roads.proof.json": {
+      "path": "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/proofs/roads.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1328,
+        "sha256": "c68d517eac2a7ec54061be3411a109bb836b763717759a92b74835e71a7db14f"
+      },
+      "transport": {
+        "byte_count": 682,
+        "sha256": "5da07903b51994b2e230f92932f0f4133af3e30e63e6059181db94cd1f31f679"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/proofs/terrain.proof.json": {
+      "path": "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/proofs/terrain.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1339,
+        "sha256": "60f769d2007af723df8c7819e9bc883411e7fa6714b1771d0c23aa74ff2e2534"
+      },
+      "transport": {
+        "byte_count": 697,
+        "sha256": "4f9a74e7b832f791efb44d9c3ceba96625b4d1b3d07f58b615cc0047bf1c4a7a"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/proofs/water.proof.json": {
+      "path": "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/proofs/water.proof.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1336,
+        "sha256": "0c5dcaf1411e6d1eb9af2cb56c0c1a6bbb1716bfcdded560329ed824c248e166"
+      },
+      "transport": {
+        "byte_count": 687,
+        "sha256": "ecf313bf9dbf7369b97fc121187e4ee73aded9df3b2f35851063a9d93ee93eef"
+      }
+    },
+    "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/provenance.json": {
+      "path": "data/yilan-pond-static/inputs/context/terrain-compressed-20261007-v2/provenance.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 2754,
+        "sha256": "54b0597d5d99c7c86eb3c0fa96e4118efe39ba732e4591ac6aaac9a1a75ee32d"
+      },
+      "transport": {
+        "byte_count": 1511,
+        "sha256": "1496c0936689a99845d79768396bbec96e2d1b755d67a079aeb41a1db43a233c"
+      }
+    },
+    "data/yilan-pond-static/inputs/dem/moi-2025-yilan.acquisition.json": {
+      "path": "data/yilan-pond-static/inputs/dem/moi-2025-yilan.acquisition.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 8176,
+        "sha256": "bf43099d7964ac6ea5c87fc2b393c89629d0b014e2de84e4c3e463a34d3a278d"
+      },
+      "transport": {
+        "byte_count": 3086,
+        "sha256": "01ff2ba5a180a946855bdf6a354c98e6b051c9500bec70eb4098f7cd4fe3e87b"
+      }
+    },
+    "data/yilan-pond-static/inputs/osm/geofabrik-20261001-v1/acquisition.json": {
+      "path": "data/yilan-pond-static/inputs/osm/geofabrik-20261001-v1/acquisition.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 9336,
+        "sha256": "6d79aad5ae9d354124c1303d4a4788e139d5a809c7df832c8518a28fc0256b68"
+      },
+      "transport": {
+        "byte_count": 2882,
+        "sha256": "6dfb71eb5b840f62b0e0e7d57cad6ee4c26256924f6c3430f30d9f01779ce734"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-ai-codex-sol61-20261004-01-public.json": {
+      "path": "data/yilan-pond-static/inputs/pond-ai-codex-sol61-20261004-01-public.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 880881,
+        "sha256": "b93ac5ee0f1b18f083a2112d00bc428a5f699909ae5eb7471ece43187b416bb1"
+      },
+      "transport": {
+        "byte_count": 52645,
+        "sha256": "a58372d536bbcaff82d169a73b5c158cbff39061bbbd75de0735c6dab5c7fa45"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-ai-wimba-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-ai-wimba-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 561590,
+        "sha256": "98265ae4b845e57d5b8fd704ce2477767a0ef965e3d346724298edca99ab6725"
+      },
+      "transport": {
+        "byte_count": 32778,
+        "sha256": "747de9277fab2b5c59654a9227d836dad0f4fb2adde01bf4a2e5b308b275a4a8"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-response-assets-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-response-assets-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38260,
+        "sha256": "1d55467d4842d43a5e84bb8bf3d347cf80fc52242507a1579a84a2b63053ab1d"
+      },
+      "transport": {
+        "byte_count": 2306,
+        "sha256": "c8f3d8737a363cd863059ac40e8713fb95b2d7416b4fb900c15f1520727503e0"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-response-assets-cto-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-response-assets-cto-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38252,
+        "sha256": "7b7fb1c88f4a5b207e86b0bcadfca0a9d84fc5e81fc87fab2c0f004023b51477"
+      },
+      "transport": {
+        "byte_count": 2307,
+        "sha256": "b47e82d9428827cbdcfb2f7fd81a0a12c138fcbaee26c5add8201b54ab0ce170"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-response-assets-fix-content-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-response-assets-fix-content-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38268,
+        "sha256": "f4aa7b856607466973bb15f69b3a108ba2090f90b99092749cfbafb8ce2c1426"
+      },
+      "transport": {
+        "byte_count": 2313,
+        "sha256": "bb327b5f0b6a4054fd2b2a6f2297f8ef27fced79e3d3d914cb84339237cef88a"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-response-assets-wheels-v2-20261007.json": {
+      "path": "data/yilan-pond-static/inputs/pond-response-assets-wheels-v2-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 38508,
+        "sha256": "c60b2faf2c4c73b6e366b832a26aee86ff82d5bf027897e56dc5db3c7dad5a49"
+      },
+      "transport": {
+        "byte_count": 2348,
+        "sha256": "b8754b5182f44a78bd33b87eab174a087b0cc3b4e6a896105bbf458fd01271e6"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-response-story-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-response-story-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 12415,
+        "sha256": "640d6d7fd7d3c6833b4ec96853875dea76b84d65d0e5c9486df3ea87dd809898"
+      },
+      "transport": {
+        "byte_count": 2200,
+        "sha256": "bfb8d96f4f243dd5596f5b285da18b4928955252cc3bb8fcab8cffcc9bbc40b1"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-response-story-cto-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-response-story-cto-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14251,
+        "sha256": "8d5712517b9dd24848da67234936e5baf908bef1ba03b4882967a55377eaa3a5"
+      },
+      "transport": {
+        "byte_count": 2326,
+        "sha256": "e400fd12b3f0aa898a053a51ea247fa0fe5991820f918dc2b01d9146b31db17e"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-response-story-fix-content-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-response-story-fix-content-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14665,
+        "sha256": "5ebda52e2ffbec651c29039eedc2b059d84dc30e58e0ef57c6ac342add335982"
+      },
+      "transport": {
+        "byte_count": 2436,
+        "sha256": "f4cf9bdd82add3e487ae2b9d27177052c08ccb6f207cbb3bc3faea40f21756c7"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-response-story-wheels-20261007.json": {
+      "path": "data/yilan-pond-static/inputs/pond-response-story-wheels-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14688,
+        "sha256": "baa635c6d9ab4bd1584bc6ddb7e71aa5706474167942a39d842158e94964bd10"
+      },
+      "transport": {
+        "byte_count": 2466,
+        "sha256": "376975d8a2b7deca410e1dfbc916f527bb059735126be1dddc32ad39597004d9"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-twins-assets-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-twins-assets-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 36114,
+        "sha256": "0c6ec73358c8fc9718f8e034b6663b29f044114a35c952b31d5fe17264820976"
+      },
+      "transport": {
+        "byte_count": 2090,
+        "sha256": "33b40ff7bbd70db6bc26bf08d374ccb8f95a79722140149bed7b9aa7b078dd5d"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-world-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-world-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14280,
+        "sha256": "ab6ef0441b83c0682e3a772727c9ec0dbf806625e96bd7a380765d7615644847"
+      },
+      "transport": {
+        "byte_count": 1515,
+        "sha256": "39af31d6b9056c9af616ecf31118678841501d21aec348bd8b26cc3ac6b9adee"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-world-cto-v1-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-world-cto-v1-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 259149,
+        "sha256": "e81942e79235afd93e5a74d97cce2489fa54a80dcd15bde067669ea84792d6c3"
+      },
+      "transport": {
+        "byte_count": 24966,
+        "sha256": "f5e74a2bfe330a58b7ced6be2b0d34fdb26e597acd8cf580d0ba6e88da1be60d"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-world-merge-ai-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-world-merge-ai-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30601,
+        "sha256": "1c68031f98e2424c995c093ba43d25fea958acbdad3ee1e4e504f7732d1ad225"
+      },
+      "transport": {
+        "byte_count": 3265,
+        "sha256": "f222bcb55253c33f546387f3640bf7463f9429c84142cae6b71eacf66b3f6010"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-world-response-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-world-response-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30310,
+        "sha256": "229d29de03d5bd8b725bbe4cc0fba99edee46ff9f822b42dd9c550eda2e66405"
+      },
+      "transport": {
+        "byte_count": 3119,
+        "sha256": "2a0a12c5fe2b8c6e2e88723e6233d9b70dd43387dcd6d0dee542ccb4525a9f85"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-world-response-cto-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-world-response-cto-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30423,
+        "sha256": "f89fe1710d50d3aea5b77f2b0eceb01cfbdb1f195140aa976fc05656818e4986"
+      },
+      "transport": {
+        "byte_count": 3231,
+        "sha256": "e98f8780b0e38e6243bc7120aad2b346d96f37b3c750c57ebf3f0f73d9ecf288"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-world-reviewer-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-world-reviewer-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30607,
+        "sha256": "f744d9cc17a20a3e37c5d3ced1eea96014d12436175d77d7d80168225b1fd882"
+      },
+      "transport": {
+        "byte_count": 3273,
+        "sha256": "a0b4ef9e422b0c786adb1d765ffc38b021313648bad63ed02fb22d986e6c2fde"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-world-twins-20261004.json": {
+      "path": "data/yilan-pond-static/inputs/pond-world-twins-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 29576,
+        "sha256": "21ccd1aa1c7a62a3f78dec996b538d6183c08bd053abd6dc381feb553f4c645c"
+      },
+      "transport": {
+        "byte_count": 2965,
+        "sha256": "82fa32833f4ec8d7104300694ae384e75d0782061a51de9b34a7a7005a8f4c0a"
+      }
+    },
+    "data/yilan-pond-static/inputs/pond-world-wheels-20261007.json": {
+      "path": "data/yilan-pond-static/inputs/pond-world-wheels-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 30650,
+        "sha256": "aac342e6cb7c12438f101f62c91b2905095c19afe2b96e4fae078974ae6a00f3"
+      },
+      "transport": {
+        "byte_count": 3281,
+        "sha256": "d3215b6700b9c73f911d56d9410f810031953e715a3e461e8d6ca610686e86e0"
+      }
+    },
+    "data/yilan-pond-static/inputs/regional-anchors.json": {
+      "path": "data/yilan-pond-static/inputs/regional-anchors.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 2948,
+        "sha256": "1db79f3980a8aab7717bdf2fb1a8b2f628df1717eff247defe5f3896b399f1cb"
+      },
+      "transport": {
+        "byte_count": 1244,
+        "sha256": "a25397f810d6e087057791914354f57e0e9f147490ed22e984667b86d9d03bd1"
+      }
+    },
+    "data/yilan-pond-static/manifest.json": {
+      "path": "data/yilan-pond-static/manifest.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 50257,
+        "sha256": "b89b3e50318c743416ea262b4d2e9064662bc17430849ce8b93dba71ab98e602"
+      },
+      "transport": {
+        "byte_count": 10176,
+        "sha256": "b6a81b5ac3cd46571d10f955cda568e9292f4cab41523f33b58190b2b3137ade"
+      }
+    },
+    "data/yilan-pond-static/meshes/poi_labels.json": {
+      "path": "data/yilan-pond-static/meshes/poi_labels.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1524,
+        "sha256": "9c817904da434225cdb9c0ef6b42811ef67c0ebf73492313572938eca85b452b"
+      },
+      "transport": {
+        "byte_count": 548,
+        "sha256": "03b20e7319d68f260ea349ccb379605508aa0f5c5caa0260b793b161f193804c"
+      }
+    },
+    "data/yilan-pond-static/provenance/group4-catalog.json": {
+      "path": "data/yilan-pond-static/provenance/group4-catalog.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 13710,
+        "sha256": "8b256af1165c4e01454ff2cb57915582e61ad3724ff70531728eafea17f2b539"
+      },
+      "transport": {
+        "byte_count": 4245,
+        "sha256": "4e972b307edca1fb3d740bac9c96802bd3b49af433a0a19fddee1b5e8bf0858f"
+      }
+    },
+    "data/yilan-pond-static/receipts/20261001-base-terrain-v1.receipt.json": {
+      "path": "data/yilan-pond-static/receipts/20261001-base-terrain-v1.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 64143,
+        "sha256": "c0b0f01b22d085d927616e66ea11674475bd00d44a5ecd22d2805c3f19dff6e8"
+      },
+      "transport": {
+        "byte_count": 8553,
+        "sha256": "d8bb5399e2257c7c55e7a0a7c01a76a3aaf6cbbc06c444d0ff24ec8dc15b1a72"
+      }
+    },
+    "data/yilan-pond-static/receipts/20261001-geofabrik-extract-coverage.receipt.json": {
+      "path": "data/yilan-pond-static/receipts/20261001-geofabrik-extract-coverage.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1096,
+        "sha256": "cfa6d8892fc4f8c12581d89a15c46e6a9ad73adb0c4d15e8214d6e7dd95a1674"
+      },
+      "transport": {
+        "byte_count": 646,
+        "sha256": "73a767081127cb1b0254e7402497f88427cb62e0c97e9b82c79dfa28540b0ddd"
+      }
+    },
+    "data/yilan-pond-static/receipts/20261007-yilan-terrain-compressed-r2-derivation.receipt.json": {
+      "path": "data/yilan-pond-static/receipts/20261007-yilan-terrain-compressed-r2-derivation.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14725,
+        "sha256": "9e4c44499f8b03608bca006a4fd5a6fa5f9ba46a3ae2fb877a68fda5738de024"
+      },
+      "transport": {
+        "byte_count": 2589,
+        "sha256": "4f8909cdced9a3e0f9b8f22732ded95c19446b1041743eabe7a9193f596397ab"
+      }
+    },
+    "data/yilan-pond-static/receipts/20261008-yilan-regional-split-derivation.receipt.json": {
+      "path": "data/yilan-pond-static/receipts/20261008-yilan-regional-split-derivation.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 20192,
+        "sha256": "df060ae4e81f6be26fe8f2d9d008004c1ec0a3de1fe13e522afecc11f72283a9"
+      },
+      "transport": {
+        "byte_count": 3844,
+        "sha256": "e5b9db412f0a451d9cac155c7daab6ddd46959e5e6052eaef374de395ee8229e"
+      }
+    },
+    "data/yilan-pond-static/scenarios/pond-night-response-fix-content-20261004.json": {
+      "path": "data/yilan-pond-static/scenarios/pond-night-response-fix-content-20261004.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 16015,
+        "sha256": "a64b1fc52e350fb4994c94ffb62b0cb0d58ec904e1b30fd36536fcfe2399314e"
+      },
+      "transport": {
+        "byte_count": 1494,
+        "sha256": "d0a0446f55683aa268f30638157f0fc023df97c952206f356612cf7de4c3435f"
+      }
+    },
+    "data/yilan-pond-static/scenarios/pond-night-response-wheels-20261007.json": {
+      "path": "data/yilan-pond-static/scenarios/pond-night-response-wheels-20261007.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 16015,
+        "sha256": "7aa1833d7b28a58d2985c0a37dec7c3d8812685afd4b2a08402e8c4d2fbc0b13"
+      },
+      "transport": {
+        "byte_count": 1495,
+        "sha256": "97ca1523b6838396452742f8121488bc0696b8c5ecdf6cd7e04d3477256a25fa"
+      }
+    },
+    "data/yilan-pond-static/set/typed_set.json": {
+      "path": "data/yilan-pond-static/set/typed_set.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 25763,
+        "sha256": "4e74b96977e13c033a4136110d12c48ebd6146c1ce2ed80ec08078e66aef1787"
+      },
+      "transport": {
+        "byte_count": 1990,
+        "sha256": "4d0a35354e6c916931680069764d0cdaf6dfddc6f0f22338a1807273119ba435"
+      }
+    },
+    "data/yilan-pond-static/sites/yilan-pond/regional-split-20261008.json": {
+      "path": "data/yilan-pond-static/sites/yilan-pond/regional-split-20261008.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1355,
+        "sha256": "89bf5431df9ae5a0f8645381ebd1ce7e98480e3af1a76c5d4d90300790649f15"
+      },
+      "transport": {
+        "byte_count": 756,
+        "sha256": "f66f4585c3cbcd14281af0cf015d16d75b4da6ee4e81aec53ea96071620b775f"
+      }
+    },
+    "data/yilan-pond-static/sites/yilan-pond/terrain-compression-20261007-r2.json": {
+      "path": "data/yilan-pond-static/sites/yilan-pond/terrain-compression-20261007-r2.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1415,
+        "sha256": "836200a5a5f4d084c0cdfd9f964d94157bba6d01df270e30c207ffcc0b7abf38"
+      },
+      "transport": {
+        "byte_count": 695,
+        "sha256": "1e0c6491b250e40b93a763e22650fe9ff7f90b44e6446fc35de073325a7fae31"
+      }
+    },
+    "data/yilan-pond-static/sites/yilan-pond/terrain-presentation-20261002.json": {
+      "path": "data/yilan-pond-static/sites/yilan-pond/terrain-presentation-20261002.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1616,
+        "sha256": "0e96b9eb0b2df6ce80f7bc28c2406f854ebde39b2ebaeb89fdd4f49f58438ffa"
+      },
+      "transport": {
+        "byte_count": 977,
+        "sha256": "7310a764877c23206800f466afac7571ec300a50c4a778decb0e149fc08ee11d"
+      }
+    },
+    "data/yilan-pond-static/sites/yilan-pond/terrain-scene-20261001.json": {
+      "path": "data/yilan-pond-static/sites/yilan-pond/terrain-scene-20261001.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1945,
+        "sha256": "83214511a81c8c4ebe52060ded31f09551909853e5192337a48c88866dc64b2f"
+      },
+      "transport": {
+        "byte_count": 707,
+        "sha256": "e21f086e9f51e126695f84a550e610816293cd9628d54fd44599aa16b328745e"
+      }
+    },
+    "data/yilan-pond-static/viewer-site.json": {
+      "path": "data/yilan-pond-static/viewer-site.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 16596,
+        "sha256": "d096a26138c3b1205731509c5925ba9f1abc5bf183946a5361db9fd7d8524efa"
+      },
+      "transport": {
+        "byte_count": 3045,
+        "sha256": "2c7836998451b820dbba41799bb87fbb6e60e4487acdb1744342d00d6b4ad28d"
+      }
+    }
+  },
+  "pond_precache": "shell and generation inventory after viewer first paint; candidates cached on use",
+  "files": 395,
+  "bytes": 24358804,
   "gzip": {
-    "files": 350,
-    "bytes": 21722118
+    "files": 363,
+    "bytes": 5973560
   },
   "workshop_budget": {
     "authority": "Will, 2026-10-04 pond Pages-ready brief",
     "file_limit_exclusive": 50000000,
     "total_limit_exclusive": 120000000,
-    "total_uncompressed_bytes": 47843120,
+    "total_uncompressed_bytes": 24451060,
     "stretch_goal_bytes": 60000000,
     "stretch_goal_met": true,
-    "files": 730,
+    "files": 759,
     "largest_files": [
       {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-static/meshes/context-water.glb",
-        "byte_count": 18770388
-      },
-      {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-static/meshes/context-water.glb.gz",
-        "byte_count": 12738731
-      },
-      {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-static/meshes/context-buildings.glb",
-        "byte_count": 6580944
-      },
-      {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-static/meshes/context-buildings.glb.gz",
-        "byte_count": 4497235
-      },
-      {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-static/meshes/context-roads.glb",
-        "byte_count": 3817320
-      },
-      {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-canonical/composed-frames.json",
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-canonical/composed-frames.json",
         "byte_count": 3242430
       },
       {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-no-response-canonical/composed-frames.json",
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-no-response-canonical/composed-frames.json",
         "byte_count": 3164998
       },
       {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-static/meshes/context-roads.glb.gz",
-        "byte_count": 2229538
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-static/meshes/context-water.glb",
+        "byte_count": 3152328
       },
       {
-        "path": "dt/c31e657aeec0f0b6/node_modules/three/build/three.module.js",
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-static/meshes/context-water.glb.gz",
+        "byte_count": 2243998
+      },
+      {
+        "path": "dt/44f8d49e9956914f/node_modules/three/build/three.module.js",
         "byte_count": 1314681
       },
       {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-static/meshes/context-buildings.glb",
+        "byte_count": 1261692
+      },
+      {
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
       },
       {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-no-response-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-no-response-canonical/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
       },
       {
-        "path": "dt/c31e657aeec0f0b6/data/yilan-pond-static/inputs/pond-ai-codex-sol61-20261004-01-public.json",
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-static/inputs/pond-ai-codex-sol61-20261004-01-public.json",
         "byte_count": 880881
+      },
+      {
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-static/meshes/context-roads.glb",
+        "byte_count": 851672
+      },
+      {
+        "path": "dt/44f8d49e9956914f/data/yilan-pond-static/meshes/context-buildings.glb.gz",
+        "byte_count": 833542
+      },
+      {
+        "path": "dt/44f8d49e9956914f/node_modules/three/build/three.module.min.js",
+        "byte_count": 691648
       }
     ],
     "over_file_limit": [],

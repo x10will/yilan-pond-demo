@@ -1,0 +1,282 @@
+{
+  "acquired_at_utc": "2026-10-01T13:53:02.580244Z",
+  "acquisition_date_utc": "2026-10-01",
+  "attribution": "© OpenStreetMap contributors",
+  "attribution_url": "https://www.openstreetmap.org/copyright",
+  "authority_scope": "context-only",
+  "bbox": {
+    "east": 121.87,
+    "north": 24.93,
+    "south": 24.59,
+    "west": 121.6
+  },
+  "complete": true,
+  "diagnostics": {
+    "excluded_incomplete_distant_relations": [],
+    "invalid_source_geometries": [
+      {
+        "handling": "preserved unchanged for explicit renderer omission; no repair",
+        "reason": "Unassigned source inner ring for relation/2876280",
+        "selection": "complete source support envelope intersects bbox",
+        "source": "relation/2876280"
+      }
+    ],
+    "node_location_index": "flex_mem",
+    "scan_counts": {
+      "nodes": 25187284,
+      "relations": 42110,
+      "ways": 1887537
+    },
+    "streaming_passes": 2
+  },
+  "download": {
+    "alias_failure": "HTTP 301 redirect loop appending a slash; official index resolves current dated extract",
+    "byte_count": 327197648,
+    "checksum_url": "https://download.geofabrik.de/asia/taiwan-260930.osm.pbf.md5",
+    "checksum_verified": true,
+    "download_finished_at_utc": "2026-10-01T13:53:02.580244Z",
+    "download_started_at_utc": "2026-10-01T13:52:15.447954Z",
+    "duration_seconds": 47.94535850000102,
+    "http_headers": {
+      "Accept-Ranges": "bytes",
+      "Age": "48859",
+      "Cache-Control": "max-age=63072000, public",
+      "Cache-Status": "download-proxy13;hit;detail=match",
+      "Connection": "close",
+      "Content-Length": "327197648",
+      "Content-Type": "application/octet-stream",
+      "Date": "Thu, 01 Oct 2026 00:17:57 GMT",
+      "ETag": "\"1380a3d0-65cbaed06862c\"",
+      "Last-Modified": "Wed, 30 Sep 2026 22:36:10 GMT",
+      "Server": "Apache",
+      "Via": "1.1 download-proxy13 (squid/6.14)"
+    },
+    "local_cache_path": ".local_build/geofabrik-continuation/cache-v2/taiwan-latest.osm.pbf",
+    "md5": "e46223386a02b669c974ac9501808968",
+    "requested_url": "https://download.geofabrik.de/asia/taiwan-latest.osm.pbf",
+    "resolved_url": "https://download.geofabrik.de/asia/taiwan-260930.osm.pbf",
+    "sha256": "517a963d5d811d971cd914002b06241994d427f1c9d4e7b10bbf492a991f389d",
+    "upstream_md5": "e46223386a02b669c974ac9501808968",
+    "upstream_md5_after": "e46223386a02b669c974ac9501808968",
+    "url": "https://download.geofabrik.de/asia/taiwan-260930.osm.pbf"
+  },
+  "download_record": {
+    "byte_count": 1473,
+    "path": ".local_build/geofabrik-continuation/cache-v2/download.json",
+    "sha256": "1125e6c186e9d0c5ffdb0da7e807991143e681e13b2aee519157e2975af243f9"
+  },
+  "extract": {
+    "bounds": {
+      "east": 122.9312,
+      "north": 26.60305,
+      "south": 20.72799,
+      "west": 118.1036
+    },
+    "byte_count": 327197648,
+    "generator": "osmium/1.16.0",
+    "git_policy": "ignored local full-country cache; clipped layers only committed",
+    "local_cache_path": ".local_build/geofabrik-continuation/cache-v2/taiwan-latest.osm.pbf",
+    "md5": "e46223386a02b669c974ac9501808968",
+    "replication_base_url": "https://download.geofabrik.de/asia/taiwan-updates",
+    "replication_sequence_number": "4925",
+    "replication_timestamp": "2026-09-30T20:22:42Z",
+    "sha256": "517a963d5d811d971cd914002b06241994d427f1c9d4e7b10bbf492a991f389d"
+  },
+  "license": "Open Database License (ODbL) 1.0",
+  "processing_finished_at_utc": "2026-10-01T14:09:09.665534Z",
+  "processing_started_at_utc": "2026-10-01T14:06:48.623376Z",
+  "provenance": {
+    "asked_by": "Claude Opus 5.5 CTO",
+    "asked_on": "2026-10-01",
+    "instruction": "Replace failed Overpass acquisition with one Geofabrik Taiwan extract; freeze the fully covered bbox layers with ODbL attribution.",
+    "kind": "CTO lane decision"
+  },
+  "recipe": {
+    "byte_count": 1064,
+    "path": "sites/yilan-pond/base-scene.json",
+    "sha256": "9996cfadab5fce52c66d86f75009104b62d47b7b9c1f98eff4d980e82124ee56"
+  },
+  "schema_version": "osm-context-geofabrik-acquisition/v1",
+  "selection": {
+    "boundary_render_clip": "builder responsibility; source vertices stay unchanged",
+    "building_points": "retained for explicit no-footprint renderer omissions",
+    "coverage": "PBF header encloses bbox; complete input streamed and selected references resolved",
+    "invalid_source_polygons": "complete source geometry retained when support envelope intersects bbox; explicit issue recorded, never repaired",
+    "polygon_roles": "source outer and inner roles retained; no gap bridging",
+    "road_classes": [
+      "motorway",
+      "motorway_link",
+      "primary",
+      "primary_link",
+      "residential",
+      "secondary",
+      "secondary_link",
+      "tertiary",
+      "tertiary_link",
+      "trunk",
+      "trunk_link",
+      "unclassified"
+    ],
+    "strategy": "complete features whose source geometry intersects the bbox",
+    "support_geometry": "complete referenced source geometry retained beyond bbox"
+  },
+  "source": "Geofabrik Taiwan OpenStreetMap extract",
+  "sources": [
+    {
+      "authority_scope": "context-only",
+      "bbox": {
+        "east": 121.87,
+        "north": 24.93,
+        "south": 24.59,
+        "west": 121.6
+      },
+      "byte_count": 6723521,
+      "element_count": 9495,
+      "elements_by_type": {
+        "node": 12,
+        "relation": 22,
+        "way": 9461
+      },
+      "layer": "buildings",
+      "osm_base_timestamp": "2026-09-30T20:22:42Z",
+      "path": "inputs/osm/geofabrik-20261001-v1/buildings.json",
+      "point_feature_count": 12,
+      "selected_feature_count": 9456,
+      "selected_features_by_type": {
+        "node": 12,
+        "relation": 22,
+        "way": 9422
+      },
+      "sha256": "30ff5f23c3f491be43fcb82e022b742fbb8798208b8a8e39e7bfda885b054bea",
+      "support_geometry_count": 39
+    },
+    {
+      "authority_scope": "context-only",
+      "bbox": {
+        "east": 121.87,
+        "north": 24.93,
+        "south": 24.59,
+        "west": 121.6
+      },
+      "byte_count": 48103,
+      "element_count": 23,
+      "elements_by_type": {
+        "way": 23
+      },
+      "layer": "coastline",
+      "osm_base_timestamp": "2026-09-30T20:22:42Z",
+      "path": "inputs/osm/geofabrik-20261001-v1/coastline.json",
+      "point_feature_count": 0,
+      "selected_feature_count": 23,
+      "selected_features_by_type": {
+        "way": 23
+      },
+      "sha256": "7450c768b5ba1b65264b24bbf0de71f1cfd6341e23c4d73e89d8a7602ebac25c",
+      "support_geometry_count": 0
+    },
+    {
+      "authority_scope": "context-only",
+      "bbox": {
+        "east": 121.87,
+        "north": 24.93,
+        "south": 24.59,
+        "west": 121.6
+      },
+      "byte_count": 23263232,
+      "element_count": 12288,
+      "elements_by_type": {
+        "node": 443,
+        "relation": 750,
+        "way": 11095
+      },
+      "layer": "waterways",
+      "osm_base_timestamp": "2026-09-30T20:22:42Z",
+      "path": "inputs/osm/geofabrik-20261001-v1/waterways.json",
+      "point_feature_count": 443,
+      "selected_feature_count": 8766,
+      "selected_features_by_type": {
+        "node": 443,
+        "relation": 188,
+        "way": 8135
+      },
+      "sha256": "12adf0a9bf9fc639cfb6b75f4dae1f62481f639db9b8551fefbcfca27a8a6cbe",
+      "support_geometry_count": 3522
+    },
+    {
+      "authority_scope": "context-only",
+      "bbox": {
+        "east": 121.87,
+        "north": 24.93,
+        "south": 24.59,
+        "west": 121.6
+      },
+      "byte_count": 3238507,
+      "element_count": 1309,
+      "elements_by_type": {
+        "relation": 21,
+        "way": 1288
+      },
+      "layer": "water_bodies",
+      "osm_base_timestamp": "2026-09-30T20:22:42Z",
+      "path": "inputs/osm/geofabrik-20261001-v1/water_bodies.json",
+      "point_feature_count": 0,
+      "selected_feature_count": 1117,
+      "selected_features_by_type": {
+        "relation": 21,
+        "way": 1096
+      },
+      "sha256": "4f783e7b82459cede5679be6a76d4868672c9a1cda2d565c84b9f0211705b4eb",
+      "support_geometry_count": 192
+    },
+    {
+      "authority_scope": "context-only",
+      "bbox": {
+        "east": 121.87,
+        "north": 24.93,
+        "south": 24.59,
+        "west": 121.6
+      },
+      "byte_count": 6721832,
+      "element_count": 6983,
+      "elements_by_type": {
+        "way": 6983
+      },
+      "layer": "roads",
+      "osm_base_timestamp": "2026-09-30T20:22:42Z",
+      "path": "inputs/osm/geofabrik-20261001-v1/roads.json",
+      "point_feature_count": 0,
+      "selected_feature_count": 6983,
+      "selected_features_by_type": {
+        "way": 6983
+      },
+      "sha256": "f5caa5f5c9c0851341a3219f56ae7dc5919b6dceaadeafe3d37783e4e5e56388",
+      "support_geometry_count": 0
+    }
+  ],
+  "tool": {
+    "distribution": "osmium",
+    "name": "pyosmium",
+    "network": "none",
+    "python_version": "3.13.7",
+    "shapely_version": "2.1.2",
+    "version": "4.3.1"
+  },
+  "url": "https://download.geofabrik.de/asia/taiwan-260930.osm.pbf",
+  "use_boundary": {
+    "may_render_as": [
+      "regional land and sea context",
+      "coastline",
+      "rivers and water bodies",
+      "extruded buildings",
+      "context roads"
+    ],
+    "prohibited": [
+      "farm topology",
+      "walkable corridors",
+      "routes",
+      "runtime advice",
+      "observations",
+      "diagnosis"
+    ]
+  }
+}
