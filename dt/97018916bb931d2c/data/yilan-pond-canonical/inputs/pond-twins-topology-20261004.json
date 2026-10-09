@@ -1,0 +1,519 @@
+{
+  "schema_version": "farm-site-topology/v1",
+  "site_id": "yilan-pond",
+  "simulation_label": "模擬",
+  "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+  "faces": [
+    {
+      "id": "pond-1",
+      "type": "Face",
+      "label": "魚塭 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pond",
+      "geometry_feature_id": "pond-1"
+    },
+    {
+      "id": "pond-2",
+      "type": "Face",
+      "label": "魚塭 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pond",
+      "geometry_feature_id": "pond-2"
+    },
+    {
+      "id": "pond-3",
+      "type": "Face",
+      "label": "魚塭 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pond",
+      "geometry_feature_id": "pond-3"
+    },
+    {
+      "id": "shed-footprint",
+      "type": "Face",
+      "label": "鐵皮工作屋 footprint（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "building",
+      "geometry_feature_id": "shed-footprint"
+    },
+    {
+      "id": "canal-inlet-south",
+      "type": "Face",
+      "label": "供排水溝 canal-inlet-south（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "water-channel",
+      "geometry_feature_id": "canal-inlet-south"
+    },
+    {
+      "id": "canal-inlet-west",
+      "type": "Face",
+      "label": "供排水溝 canal-inlet-west（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "water-channel",
+      "geometry_feature_id": "canal-inlet-west"
+    },
+    {
+      "id": "canal-drain-centre",
+      "type": "Face",
+      "label": "供排水溝 canal-drain-centre（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "water-channel",
+      "geometry_feature_id": "canal-drain-centre"
+    },
+    {
+      "id": "canal-drain-east",
+      "type": "Face",
+      "label": "供排水溝 canal-drain-east（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "water-channel",
+      "geometry_feature_id": "canal-drain-east"
+    },
+    {
+      "id": "canal-drain-north",
+      "type": "Face",
+      "label": "供排水溝 canal-drain-north（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "water-channel",
+      "geometry_feature_id": "canal-drain-north"
+    }
+  ],
+  "edges": [
+    {
+      "id": "pond-1-bank-0",
+      "type": "Edge",
+      "label": "pond-1 塭岸 0（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-1-corner-0",
+      "end_node_id": "pond-1-corner-1"
+    },
+    {
+      "id": "pond-1-bank-1",
+      "type": "Edge",
+      "label": "pond-1 塭岸 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-1-corner-1",
+      "end_node_id": "pond-1-corner-2"
+    },
+    {
+      "id": "pond-1-bank-2",
+      "type": "Edge",
+      "label": "pond-1 塭岸 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-1-corner-2",
+      "end_node_id": "pond-1-corner-3"
+    },
+    {
+      "id": "pond-1-bank-3",
+      "type": "Edge",
+      "label": "pond-1 塭岸 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-1-corner-3",
+      "end_node_id": "pond-1-corner-0"
+    },
+    {
+      "id": "pond-2-bank-0",
+      "type": "Edge",
+      "label": "pond-2 塭岸 0（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-2-corner-0",
+      "end_node_id": "pond-2-corner-1"
+    },
+    {
+      "id": "pond-2-bank-1",
+      "type": "Edge",
+      "label": "pond-2 塭岸 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-2-corner-1",
+      "end_node_id": "pond-2-corner-2"
+    },
+    {
+      "id": "pond-2-bank-2",
+      "type": "Edge",
+      "label": "pond-2 塭岸 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-2-corner-2",
+      "end_node_id": "pond-2-corner-3"
+    },
+    {
+      "id": "pond-2-bank-3",
+      "type": "Edge",
+      "label": "pond-2 塭岸 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-2-corner-3",
+      "end_node_id": "pond-2-corner-0"
+    },
+    {
+      "id": "pond-3-bank-0",
+      "type": "Edge",
+      "label": "pond-3 塭岸 0（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-3-corner-0",
+      "end_node_id": "pond-3-corner-1"
+    },
+    {
+      "id": "pond-3-bank-1",
+      "type": "Edge",
+      "label": "pond-3 塭岸 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-3-corner-1",
+      "end_node_id": "pond-3-corner-2"
+    },
+    {
+      "id": "pond-3-bank-2",
+      "type": "Edge",
+      "label": "pond-3 塭岸 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-3-corner-2",
+      "end_node_id": "pond-3-corner-3"
+    },
+    {
+      "id": "pond-3-bank-3",
+      "type": "Edge",
+      "label": "pond-3 塭岸 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pedestrian-bank-corridor",
+      "walkable": true,
+      "start_node_id": "pond-3-corner-3",
+      "end_node_id": "pond-3-corner-0"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "pond-1-corner-0",
+      "type": "Node",
+      "label": "pond-1 塭岸角 0（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "pond-1-corner-1",
+      "type": "Node",
+      "label": "pond-1 塭岸角 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        40,
+        0
+      ]
+    },
+    {
+      "id": "pond-1-corner-2",
+      "type": "Node",
+      "label": "pond-1 塭岸角 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        40,
+        40
+      ]
+    },
+    {
+      "id": "pond-1-corner-3",
+      "type": "Node",
+      "label": "pond-1 塭岸角 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        0,
+        40
+      ]
+    },
+    {
+      "id": "drain-node-1",
+      "type": "Node",
+      "label": "1 塭排水閘位置（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        40,
+        32
+      ],
+      "edge_id": "pond-1-bank-1",
+      "purpose": "drain-gate"
+    },
+    {
+      "id": "pond-2-corner-0",
+      "type": "Node",
+      "label": "pond-2 塭岸角 0（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        43,
+        0
+      ]
+    },
+    {
+      "id": "pond-2-corner-1",
+      "type": "Node",
+      "label": "pond-2 塭岸角 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        83,
+        0
+      ]
+    },
+    {
+      "id": "pond-2-corner-2",
+      "type": "Node",
+      "label": "pond-2 塭岸角 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        83,
+        40
+      ]
+    },
+    {
+      "id": "pond-2-corner-3",
+      "type": "Node",
+      "label": "pond-2 塭岸角 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        43,
+        40
+      ]
+    },
+    {
+      "id": "drain-node-2",
+      "type": "Node",
+      "label": "2 塭排水閘位置（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        83,
+        32
+      ],
+      "edge_id": "pond-2-bank-1",
+      "purpose": "drain-gate"
+    },
+    {
+      "id": "pond-3-corner-0",
+      "type": "Node",
+      "label": "pond-3 塭岸角 0（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        0,
+        43
+      ]
+    },
+    {
+      "id": "pond-3-corner-1",
+      "type": "Node",
+      "label": "pond-3 塭岸角 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        40,
+        43
+      ]
+    },
+    {
+      "id": "pond-3-corner-2",
+      "type": "Node",
+      "label": "pond-3 塭岸角 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        40,
+        83
+      ]
+    },
+    {
+      "id": "pond-3-corner-3",
+      "type": "Node",
+      "label": "pond-3 塭岸角 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        0,
+        83
+      ]
+    },
+    {
+      "id": "drain-node-3",
+      "type": "Node",
+      "label": "3 塭排水閘位置（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "waypoint",
+      "position_xy": [
+        32,
+        83
+      ],
+      "edge_id": "pond-3-bank-2",
+      "purpose": "drain-gate"
+    }
+  ]
+}

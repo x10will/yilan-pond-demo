@@ -443,6 +443,8 @@ export function installPondShell(container, app) {
         const view = isPhone() && declared?.portrait ? declared.portrait : declared;
         if (!viewer?.ready || !view) return;
         switchCamera('inspection');
+        const camera = frame.contentWindow?.__dt?.camera;
+        if (camera && camera.fov !== 55) { camera.fov = 55; camera.updateProjectionMatrix(); }
         viewer.setCameraPose(view.pos, view.target);
         cameraHeading = Math.atan2(view.target[0] - view.pos[0], view.target[1] - view.pos[1]) * 180 / Math.PI;
         restoreFocus(region);
@@ -585,9 +587,14 @@ export function installPondShell(container, app) {
     const fallback = SITE.presentation.viewer;
     const selected = pose || (fallback && (phone ? fallback.portrait : fallback.overview));
     if (!selected) return;
-    const signature = JSON.stringify(selected);
+    const portraitFov = fallback?.portrait_fov_degrees;
+    const fov = phone && Number.isFinite(portraitFov) && portraitFov > 0 && portraitFov < 180
+      ? portraitFov : 55;
+    const signature = JSON.stringify({pose: selected, fov});
     if (signature === entry.cameraSignature) return;
     entry.cameraSignature = signature;
+    const camera = entry.frame.contentWindow?.__dt?.camera;
+    if (camera && camera.fov !== fov) { camera.fov = fov; camera.updateProjectionMatrix(); }
     cameraHeading = Math.atan2(selected.target[0] - selected.position[0], selected.target[1] - selected.position[1]) * 180 / Math.PI;
     viewer.setCameraPose(selected.position, selected.target);
   };
