@@ -1,0 +1,1583 @@
+{
+  "schema_version": "farm-site-assets/v1",
+  "site_id": "yilan-pond",
+  "simulation_label": "模擬",
+  "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+  "twin_inventory_version": 1,
+  "assets": [
+    {
+      "id": "aerator-1-1",
+      "type": "Asset",
+      "label": "1 塭水車 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-1"
+      },
+      "position_xy": [
+        6,
+        6
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "powered_by": [
+          "circuit-1-a"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          6,
+          6,
+          1.993
+        ],
+        "rotation": 0,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "aerator-1-2",
+      "type": "Asset",
+      "label": "1 塭水車 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-1"
+      },
+      "position_xy": [
+        34,
+        6
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "powered_by": [
+          "circuit-1-a"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          34,
+          6,
+          1.993
+        ],
+        "rotation": 1.5707963267948966,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "aerator-1-3",
+      "type": "Asset",
+      "label": "1 塭水車 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-1"
+      },
+      "position_xy": [
+        34,
+        34
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "powered_by": [
+          "circuit-1-a"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          34,
+          34,
+          1.993
+        ],
+        "rotation": 3.141592653589793,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "aerator-1-4",
+      "type": "Asset",
+      "label": "1 塭水車 4（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-1"
+      },
+      "position_xy": [
+        6,
+        34
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "powered_by": [
+          "circuit-1-b"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          6,
+          34,
+          1.993
+        ],
+        "rotation": -1.5707963267948966,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "feeder-1-1",
+      "type": "Asset",
+      "label": "1 塭投餌機 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "feeder",
+      "anchor": {
+        "kind": "Edge",
+        "id": "pond-1-bank-0"
+      },
+      "position_xy": [
+        13,
+        -0.7
+      ],
+      "specs": {
+        "rated_kw": 0.12,
+        "capacity_kg": 80,
+        "feed_rate_kg_h": 20
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "powered_by": [
+          "control-panel"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          13,
+          -0.7,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 1
+      }
+    },
+    {
+      "id": "feeder-1-2",
+      "type": "Asset",
+      "label": "1 塭投餌機 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "feeder",
+      "anchor": {
+        "kind": "Edge",
+        "id": "pond-1-bank-2"
+      },
+      "position_xy": [
+        27,
+        40.7
+      ],
+      "specs": {
+        "rated_kw": 0.12,
+        "capacity_kg": 80,
+        "feed_rate_kg_h": 20
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "powered_by": [
+          "control-panel"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          27,
+          40.7,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 1
+      }
+    },
+    {
+      "id": "pump-1",
+      "type": "Asset",
+      "label": "1 塭進水泵（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pump",
+      "anchor": {
+        "kind": "Edge",
+        "id": "pond-1-bank-0"
+      },
+      "position_xy": [
+        8,
+        -1.5
+      ],
+      "specs": {
+        "rated_kw": 1.5,
+        "flow_m3_h": 30
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "powered_by": [
+          "control-panel"
+        ],
+        "fed_from": [
+          "canal-inlet-south"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          8,
+          -1.5,
+          2.32
+        ],
+        "rotation": 1.5707963267948966,
+        "scale": 0.55
+      }
+    },
+    {
+      "id": "sluice-1",
+      "type": "Asset",
+      "label": "1 塭排水閘（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "sluice",
+      "anchor": {
+        "kind": "Node",
+        "id": "drain-node-1"
+      },
+      "position_xy": [
+        40,
+        32
+      ],
+      "specs": {
+        "opening_width_m": 1.2,
+        "max_flow_m3_h": 60,
+        "rated_kw": 0
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "drains_to": [
+          "canal-drain-centre"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          40,
+          32,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.48
+      }
+    },
+    {
+      "id": "circuit-1-a",
+      "type": "Asset",
+      "label": "1 塭 A 迴路（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator-circuit",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -8.1,
+        44
+      ],
+      "specs": {
+        "rated_kw": 5.5,
+        "breaker_a": 25
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "powered_by": [
+          "control-panel"
+        ],
+        "cable_along": [
+          "pond-1-bank-0",
+          "pond-1-bank-3"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -8.1,
+          44,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.22
+      }
+    },
+    {
+      "id": "circuit-1-b",
+      "type": "Asset",
+      "label": "1 塭 B 迴路（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator-circuit",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -8.1,
+        44.8
+      ],
+      "specs": {
+        "rated_kw": 2.2,
+        "breaker_a": 10
+      },
+      "relationships": {
+        "serves": [
+          "pond-1"
+        ],
+        "powered_by": [
+          "control-panel"
+        ],
+        "cable_along": [
+          "pond-1-bank-0",
+          "pond-1-bank-3"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -8.1,
+          44.8,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.22
+      }
+    },
+    {
+      "id": "aerator-2-1",
+      "type": "Asset",
+      "label": "2 塭水車 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-2"
+      },
+      "position_xy": [
+        49,
+        6
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "powered_by": [
+          "circuit-2-a"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          49,
+          6,
+          1.993
+        ],
+        "rotation": 0,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "aerator-2-2",
+      "type": "Asset",
+      "label": "2 塭水車 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-2"
+      },
+      "position_xy": [
+        77,
+        6
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "powered_by": [
+          "circuit-2-a"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          77,
+          6,
+          1.993
+        ],
+        "rotation": 1.5707963267948966,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "aerator-2-3",
+      "type": "Asset",
+      "label": "2 塭水車 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-2"
+      },
+      "position_xy": [
+        77,
+        34
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "powered_by": [
+          "circuit-2-a"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          77,
+          34,
+          1.993
+        ],
+        "rotation": 3.141592653589793,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "aerator-2-4",
+      "type": "Asset",
+      "label": "2 塭水車 4（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-2"
+      },
+      "position_xy": [
+        49,
+        34
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "powered_by": [
+          "circuit-2-b"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          49,
+          34,
+          1.993
+        ],
+        "rotation": -1.5707963267948966,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "feeder-2-1",
+      "type": "Asset",
+      "label": "2 塭投餌機 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "feeder",
+      "anchor": {
+        "kind": "Edge",
+        "id": "pond-2-bank-0"
+      },
+      "position_xy": [
+        56,
+        -0.7
+      ],
+      "specs": {
+        "rated_kw": 0.12,
+        "capacity_kg": 80,
+        "feed_rate_kg_h": 20
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "powered_by": [
+          "control-panel"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          56,
+          -0.7,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 1
+      }
+    },
+    {
+      "id": "feeder-2-2",
+      "type": "Asset",
+      "label": "2 塭投餌機 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "feeder",
+      "anchor": {
+        "kind": "Edge",
+        "id": "pond-2-bank-2"
+      },
+      "position_xy": [
+        70,
+        40.7
+      ],
+      "specs": {
+        "rated_kw": 0.12,
+        "capacity_kg": 80,
+        "feed_rate_kg_h": 20
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "powered_by": [
+          "control-panel"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          70,
+          40.7,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 1
+      }
+    },
+    {
+      "id": "pump-2",
+      "type": "Asset",
+      "label": "2 塭進水泵（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pump",
+      "anchor": {
+        "kind": "Edge",
+        "id": "pond-2-bank-0"
+      },
+      "position_xy": [
+        51,
+        -1.5
+      ],
+      "specs": {
+        "rated_kw": 1.5,
+        "flow_m3_h": 30
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "powered_by": [
+          "control-panel"
+        ],
+        "fed_from": [
+          "canal-inlet-south"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          51,
+          -1.5,
+          2.32
+        ],
+        "rotation": 1.5707963267948966,
+        "scale": 0.55
+      }
+    },
+    {
+      "id": "sluice-2",
+      "type": "Asset",
+      "label": "2 塭排水閘（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "sluice",
+      "anchor": {
+        "kind": "Node",
+        "id": "drain-node-2"
+      },
+      "position_xy": [
+        83,
+        32
+      ],
+      "specs": {
+        "opening_width_m": 1.2,
+        "max_flow_m3_h": 60,
+        "rated_kw": 0
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "drains_to": [
+          "canal-drain-east"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          83,
+          32,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.48
+      }
+    },
+    {
+      "id": "circuit-2-a",
+      "type": "Asset",
+      "label": "2 塭 A 迴路（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator-circuit",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -7.2,
+        44
+      ],
+      "specs": {
+        "rated_kw": 5.5,
+        "breaker_a": 25
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "powered_by": [
+          "control-panel"
+        ],
+        "cable_along": [
+          "pond-2-bank-0",
+          "pond-2-bank-3"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -7.2,
+          44,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.22
+      }
+    },
+    {
+      "id": "circuit-2-b",
+      "type": "Asset",
+      "label": "2 塭 B 迴路（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator-circuit",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -7.2,
+        44.8
+      ],
+      "specs": {
+        "rated_kw": 2.2,
+        "breaker_a": 10
+      },
+      "relationships": {
+        "serves": [
+          "pond-2"
+        ],
+        "powered_by": [
+          "control-panel"
+        ],
+        "cable_along": [
+          "pond-2-bank-0",
+          "pond-2-bank-3"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -7.2,
+          44.8,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.22
+      }
+    },
+    {
+      "id": "aerator-3-1",
+      "type": "Asset",
+      "label": "3 塭水車 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-3"
+      },
+      "position_xy": [
+        6,
+        49
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "circuit-3-a"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          6,
+          49,
+          1.993
+        ],
+        "rotation": 0,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "aerator-3-2",
+      "type": "Asset",
+      "label": "3 塭水車 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-3"
+      },
+      "position_xy": [
+        34,
+        49
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "circuit-3-a"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          34,
+          49,
+          1.993
+        ],
+        "rotation": 1.5707963267948966,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "aerator-3-3",
+      "type": "Asset",
+      "label": "3 塭水車 3（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-3"
+      },
+      "position_xy": [
+        34,
+        77
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "circuit-3-a"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          34,
+          77,
+          1.993
+        ],
+        "rotation": 3.141592653589793,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "aerator-3-4",
+      "type": "Asset",
+      "label": "3 塭水車 4（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator",
+      "anchor": {
+        "kind": "Face",
+        "id": "pond-3"
+      },
+      "position_xy": [
+        6,
+        77
+      ],
+      "specs": {
+        "rated_kw": 1.1,
+        "width_m": 2.0,
+        "oxygen_transfer_kg_h": 2.4,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "circuit-3-b"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          6,
+          77,
+          1.993
+        ],
+        "rotation": -1.5707963267948966,
+        "scale": 0.36
+      }
+    },
+    {
+      "id": "feeder-3-1",
+      "type": "Asset",
+      "label": "3 塭投餌機 1（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "feeder",
+      "anchor": {
+        "kind": "Edge",
+        "id": "pond-3-bank-0"
+      },
+      "position_xy": [
+        13,
+        42.3
+      ],
+      "specs": {
+        "rated_kw": 0.12,
+        "capacity_kg": 80,
+        "feed_rate_kg_h": 20
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "control-panel"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          13,
+          42.3,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 1
+      }
+    },
+    {
+      "id": "feeder-3-2",
+      "type": "Asset",
+      "label": "3 塭投餌機 2（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "feeder",
+      "anchor": {
+        "kind": "Edge",
+        "id": "pond-3-bank-2"
+      },
+      "position_xy": [
+        27,
+        83.7
+      ],
+      "specs": {
+        "rated_kw": 0.12,
+        "capacity_kg": 80,
+        "feed_rate_kg_h": 20
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "control-panel"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          27,
+          83.7,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 1
+      }
+    },
+    {
+      "id": "pump-3",
+      "type": "Asset",
+      "label": "3 塭進水泵（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "pump",
+      "anchor": {
+        "kind": "Edge",
+        "id": "pond-3-bank-3"
+      },
+      "position_xy": [
+        -1.5,
+        51
+      ],
+      "specs": {
+        "rated_kw": 1.5,
+        "flow_m3_h": 30
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "control-panel"
+        ],
+        "fed_from": [
+          "canal-inlet-west"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -1.5,
+          51,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.55
+      }
+    },
+    {
+      "id": "sluice-3",
+      "type": "Asset",
+      "label": "3 塭排水閘（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "sluice",
+      "anchor": {
+        "kind": "Node",
+        "id": "drain-node-3"
+      },
+      "position_xy": [
+        32,
+        83
+      ],
+      "specs": {
+        "opening_width_m": 1.2,
+        "max_flow_m3_h": 60,
+        "rated_kw": 0
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "drains_to": [
+          "canal-drain-north"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          32,
+          83,
+          2.32
+        ],
+        "rotation": 1.5707963267948966,
+        "scale": 0.48
+      }
+    },
+    {
+      "id": "circuit-3-a",
+      "type": "Asset",
+      "label": "3 塭 A 迴路（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator-circuit",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -6.3,
+        44
+      ],
+      "specs": {
+        "rated_kw": 5.5,
+        "breaker_a": 25
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "control-panel"
+        ],
+        "cable_along": [
+          "pond-3-bank-0",
+          "pond-3-bank-3"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -6.3,
+          44,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.22
+      }
+    },
+    {
+      "id": "circuit-3-b",
+      "type": "Asset",
+      "label": "3 塭 B 迴路（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "aerator-circuit",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -6.3,
+        44.8
+      ],
+      "specs": {
+        "rated_kw": 2.2,
+        "breaker_a": 10
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "control-panel"
+        ],
+        "cable_along": [
+          "pond-3-bank-0",
+          "pond-3-bank-3"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -6.3,
+          44.8,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.22
+      }
+    },
+    {
+      "id": "workshop-shed",
+      "type": "Asset",
+      "label": "鐵皮工作屋（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "work-shed",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -8.5,
+        42
+      ],
+      "specs": {
+        "width_m": 10,
+        "depth_m": 8,
+        "rated_kw": 0
+      },
+      "relationships": {
+        "houses": [
+          "control-panel",
+          "power-generator"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -8.5,
+          42,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 1
+      }
+    },
+    {
+      "id": "control-panel",
+      "type": "Asset",
+      "label": "控制盤（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "control-panel",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -5.8,
+        44
+      ],
+      "specs": {
+        "rated_kw": 25
+      },
+      "relationships": {
+        "powered_by": [
+          "power-mains"
+        ],
+        "backup_supply": [
+          "power-generator"
+        ],
+        "serves": [
+          "pond-1",
+          "pond-2",
+          "pond-3"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -5.8,
+          44,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.45
+      }
+    },
+    {
+      "id": "power-mains",
+      "type": "Asset",
+      "label": "市電（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "mains-power",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -12,
+        44
+      ],
+      "specs": {
+        "rated_kw": 30
+      },
+      "relationships": {
+        "feeds": [
+          "control-panel"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -12,
+          44,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.45
+      }
+    },
+    {
+      "id": "power-generator",
+      "type": "Asset",
+      "label": "備用發電機（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "generator-power",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -11,
+        40
+      ],
+      "specs": {
+        "rated_kw": 20
+      },
+      "relationships": {
+        "feeds": [
+          "control-panel"
+        ],
+        "transfer": "manual-only"
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -11,
+          40,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.6
+      }
+    },
+    {
+      "id": "weather-site",
+      "type": "Asset",
+      "label": "場區天氣（模擬）",
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json"
+      ],
+      "kind": "weather-station",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -4,
+        46
+      ],
+      "specs": {
+        "rated_kw": 0.01
+      },
+      "relationships": {
+        "powered_by": [
+          "control-panel"
+        ]
+      },
+      "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+      "presentation": {
+        "position": [
+          -4,
+          46,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.7
+      }
+    },
+    {
+      "type": "Asset",
+      "simulation_label": "模擬",
+      "source_notice": "人工編寫的模擬回應；非現地測繪、即時監測、電氣程序或養殖操作建議。",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json",
+        "decisions/2026-10-04-pond-use-case-cto-review.md",
+        "inputs/pond-response-story-fix-content-20261004.json"
+      ],
+      "id": "worker-pond-response",
+      "kind": "worker",
+      "label": "場務人員（模擬）",
+      "anchor": {
+        "kind": "Node",
+        "id": "pond-3-corner-0"
+      },
+      "position_xy": [
+        0,
+        43
+      ],
+      "specs": {
+        "rated_kw": 0,
+        "height_m": 1.7
+      },
+      "relationships": {},
+      "presentation": {
+        "position": [
+          0,
+          43,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 1.2
+      }
+    },
+    {
+      "type": "Asset",
+      "simulation_label": "模擬",
+      "source_notice": "人工編寫的模擬回應；非現地測繪、即時監測、電氣程序或養殖操作建議。",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+        "inputs/pond-oxygen-parameters-20261004.json",
+        "decisions/2026-10-04-pond-use-case-cto-review.md",
+        "inputs/pond-response-story-fix-content-20261004.json"
+      ],
+      "id": "backup-aerator-3",
+      "kind": "backup-aerator",
+      "label": "3 塭可移式備援曝氣機（模擬）",
+      "anchor": {
+        "kind": "Face",
+        "id": "shed-footprint"
+      },
+      "position_xy": [
+        -3,
+        43
+      ],
+      "specs": {
+        "rated_kw": 5.5,
+        "width_m": 2.6,
+        "oxygen_transfer_kg_h": 12,
+        "oxygen_transfer_factor": 0.5
+      },
+      "relationships": {
+        "serves": [
+          "pond-3"
+        ],
+        "powered_by": [
+          "power-generator"
+        ]
+      },
+      "presentation": {
+        "position": [
+          -3,
+          43,
+          2.32
+        ],
+        "rotation": 0,
+        "scale": 0.52
+      }
+    }
+  ]
+}
