@@ -1,0 +1,19 @@
+{
+  "schema_version": "yilan-regional-context-split/v1",
+  "authority": "Will, 2026-10-08, said \"fix\" after the first visit and bare-ground-stage timing report; this build-time split implements that brief",
+  "source_path": "inputs/context/base-terrain-20261001-v1/meshes",
+  "source_revision": "yilan-moi2025-dtm-context-20261001-v1",
+  "output_path": "inputs/context/regional-split-20261008",
+  "near_center_xy_m": [0, 0],
+  "near_radius_m": 1500,
+  "near_geometry": "Complete source triangles whose XY bounding box touches the radius; preserve source positions, colours and connectivity exactly",
+  "far_target_ratio": 0.12,
+  "far_error_m": 5,
+  "far_quantization_bands_m": [[1500, 0.25], [4000, 1], [10000, 2]],
+  "far_geometry": "meshoptimizer 0.24.0 edge collapse with ErrorAbsolute; shared near/far seam vertices stay exact, distant outlines may simplify within five metres",
+  "compression": "Existing DT EXT_meshopt_compression encoder/decoder and KHR_mesh_quantization for normals; no new decoder",
+  "layers": ["roads", "buildings", "water"],
+  "terrain": "Retain existing 376916-byte terrain-compressed-20261007-v2/meshes/terrain.glb unchanged; source core terrain remains exact",
+  "runtime_authority": false,
+  "non_goals": ["No canonical frame or route changes", "No inferred pond or equipment geometry", "No operational farm advice"]
+}
