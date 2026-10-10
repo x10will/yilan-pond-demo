@@ -144,8 +144,19 @@ export function bindPondInspectionMovement(frame, mode, heading, inspect = () =>
     if (!target?.addEventListener) return;
     target.addEventListener(name, callback, capture); listeners.push([target, name, callback, capture]);
   };
-  let animation, previous;
-  const stop = () => { held.clear(); if (animation != null) win.cancelAnimationFrame?.(animation); animation = null; };
+  let animation, previous, shifted = false;
+  const stop = () => { held.clear(); shifted = false; if (animation != null) win.cancelAnimationFrame?.(animation); animation = null; };
+  const extents = new WeakMap();
+  const extent = root => {
+    if (!root || typeof win.__dt?.featureExtent !== 'function') return null;
+    if (!extents.has(root)) {
+      const row = win.__dt.featureExtent(root);
+      if (!row || ![...row.center, ...row.size].every(Number.isFinite) || row.size[0] <= 0 || row.size[1] <= 0) return null;
+      extents.set(root, {size:row.size, min:row.center.map((value, axis) => value - row.size[axis] / 2),
+        max:row.center.map((value, axis) => value + row.size[axis] / 2)});
+    }
+    return extents.get(root);
+  };
   const tick = now => {
     animation = null;
     if (mode() !== 'inspection' || !held.size || doc.hidden || host?.hidden) { stop(); return; }
@@ -156,15 +167,34 @@ export function bindPondInspectionMovement(frame, mode, heading, inspect = () =>
     const up = Number(held.has('e')) - Number(held.has('q'));
     const length = Math.hypot(forward, right, up);
     if (length) {
-      const distance = 5 * seconds / length;
-      win.__dtEmbed?.translateCameraTarget?.(
-        (forward * Math.sin(angle) + right * Math.cos(angle)) * distance,
-        (forward * Math.cos(angle) - right * Math.sin(angle)) * distance, up * distance);
+      const pose = win.__dt?.cameraState?.();
+      const range = pose && Math.hypot(pose.position.x - pose.target.x,
+        pose.position.y - pose.target.y, pose.position.z - pose.target.z);
+      // Move a visible fraction of the current view at pond and county scales.
+      // Clamp normal speed to 5–50,000 m/s; Shift triples it without changing zoom.
+      const speed = Math.max(5, Math.min(50000, Number.isFinite(range) ? range * .7 : 5));
+      const distance = speed * (shifted ? 3 : 1) * seconds / length;
+      const local = extent(win.__dt?.scene?.getObjectByName('farm-pond-world'));
+      // Use the authored close scene at pond scale, and the retained landscape
+      // elsewhere. Bounds constrain presentation only, never canonical state.
+      const bounds = local && range <= Math.max(...local.size.slice(0, 2))
+        && ['x', 'y'].every((axis, i) => pose.target[axis] >= local.min[i] - 1e-6 && pose.target[axis] <= local.max[i] + 1e-6)
+        ? local : extent(win.__dt?.layers?.terrain);
+      const delta = [(forward * Math.sin(angle) + right * Math.cos(angle)) * distance,
+        (forward * Math.cos(angle) - right * Math.sin(angle)) * distance];
+      let fraction = 1;
+      if (bounds && pose) for (const [i, axis] of ['x', 'y'].entries()) {
+        if (delta[i]) fraction = Math.min(fraction, Math.max(0,
+          ((delta[i] > 0 ? bounds.max[i] : bounds.min[i]) - pose.target[axis]) / delta[i]));
+      }
+      // Stop the requested direction at its first edge instead of sliding along it.
+      win.__dtEmbed?.translateCameraTarget?.(delta[0] * fraction, delta[1] * fraction, up * distance);
     }
     animation = win.requestAnimationFrame(tick);
   };
   const down = event => {
     const key = event.key.toLowerCase();
+    shifted = event.shiftKey === true;
     if (textEntry(event.target) || event.ctrlKey || event.metaKey || event.altKey || event.isComposing
       || !/^[wasdqe]$/.test(key) || typeof win.__dtEmbed?.translateCameraTarget !== 'function') return;
     if (mode() === 'guided') inspect();
@@ -174,6 +204,7 @@ export function bindPondInspectionMovement(frame, mode, heading, inspect = () =>
   };
   const up = event => {
     const key = event.key.toLowerCase();
+    shifted = event.shiftKey === true;
     if (!held.has(key)) return;
     event.preventDefault(); event.stopImmediatePropagation(); held.delete(key);
     if (!held.size) stop();

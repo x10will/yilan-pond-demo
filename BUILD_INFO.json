@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-10-09T17:46:41+00:00",
-  "build": "a83cb67c206521d7",
+  "built_at": "2026-10-10T08:22:56+00:00",
+  "build": "c5e8326827e1245f",
   "dt_base": "dt/97018916bb931d2c/",
   "label": "yilan-fishponds-appearance-r3-20261010",
-  "farm_commit": "271c5d32ebf0f6f2ad0aeca09043fb30ec0f7f92",
+  "farm_commit": "ac4fb71f1664dff53beaed1c51e951bca96e2045",
   "farm_panel_dirty": false,
   "dt_generation": {
     "name": "dt-yilan-fishponds-appearance-r3-20261010",
@@ -3165,16 +3165,16 @@
   },
   "pond_precache": "shell and generation inventory after viewer first paint; candidates cached on use",
   "files": 422,
-  "bytes": 31054714,
+  "bytes": 31056760,
   "gzip": {
     "files": 387,
-    "bytes": 6585615
+    "bytes": 6586348
   },
   "workshop_budget": {
     "authority": "Will, 2026-10-04 pond Pages-ready brief",
     "file_limit_exclusive": 50000000,
     "total_limit_exclusive": 120000000,
-    "total_uncompressed_bytes": 31190670,
+    "total_uncompressed_bytes": 31192716,
     "stretch_goal_bytes": 60000000,
     "stretch_goal_met": true,
     "files": 810,
