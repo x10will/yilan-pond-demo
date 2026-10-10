@@ -157,6 +157,13 @@ export default async function install(api, input) {
   // water sheen: no per-fragment PBR light loop, noise or reflection pass.
   const contextWaterMaterial = own(new THREE.MeshLambertMaterial({color: palette.water,
     side: THREE.DoubleSide}));
+  let derivedSoilMaterial = null;
+  // CTO, 2026-10-11 round 2: the accepted close water stays lit, while
+  // distant outlines must read as water rather than black holes at night.
+  // Reuse the general presentation palette, not site geometry or runtime data.
+  let distantDerivedWater = null, distantDerivedBank = null;
+  const distantWaterColor = new THREE.Color(DEFAULT_PALETTE.deepWater);
+  const distantBankColor = new THREE.Color(DEFAULT_PALETTE.soil);
   waterMaterial.onBeforeCompile = shader => {
     shader.uniforms.uPondPhase = waterPhase; shader.uniforms.uPondAccent = waterAccent;
     shader.vertexShader = `varying vec2 vPondXY;\n${shader.vertexShader}`
@@ -826,6 +833,7 @@ export default async function install(api, input) {
     (Math.min(...points.map(p => p[1])) + Math.max(...points.map(p => p[1]))) / 2];
   const bounds = [center[0] - 450, center[1] - 450, center[0] + 450, center[1] + 450];
   const contextMeshes = new Map(), contextWaterMaterials = new Map(), terrainMaterials = new Map();
+  const derivedMaterials = new Map(), coastMaterials = new Map();
   const compactContext = object => {
     const original = object.geometry, position = original?.attributes?.position;
     // The 2026-10-07 compressed terrain already has distance-dependent detail.
@@ -885,6 +893,10 @@ export default async function install(api, input) {
       originalTriangles:count/3, closeTriangles:indices.length/3});
   };
   const updateContext = () => {
+    const cameraHeight = Math.max(0, (api.camera?.position.z ?? 0) - (config.ponds[0]?.z ?? 0));
+    const distanceTint = THREE.MathUtils.smoothstep(cameraHeight, 300, 450);
+    if (distantDerivedWater) distantDerivedWater.color.set(palette.water).lerp(distantWaterColor, distanceTint);
+    if (distantDerivedBank) distantDerivedBank.color.set(palette.bank).lerp(distantBankColor, distanceTint);
     scene.traverse(object => {
       if (!object.isMesh) return;
       // Will, 2026-10-07: interpolated static terrain paint looks smeared.
@@ -897,6 +909,62 @@ export default async function install(api, input) {
         terrainMaterials.set(object, original); object.material = neutral;
       }
       compactContext(object);
+      // CTO, 2026-10-11 round 3: coastal water must share canonical
+      // lighting and fog, with a darker blue than the retained rivers.
+      if (config.coastal_context_source_ref && object.userData?.authority_scope === 'context-only'
+          && ['sea', 'dune', 'windbreak'].includes(object.userData?.farm_context_coast_surface)
+          && !Array.isArray(object.material) && !coastMaterials.has(object)) {
+        const original = object.material;
+        const coast = diffuse({sea: '#24608e', dune: '#b2a777', windbreak: '#254b35'}[
+          object.userData.farm_context_coast_surface], {side: THREE.DoubleSide});
+        if (object.userData.farm_context_coast_surface === 'sea') {
+          object.geometry.computeBoundingBox();
+          const {min, max} = object.geometry.boundingBox;
+          // Fade only the display rectangle's outer edges into canonical fog.
+          // The source coastline and opaque sea geometry remain untouched.
+          coast.onBeforeCompile = shader => {
+            shader.uniforms.uCoastBounds = {value: new THREE.Vector4(min.x, min.y, max.x, max.y)};
+            shader.vertexShader = 'varying vec2 vCoastXY;\n' + shader.vertexShader;
+            shader.vertexShader = shader.vertexShader.replace('#include <begin_vertex>',
+              '#include <begin_vertex>\nvCoastXY = position.xy;');
+            // Preserve blue water at the 43 km overview while still receiving
+            // canonical fog at all requested close and belt distances.
+            shader.vertexShader = shader.vertexShader.replace('#include <fog_vertex>',
+              '#include <fog_vertex>\n#ifdef USE_FOG\nvFogDepth = min(vFogDepth, 14000.0);\n#endif');
+            shader.fragmentShader = 'varying vec2 vCoastXY;\nuniform vec4 uCoastBounds;\n' + shader.fragmentShader;
+            shader.fragmentShader = shader.fragmentShader.replace('#include <fog_fragment>',
+              `#include <fog_fragment>
+              #ifdef USE_FOG
+                float coastEdge = max(smoothstep(uCoastBounds.z - 1200.0, uCoastBounds.z, vCoastXY.x),
+                  max(1.0 - smoothstep(uCoastBounds.y, uCoastBounds.y + 1200.0, vCoastXY.y),
+                    smoothstep(uCoastBounds.w - 1200.0, uCoastBounds.w, vCoastXY.y)));
+                gl_FragColor.rgb = mix(gl_FragColor.rgb, fogColor, coastEdge);
+              #endif`);
+          };
+        }
+        coastMaterials.set(object, original); object.material = coast;
+      }
+      // Will, 2026-10-11: derived ponds should belong to the aquaculture
+      // setting. Only the baker's explicit tag selects the authored materials;
+      // retained OSM waterways and terrain keep their existing appearance.
+      const derivedSurface = object.userData?.farm_context_fishpond_surface;
+      if (config.derived_context_appearance === 'authored-diffuse'
+          && ['water', 'bank', 'soil'].includes(derivedSurface)) {
+        if (!derivedMaterials.has(object)) derivedMaterials.set(object, object.material);
+        if (derivedSurface === 'soil' && !derivedSoilMaterial) {
+          derivedSoilMaterial = diffuse(object.material.color, {side: THREE.DoubleSide});
+        }
+        if (distanceTint > 0 && !distantDerivedWater) {
+          distantDerivedWater = own(new THREE.MeshBasicMaterial({
+            color: new THREE.Color(palette.water).lerp(distantWaterColor, distanceTint),
+            side: THREE.DoubleSide, toneMapped: false}));
+          distantDerivedBank = own(new THREE.MeshBasicMaterial({
+            color: new THREE.Color(palette.bank).lerp(distantBankColor, distanceTint),
+            side: THREE.DoubleSide, toneMapped: false}));
+        }
+        object.material = derivedSurface === 'water' ? (distanceTint > 0 ? distantDerivedWater : waterMaterial)
+          : derivedSurface === 'bank' ? (distanceTint > 0 ? distantDerivedBank : materials.bank) : derivedSoilMaterial;
+      }
       if (canonicalPlacement && object.userData?.authority_scope === 'context-only'
           && object.userData.layer === 'water' && !Array.isArray(object.material)) {
         if (!contextWaterMaterials.has(object)) contextWaterMaterials.set(object, object.material);
@@ -1087,6 +1155,8 @@ export default async function install(api, input) {
     for (const [object, row] of contextMeshes) { object.geometry = row.original; object.material = row.originalMaterial; }
     for (const [object, mat] of contextWaterMaterials) object.material = mat;
     for (const [object, mat] of terrainMaterials) object.material = mat;
+    for (const [object, mat] of derivedMaterials) object.material = mat;
+    for (const [object, mat] of coastMaterials) object.material = mat;
     for (const [object, visible] of hidden) object.visible = visible;
     for (const resource of resources) resource.dispose();
     world.traverse(object => { if (object.isInstancedMesh) object.dispose(); });

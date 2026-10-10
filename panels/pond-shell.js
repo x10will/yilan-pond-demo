@@ -174,12 +174,9 @@ export function bindPondInspectionMovement(frame, mode, heading, inspect = () =>
       // Clamp normal speed to 5–50,000 m/s; Shift triples it without changing zoom.
       const speed = Math.max(5, Math.min(50000, Number.isFinite(range) ? range * .7 : 5));
       const distance = speed * (shifted ? 3 : 1) * seconds / length;
-      const local = extent(win.__dt?.scene?.getObjectByName('farm-pond-world'));
-      // Use the authored close scene at pond scale, and the retained landscape
-      // elsewhere. Bounds constrain presentation only, never canonical state.
-      const bounds = local && range <= Math.max(...local.size.slice(0, 2))
-        && ['x', 'y'].every((axis, i) => pose.target[axis] >= local.min[i] - 1e-6 && pose.target[axis] <= local.max[i] + 1e-6)
-        ? local : extent(win.__dt?.layers?.terrain);
+      // Will, 2026-10-11: close inspection must reach the fish-farm belt.
+      // The retained terrain bounds all camera scales; canonical state is unchanged.
+      const bounds = extent(win.__dt?.layers?.terrain);
       const delta = [(forward * Math.sin(angle) + right * Math.cos(angle)) * distance,
         (forward * Math.cos(angle) - right * Math.sin(angle)) * distance];
       let fraction = 1;
@@ -468,9 +465,10 @@ export function installPondShell(container, app) {
       const controls = el('div', null, 'pond-camera-controls');
       const mode = el('button', '檢視設備', 'pond-camera-mode'); mode.type = 'button';
       const region = el('button', '宜蘭全景（背景）', 'pond-regional-view'); region.type = 'button'; region.hidden = true;
-      region.onclick = () => {
+      const fishbelt = el('button', '周邊魚塭', 'pond-fishbelt-view'); fishbelt.type = 'button'; fishbelt.hidden = true;
+      const showView = (key, button) => {
         const viewer = frame.contentWindow?.__dtEmbed;
-        const declared = frame.contentWindow?.DT_SITE?.viewpoints?.['07-region'];
+        const declared = frame.contentWindow?.DT_SITE?.viewpoints?.[key];
         const view = isPhone() && declared?.portrait ? declared.portrait : declared;
         if (!viewer?.ready || !view) return;
         switchCamera('inspection');
@@ -478,8 +476,10 @@ export function installPondShell(container, app) {
         if (camera && camera.fov !== 55) { camera.fov = 55; camera.updateProjectionMatrix(); }
         viewer.setCameraPose(view.pos, view.target);
         cameraHeading = Math.atan2(view.target[0] - view.pos[0], view.target[1] - view.pos[1]) * 180 / Math.PI;
-        restoreFocus(region);
+        restoreFocus(button);
       };
+      region.onclick = () => showView('07-region', region);
+      fishbelt.onclick = () => showView('08-fishbelt', fishbelt);
       const cameraReset = el('button', null, 'pond-camera-reset'); cameraReset.type = 'button';
       cameraReset.onclick = () => {
         for (const current of entries) { current.cameraSignature = null; applyCamera(current, true); }
@@ -491,7 +491,7 @@ export function installPondShell(container, app) {
       const details = el('button', '詳情', 'pond-phone-details-toggle'); details.type = 'button';
       details.setAttribute('aria-expanded', 'false');
       details.onclick = () => showPhonePanel(container.dataset.pondPhonePanel ? null : 'pond-notifications');
-      controls.append(mode, region, cameraReset, notice, provenance, details);
+      controls.append(mode, region, fishbelt, cameraReset, notice, provenance, details);
       mode.onclick = () => {
         switchCamera(cameraMode === 'guided' ? 'inspection' : 'guided'); restoreFocus(mode);
       };
@@ -521,7 +521,7 @@ export function installPondShell(container, app) {
       Object.assign(entry, {storyNav:nav, storySequence:sequence, storyTime:time, storyTitle:title,
         storyCaption:caption, languageNote, storyPrevious:previous, storyNext:next, storyList:chapters,
         storyItems:chapterItems, storyChapters:null, storyHome:frame.parentElement, storyNumbers:numbers,
-        cameraMode:mode, region, cameraReset, cameraNotice:notice, provenance, details, summary, panelSelect, close});
+        cameraMode:mode, region, fishbelt, cameraReset, cameraNotice:notice, provenance, details, summary, panelSelect, close});
     }
     if (isPhone()) {
       if (entry.compactDesktop) {
@@ -586,6 +586,8 @@ export function installPondShell(container, app) {
     entry.cameraMode.textContent = label(cameraMode === 'guided' ? 'inspect' : 'guided');
     entry.region.hidden = !frame.contentWindow?.DT_SITE?.viewpoints?.['07-region'];
     entry.region.textContent = english ? 'Yilan landscape (context)' : '宜蘭全景（背景）';
+    entry.fishbelt.hidden = !frame.contentWindow?.DT_SITE?.viewpoints?.['08-fishbelt'];
+    entry.fishbelt.textContent = english ? 'Nearby fish farms' : '周邊魚塭';
     entry.cameraReset.textContent = label('camera'); entry.cameraReset.hidden = isPhone() && cameraMode !== 'inspection';
     entry.storyPrevious.textContent = isPhone() ? label('previous') : '‹';
     entry.storyNext.textContent = isPhone() ? label('next') : '›';
