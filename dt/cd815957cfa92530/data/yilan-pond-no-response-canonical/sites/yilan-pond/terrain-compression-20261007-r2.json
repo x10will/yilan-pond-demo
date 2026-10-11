@@ -1,0 +1,28 @@
+{
+  "authority": "Will 2026-10-07 brief; Codex lane implementation settings, superseding the first derivation after review",
+  "schema_version": "yilan-terrain-compression-settings/v1",
+  "source_revision": "yilan-moi2025-dtm-context-20261001-v1",
+  "source_path": "inputs/context/base-terrain-20261001-v1",
+  "output_path": "inputs/context/terrain-compressed-20261007-v2",
+  "exact_core_xy_m": [-160, -160, 200, 200],
+  "distance_bands_m": [[0, 40], [1000, 100], [4000, 240], [10000, 400]],
+  "layers": {
+    "terrain": {"simplify": true, "near_paint_srgb": [161, 139, 99]},
+    "roads": {"simplify": false},
+    "buildings": {"simplify": false},
+    "water": {"simplify": false}
+  },
+  "geometry": {
+    "quantization_m": 0.01,
+    "compression": "EXT_meshopt_compression via the existing DT viewer encoder/decoder",
+    "textures": "none; preserve authored vertex colours",
+    "terrain_connectivity": "preserve source triangles wholly within exact core; distance-sample and retriangulate beyond core",
+    "elevation_extrema": "pin source minimum and maximum vertices"
+  },
+  "provenance": {
+    "terrain": "MOI 2025 20 m DTM, admitted in 2026-10-01 regional build",
+    "roads": "Geofabrik OSM roads, context only",
+    "buildings": "Geofabrik OSM building footprints with authored fallback heights, context only",
+    "water": "Geofabrik OSM waterways and water polygons, source connectivity preserved"
+  }
+}

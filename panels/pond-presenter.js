@@ -66,19 +66,45 @@ export function installPondPanelMenus(root = globalThis.document) {
   };
   const escape = event => {
     if (event.key !== 'Escape') return;
-    const menus = openMenus();
-    for (const menu of menus) menu.open = false;
-    if (menus.length) {
+    const disclosures = [...root.querySelectorAll('.panel-core-app :is(.panel-menu,.app-settings,.pond-guided-list,.pond-quick-provenance)[open]')];
+    const closest = event.target?.closest?.('.panel-menu[open],.app-settings[open],.pond-guided-list[open],.pond-quick-provenance[open]');
+    const destination = disclosures.includes(closest) ? closest : disclosures[0];
+    for (const disclosure of disclosures) disclosure.open = false;
+    if (destination) {
       event.preventDefault();
-      menus[0].querySelector('summary')?.focus({preventScroll: true});
+      destination.querySelector('summary')?.focus({preventScroll: true});
     }
   };
+  const closeFocus = event => {
+    const close = event.target.closest?.('.panel-close,[data-action="close"]');
+    const item = close?.closest('.grid-stack-item');
+    if (!item || !item.closest('.panel-core-app')) return;
+    const siblings = [...item.parentElement.children];
+    const index = siblings.indexOf(item);
+    const nearby = [...siblings.slice(index + 1), ...siblings.slice(0, index).reverse()]
+      .map(panel => panel.querySelector('.panel-menu>summary')).filter(Boolean);
+    const doc = root.ownerDocument || root;
+    const restore = () => {
+      const active = doc.activeElement;
+      if (active && active !== doc.body && active.isConnected && active.getClientRects().length) return;
+      const destination = nearby.find(summary => summary.isConnected && summary.getClientRects().length)
+        || root.querySelector('.topbar .panel-manager>summary');
+      destination?.focus({preventScroll: true});
+    };
+    // Capture before core removes the item; let its own focus handling finish.
+    queueMicrotask(() => {
+      if (win?.requestAnimationFrame) win.requestAnimationFrame(restore);
+      else restore();
+    });
+  };
+  root.addEventListener('click', closeFocus, true);
   root.addEventListener('toggle', toggle, true);
   root.addEventListener('pointerdown', outside, true);
   root.addEventListener('keydown', escape, true);
   root.addEventListener('scroll', reposition, true);
   win?.addEventListener('resize', reposition);
   const dispose = () => {
+    root.removeEventListener('click', closeFocus, true);
     root.removeEventListener('toggle', toggle, true);
     root.removeEventListener('pointerdown', outside, true);
     root.removeEventListener('keydown', escape, true);

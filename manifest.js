@@ -67,12 +67,16 @@ if (site.site_id !== 'farm') {
   ];
   if (pondPresentation(site)) {
     manifest.id += '-workshop-ui-v1';
+    const locale = new URLSearchParams(globalThis.location?.search || '').get('lang');
+    if (manifest.locales.includes(locale)) manifest.locale = locale;
     // Canonical envelopes are 100 s apart, but pond samples and pointer seeking
     // live within them. Keep the shared 六堆 clock unchanged.
     manifest.clock = {...manifest.clock, step: 1000};
     manifest.panelTypes = {...manifest.panelTypes, ...pondPanels()};
-    manifest.catalogue = manifest.catalogue.map(card => ({...card,
-      titleKey: manifest.panelTypes[card.type]?.title || card.titleKey}));
+    // Pond definitions expose locale-aware titles. A copied titleKey would
+    // freeze their Chinese title and override the definition on every layout refresh.
+    manifest.catalogue = manifest.catalogue.map(({titleKey, ...card}) =>
+      card.type === 'map' ? {...card, titleKey} : card);
     manifest.preset = [
       {id: 'map', type: 'map', x: 0, y: 0, w: 8, h: 6},
       {id: 'pond-notifications', type: 'pond-notifications', x: 8, y: 0, w: 4, h: 6},

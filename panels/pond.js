@@ -11,7 +11,17 @@ import {appendPondLoadFailure} from './pond-presenter.js';
 // Only declared presentation strings are translated; authored twin names,
 // chapter text, events and notices retain their supplied content.
 const english = {
+  '模擬設備、水質、天氣與 AI 建議 · 十分鐘原型，非即時監測或操作建議。':'Simulated equipment, water quality, weather and AI suggestions · Ten-minute prototype; not live monitoring or operational advice.',
+  '壯圍三座魚塭狀態（模擬）':'Zhuangwei three-pond status (simulated)',
   '模擬':'Simulated', '事件出處':'Event sources', '夜間警示與 AI 建議':'Night alerts and AI suggestions',
+  '模擬與出處':'Simulation and sources', '製作紀錄（技術出處）':'Build provenance', '選取設備':'Selected equipment',
+  '完整模擬與地理聲明':'Full simulation and geographic notices', '地圖授權 · OSM ODbL／內政部 DTM':'Map licences · OSM ODbL / Ministry of the Interior DTM',
+  '候選資料':'Candidate data', '檢視器版本':'Viewer version', '站點資料':'Site data', 'AI 提問':'AI questions',
+  '此 generation 沒有 staging 紀錄':'This generation has no staging record', '無法讀取 VENDOR.json 釘選':'Unable to read the VENDOR.json pin',
+  '即時問答（實驗）需另設端點與金鑰；離線故事使用凍結旁白與腳本備援。':'Live questions (experimental) require a separate endpoint and key; offline stories use frozen narration and script fallback.',
+  'AI 旁白（模擬情境；非操作建議）':'AI narration (simulated scenario; not operating advice)',
+  '地圖資料來源與授權':'Map data sources and licences', '關閉':'Close',
+  '目前模擬資料與收據':'Current simulation data and receipts', '農場場景資料與收據':'Farm scene data and receipts',
   '選取設備 · 模擬':'Selected equipment · Simulated', '水質':'Water quality', '設備':'Equipment', '天氣':'Weather',
   '水質監測':'Water quality', '設備監控':'Equipment monitoring', '氣象資訊':'Weather',
   '目前章節 · 模擬':'Current chapter · Simulated', '夜間三塭對照':'Night comparison of three ponds',
@@ -101,6 +111,15 @@ export function pondText(text, locale = globalThis.document?.documentElement?.la
     .replace(/^(有回應|無回應) · /, (_, label) => `${english[label]} · `)
     .replace(/^(共用設備、電力與人員)/, english['共用設備、電力與人員']).replace(/ · (\d+) 個設備／人員$/, ' · $1 equipment / staff');
 }
+export function localizePondPanelOptions(root, locale, site = SITE) {
+  const titles = {'pond-notifications':'夜間警示與 AI 建議', 'pond-provenance':'模擬與出處', selection:'選取設備',
+    ...Object.fromEntries(['water','scada','weather'].map(kind => [`pond-${kind}`, locale === 'en'
+      ? {water:'Water quality',scada:'Equipment monitoring',weather:'Weather'}[kind] : site.cards?.[kind]?.title]))};
+  for (const option of root.closest?.('.panel-core-app')?.querySelectorAll('option') || []) {
+    const text = titles[option.value] && pondText(titles[option.value], locale);
+    if (text && option.textContent !== text) option.textContent = text;
+  }
+}
 const chromeNodes = new WeakMap();
 const chromeAttributes = new WeakMap();
 function el(tag, text, className) {
@@ -108,7 +127,7 @@ function el(tag, text, className) {
   if (typeof text === 'string') chromeNodes.set(node, text);
   return node;
 }
-function localizeChrome(node, locale) {
+export function localizePondChrome(node, locale) {
   const source = chromeNodes.get(node);
   if (source != null) {
     const text = pondText(source, locale);
@@ -118,7 +137,7 @@ function localizeChrome(node, locale) {
     else if (!node.children.length) node.textContent = text;
   }
   for (const [name, text] of chromeAttributes.get(node) || []) node.setAttribute(name, pondText(text, locale));
-  for (const child of node.children || []) localizeChrome(child, locale);
+  for (const child of node.children || []) localizePondChrome(child, locale);
 }
 function chromeAttribute(node, name, text) {
   const attributes = chromeAttributes.get(node) || [];
@@ -215,6 +234,14 @@ export function pondStatus(projection, entityId) {
     status: degraded ? '備援運轉中 · DO 已恢復' : ''};
 }
 
+export function pondMapBadgeText(projection, entityId) {
+  const sample = projection.telemetry.find(row => row.entity_id === entityId && row.metric === 'dissolved_oxygen');
+  const {fault, risk, degraded, status} = pondStatus(projection, entityId);
+  const label = compactLabel(projection.entityLabels[entityId]);
+  return degraded ? `${label} · ${status.replace('DO 已恢復', '已恢復')} · DO ${pondNumber(sample)}`
+    : `${fault || risk ? '⚠ ' : ''}${label} · DO ${pondNumber(sample)}${risk ? ' 警示' : fault ? ' 設備故障' : ''}`;
+}
+
 export function pondEquipmentSummary(projection, entityId) {
   const status = pondStatus(projection, entityId);
   const faults = projection.notifications.filter(row => row.kind === 'equipment-fault' && row.subjectIds.includes(entityId));
@@ -254,7 +281,7 @@ function sourceDetails(row, projection) {
   details.append(el('summary', '事件出處'));
   for (const ref of row.sourceIds || []) {
     const link = projection.provenanceLinks?.find(item => item.sourceId === ref);
-    const item = link ? el('a', link.title) : el('span', ref.split('@sha256:')[0]);
+    const item = link ? element('a', link.title) : element('span', ref.split('@sha256:')[0]);
     if (link) { item.href = link.href; item.target = '_blank'; item.rel = 'noopener'; }
     details.append(item);
   }
@@ -298,12 +325,16 @@ function observedPanel(id, title, draw, {load = () => canonicalAdapter(), site =
         },
       };
       const render = () => {
-        if (!candidate || disposed) return;
+        if (disposed) return;
+        const locale = ctx.locale || globalThis.document?.documentElement?.lang || 'zh-Hant';
+        const heading = root.closest?.('.panel-card')?.querySelector('.panel-header h2');
+        if (heading && heading.textContent !== panelTitle(locale)) heading.textContent = panelTitle(locale);
+        localizePondPanelOptions(root, locale, site);
+        if (!candidate) return;
         const projection = pondProjection(candidate, milliseconds);
         // Both curves are shown only by the canonical closing summary. Will's
         // 2026-10-08 first-visit fix defers the unused Pages run until that view.
         if (id === 'pond-notifications' && site.presentation?.delivery?.pages && projection.story?.summary) void compare();
-        const locale = ctx.locale || globalThis.document?.documentElement?.lang || 'zh-Hant';
         const next = JSON.stringify([projection.telemetry, projection.notifications, projection.story, projection.aiNarration,
           selectedId, selectedId && projection.assetTransforms?.find(row => row.id === selectedId),
           !!comparison, comparisonError, locale]);
@@ -313,14 +344,8 @@ function observedPanel(id, title, draw, {load = () => canonicalAdapter(), site =
         when.textContent = sampleStamp(projection, site.cards?.[id.replace(/^(farm|pond)-/, '')]?.metrics, locale);
         const opened = new Set([...(content.querySelectorAll?.('details[open]') || [])].map(node => node.dataset.detailKey));
         draw(content, projection, site, candidate, interaction);
-        localizeChrome(root, locale);
+        localizePondChrome(root, locale);
         root.lang = locale;
-        const card = root.closest?.('.panel-card');
-        const heading = card?.querySelector('.panel-header h2');
-        if (heading) heading.textContent = panelTitle(locale);
-        for (const option of root.closest?.('.panel-core-app')?.querySelectorAll('option') || []) {
-          if (option.value === id) option.textContent = panelTitle(locale);
-        }
         for (const details of content.querySelectorAll?.('details') || []) {
           if (opened.has(details.dataset.detailKey)) details.open = true;
         }
@@ -357,8 +382,8 @@ export function createPondStoryPanel(options = {}) {
     const story = projection.story;
     if (story?.chapter) {
       content.append(el('span', '目前章節 · 模擬', 'pond-story-stage'),
-        el('h3', story.chapter.title, 'pond-story-title'),
-        el('p', story.chapter.caption, 'pond-story-caption'));
+        element('h3', story.chapter.title, 'pond-story-title'),
+        element('p', story.chapter.caption, 'pond-story-caption'));
       const stage = ({normal:'夜間正常', fault:'設備故障', detection:'溶氧下降', warning:'警示', suggestion:'腳本建議',
         accepted:'已接受', responding:'現場處置', arrived:'抵達魚塭', 'backup-running':'備援運轉', resolved:'警示解除',
         dawn:'日出檢視', summary:'事件摘要'})[story.response?.phase] || story.response?.phase;
@@ -393,7 +418,7 @@ export function createPondStoryPanel(options = {}) {
     if (suggestion && (!story?.response || story.response.phase === 'suggestion')) {
       const box = el('article', null, 'pond-suggestion'); box.dataset.occurrenceId = suggestion.id;
       box.append(el('strong', `✦ ${suggestion.title}`), el('span', '腳本內容 · 模擬，非操作建議', 'pond-scripted-label'),
-        el('p', suggestion.detail, 'pond-event-detail'));
+        element('p', suggestion.detail, 'pond-event-detail'));
       content.append(box);
     }
     const accepted = events.find(row => row.kind === 'operator-accepted');
@@ -416,7 +441,7 @@ export function createPondStoryPanel(options = {}) {
     const history = el('details', null, 'pond-event-history'); history.dataset.detailKey = 'history'; history.append(el('summary', '事件時間與出處'));
     for (const row of events) {
       const item = el('div', null, 'pond-event-record');
-      item.append(el('strong', row.title), el('small', `發生於 ${row.sampledAt.replace('T', ' ')}`), sourceDetails(row, projection));
+      item.append(element('strong', row.title), el('small', `發生於 ${row.sampledAt.replace('T', ' ')}`), sourceDetails(row, projection));
       history.append(item);
     }
     content.append(history);
@@ -437,6 +462,7 @@ function drawRunSwitch(content, site, interaction) {
       const url = new URL(pondScenarioHref(run.scenario));
       url.searchParams.set('t', String(Math.min(Number.isFinite(duration) ? duration * 1000 : Infinity, Math.max(0,time))));
       url.searchParams.set('speed', String(rate));
+      url.hash = 'pond-active-run';
       link.href = url.href;
     };
     captureReplay();
@@ -444,7 +470,10 @@ function drawRunSwitch(content, site, interaction) {
     // clock whose speed changed since the last canonical sample render.
     link.onclick = captureReplay;
     link.dataset.run = run.role;
-    if (run.scenario.param === requested) link.setAttribute('aria-current', 'page');
+    if (run.scenario.param === requested) {
+      link.setAttribute('aria-current', 'page');
+      link.id = 'pond-active-run';
+    }
     nav.append(link);
   }
   content.append(nav);
@@ -548,21 +577,21 @@ export function drawPondOxygenModel(content, projection, candidate) {
     const globals = el('dl', null, 'pond-model-values');
     for (const [key, value] of Object.entries(parameters)) {
       if (key === 'ponds' || key === 'decision_path' || key === 'simulation_label') continue;
-      globals.append(el('dt', modelLabels[key] || '模型參數'), el('dd', value));
+      globals.append(el('dt', modelLabels[key] || '模型參數'), element('dd', value));
     }
     model.append(globals);
     for (const pond of parameters.ponds || []) {
       const group = el('section', null, 'pond-model-pond'); group.dataset.pondId = pond.id;
-      group.append(el('h3', compactLabel(projection.entityLabels[pond.id] || pond.id)));
+      group.append(element('h3', compactLabel(projection.entityLabels[pond.id] || pond.id)));
       const values = el('dl', null, 'pond-model-values');
       for (const [key, value] of Object.entries(pond)) {
-        if (key !== 'id') values.append(el('dt', modelLabels[key] || '模型參數'), el('dd', value));
+        if (key !== 'id') values.append(el('dt', modelLabels[key] || '模型參數'), element('dd', value));
       }
       group.append(values); model.append(group);
     }
   } else model.append(el('p', '此候選沒有提供可閱讀的模型參數。'));
   for (const link of projection.provenanceLinks.filter(row => /pond-twin|pond-oxygen/.test(row.sourceId))) {
-    const anchor = el('a', /pond-oxygen/.test(link.sourceId) ? '參數原始 JSON（次要連結）' : link.title);
+    const anchor = /pond-oxygen/.test(link.sourceId) ? el('a', '參數原始 JSON（次要連結）') : element('a', link.title);
     anchor.href = link.href; anchor.target = '_blank'; anchor.rel = 'noopener'; model.append(anchor);
   }
   content.append(model);
@@ -638,7 +667,7 @@ const relationshipLabels = {serves:'服務魚塭',powered_by:'供電來源',feed
 
 function sourceLink(link, fallback) {
   if (!link) return el('span', '模擬資料來源');
-  const anchor = el('a', pondSourceLabel(link)); anchor.href = link.href; anchor.target = '_blank'; anchor.rel = 'noopener';
+  const anchor = element('a', pondSourceLabel(link)); anchor.href = link.href; anchor.target = '_blank'; anchor.rel = 'noopener';
   return anchor;
 }
 
@@ -679,7 +708,7 @@ function drawTwinFacts(content, details, projection, site) {
 function drawQuickProvenance(content, projection, site, candidate) {
   const sources = el('details', null, 'pond-quick-provenance'); sources.dataset.detailKey = 'quick-provenance';
   sources.append(el('summary', '模擬與出處（快速檢視）'));
-  for (const text of site.notices || []) sources.append(el('p', text));
+  for (const text of site.notices || []) sources.append(element('p', text));
   if (candidate.manifest?.input_bindings?.pond_simulation_parameters
     || candidate.artifacts['pond-oxygen-parameters.json']) drawPondOxygenModel(sources, projection, candidate);
   for (const link of projection.provenanceLinks || []) {
@@ -695,7 +724,7 @@ function drawTwins(content, projection, site, candidate, interaction) {
   if (selected) {
     const card = el('article', null, 'pond-twin-inspection'); card.dataset.entityId = selected.twin.id;
     chromeAttribute(card,'aria-label','選取設備詳細資料'); card.setAttribute('aria-live', 'polite');
-    card.append(el('h3', compactLabel(selected.twin.label)), badge());
+    card.append(element('h3', compactLabel(selected.twin.label)), badge());
     drawTwinFacts(card, selected, projection, site); content.append(card);
   } else content.append(el('p', '點選場景設備或下方設備名稱，即可查看設備、目前取樣與出處。', 'pond-inspection-hint'));
   const groups = new Map();
@@ -715,7 +744,7 @@ function drawTwins(content, projection, site, candidate, interaction) {
     const list = el('dl', null, 'pond-readings pond-scada-readings');
     for (const twin of twins) {
       const state = projection.telemetry.find(row => row.entity_id === twin.id && row.metric === 'equipment_state');
-      const label = el('dt'), choose = el('button', compactLabel(twin.label), 'farm-button pond-select-twin');
+      const label = el('dt'), choose = element('button', compactLabel(twin.label), 'farm-button pond-select-twin');
       choose.type = 'button'; choose.dataset.entityId = twin.id;
       choose.setAttribute('aria-pressed', twin.id === interaction.selectedId ? 'true' : 'false');
       choose.onclick = () => interaction.select(twin.id); label.append(choose); list.append(label);
@@ -740,7 +769,7 @@ function drawTwins(content, projection, site, candidate, interaction) {
       }
       for (const ref of twin.provenance_refs || []) {
         const link = projection.provenanceLinks.find(row => row.sourceId.split('@sha256:')[0] === ref.split('@sha256:')[0]);
-        if (link) { const anchor = el('a', pondSourceLabel(link)); anchor.href = link.href; anchor.target = '_blank'; anchor.rel = 'noopener'; details.append(anchor); }
+        if (link) { const anchor = element('a', pondSourceLabel(link)); anchor.href = link.href; anchor.target = '_blank'; anchor.rel = 'noopener'; details.append(anchor); }
       }
       appendPondTwinTechnicalDetails(details, twinInspection(projection, twin.id), {el});
       value.append(details); list.append(value);
@@ -772,7 +801,7 @@ function drawReadings(content, projection, site, candidate, kind, interaction) {
     const advisories = projection.notifications.filter(row => site.cards.weather.advisory_kinds?.includes(row.kind));
     for (const row of advisories) {
       const article = el('article', null, 'pond-advisory'); article.dataset.occurrenceId = row.id;
-      article.append(el('strong', row.title), el('p', row.detail), el('small', `發生於 ${wallTime(row.sampledAt)}`)); content.append(article);
+      article.append(element('strong', row.title), element('p', row.detail), el('small', `發生於 ${wallTime(row.sampledAt)}`)); content.append(article);
     }
     if (!advisories.length) content.append(el('p', '目前影格沒有公告', 'farm-caption'));
   }
@@ -787,7 +816,7 @@ export const createPondTwinSelectionPanel = (options = {}) => observedPanel('sel
     const selected = twinInspection(projection, interaction.selectedId);
     if (!selected) { content.append(el('p', '點選場景設備或設備卡片中的設備名稱。')); return; }
     content.dataset.entityId = selected.twin.id;
-    content.append(el('h3', compactLabel(selected.twin.label)));
+    content.append(element('h3', compactLabel(selected.twin.label)));
     drawTwinFacts(content, selected, projection, site);
   }, options);
 export const pondPanels = options => ({'pond-notifications': createPondStoryPanel(options), selection: createPondTwinSelectionPanel(options),

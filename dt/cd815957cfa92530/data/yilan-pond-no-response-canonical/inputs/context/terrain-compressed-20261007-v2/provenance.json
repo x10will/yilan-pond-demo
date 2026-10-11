@@ -1,0 +1,64 @@
+{
+  "asset_lineage_path": "inputs/context/terrain-compressed-20261007-v2/lineage.json",
+  "attribution": "© OpenStreetMap contributors",
+  "attribution_url": "https://www.openstreetmap.org/copyright",
+  "authority_scope": "regional display terrain and OSM context only; not surveyed farm geometry",
+  "compression": {
+    "compression": "EXT_meshopt_compression via the existing DT viewer encoder/decoder",
+    "elevation_extrema": "pin source minimum and maximum vertices",
+    "quantization_m": 0.01,
+    "terrain_connectivity": "preserve source triangles wholly within exact core; distance-sample and retriangulate beyond core",
+    "textures": "none; preserve authored vertex colours"
+  },
+  "decision_path": "decisions/2026-10-07-pond-terrain-compressed-r2.md",
+  "dem_attribution": "內政部地政司 2025「2025年版全臺灣20公尺網格數值地形模型DTM資料」。此開放資料依政府資料開放授權條款（Open Government Data License）第1版進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。政府資料開放授權條款：https://data.gov.tw/license。資料集：https://data.gov.tw/dataset/176927。本宜蘭模擬場景由 site-yilan-pond 裁切、重採樣、套用 OSM 岸線、網格化及編寫 workshop 展示平台；非原提供機關原始成果。",
+  "license": "Open Database License (ODbL) 1.0",
+  "schema_version": "yilan-compressed-context-provenance/v1",
+  "source_lineage_path": "inputs/context/base-terrain-20261001-v1/lineage.json",
+  "source_lineage_sha256": "346c3f5759621d36c5f9d8d8309c0282cb4b156b72d8bf781aac808644f25595",
+  "source_revision": "yilan-moi2025-dtm-context-20261001-v1",
+  "terrain": {
+    "bbox_xy_m": [
+      -21634.918825437548,
+      -17365.919999999867,
+      5661.4740851624365,
+      20482.880000000117
+    ],
+    "land": {
+      "triangle_count": 4590891,
+      "vertex_count": 2337653,
+      "z_range_m": [
+        0.0,
+        1413.8753662109375
+      ]
+    },
+    "mesh_step_m": 20.0,
+    "sea": {
+      "triangle_count": 598955,
+      "vertex_count": 322338,
+      "z_range_m": [
+        0,
+        0
+      ]
+    },
+    "source_datum": "Source metre elevations retained without vertical transformation; merged GeoTIFF has no explicit vertical datum tag; the source receipt records inspected TWVD2001 sheet evidence",
+    "vertical_exaggeration": 1.0,
+    "workshop_pad": {
+      "authority": "authored workshop flattening after DT smoothing; not surveyed",
+      "bounds_xy": [
+        -20,
+        -20,
+        120,
+        100
+      ],
+      "interior_grid_vertex_count": 49,
+      "sample_xy": [
+        0,
+        0
+      ],
+      "source_sample_m": 1.683419886247877,
+      "transition_m": 40,
+      "z_m": 1.683
+    }
+  }
+}

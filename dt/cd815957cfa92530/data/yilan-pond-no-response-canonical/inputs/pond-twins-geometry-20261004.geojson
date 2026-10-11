@@ -1,0 +1,587 @@
+{
+  "type": "FeatureCollection",
+  "site_id": "yilan-pond",
+  "simulation_label": "模擬",
+  "source_notice": "人工編寫的模擬設備與幾何；非現地測繪、影像描圖、即時監測或養殖操作建議。",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "pond-1",
+      "properties": {
+        "id": "pond-1",
+        "type": "Face",
+        "label": "魚塭 1（模擬）",
+        "simulation_label": "模擬",
+        "provenance_refs": [
+          "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+          "inputs/pond-oxygen-parameters-20261004.json"
+        ],
+        "kind": "pond",
+        "geometry_feature_id": "pond-1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              38.0,
+              0.0
+            ],
+            [
+              38.76537,
+              0.15224
+            ],
+            [
+              39.41421,
+              0.58579
+            ],
+            [
+              39.84776,
+              1.23463
+            ],
+            [
+              40.0,
+              2.0
+            ],
+            [
+              40.0,
+              38.0
+            ],
+            [
+              39.84776,
+              38.76537
+            ],
+            [
+              39.41421,
+              39.41421
+            ],
+            [
+              38.76537,
+              39.84776
+            ],
+            [
+              38.0,
+              40.0
+            ],
+            [
+              2.0,
+              40.0
+            ],
+            [
+              1.23463,
+              39.84776
+            ],
+            [
+              0.58579,
+              39.41421
+            ],
+            [
+              0.15224,
+              38.76537
+            ],
+            [
+              0.0,
+              38.0
+            ],
+            [
+              0.0,
+              2.0
+            ],
+            [
+              0.15224,
+              1.23463
+            ],
+            [
+              0.58579,
+              0.58579
+            ],
+            [
+              1.23463,
+              0.15224
+            ],
+            [
+              2.0,
+              0.0
+            ],
+            [
+              38.0,
+              0.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pond-2",
+      "properties": {
+        "id": "pond-2",
+        "type": "Face",
+        "label": "魚塭 2（模擬）",
+        "simulation_label": "模擬",
+        "provenance_refs": [
+          "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+          "inputs/pond-oxygen-parameters-20261004.json"
+        ],
+        "kind": "pond",
+        "geometry_feature_id": "pond-2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              81.0,
+              0.0
+            ],
+            [
+              81.76537,
+              0.15224
+            ],
+            [
+              82.41421,
+              0.58579
+            ],
+            [
+              82.84776,
+              1.23463
+            ],
+            [
+              83.0,
+              2.0
+            ],
+            [
+              83.0,
+              38.0
+            ],
+            [
+              82.84776,
+              38.76537
+            ],
+            [
+              82.41421,
+              39.41421
+            ],
+            [
+              81.76537,
+              39.84776
+            ],
+            [
+              81.0,
+              40.0
+            ],
+            [
+              45.0,
+              40.0
+            ],
+            [
+              44.23463,
+              39.84776
+            ],
+            [
+              43.58579,
+              39.41421
+            ],
+            [
+              43.15224,
+              38.76537
+            ],
+            [
+              43.0,
+              38.0
+            ],
+            [
+              43.0,
+              2.0
+            ],
+            [
+              43.15224,
+              1.23463
+            ],
+            [
+              43.58579,
+              0.58579
+            ],
+            [
+              44.23463,
+              0.15224
+            ],
+            [
+              45.0,
+              0.0
+            ],
+            [
+              81.0,
+              0.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pond-3",
+      "properties": {
+        "id": "pond-3",
+        "type": "Face",
+        "label": "魚塭 3（模擬）",
+        "simulation_label": "模擬",
+        "provenance_refs": [
+          "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+          "inputs/pond-oxygen-parameters-20261004.json"
+        ],
+        "kind": "pond",
+        "geometry_feature_id": "pond-3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              38.0,
+              43.0
+            ],
+            [
+              38.76537,
+              43.15224
+            ],
+            [
+              39.41421,
+              43.58579
+            ],
+            [
+              39.84776,
+              44.23463
+            ],
+            [
+              40.0,
+              45.0
+            ],
+            [
+              40.0,
+              81.0
+            ],
+            [
+              39.84776,
+              81.76537
+            ],
+            [
+              39.41421,
+              82.41421
+            ],
+            [
+              38.76537,
+              82.84776
+            ],
+            [
+              38.0,
+              83.0
+            ],
+            [
+              2.0,
+              83.0
+            ],
+            [
+              1.23463,
+              82.84776
+            ],
+            [
+              0.58579,
+              82.41421
+            ],
+            [
+              0.15224,
+              81.76537
+            ],
+            [
+              0.0,
+              81.0
+            ],
+            [
+              0.0,
+              45.0
+            ],
+            [
+              0.15224,
+              44.23463
+            ],
+            [
+              0.58579,
+              43.58579
+            ],
+            [
+              1.23463,
+              43.15224
+            ],
+            [
+              2.0,
+              43.0
+            ],
+            [
+              38.0,
+              43.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "shed-footprint",
+      "properties": {
+        "id": "shed-footprint",
+        "type": "Face",
+        "label": "鐵皮工作屋 footprint（模擬）",
+        "simulation_label": "模擬",
+        "provenance_refs": [
+          "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+          "inputs/pond-oxygen-parameters-20261004.json"
+        ],
+        "kind": "building",
+        "geometry_feature_id": "shed-footprint"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -14,
+              37
+            ],
+            [
+              -3,
+              37
+            ],
+            [
+              -3,
+              47
+            ],
+            [
+              -14,
+              47
+            ],
+            [
+              -14,
+              37
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "canal-inlet-south",
+      "properties": {
+        "id": "canal-inlet-south",
+        "type": "Face",
+        "label": "供排水溝 canal-inlet-south（模擬）",
+        "simulation_label": "模擬",
+        "provenance_refs": [
+          "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+          "inputs/pond-oxygen-parameters-20261004.json"
+        ],
+        "kind": "water-channel",
+        "geometry_feature_id": "canal-inlet-south"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -15,
+              -8
+            ],
+            [
+              92,
+              -8
+            ],
+            [
+              92,
+              -5
+            ],
+            [
+              -15,
+              -5
+            ],
+            [
+              -15,
+              -8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "canal-inlet-west",
+      "properties": {
+        "id": "canal-inlet-west",
+        "type": "Face",
+        "label": "供排水溝 canal-inlet-west（模擬）",
+        "simulation_label": "模擬",
+        "provenance_refs": [
+          "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+          "inputs/pond-oxygen-parameters-20261004.json"
+        ],
+        "kind": "water-channel",
+        "geometry_feature_id": "canal-inlet-west"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8,
+              -5
+            ],
+            [
+              -5,
+              -5
+            ],
+            [
+              -5,
+              90
+            ],
+            [
+              -8,
+              90
+            ],
+            [
+              -8,
+              -5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "canal-drain-centre",
+      "properties": {
+        "id": "canal-drain-centre",
+        "type": "Face",
+        "label": "供排水溝 canal-drain-centre（模擬）",
+        "simulation_label": "模擬",
+        "provenance_refs": [
+          "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+          "inputs/pond-oxygen-parameters-20261004.json"
+        ],
+        "kind": "water-channel",
+        "geometry_feature_id": "canal-drain-centre"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              41.2,
+              20
+            ],
+            [
+              42.2,
+              20
+            ],
+            [
+              42.2,
+              90
+            ],
+            [
+              41.2,
+              90
+            ],
+            [
+              41.2,
+              20
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "canal-drain-east",
+      "properties": {
+        "id": "canal-drain-east",
+        "type": "Face",
+        "label": "供排水溝 canal-drain-east（模擬）",
+        "simulation_label": "模擬",
+        "provenance_refs": [
+          "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+          "inputs/pond-oxygen-parameters-20261004.json"
+        ],
+        "kind": "water-channel",
+        "geometry_feature_id": "canal-drain-east"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85,
+              20
+            ],
+            [
+              88,
+              20
+            ],
+            [
+              88,
+              90
+            ],
+            [
+              85,
+              90
+            ],
+            [
+              85,
+              20
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "canal-drain-north",
+      "properties": {
+        "id": "canal-drain-north",
+        "type": "Face",
+        "label": "供排水溝 canal-drain-north（模擬）",
+        "simulation_label": "模擬",
+        "provenance_refs": [
+          "decisions/2026-10-04-pond-twin-inventory-and-model.md",
+          "inputs/pond-oxygen-parameters-20261004.json"
+        ],
+        "kind": "water-channel",
+        "geometry_feature_id": "canal-drain-north"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2,
+              85
+            ],
+            [
+              88,
+              85
+            ],
+            [
+              88,
+              88
+            ],
+            [
+              -2,
+              88
+            ],
+            [
+              -2,
+              85
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

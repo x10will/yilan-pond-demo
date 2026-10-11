@@ -163,7 +163,8 @@ html[data-farm-deployment=static] .panel-ai,html[data-farm-deployment=static] .a
 
 /* Opt-in pond workshop presentation; 六堆 uses none of these selectors. */
 html[data-pond-ui=true] .topbar{gap:12px;padding:10px 20px}
-html[data-pond-ui=true] .brand h1{letter-spacing:.03em;font-size:16px}
+html[data-pond-ui=true] .brand{flex:1;overflow:hidden}
+html[data-pond-ui=true] .brand h1{min-width:0;letter-spacing:.03em;font-size:16px}
 html[data-pond-ui=true] .brand small{display:none}
 html[data-pond-ui=true] .pond-simulation-banner{padding:8px 24px;color:#d1e6de;background:#183732;border-bottom:1px solid #31544d;font-size:12px}
 html[data-pond-ui=true] .source-label{display:none}
@@ -190,6 +191,9 @@ html[data-pond-ui=true] .panel-grid>.grid-stack-item.menu-open{z-index:80!import
 html[data-pond-ui=true] .panel-actions{position:fixed;right:auto;bottom:auto;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);z-index:60}
 html[data-pond-ui=true] .panel-actions :is([data-action^=move-],[data-action=grow],[data-action=shrink]){display:none}
 html[data-pond-ui=true] .farm-credit-full{max-height:36vh;overflow:auto}
+html[data-pond-ui=true] .farm-credit-lineage>summary{min-height:44px;display:flex;align-items:center;cursor:pointer}
+html[data-pond-ui=true] iframe.map-frame:focus-visible,html[data-pond-ui=true] iframe.map-frame[data-pond-focus-visible]{outline:3px solid #a2dec9;outline-offset:-3px}
+html[data-pond-ui=true] .pond-guided-story:has(.pond-guided-list[open]){z-index:40}
 html[data-pond-ui=true] .pond-panel{font-size:14px;gap:12px}
 html[data-pond-ui=true] .pond-panel-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 html[data-pond-ui=true] .pond-badge{display:inline-block;align-self:flex-start;border:1px solid #709589;background:#24443a;color:#c7e4d1;font-weight:600;border-radius:6px;font-size:11px;padding:2px 7px}
@@ -310,12 +314,13 @@ html[data-pond-ui=true] .pond-guided-story[hidden],html[data-pond-ui=true] .pond
 html[data-pond-ui=true] .replay-controls[data-ended=true] button:first-child{background:#326858;border-color:#a2dec9}
 /* Will, 2026-10-07: desktop controls occupy two rows so the map owns the card. */
 @media(min-width:768px){
- html[data-pond-ui=true] .panel-map .replay-controls{display:flex;flex-wrap:nowrap;gap:5px;padding:6px 10px}
+ html[data-pond-ui=true] .panel-map .replay-controls{display:flex;flex-wrap:wrap;gap:5px;padding:6px 10px}
+ html[data-pond-ui=true] .panel-map .replay-controls button{flex-shrink:0}
  html[data-pond-ui=true] .panel-map .replay-controls input[type=range]{flex:1;min-width:60px;min-height:32px;width:0;margin:0}
  html[data-pond-ui=true] .panel-map .replay-controls :is(button,select){min-height:32px;min-width:28px;padding:3px 6px;font-size:11px;white-space:nowrap}
  html[data-pond-ui=true] .panel-map .replay-controls select{min-width:82px;width:auto}
  html[data-pond-ui=true] .panel-map .replay-controls output{flex-shrink:0;font-size:11px;padding:0}
- html[data-pond-ui=true] .pond-guided-story{display:flex;align-items:center;gap:5px;padding:6px 10px}
+ html[data-pond-ui=true] .pond-guided-story{display:flex;flex-wrap:wrap;align-items:center;gap:5px;padding:6px 10px}
  html[data-pond-ui=true] .pond-guided-heading{flex:1;min-width:0;font-size:12px}
  html[data-pond-ui=true] .pond-guided-sequence{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
  html[data-pond-ui=true] .pond-guided-story>:is(.pond-guided-title,.pond-guided-caption,.pond-key-numbers,.pond-story-language),
@@ -328,6 +333,9 @@ html[data-pond-ui=true] .replay-controls[data-ended=true] button:first-child{bac
  html[data-pond-ui=true] .pond-guided-list>summary{border:1px solid #466773;border-radius:7px;background:#173746}
  html[data-pond-ui=true] .pond-guided-list>div{left:10px;right:10px}
 }
+@media(min-width:768px) and (max-width:1023px){
+ html[data-pond-ui=true] .brand h1{font-size:14px;letter-spacing:0}
+}
 @media(max-width:767px){
  html[data-pond-ui=true] .pond-shell-load-failure{position:fixed;inset:auto 0 0;z-index:30;max-height:50dvh;overflow:auto;pointer-events:auto}
  html[data-pond-ui=true]{--pond-phone-sheet-height:300px}
@@ -335,6 +343,8 @@ html[data-pond-ui=true] .replay-controls[data-ended=true] button:first-child{bac
  html[data-pond-ui=true] .topbar{height:calc(48px + env(safe-area-inset-top));min-height:calc(48px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 8px 0}
  html[data-pond-ui=true] .brand h1{font-size:11px;letter-spacing:0}
  html[data-pond-ui=true] .pond-simulation-banner{position:relative;z-index:5;font-size:14px;line-height:1.35;height:44px;padding:3px 10px}
+ html[data-pond-ui=true][lang=en] .panel-core-app{--phone-top:calc(112px + env(safe-area-inset-top))}
+ html[data-pond-ui=true][lang=en] .pond-simulation-banner{height:64px}
  html[data-pond-ui=true] .deck-navigation{display:none!important}
  html[data-pond-ui=true] .panel-grid{position:fixed!important;display:block!important;height:auto!important;margin:0;padding:0;inset:var(--phone-top) 0 var(--pond-phone-sheet-height)!important;overflow:visible;pointer-events:none}
  html[data-pond-ui=true] .panel-grid:has(.panel-menu[open]){z-index:80}
@@ -345,13 +355,15 @@ html[data-pond-ui=true] .replay-controls[data-ended=true] button:first-child{bac
  html[data-pond-ui=true] .panel-grid>.panel-map>.panel-card{height:100%!important;border-radius:0}
  html[data-pond-ui=true] .ui-resizable-se{display:none!important}
  html[data-pond-ui=true] .panel-grid>.is-maximized:not(.panel-map){position:absolute!important;inset:0!important;height:100%!important}
- html[data-pond-ui=true] .panel-grid>.is-collapsed.pond-phone-active:not(.panel-map),html[data-pond-ui=true] .panel-grid>.is-collapsed.pond-phone-active>.panel-card{height:100%!important}
- html[data-pond-ui=true] .panel-grid>.pond-phone-active .panel-body{display:block!important}
+ html[data-pond-ui=true] .panel-grid>.grid-stack-item.pond-phone-active.is-collapsed:not(.panel-map){height:56px!important}
+ html[data-pond-ui=true] .panel-grid>.pond-phone-active:not(.is-collapsed) .panel-body{display:block!important}
  html[data-pond-ui=true] .panel-body{padding:10px 12px}
  html[data-pond-ui=true] .pond-panel{gap:8px;font-size:14px}
  html[data-pond-ui=true] .pond-panel-content{gap:8px}
  html[data-pond-ui=true] .pond-panel h3.pond-story-title{font-size:16px}
  html[data-pond-ui=true] .pond-guided-story{position:fixed;inset:auto 0 0;z-index:30;display:grid;grid-template-columns:minmax(0,2fr) minmax(100px,1fr);gap:4px 8px;padding:8px max(10px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));border:1px solid #73919a;border-radius:18px 18px 0 0;background:#102a37f7;box-shadow:0 -5px 20px #07141b55}
+ /* Will, 2026-10-11 S2: reserve at least 45% of phone height for the map. */
+ html[data-pond-ui=true] .pond-guided-story{max-height:calc(55dvh - var(--phone-top));min-height:0;overflow-y:auto;overscroll-behavior:contain;align-content:start}
  html[data-pond-ui=true] .pond-guided-story>:is(.pond-guided-heading,.pond-guided-title,.pond-guided-caption,.pond-key-numbers,.pond-camera-controls,.replay-controls,.pond-phone-panel-picker){grid-column:1/-1}
  html[data-pond-ui=true] .pond-guided-heading{font-size:14px}
  html[data-pond-ui=true] .pond-guided-title{font-size:17px;margin:0}
@@ -361,7 +373,7 @@ html[data-pond-ui=true] .replay-controls[data-ended=true] button:first-child{bac
  html[data-pond-ui=true] .pond-guided-stepper{width:100%;margin:0}
  html[data-pond-ui=true] .pond-guided-list{font-size:14px;align-self:center}
  html[data-pond-ui=true] .pond-guided-list>summary{justify-content:center;border:1px solid #466773;border-radius:7px;background:#173746}
- html[data-pond-ui=true] .pond-guided-list>div{top:auto;bottom:100%;left:10px;right:10px;grid-template-columns:1fr;max-height:45dvh;z-index:35}
+ html[data-pond-ui=true] .pond-guided-list>div{position:fixed;top:auto;bottom:var(--pond-phone-sheet-height);left:10px;right:10px;grid-template-columns:1fr;max-height:45dvh;z-index:35}
  html[data-pond-ui=true] .pond-camera-controls{display:flex;flex-wrap:wrap;margin:0}
  html[data-pond-ui=true] .pond-camera-controls button{flex:1}
  html[data-pond-ui=true] .pond-camera-controls button{min-height:44px;font-size:14px;white-space:nowrap}
@@ -392,4 +404,19 @@ html[data-pond-ui=true] .replay-controls[data-ended=true] button:first-child{bac
  html[data-pond-ui=true] .pond-event-history{font-size:11px}
  html[data-pond-ui=true] .farm-credit{top:8px;left:8px}
  html[data-pond-ui=true] .farm-credit-full{max-height:max(100px,calc(100dvh - var(--phone-top) - var(--pond-phone-sheet-height) - 55px));overflow:auto}
+}
+
+/* Will, 2026-10-11 S2: keep the first-screen map visible on short desktops. */
+@media(min-width:768px) and (max-height:600px){
+ html[data-pond-ui=true] .topbar{height:44px;min-height:44px;padding:0 12px}
+ html[data-pond-ui=true] .brand h1{margin:0;font-size:14px}
+ html[data-pond-ui=true] .brand-icon{font-size:24px;line-height:1}
+ html[data-pond-ui=true] .pond-simulation-banner{padding:4px 12px;font-size:11px;line-height:16px}
+ html[data-pond-ui=true] .panel-grid{margin:4px 12px 12px}
+ html[data-pond-ui=true] .panel-map>.panel-card{height:var(--pond-panel-height,calc(100dvh - 72px))!important}
+ html[data-pond-ui=true] .panel-map .panel-header{min-height:28px;padding:0 7px;gap:4px}
+ html[data-pond-ui=true] .panel-map .panel-header :is(button,summary){min-height:28px;padding:0}
+ html[data-pond-ui=true] .panel-map .replay-controls{padding:3px 8px}
+ html[data-pond-ui=true] .pond-guided-story{padding:2px 8px;gap:4px}
+ html[data-pond-ui=true] .pond-guided-story :is(button,.pond-guided-list>summary){min-height:30px}
 }

@@ -1,0 +1,15 @@
+# 宜蘭 fix integration and frozen Sol 6.1 narration
+
+Authority: Will, 2026-10-04, integration lane brief.
+
+Will said "seriously bugged" and "you didn't see it mixed with farm? the title, the farm, everything is messed up". For AI he said "A+B+C" and "use codex exec on sol6.1 first. but note the equivlant cost." His integration brief instructs: "Point the 宜蘭 site inputs at `pond-ai-codex-sol61-20261004-01.json`, through a new dated site input descriptor if that's the pattern, and record a dated decision file citing Will's words above."
+
+This execution adopts the shell and content lanes together, preserves the site title AI智慧農業環境監測暨動態決策系統, and binds a new response input descriptor to the original frozen Codex generation. Its original generation decision remains decisions/2026-10-04-pond-ai-codex-backend.md. The raw evidence is immutable: SHA-256 855e2af0006969850dd256f7e219c1219d78bfbf4ecf5d0f820ec5e6302e9bf5. Historical validation counts in it remain the original 2 accepted / 11 rejected; new bake validation records the corrected result separately.
+
+The executed run used gpt-6.1-sol, low effort, default tier, 303,226 reported total tokens, and 163.265 seconds. With no reported input/output split, its equivalent purchased-plan-credit estimate is 15.1613–75.8065, displayed rounded as 15.16–75.81. This is equivalent cost, not a billing receipt.
+
+All thirteen raw texts were read by the integrating Codex session. They narrate an explicitly simulated pre-baked story in third person. The two proposal beats describe the existing script, rather than instructing an operator. The summary retains the failed circuit and distinguishes modeled recovery from equipment repair. They contain no operating advice and pass the narrowed lexical validator. Canonical context and prompt binding checks still apply independently. Any generation whose context differs after the content corrections retains the corrected script and the label 腳本備援; no frozen evidence is rewritten to conceal a mismatch.
+
+Accepted lines display AI 生成（Sol 6.1，模擬情境；非操作建議）. The no-response comparison uses its authored script; response narration never transfers to it. All geometry and telemetry remain simulated; no live sensors, diagnosis, real operational recommendations, runtime routing or production deployment is introduced. New bakes, packages and acceptance receive new dated receipts. Local merges and co-authored commits only; no remote publication.
+
+Portable delivery: Will's 2026-09-27 leak-scan ruling excludes local machine paths from transferable bundles. The descriptor still selects the original frozen file and names a portable delivery copy. The baker verifies that the copy differs only in the cost roster path plus an original_evidence_binding containing the original path, byte count and SHA-256. Prompts, raw responses, validation history, timings, model and costs are unchanged. The copy uses model-roster.md (2026-09-30) for the public rate-source label. Its package receipt pins its own bytes; the original input remains committed unchanged and offline.

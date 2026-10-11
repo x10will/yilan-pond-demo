@@ -452,9 +452,13 @@ export default async function install(api, input) {
     box(group, motorMaterial, [0, 0, 1.3], [1.55, 0.95, 0.86]);
     box(group, materials.cream, [0, 0, 1.8], [1.8, 1.1, 0.16]);
     for (let x = -0.5; x <= 0.5; x += 0.25) box(group, materials.dark, [x, -0.486, 1.35], [0.1, 0.02, 0.45]);
-    box(group, materials.metal, [0, 0, 0.67], [0.11, 0.11, 5.1], [0, Math.PI / 2, 0], 'cylinder');
+    box(group, materials.metal, [0, 0, 0.67], [0.11, 0.11, canonicalPlacement ? 7.4 : 5.1], [0, Math.PI / 2, 0], 'cylinder');
     const wheels = [];
-    for (const x of [-2.05, 2.05]) {
+    // Canonical pond equipment: put paddles outside the body pontoons. The
+    // earlier ±2.05 wheels intersected their yellow faces (GPU audit P4).
+    // Legacy authored worlds retain their exact original geometry.
+    const wheelXs = canonicalPlacement ? [-3.7, 3.7] : [-2.05, 2.05];
+    for (const x of wheelXs) {
       const wheel = new THREE.Group(); wheel.position.set(x, 0, 0.68); wheel.name = 'decorative-paddle-wheel';
       group.add(wheel); wheels.push(wheel);
       box(wheel, materials.cream, [0, 0, 0], [0.2, 0.2, 0.58], [0, Math.PI / 2, 0], 'cylinder');

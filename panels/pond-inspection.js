@@ -103,6 +103,8 @@ export function pondScenarioHref(scenario, href = globalThis.location?.href) {
   if (scenario.param == null) url.searchParams.delete('scenario');
   else url.searchParams.set('scenario', scenario.param);
   url.searchParams.delete('variant');
+  const locale = globalThis.document?.documentElement?.lang;
+  if (locale === 'en' || locale === 'zh-Hant') url.searchParams.set('lang', locale);
   return url.href;
 }
 

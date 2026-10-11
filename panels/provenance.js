@@ -1,7 +1,7 @@
 // 模擬與出處: the simulation notices plus where every loaded byte came from.
 // Each value is read from the file the app actually loaded.
 import {APP_BASE, CANONICAL_BASE, DT_BASE, SITE, canonicalAdapter, el, loadJSON, noticeBar} from './farm-data.js';
-import {drawPondOxygenModel, pondPresentation} from './pond.js';
+import {drawPondOxygenModel, localizePondChrome, localizePondPanelOptions, pondPresentation, pondText} from './pond.js';
 import {aiNarrationGenerated} from './pond-ai-narration.js';
 import {appendPondLoadFailure, installPondPanelMenus} from './pond-presenter.js';
 
@@ -16,18 +16,33 @@ const short = value => (typeof value === 'string' ? value.replace(/^sha256:/, ''
 const licence = value => (typeof value === 'string' && value.startsWith('UNSET') ? '未設定' : value || '—');
 
 export const provenancePanel = {
-  id: 'pond-provenance', title: '模擬與出處', icon: 'ⓘ', defaultSize: {w: 4, h: 5},
+  id: 'pond-provenance', get title() { return pondPresentation(SITE) ? pondText('模擬與出處') : '模擬與出處'; },
+  icon: 'ⓘ', defaultSize: {w: 4, h: 5},
 
-  render(container, {loadCandidate = () => canonicalAdapter()} = {}) {
+  render(container, ctx = {}) {
+    const {loadCandidate = () => canonicalAdapter()} = ctx;
+    const pond = pondPresentation(SITE);
+    const locale = () => ctx.locale || globalThis.document?.documentElement?.lang || 'zh-Hant';
+    const chrome = [], failures = [];
+    // Register fixed UI explicitly. Source titles, notices and attribution use
+    // plain el(), so even an authored string matching a UI label stays intact.
+    const ui = (tag, text, cls) => {
+      const node = el(tag, typeof text === 'function' ? text(locale()) : text, cls);
+      if (pond) {
+        chrome.push([node, text]);
+        node.textContent = typeof text === 'function' ? text(locale()) : pondText(text, locale());
+      }
+      return node;
+    };
     const root = el('div', null, 'farm-panel');
     const list = el('dl', null, 'pond-provenance');
     let notices;
-    if (pondPresentation(SITE)) {
+    if (pond) {
       installPondPanelMenus();
       notices = el('ul', null, 'pond-full-notices');
       for (const text of SITE.notices || []) notices.append(el('li', text));
       const details = el('details', null, 'pond-provenance-notices');
-      details.append(el('summary', '完整模擬與地理聲明'), notices);
+      details.append(ui('summary', '完整模擬與地理聲明'), notices);
       const credits = el('ul', null, 'pond-full-notices');
       for (const credit of SITE.credits || []) {
         const item = el('li');
@@ -35,23 +50,40 @@ export const provenancePanel = {
         else item.textContent = credit.text;
         credits.append(item);
       }
-      const attribution = el('details'); attribution.append(el('summary', '地圖授權 · OSM ODbL／內政部 DTM'), credits);
-      root.append(el('span', '模擬', 'pond-badge'), details, attribution, list);
+      const attribution = el('details'); attribution.append(ui('summary', '地圖授權 · OSM ODbL／內政部 DTM'), credits);
+      root.append(ui('span', '模擬', 'pond-badge'), details, attribution, list);
     } else root.append(noticeBar(), el('p', '非正式候選示範；不提供即時監測、診斷或正式營運服務。', 'farm-caption'), list);
     container.append(root);
 
-    const row = (term, value, href) => {
+    const row = (term, value, href, {authoredTerm = false} = {}) => {
       const dd = el('dd');
-      if (href) { const a = el('a', value); a.href = href; a.target = '_blank'; a.rel = 'noopener'; dd.append(a); }
-      else dd.textContent = value;
-      list.append(el('dt', term), dd);
+      if (href) { const a = typeof value === 'function' ? ui('a', value) : el('a', value); a.href = href; a.target = '_blank'; a.rel = 'noopener'; dd.append(a); }
+      else if (typeof value === 'function') {
+        dd.textContent = value(locale()); if (pond) chrome.push([dd, value]);
+      } else dd.textContent = value;
+      list.append(authoredTerm ? el('dt', term) : ui('dt', term), dd);
     };
     const failed = (term, error) => {
       if (!pondPresentation(SITE)) { row(term, `無法讀取（${error.message}）`); return; }
       const value = el('dd');
-      appendPondLoadFailure(value, error);
-      list.append(el('dt', term), value);
+      appendPondLoadFailure(value, error, locale());
+      failures.push([value, error]);
+      list.append(ui('dt', term), value);
     };
+
+    const refreshLocale = () => {
+      if (!pond) return;
+      const selectedLocale = locale();
+      for (const [node, text] of chrome) node.textContent = typeof text === 'function' ? text(selectedLocale) : pondText(text, selectedLocale);
+      localizePondChrome(root, selectedLocale);
+      for (const [node, error] of failures) { node.replaceChildren(); appendPondLoadFailure(node, error, selectedLocale); }
+      root.lang = selectedLocale;
+      localizePondPanelOptions(root, selectedLocale);
+    };
+    const localeObserver = pond && globalThis.MutationObserver && globalThis.document?.documentElement
+      ? new MutationObserver(refreshLocale) : null;
+    localeObserver?.observe(document.documentElement, {attributes:true, attributeFilter:['lang']});
+    refreshLocale();
 
     const ready = (async () => {
       const [runtime, candidate] = await Promise.allSettled([
@@ -69,13 +101,15 @@ export const provenancePanel = {
           if (pondPresentation(SITE)) drawPondOxygenModel(root, projection, candidate.value);
           for (const link of projection.provenanceLinks || []) {
             if (pondPresentation(SITE) && /pond-oxygen/.test(link.sourceId)) continue;
-            row(link.title, link.title, new URL(link.href, CANONICAL_BASE).href);
+            row(link.title, link.title, new URL(link.href, CANONICAL_BASE).href, {authoredTerm:true});
           }
           const narration = candidate.value.artifacts['composed-frames.json']?.canonical_frames?.flatMap(frame => frame.ai_narration || []) || [];
           if (narration.length) {
             const models = [...new Set(narration.map(item => item.lineage?.model_id).filter(Boolean))];
             const generated = narration.filter(aiNarrationGenerated).length;
-            row(generated ? 'AI 旁白（模擬情境；非操作建議）' : '腳本備援（A；模擬情境；非操作建議）', `${models.join('、') || '模型未回覆'} · 生成 ${generated} 筆／腳本備援 ${narration.length - generated} 筆 · 完整提示與日期`,
+            row(generated ? 'AI 旁白（模擬情境；非操作建議）' : '腳本備援（A；模擬情境；非操作建議）', selectedLocale => pond && selectedLocale === 'en'
+              ? `${models.join('、') || 'No model response'} · Generated ${generated} / Script fallback ${narration.length - generated} · Full prompt and date`
+              : `${models.join('、') || '模型未回覆'} · 生成 ${generated} 筆／腳本備援 ${narration.length - generated} 筆 · 完整提示與日期`,
               new URL(narration[0].lineage.frozen_path, CANONICAL_BASE).href);
           }
         }
@@ -105,21 +139,23 @@ export const provenancePanel = {
         // Copied by run.py or the static build from the generation's staging receipt, which is not served.
         const s = generation.staging;
         if (s) row(pondPresentation(SITE) ? '站點資料' : 'Site data', pondPresentation(SITE)
-          ? `${SITE.label?.split('·')[0].trim() || '魚塭站點'} ${SITE.site_id} · 平台程式 ${short(s.farm_commit)} · DT ${short(s.dt_commit)}${s.status === 'local-assembled' ? ' · 本機組裝' : ''}`
+          ? selectedLocale => `${SITE.label?.split('·')[0].trim() || (selectedLocale === 'en' ? 'Pond site' : '魚塭站點')} ${SITE.site_id} · ${selectedLocale === 'en' ? 'Platform code' : '平台程式'} ${short(s.farm_commit)} · DT ${short(s.dt_commit)}${s.status === 'local-assembled' ? (selectedLocale === 'en' ? ' · Locally assembled' : ' · 本機組裝') : ''}`
           : `farm ${short(s.farm_commit)} · DT ${short(s.dt_commit)} · ${s.status}`);
-        else row(pondPresentation(SITE) ? '站點資料' : 'Site data', '此 generation 沒有 staging 紀錄');
+        else row(pondPresentation(SITE) ? '站點資料' : 'Site data', selectedLocale => pond ? pondText('此 generation 沒有 staging 紀錄', selectedLocale) : '此 generation 沒有 staging 紀錄');
         // Copied by run.py or the static build from vendor/panel-core/VENDOR.json, which is not published.
         const v = generation.panelCore;
-        if (v) row('panel-core', `${short(v.sourceCommit)}${v.sourceDirty ? '（dirty）' : ''} · 授權：${licence(v.coreLicense)}`);
-        else row('panel-core', '無法讀取 VENDOR.json 釘選');
-        row('AI 提問', pondPresentation(SITE) ? '即時問答（實驗）需另設端點與金鑰；離線故事使用凍結旁白與腳本備援。'
+        if (v) row('panel-core', selectedLocale => pond && selectedLocale === 'en'
+          ? `${short(v.sourceCommit)}${v.sourceDirty ? ' (dirty)' : ''} · Licence: ${licence(v.coreLicense) === '未設定' ? 'Unset' : licence(v.coreLicense)}`
+          : `${short(v.sourceCommit)}${v.sourceDirty ? '（dirty）' : ''} · 授權：${licence(v.coreLicense)}`);
+        else row('panel-core', selectedLocale => pond ? pondText('無法讀取 VENDOR.json 釘選', selectedLocale) : '無法讀取 VENDOR.json 釘選');
+        row('AI 提問', pondPresentation(SITE) ? selectedLocale => pondText('即時問答（實驗）需另設端點與金鑰；離線故事使用凍結旁白與腳本備援。', selectedLocale)
           : generation.static ? '靜態版不提供（本機開發版為「模擬 AI」）' : '模擬 AI（fake 模式，非真實模型）');
       } else {
         failed('Viewer generation', runtime.reason);
         failed('panel-core', runtime.reason);
       }
-    })();
-    return {root, ready};
+    })().finally(refreshLocale);
+    return {root, ready, close: () => localeObserver?.disconnect()};
   },
 
   update() {},
@@ -127,5 +163,5 @@ export const provenancePanel = {
     return {schemaVersion: 1, kind: 'pond-provenance', visibleFields: ['notices', 'sources'],
       summary: '模擬標示與資料出處（候選資料、裁示、viewer generation、panel-core 版本）；無即時資料。'};
   },
-  dispose(view) { view.root.remove(); },
+  dispose(view) { view.close?.(); view.root.remove(); },
 };

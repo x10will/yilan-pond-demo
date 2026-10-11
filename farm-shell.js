@@ -9,6 +9,7 @@ import {mapUrl} from './manifest.js';
 import {CANONICAL_BASE, DT_BASE, SITE} from './panels/farm-data.js';
 import {SCENARIOS, scenarioCatalogue} from './panels/scenario.js';
 import {siteFrom} from './site.js';
+import {pondPresentation, pondText} from './panels/pond.js';
 
 export const deployment = globalThis.FARM_DEPLOYMENT || null;
 export const isStatic = deployment?.static === true;
@@ -30,7 +31,12 @@ function el(tag, text, cls) {
 
 // Collapsed: a 44 px ⓘ in the map's top-left corner. Open: the notices and
 // farm data lineage links. Tap again, 關閉 or Escape collapses.
-export function mapCredit() {
+const creditLocalizers = new WeakMap();
+export function mapCredit(credits = CREDITS) {
+  const chrome = [];
+  const ui = (tag, text, cls) => {
+    const node = el(tag, text, cls); chrome.push([node, text]); return node;
+  };
   const root = el('div', null, 'farm-credit');
   root.dataset.creditState = 'collapsed';
   const toggle = el('button', 'ⓘ', 'farm-credit-toggle');
@@ -39,33 +45,57 @@ export function mapCredit() {
   toggle.setAttribute('aria-expanded', 'false');
   const panel = el('div', null, 'farm-credit-full');
   panel.hidden = true;
+  const visitorCredits = credits.filter(credit => credit.audience !== 'lineage');
+  const lineageCredits = credits.filter(credit => credit.audience === 'lineage');
   const list = el('ul');
-  for (const credit of CREDITS) {
+  for (const credit of visitorCredits) {
     const item = el('li'), link = el('a', credit.text);
     if (credit.href) { link.href = credit.href; link.target = '_blank'; link.rel = 'noopener'; }
     item.append(link); list.append(item);
   }
-  const close = el('button', '關閉', 'farm-credit-close');
+  let lineage = null;
+  if (lineageCredits.length) {
+    lineage = el('details', null, 'farm-credit-lineage');
+    lineage.open = false;
+    lineage.append(ui('summary', '製作紀錄（技術出處）'));
+    const lineageList = el('ul');
+    for (const credit of lineageCredits) {
+      const item = el('li'), link = el('a', credit.text);
+      if (credit.href) { link.href = credit.href; link.target = '_blank'; link.rel = 'noopener'; }
+      item.append(link); lineageList.append(item);
+    }
+    lineage.append(lineageList);
+  }
+  const close = ui('button', '關閉', 'farm-credit-close');
   close.type = 'button';
-  panel.append(el('strong', '地圖資料來源與授權'), list, close);
+  panel.append(ui('strong', '地圖資料來源與授權'), list, ...(lineage ? [lineage] : []), close);
   const sources = el('div', null, 'farm-credit-sources');
-  sources.append(el('strong', '模擬與出處'));
+  sources.append(ui('strong', '模擬與出處'));
   for (const [label, href] of [
     ['目前模擬資料與收據', CANONICAL_BASE + 'manifest.json'],
     ['農場場景資料與收據', new URL(`data/${SITE.static_mount}/manifest.json`, DT_BASE).href],
   ]) {
-    const link = el('a', label);
+    const link = ui('a', label);
     link.href = href; link.target = '_blank'; link.rel = 'noopener';
     sources.append(link);
   }
   panel.insertBefore(sources, close);
   root.append(toggle, panel);
+  const refreshLocale = () => {
+    // Preserve shared 六堆 chrome. This localization belongs to pond-night.
+    if (!pondPresentation(SITE)) return;
+    const locale = document.documentElement.lang;
+    for (const [node, text] of chrome) node.textContent = pondText(text, locale);
+    toggle.setAttribute('aria-label', pondText('地圖資料來源與授權', locale));
+  };
+  creditLocalizers.set(root, refreshLocale);
+  refreshLocale();
   const set = open => {
     panel.hidden = !open;
     root.dataset.creditState = open ? 'open' : 'collapsed';
     toggle.setAttribute('aria-expanded', String(open));
   };
-  toggle.onclick = () => set(panel.hidden);
+  toggle.onclick = () => { refreshLocale(); set(panel.hidden); };
   close.onclick = () => { set(false); toggle.focus({preventScroll: true}); };
   root.addEventListener('keydown', event => { if (event.key === 'Escape' && !panel.hidden) { set(false); toggle.focus({preventScroll: true}); } });
   return root;
@@ -214,6 +244,9 @@ export function installFarmShell(container, app) {
   };
   scan();
   new MutationObserver(scan).observe(container, {childList: true, subtree: true});
+  if (pondPresentation(SITE)) new MutationObserver(() => {
+    for (const credit of container.querySelectorAll('.farm-credit')) creditLocalizers.get(credit)?.();
+  }).observe(document.documentElement, {attributes:true, attributeFilter:['lang']});
   globalThis.matchMedia?.('(max-width: 767px)').addEventListener('change', () => {
     for (const frame of container.querySelectorAll('iframe.map-frame')) { viewerPhoneCopy(frame); viewerPhoneFrame(frame); }
   });

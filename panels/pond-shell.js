@@ -2,7 +2,7 @@
 // untouched. Only camera pose, HTML controls, labels and canonical event display
 // change; DT still owns scene transforms and playback.
 import {canonicalAdapter, el, SITE} from './farm-data.js';
-import {compactLabel, playbackTime, pondKeyNumbers, pondNumber, pondPeriod, pondProjection, pondStatus, pondWorldState, wallTime, pondText} from './pond.js';
+import {compactLabel, localizePondPanelOptions, playbackTime, pondKeyNumbers, pondMapBadgeText, pondPeriod, pondProjection, pondStatus, pondWorldState, wallTime, pondText} from './pond.js';
 import {appendPondLoadFailure} from './pond-presenter.js';
 
 const textEntry = target => target?.isContentEditable || ['TEXTAREA', 'SELECT'].includes(target?.tagName)
@@ -12,13 +12,30 @@ const shellLabels = {
   'zh-Hant': {reset:'重設示範', inspect:'檢視設備', guided:'返回導覽', previous:'上一章', next:'下一章',
     details:'詳情', camera:'重設視角', speed:'速度', play:'播放', pause:'暫停', replay:'重播',
     ended:'示範已結束；從頭重播', seek:'示範回放時間（零至十分鐘）', provenance:'模擬與出處',
-    chapters:'章節列表', map:'返回地圖', destination:'選擇目前用途的詳細資料'},
+    chapters:'章節列表', map:'返回地圖', destination:'選擇目前用途的詳細資料',
+    story:'模擬情境章節', resize:'調整面板大小；方向鍵調整寬高'},
   en: {reset:'Reset demo', inspect:'Inspect equipment', guided:'Return to tour', previous:'Previous chapter', next:'Next chapter',
     details:'Details', camera:'Reset camera', speed:'Speed', play:'Play', pause:'Pause', replay:'Replay',
     ended:'Demo ended; replay from start', seek:'Demo replay time (zero to ten minutes)', provenance:'Simulation and sources',
-    chapters:'Chapters', map:'Return to map', destination:'Choose detail destination'},
+    chapters:'Chapters', map:'Return to map', destination:'Choose detail destination',
+    story:'Simulated scenario chapters', resize:'Resize panel; use arrow keys to adjust width and height'},
 };
 export const pondShellLabel = (key, locale) => (shellLabels[locale] || shellLabels['zh-Hant'])[key];
+
+export function applyPondCameraPose(entry, viewer, pose, fov) {
+  const signature = JSON.stringify({pose, fov});
+  if (signature === entry.cameraSignature) return true;
+  const camera = entry.frame.contentWindow?.__dt?.camera;
+  if (camera && camera.fov !== fov) { camera.fov = fov; camera.updateProjectionMatrix(); }
+  if (viewer.setCameraPose(pose.position, pose.target) === false) return false;
+  entry.cameraSignature = signature;
+  return true;
+}
+
+export function pondResetRoute(target) {
+  if (target.closest?.('[data-action=reset]')) return 'layout';
+  return target.closest?.('.farm-demo-reset') ? 'demo' : null;
+}
 
 // panel-core exposes selection/focus and its add-panel control, rather than an
 // addPanel API. Use those existing routes to recreate a closed destination.
@@ -65,12 +82,29 @@ export function bindPondPlaybackControls(controls, clock, onDone) {
   for (const name of ['pointerup', 'pointercancel', 'change']) range.addEventListener(name, event => onDone(event.target));
 }
 
+// The embedded viewer's Space belongs to the host replay, including Replay at
+// the endpoint. Consume it before DT can start its independent internal clock.
+export function bindPondSpacePlayback(frame, controls) {
+  const documents = new Set([frame.contentDocument, frame.ownerDocument].filter(Boolean));
+  const toggle = event => {
+    const target = event.target;
+    if (![' ', 'Space'].includes(event.key) || textEntry(target)
+      || ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target?.tagName)
+      || target?.closest?.('button,input,select,textarea,[role=button]')) return;
+    event.preventDefault(); event.stopImmediatePropagation();
+    if (!event.repeat) controls?.querySelector('button')?.click();
+  };
+  for (const doc of documents) doc.addEventListener('keydown', toggle, true);
+  return () => { for (const doc of documents) doc.removeEventListener?.('keydown', toggle, true); };
+}
+
 // Pond-only presentation around panel-core's existing clock. Ended playback is
 // paused once; replay seeks through the same canonical projection as a reset.
 export function bindPondEndedState(controls, clock, onReplay = () => {}, locale = () => 'zh-Hant') {
   const play = controls?.querySelector('button');
   if (!play) return;
   const original = play.onclick;
+  const pause = clock.pause, start = clock.play;
   const render = () => {
     const ended = clock.time >= clock.duration;
     if (ended && !clock.paused) clock.pause();
@@ -79,13 +113,17 @@ export function bindPondEndedState(controls, clock, onReplay = () => {}, locale 
     play.dataset.label = ended ? 'replay' : clock.paused ? 'play' : 'pause';
     play.setAttribute('aria-label', ended ? pondShellLabel('ended', locale()) : play.textContent);
   };
+  // panel-core only publishes seek ticks. Inspection and pointer pauses need
+  // the same immediate label update even while the clock stays at this sample.
+  clock.pause = function (...args) { const result = pause.apply(this, args); render(); return result; };
+  clock.play = function (...args) { const result = start.apply(this, args); render(); return result; };
   play.onclick = event => {
     if (clock.time >= clock.duration) { onReplay(); clock.seek(0); clock.play(); }
     else original?.call(play, event);
     render();
   };
   const unsubscribe = clock.subscribe(render);
-  return () => { unsubscribe?.(); play.onclick = original; };
+  return () => { unsubscribe?.(); play.onclick = original; clock.pause = pause; clock.play = start; };
 }
 
 export function pausePondChapterBoundary(clock, chapters, previous, milliseconds, guided) {
@@ -134,89 +172,131 @@ export function focusPondViewer(frame, mode, target) {
   return true;
 }
 
-// Camera presentation only. DT's current WASD uses metres per render frame;
-// consume native keys here and use its documented metre-translation hook.
-// viewChanged supplies heading in degrees (sampled by DT every 250 ms).
-export function bindPondInspectionMovement(frame, mode, heading, inspect = () => {}) {
-  const doc = frame.contentDocument, win = frame.contentWindow, host = frame.ownerDocument, held = new Set();
-  const listeners = [];
-  const listen = (target, name, callback, capture = false) => {
-    if (!target?.addEventListener) return;
-    target.addEventListener(name, callback, capture); listeners.push([target, name, callback, capture]);
+// Keep native dolly above the sanctioned site floor BEFORE its next step. A
+// render-time Z clamp alone lets cursor zoom keep shifting the orbit target.
+// The angle-dependent minimum preserves close steep views and low-pitch banks.
+export function bindPondZoomFloor(frame, options = SITE.presentation?.viewer || {}) {
+  const doc = frame.contentDocument, win = frame.contentWindow;
+  const {camera, controls} = win?.__dt || {};
+  if (!camera || !controls) return;
+  const minimum = controls.minDistance;
+  const cursorZoom = controls.zoomToCursor;
+  let cursorReset;
+  const viewer = win.__dtEmbed, originalPose = viewer?.setCameraPose;
+  const setPose = function (...args) {
+    // A wheel limit belongs to interactive dolly, never an authored pose.
+    controls.minDistance = minimum;
+    return originalPose.apply(this, args);
   };
-  let animation, previous, shifted = false;
-  const stop = () => { held.clear(); shifted = false; if (animation != null) win.cancelAnimationFrame?.(animation); animation = null; };
-  const extents = new WeakMap();
-  const extent = root => {
-    if (!root || typeof win.__dt?.featureExtent !== 'function') return null;
-    if (!extents.has(root)) {
-      const row = win.__dt.featureExtent(root);
-      if (!row || ![...row.center, ...row.size].every(Number.isFinite) || row.size[0] <= 0 || row.size[1] <= 0) return null;
-      extents.set(root, {size:row.size, min:row.center.map((value, axis) => value - row.size[axis] / 2),
-        max:row.center.map((value, axis) => value + row.size[axis] / 2)});
+  if (typeof originalPose === 'function') viewer.setCameraPose = setPose;
+  const limit = () => {
+    if (options.wheel_zoom_to_cursor === false) {
+      controls.zoomToCursor = false;
+      clearTimeout(cursorReset);
+      // Native event dispatch may run microtasks between listeners. Restore in
+      // the next task, after OrbitControls has consumed this wheel event.
+      cursorReset = setTimeout(() => { controls.zoomToCursor = cursorZoom; }, 0);
     }
-    return extents.get(root);
+    const offset = camera.position.clone().sub(controls.target);
+    const range = Math.hypot(offset.x, offset.y, offset.z);
+    const height = win.DT_SITE.cameraFloorZ - controls.target.z;
+    const floorDistance = height > 0 && offset.z > 0
+      ? Math.max(minimum, Math.min(controls.maxDistance, height * range / offset.z)) : minimum;
+    const bounds = options.close_zoom_bounds_xy, target = controls.target;
+    const outside = bounds?.length === 4 && (target.x < bounds[0] || target.y < bounds[1]
+      || target.x > bounds[2] || target.y > bounds[3]);
+    controls.minDistance = Math.min(controls.maxDistance, Math.max(floorDistance,
+      outside && Number.isFinite(options.context_zoom_min_distance_m) ? options.context_zoom_min_distance_m : minimum));
   };
-  const tick = now => {
-    animation = null;
-    if (mode() !== 'inspection' || !held.size || doc.hidden || host?.hidden) { stop(); return; }
-    const seconds = Math.max(0, Math.min(.1, (now - previous) / 1000)); previous = now;
-    const angle = heading() * Math.PI / 180;
-    const forward = Number(held.has('w')) - Number(held.has('s'));
-    const right = Number(held.has('d')) - Number(held.has('a'));
-    const up = Number(held.has('e')) - Number(held.has('q'));
-    const length = Math.hypot(forward, right, up);
-    if (length) {
-      const pose = win.__dt?.cameraState?.();
-      const range = pose && Math.hypot(pose.position.x - pose.target.x,
-        pose.position.y - pose.target.y, pose.position.z - pose.target.z);
-      // Move a visible fraction of the current view at pond and county scales.
-      // Clamp normal speed to 5–50,000 m/s; Shift triples it without changing zoom.
-      const speed = Math.max(5, Math.min(50000, Number.isFinite(range) ? range * .7 : 5));
-      const distance = speed * (shifted ? 3 : 1) * seconds / length;
-      // Will, 2026-10-11: close inspection must reach the fish-farm belt.
-      // The retained terrain bounds all camera scales; canonical state is unchanged.
-      const bounds = extent(win.__dt?.layers?.terrain);
-      const delta = [(forward * Math.sin(angle) + right * Math.cos(angle)) * distance,
-        (forward * Math.cos(angle) - right * Math.sin(angle)) * distance];
-      let fraction = 1;
-      if (bounds && pose) for (const [i, axis] of ['x', 'y'].entries()) {
-        if (delta[i]) fraction = Math.min(fraction, Math.max(0,
-          ((delta[i] > 0 ? bounds.max[i] : bounds.min[i]) - pose.target[axis]) / delta[i]));
-      }
-      // Stop the requested direction at its first edge instead of sliding along it.
-      win.__dtEmbed?.translateCameraTarget?.(delta[0] * fraction, delta[1] * fraction, up * distance);
+  doc.addEventListener('wheel', limit, true);
+  return () => {
+    doc.removeEventListener('wheel', limit, true); controls.minDistance = minimum;
+    clearTimeout(cursorReset);
+    controls.zoomToCursor = cursorZoom;
+    if (viewer?.setCameraPose === setPose) viewer.setCameraPose = originalPose;
+  };
+}
+
+// DT computes the camera-relative vector and its native speed. The only spatial
+// addition is a terrain XY bound: native preflight travelled beyond the map.
+// Intercept the shared target translation after DT adds the SAME vector to the
+// camera, then remove only the clipped part from the camera. No movement loop.
+export function bindPondNativeMovement(frame, mode, inspect = () => {}) {
+  const doc = frame.contentDocument, win = frame.contentWindow, host = frame.ownerDocument;
+  const dt = win?.__dt, target = dt?.controls?.target, camera = dt?.camera;
+  if (!target || !camera) return;
+  const held = new Set(), listeners = [];
+  const listen = (source, name, callback, capture = false) => {
+    if (!source?.addEventListener) return;
+    source.addEventListener(name, callback, capture); listeners.push([source, name, callback, capture]);
+  };
+  const original = target.add;
+  let terrain, bounds;
+  const extent = () => {
+    if (terrain !== dt.layers?.terrain) {
+      terrain = dt.layers?.terrain;
+      const row = terrain && dt.featureExtent?.(terrain);
+      bounds = row && [...row.center, ...row.size].every(Number.isFinite) ? {
+        min: row.center.map((v, i) => v - row.size[i] / 2),
+        max: row.center.map((v, i) => v + row.size[i] / 2),
+      } : null;
     }
-    animation = win.requestAnimationFrame(tick);
+    return bounds;
+  };
+  const guarded = function (delta) {
+    if (mode() !== 'inspection' || !held.size) return original.call(this, delta);
+    let fraction = 1;
+    const boundary = extent();
+    if (boundary) for (const [i, axis] of ['x', 'y'].entries()) {
+      if (delta[axis]) fraction = Math.min(fraction, Math.max(0,
+        ((delta[axis] > 0 ? boundary.max[i] : boundary.min[i]) - this[axis]) / delta[axis]));
+    }
+    // Q must stop the pair before either point reaches its floor. DT has
+    // already translated the camera; its render-loop clamp runs later.
+    if (delta.z < 0) {
+      const ground = dt.terrainSampler?.(this.x, this.y);
+      const targetFloor = Number.isFinite(ground) ? ground : win.DT_SITE.cameraTargetZ;
+      fraction = Math.min(fraction, Math.max(0, (this.z - targetFloor) / -delta.z),
+        Math.max(0, (camera.position.z - delta.z - win.DT_SITE.cameraFloorZ) / -delta.z));
+    }
+    const accepted = delta.clone().multiplyScalar(fraction);
+    camera.position.sub(delta.clone().sub(accepted));
+    return original.call(this, accepted);
+  };
+  target.add = guarded;
+  // Host focus is an embedding concern. Relay keys to DT's existing listeners;
+  // the host never computes a vector or substitutes its own key movement.
+  const relay = (name, event) => doc.dispatchEvent(new win.KeyboardEvent(name, {
+    key: event.key, code: event.code, shiftKey: event.shiftKey, repeat: event.repeat, bubbles: true,
+  }));
+  const release = () => {
+    for (const key of [...held]) relay('keyup', {key});
+    held.clear();
   };
   const down = event => {
-    const key = event.key.toLowerCase();
-    shifted = event.shiftKey === true;
-    if (textEntry(event.target) || event.ctrlKey || event.metaKey || event.altKey || event.isComposing
-      || !/^[wasdqe]$/.test(key) || typeof win.__dtEmbed?.translateCameraTarget !== 'function') return;
+    if (!/^[wasdqe]$/i.test(event.key) || textEntry(event.target)
+      || event.ctrlKey || event.metaKey || event.altKey || event.isComposing) return;
     if (mode() === 'guided') inspect();
     if (mode() !== 'inspection') return;
-    event.preventDefault(); event.stopImmediatePropagation(); held.add(key);
-    if (animation == null) { previous = win.performance.now(); animation = win.requestAnimationFrame(tick); }
+    held.add(event.key.toLowerCase());
+    if (event.currentTarget === host) {
+      focusPondViewer(frame, mode(), event.target); relay('keydown', event); event.preventDefault();
+    }
   };
   const up = event => {
-    const key = event.key.toLowerCase();
-    shifted = event.shiftKey === true;
-    if (!held.has(key)) return;
-    event.preventDefault(); event.stopImmediatePropagation(); held.delete(key);
-    if (!held.size) stop();
+    if (!/^[wasdqe]$/i.test(event.key)) return;
+    held.delete(event.key.toLowerCase());
+    if (event.currentTarget === host) relay('keyup', event);
   };
-  // A panel selection may focus its host header; a cold opening focuses BODY.
-  // Handle the actual document receiving the key without replaying DOM events.
   for (const source of new Set([doc, host])) {
     listen(source, 'keydown', down, true); listen(source, 'keyup', up, true);
-    listen(source, 'visibilitychange', stop);
-    listen(source, 'focusin', event => { if (textEntry(event.target)) stop(); }, true);
+    listen(source, 'focusin', event => { if (textEntry(event.target)) release(); }, true);
+    listen(source, 'visibilitychange', release);
   }
-  listen(win, 'blur', stop); listen(host?.defaultView, 'blur', stop);
+  listen(win, 'blur', release); listen(host?.defaultView, 'blur', release);
   return () => {
-    stop();
-    for (const [target, name, callback, capture] of listeners) target.removeEventListener?.(name, callback, capture);
+    release(); if (target.add === guarded) target.add = original;
+    for (const [source, name, callback, capture] of listeners) source.removeEventListener?.(name, callback, capture);
   };
 }
 
@@ -262,7 +342,7 @@ export function bindPondPanelResize(item, grid, {isPhone, onDone, onSize}) {
   if (!card) return;
   if (!handle) { handle = el('div', null, 'ui-resizable-handle ui-resizable-se'); item.append(handle); }
   handle.tabIndex = 0; handle.setAttribute('role', 'button');
-  handle.setAttribute('aria-label', '調整面板大小；方向鍵調整寬高');
+  handle.setAttribute('aria-label', pondShellLabel('resize', globalThis.document?.documentElement?.lang));
   let drag;
   const size = (width, height) => {
     const phone = isPhone(), map = item.dataset.panel === 'map';
@@ -312,13 +392,31 @@ export function bindPondPanelResize(item, grid, {isPhone, onDone, onSize}) {
 }
 
 export function installPondShell(container, app) {
+  // A saved layout may omit a closed map. Pond boot requires its canonical
+  // viewer handshake, so restore that declared panel before awaiting readiness.
+  if (!container.querySelector('.grid-stack-item[data-panel="map"]')) ensurePondPanel(container, app, 'map');
   let cameraMode = 'guided';
+  let resumeAfterInspection = false;
+  let branchFocusHandled = false;
+  let branchFocusPending = false;
+  let layoutPose = null;
   let selectedEntity = null;
-  let cameraHeading = 0;
   const locale = () => document.documentElement.lang;
   const label = key => pondShellLabel(key, locale());
   const isPhone = () => globalThis.matchMedia?.('(max-width: 767px)').matches;
   const playback = container.querySelector('.replay-controls');
+  container.addEventListener('focusin', () => {
+    for (const frame of container.querySelectorAll('iframe.map-frame'))
+      if (document.activeElement !== frame) frame.removeAttribute('data-pond-focus-visible');
+  });
+  container.addEventListener('keydown', event => {
+    if (event.key !== 'Tab') return;
+    // After a reset, Chrome may Tab to the iframe's BODY rather than its canvas.
+    requestAnimationFrame(() => {
+      const focused = document.activeElement;
+      if (focused?.matches('iframe.map-frame')) focused.setAttribute('data-pond-focus-visible', '');
+    });
+  }, true);
   const showPhonePanel = id => {
     if (id && !ensurePondPanel(container, app, id, selectedEntity)) return;
     container.dataset.pondPhonePanel = id || '';
@@ -331,6 +429,14 @@ export function installPondShell(container, app) {
       const select = picker.querySelector('select'); if (select && id) select.value = id;
     }
   };
+  // Core has completed add/focus before this bubbling listener activates the
+  // existing pond phone destination. Existing and recreated panels share it.
+  container.addEventListener('click', event => {
+    if (isPhone() && event.target.closest?.('[data-add]')) {
+      const id = container.querySelector('select[data-catalogue]')?.value;
+      if (id) showPhonePanel(id === 'map' ? null : id);
+    }
+  });
   const restoreFocus = target => {
     if (cameraMode !== 'inspection' || textEntry(target)) return;
     requestAnimationFrame(() => {
@@ -346,7 +452,6 @@ export function installPondShell(container, app) {
     }
     restoreFocus();
   });
-  app.map.subscribe('viewChanged', view => { if (Number.isFinite(view?.heading)) cameraHeading = view.heading; });
   bindPondPlaybackControls(playback, app.clock, restoreFocus);
   bindPondEndedState(playback, app.clock, () => {
     cameraMode = 'guided'; showPhonePanel(null);
@@ -355,8 +460,13 @@ export function installPondShell(container, app) {
     }
   }, locale);
   container.addEventListener('click', event => {
-    if (event.target.closest?.('.farm-demo-reset,[data-label=reset]')) {
-      if (event.target.closest?.('[data-label=reset]')) selectedEntity = null;
+    const reset = pondResetRoute(event.target);
+    if (reset === 'layout' && cameraMode === 'inspection') {
+      const dt = container.querySelector('iframe.map-frame')?.contentWindow?.__dt;
+      if (dt?.cameraState) layoutPose = {...dt.cameraState(), fov:dt.camera.fov};
+    }
+    if (reset === 'demo') {
+      selectedEntity = null;
       cameraMode = 'guided';
       showPhonePanel(null);
       for (const frame of container.querySelectorAll('iframe.map-frame')) {
@@ -366,7 +476,21 @@ export function installPondShell(container, app) {
     if (event.detail !== 0) restoreFocus(event.target);
   }, true);
   const topbar = container.querySelector('.topbar');
-  const banner = el('div', '模擬設備、水質、天氣與 AI 建議 · 十分鐘原型，非即時監測或操作建議。', 'pond-simulation-banner');
+  const openProvenance = () => {
+    if (isPhone()) return showPhonePanel('pond-provenance');
+    if (ensurePondPanel(container, app, 'pond-provenance')) requestAnimationFrame(() => {
+      container.querySelector('.grid-stack-item[data-panel="pond-provenance"]')
+        ?.scrollIntoView({block:'center', behavior:'smooth'});
+    });
+  };
+  const provenanceFallback = el('button', label('provenance'), 'pond-provenance-entry');
+  provenanceFallback.type = 'button'; provenanceFallback.hidden = true;
+  provenanceFallback.onclick = openProvenance;
+  (container.querySelector('.topbar-controls') || topbar)?.append(provenanceFallback);
+  const simulationNotice = '模擬設備、水質、天氣與 AI 建議 · 十分鐘原型，非即時監測或操作建議。';
+  const subtitle = container.querySelector('.brand small');
+  const noticeSubtitle = subtitle?.textContent === simulationNotice;
+  const banner = el('div', pondText(simulationNotice, locale()), 'pond-simulation-banner');
   banner.setAttribute('role', 'note'); topbar?.after(banner);
   // Keep panel-core's direct children and controls, but let the two desktop
   // columns flow independently. Only rendered card heights determine placement.
@@ -418,13 +542,14 @@ export function installPondShell(container, app) {
   let toastTimer;
   const switchCamera = (next, announce = false) => {
     if (cameraMode === next) return;
+    if (next === 'inspection') resumeAfterInspection = !app.clock.paused;
     app.clock.pause(); cameraMode = next;
     if (next === 'guided') {
       for (const entry of entries) entry.cameraSignature = null;
       toast.hidden = true; clearTimeout(toastTimer);
     }
     update(app.clock.time);
-    if (next === 'guided') app.clock.play();
+    if (next === 'guided' && resumeAfterInspection) app.clock.play();
     if (announce) {
       toast.textContent = locale() === 'en' ? 'Free inspection · Press “Return to tour” to continue the story'
         : '已切換為自由檢視 · 按『返回導覽』繼續故事';
@@ -454,7 +579,7 @@ export function installPondShell(container, app) {
     // Authored chapter poses resume when the visitor returns to the tour.
     frame.tabIndex = 0;
     if (!entry.storyNav) {
-      const nav = el('section', null, 'pond-guided-story'); nav.setAttribute('aria-label', '模擬情境章節');
+      const nav = el('section', null, 'pond-guided-story'); nav.setAttribute('aria-label', label('story'));
       const heading = el('div', null, 'pond-guided-heading');
       const sequence = el('span', null, 'pond-guided-sequence');
       const time = el('output', null, 'pond-guided-time'); heading.append(sequence, time);
@@ -474,8 +599,8 @@ export function installPondShell(container, app) {
         switchCamera('inspection');
         const camera = frame.contentWindow?.__dt?.camera;
         if (camera && camera.fov !== 55) { camera.fov = 55; camera.updateProjectionMatrix(); }
-        viewer.setCameraPose(view.pos, view.target);
-        cameraHeading = Math.atan2(view.target[0] - view.pos[0], view.target[1] - view.pos[1]) * 180 / Math.PI;
+        viewer.setCameraPose(view.pos, key === '08-fishbelt'
+          ? SITE.presentation.viewer.fishbelt_target || view.target : view.target);
         restoreFocus(button);
       };
       region.onclick = () => showView('07-region', region);
@@ -487,7 +612,7 @@ export function installPondShell(container, app) {
       };
       const notice = el('span', null, 'pond-camera-notice'); notice.setAttribute('role', 'status');
       const provenance = el('button', '模擬與出處', 'pond-provenance-entry'); provenance.type = 'button';
-      provenance.onclick = () => isPhone() ? showPhonePanel('pond-provenance') : app.focus('pond-provenance');
+      provenance.onclick = openProvenance;
       const details = el('button', '詳情', 'pond-phone-details-toggle'); details.type = 'button';
       details.setAttribute('aria-expanded', 'false');
       details.onclick = () => showPhonePanel(container.dataset.pondPhonePanel ? null : 'pond-notifications');
@@ -510,6 +635,11 @@ export function installPondShell(container, app) {
       panelSelect.onchange = () => showPhonePanel(panelSelect.value);
       const close = el('button', '返回地圖'); close.type = 'button'; close.onclick = () => showPhonePanel(null);
       picker.append(panelSelect, close);
+      // Branch focus can activate a destination before its story controls exist.
+      const activePanel = container.dataset.pondPhonePanel;
+      details.setAttribute('aria-expanded', String(!!activePanel));
+      picker.hidden = !activePanel;
+      if (activePanel) panelSelect.value = activePanel;
       stepper.append(previous, next); nav.append(heading, title, caption, languageNote, numbers, controls, stepper, chapters, picker);
       frame.parentElement.append(nav);
       entry.storyResize = new ResizeObserver(([size]) => {
@@ -556,7 +686,7 @@ export function installPondShell(container, app) {
         const button = el('button', `${time} · ${title}`, 'pond-guided-chapter');
         button.type = 'button'; button.dataset.chapterId = chapter.id;
         button.dataset.elapsedSeconds = String(chapter.elapsed_seconds);
-        button.onclick = () => { selectChapter(chapter); entry.storyList.open = false; }; entry.storyItems.append(button);
+        button.onclick = event => { selectChapter(chapter); entry.storyList.open = false; if (event.detail === 0) entry.storyList.querySelector('summary')?.focus({preventScroll:true}); }; entry.storyItems.append(button);
       }
     }
     const index = chapters.findIndex(row => row.id === story.chapter.id);
@@ -595,8 +725,10 @@ export function installPondShell(container, app) {
       button.title = label(key); button.setAttribute('aria-label', label(key));
     }
     entry.details.textContent = label('details'); entry.provenance.textContent = label('provenance');
+    entry.storyNav.setAttribute('aria-label', label('story'));
     entry.summary.textContent = label('chapters'); entry.close.textContent = label('map');
     entry.panelSelect.setAttribute('aria-label', label('destination'));
+    localizePondPanelOptions(entry.storyNav, locale(), SITE);
     entry.cameraMode.setAttribute('aria-pressed', String(cameraMode === 'inspection'));
     entry.cameraNotice.textContent = cameraMode === 'guided'
       ? (english ? 'Drag or zoom to inspect · Select equipment for details' : '拖曳或縮放即可自由檢視 · 點設備看詳情')
@@ -623,13 +755,7 @@ export function installPondShell(container, app) {
     const portraitFov = fallback?.portrait_fov_degrees;
     const fov = phone && Number.isFinite(portraitFov) && portraitFov > 0 && portraitFov < 180
       ? portraitFov : 55;
-    const signature = JSON.stringify({pose: selected, fov});
-    if (signature === entry.cameraSignature) return;
-    entry.cameraSignature = signature;
-    const camera = entry.frame.contentWindow?.__dt?.camera;
-    if (camera && camera.fov !== fov) { camera.fov = fov; camera.updateProjectionMatrix(); }
-    cameraHeading = Math.atan2(selected.target[0] - selected.position[0], selected.target[1] - selected.position[1]) * 180 / Math.PI;
-    viewer.setCameraPose(selected.position, selected.target);
+    applyPondCameraPose(entry, viewer, selected, fov);
   };
   const update = milliseconds => {
     if (!candidate) return;
@@ -651,14 +777,12 @@ export function installPondShell(container, app) {
       const entry = frames.get(frame); if (!entry) continue;
       renderStoryNav(entry, frame, latest.story);
       applyCamera(entry);
-      entry.status.replaceChildren(el('span', '模擬', 'pond-badge'));
+      entry.status.setAttribute('aria-label', pondText('壯圍三座魚塭狀態（模擬）', locale()));
+      entry.status.replaceChildren(el('span', pondText('模擬', locale()), 'pond-badge'));
       const ponds = [...new Set(latest.telemetry.filter(row => row.metric === 'dissolved_oxygen').map(row => row.entity_id))];
       for (const id of ponds) {
-        const sample = latest.telemetry.find(row => row.entity_id === id && row.metric === 'dissolved_oxygen');
-        const {fault, risk, degraded, status} = pondStatus(latest, id);
-        const label = compactLabel(latest.entityLabels[id]);
-        const badge = el('span', degraded ? `${label} · ${status} · DO ${pondNumber(sample)}`
-          : `${fault || risk ? '⚠ ' : ''}${label} · DO ${pondNumber(sample)}${risk ? ' 警示' : fault ? ' 設備故障' : ''}`, 'pond-map-badge');
+        const {fault, risk, degraded} = pondStatus(latest, id);
+        const badge = el('span', pondMapBadgeText(latest, id), 'pond-map-badge');
         badge.dataset.entityId = id;
         if (!degraded && (fault || risk)) badge.classList.add('pond-critical');
         entry.status.append(badge);
@@ -675,21 +799,30 @@ export function installPondShell(container, app) {
   };
   const attach = frame => {
     if (frames.has(frame)) return;
-    const status = el('div', null, 'pond-map-status'); status.setAttribute('aria-label', '壯圍三座魚塭狀態（模擬）');
+    const status = el('div', null, 'pond-map-status'); status.setAttribute('aria-label', pondText('壯圍三座魚塭狀態（模擬）', locale()));
     frame.parentElement.append(status);
     const entry = {frame, status, viewer: null}; frames.set(frame, entry); entries.add(entry);
     const decorate = () => {
       const doc = frame.contentDocument;
       if (!doc?.head) return;
       if (entry.inputDocument !== doc) {
+        // Nested canvas focus does not match :focus-visible on its host iframe.
+        doc.addEventListener('focusin', event => frame.toggleAttribute('data-pond-focus-visible',
+          !!event.target.matches?.(':focus-visible')));
+        entry.stopMovement?.(); entry.stopMovement = null;
+        entry.stopZoom?.(); entry.stopZoom = null;
+        entry.stopSpace?.();
         entry.inputDocument = doc; bindPondCameraInput(frame, () => cameraMode, () => switchCamera('inspection', true));
-        entry.stopMovement?.();
-        entry.stopMovement = bindPondInspectionMovement(frame, () => cameraMode, () => cameraHeading,
-          () => switchCamera('inspection', true));
+        entry.stopSpace = bindPondSpacePlayback(frame, playback);
         doc.addEventListener('click', event => {
           if (!event.target.closest?.('#btn-reset')) return;
           cameraMode = 'guided'; entry.cameraSignature = null; showPhonePanel(null);
         }, true);
+      }
+      if (frame.contentWindow?.__dt?.controls && !entry.stopMovement) {
+        entry.stopMovement = bindPondNativeMovement(frame, () => cameraMode, () => switchCamera('inspection', true));
+        entry.stopZoom = bindPondZoomFloor(frame);
+        if (document.activeElement === document.body) focusPondViewer(frame, 'inspection');
       }
       doc.documentElement.dataset.pondUi = 'true';
       if (!doc.getElementById('pond-host-style')) {
@@ -734,8 +867,13 @@ export function installPondShell(container, app) {
       }
       const viewer = frame.contentWindow?.__dtEmbed;
       if (viewer?.ready && viewer !== entry.viewer && typeof viewer.setCameraPose === 'function') {
-        entry.viewer = null;
-        applyCamera(entry);
+        if (cameraMode === 'inspection' && layoutPose) {
+          const {position, target, fov} = layoutPose;
+          const camera = frame.contentWindow.__dt.camera;
+          camera.fov = fov; camera.updateProjectionMatrix();
+          viewer.setCameraPose(['x','y','z'].map(axis => position[axis]), ['x','y','z'].map(axis => target[axis]));
+          layoutPose = null; entry.viewer = viewer;
+        } else { entry.viewer = null; applyCamera(entry); }
       }
     };
     frame.addEventListener('load', () => { entry.loadingObserver?.disconnect(); entry.loadingObserver = null; decorate(); });
@@ -745,15 +883,37 @@ export function installPondShell(container, app) {
   };
   const scan = () => {
     const current = new Set(container.querySelectorAll('iframe.map-frame'));
+    provenanceFallback.hidden = !!container.querySelector('.pond-guided-story .pond-provenance-entry')?.getClientRects().length;
     for (const entry of entries) {
       if (current.has(entry.frame)) continue;
       entry.storyResize?.disconnect(); entry.loadingObserver?.disconnect(); entry.unsubscribeReady?.();
       entry.stopMovement?.();
+      entry.stopZoom?.();
+      entry.stopSpace?.();
       entry.storyNav?.remove(); entries.delete(entry);
     }
     for (const frame of current) attach(frame);
+    if (!branchFocusHandled && !branchFocusPending && globalThis.location?.hash === '#pond-active-run'
+      && container.querySelector('#pond-active-run')) {
+      // Opening a phone destination mutates panel-core's DOM. Guard before
+      // doing so: observer microtasks run before the focus animation frame.
+      branchFocusPending = true;
+      if (isPhone()) showPhonePanel('pond-notifications');
+      requestAnimationFrame(() => {
+        branchFocusPending = false;
+        if (branchFocusHandled) return;
+        const link = container.querySelector('#pond-active-run');
+        if (!link?.getClientRects().length) return;
+        branchFocusHandled = true;
+        link.focus({preventScroll: true});
+      });
+    }
   };
   const localize = () => {
+    for (const handle of container.querySelectorAll('.ui-resizable-handle')) handle.setAttribute('aria-label', label('resize'));
+    banner.textContent = pondText(simulationNotice, locale());
+    if (noticeSubtitle) subtitle.textContent = pondText(simulationNotice, locale());
+    provenanceFallback.textContent = label('provenance');
     for (const reset of container.querySelectorAll('.farm-demo-reset')) reset.textContent = label('reset');
     playback?.querySelector('input[type=range]')?.setAttribute('aria-label', label('seek'));
     const speed = playback?.querySelector('select');
@@ -775,6 +935,8 @@ export function installPondShell(container, app) {
   new MutationObserver(localize).observe(document.documentElement, {attributes:true, attributeFilter:['lang']});
   globalThis.addEventListener('resize', () => { requestFlow(); if (latest) update(app.clock.time); });
   scan(); new MutationObserver(scan).observe(container, {childList: true, subtree: true});
+  // Core renders a generic time after play/pause; restore the canonical readout.
+  playback?.querySelector('button')?.addEventListener('click', () => update(app.clock.time));
   localize();
   app.map.subscribe('appEvent', ({name} = {}) => {
     if (name === 'farm-pond-labels-ready' || name === 'farm-pond-world-ready') update(app.clock.time);
