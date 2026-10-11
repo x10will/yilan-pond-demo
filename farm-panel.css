@@ -190,6 +190,12 @@ html[data-pond-ui=true] .panel-header:has(.panel-menu[open]){position:relative;z
 html[data-pond-ui=true] .panel-grid>.grid-stack-item.menu-open{z-index:80!important}
 html[data-pond-ui=true] .panel-actions{position:fixed;right:auto;bottom:auto;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);z-index:60}
 html[data-pond-ui=true] .panel-actions :is([data-action^=move-],[data-action=grow],[data-action=shrink]){display:none}
+@media(min-width:1024px){
+ html[data-pond-ui=true] .panel-header{cursor:grab;touch-action:none}
+ html[data-pond-ui=true] .pond-moving{outline:2px solid #a2dec9;z-index:45}
+ html[data-pond-ui=true] .pond-moving .panel-header{cursor:grabbing}
+ html[data-pond-ui=true] .panel-actions :is([data-action^=move-],[data-action=grow],[data-action=shrink]){display:block}
+}
 html[data-pond-ui=true] .farm-credit-full{max-height:36vh;overflow:auto}
 html[data-pond-ui=true] .farm-credit-lineage>summary{min-height:44px;display:flex;align-items:center;cursor:pointer}
 html[data-pond-ui=true] iframe.map-frame:focus-visible,html[data-pond-ui=true] iframe.map-frame[data-pond-focus-visible]{outline:3px solid #a2dec9;outline-offset:-3px}

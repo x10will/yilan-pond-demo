@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-10-11T14:27:50+00:00",
-  "build": "abdd9575cee466e2",
+  "built_at": "2026-10-11T16:31:58+00:00",
+  "build": "85902d8a673e609e",
   "dt_base": "dt/cd815957cfa92530/",
   "label": "yilan-pond-fixes-20261011",
-  "farm_commit": "070e190bc56bf22b1b1c213d37523df93ff4b4a2",
+  "farm_commit": "1d5f840d22a44f4fdbb8ea83aa3db421ab3282e5",
   "farm_panel_dirty": false,
   "dt_generation": {
     "name": "dt-yilan-pond-fixes-r1b-20261011",
@@ -16,10 +16,10 @@
     "digest": "858c6ae30d9f32cb395b662f809442a846ed7cd1c9be61870cbc3ba742ae0676"
   },
   "staging": {
-    "farm_commit": "070e190bc56bf22b1b1c213d37523df93ff4b4a2",
+    "farm_commit": "1d5f840d22a44f4fdbb8ea83aa3db421ab3282e5",
     "dt_commit": "73c2cfd6312b84ce0c319a3e5983ec325c3d6db9",
     "status": "local-assembled",
-    "recorded_at": "2026-10-11T14:27:49.177269+00:00"
+    "recorded_at": "2026-10-11T16:31:56.410162+00:00"
   },
   "panel_core": {
     "sourceCommit": "84fc525548df6d5b38b40cc3db9d0ed53fc5a028",
@@ -3660,16 +3660,16 @@
   },
   "pond_precache": "shell and generation inventory after viewer first paint; candidates cached on use",
   "files": 469,
-  "bytes": 42305399,
+  "bytes": 42312159,
   "gzip": {
     "files": 431,
-    "bytes": 7635277
+    "bytes": 7637122
   },
   "workshop_budget": {
     "authority": "Will, 2026-10-04 pond Pages-ready brief",
     "file_limit_exclusive": 50000000,
     "total_limit_exclusive": 120000000,
-    "total_uncompressed_bytes": 42462518,
+    "total_uncompressed_bytes": 42469278,
     "stretch_goal_bytes": 60000000,
     "stretch_goal_met": true,
     "files": 901,

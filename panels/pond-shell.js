@@ -334,13 +334,22 @@ export function bindPondCameraInput(frame, mode, inspect = () => {}) {
   doc.addEventListener('click', event => focusPondViewer(frame, mode(), event.target));
 }
 
-// The pond's flowing columns are not GridStack coordinates. Reuse its handle,
-// but resize the actual displayed card in pixels, then reflow the host columns.
+// The pond's flowing columns are not GridStack coordinates. Resize the actual
+// displayed card in pixels, then reflow the host columns.
+const pondResizeHandles = new WeakSet();
 export function bindPondPanelResize(item, grid, {isPhone, onDone, onSize}) {
   const card = item.querySelector('.panel-card');
-  let handle = item.querySelector('.ui-resizable-se');
+  let handle = item.querySelector('.pond-resize-handle') || item.querySelector('.ui-resizable-se');
   if (!card) return;
   if (!handle) { handle = el('div', null, 'ui-resizable-handle ui-resizable-se'); item.append(handle); }
+  // Core can replace or append helpers at every desktop/compact transition.
+  // Bind the current element, and keep only one hit target above the card.
+  for (const other of item.querySelectorAll?.('.ui-resizable-se') || []) {
+    if (other !== handle) other.remove();
+  }
+  handle.classList?.add('pond-resize-handle');
+  if (pondResizeHandles.has(handle)) return;
+  pondResizeHandles.add(handle);
   handle.tabIndex = 0; handle.setAttribute('role', 'button');
   handle.setAttribute('aria-label', pondShellLabel('resize', globalThis.document?.documentElement?.lang));
   let drag;
@@ -391,7 +400,7 @@ export function bindPondPanelResize(item, grid, {isPhone, onDone, onSize}) {
   });
 }
 
-export function installPondShell(container, app) {
+export function installPondShell(container, app, preset = []) {
   // A saved layout may omit a closed map. Pond boot requires its canonical
   // viewer handshake, so restore that declared panel before awaiting readiness.
   if (!container.querySelector('.grid-stack-item[data-panel="map"]')) ensurePondPanel(container, app, 'map');
@@ -496,15 +505,107 @@ export function installPondShell(container, app) {
   // columns flow independently. Only rendered card heights determine placement.
   const grid = container.querySelector('.panel-grid');
   const observed = new Set();
-  const resized = new WeakSet();
+  const slots = new Map();
+  const initialItems = new Set(grid?.children || []);
+  const compactOrder = new Map(preset.map((item, index) => [item.id, index]));
+  const desktop = () => globalThis.matchMedia?.('(min-width: 1024px)').matches;
+  const orderedCards = () => [...slots.keys()].filter(item => item.parentElement === grid)
+    .sort((a, b) => slots.get(a).order - slots.get(b).order);
+  const moveCard = (item, column, before) => {
+    const list = orderedCards().filter(other => other !== item);
+    const index = before ? list.indexOf(before) : list.length;
+    list.splice(index < 0 ? list.length : index, 0, item);
+    slots.get(item).column = column;
+    list.forEach((other, order) => { slots.get(other).order = order; });
+    // Persist through core's existing change/capture/save route. Its cells are
+    // storage coordinates; the pond's displayed rows remain height-aware.
+    const engine = grid.gridstack;
+    if (engine) {
+      const y = [0, 0]; engine.batchUpdate();
+      for (const other of list) {
+        const col = slots.get(other).column, node = other.gridstackNode;
+        engine.update(other, {x: col ? 8 : 0, y: y[col], w: col ? 4 : 8});
+        y[col] += node?.h || 3;
+      }
+      engine.batchUpdate(false);
+    }
+    requestFlow();
+  };
+  let moving;
+  const clearMove = () => {
+    if (!moving) return;
+    const {header, id, item} = moving; moving = null;
+    if (header.hasPointerCapture(id)) header.releasePointerCapture(id);
+    item.classList.remove('pond-moving');
+    for (const frame of grid.querySelectorAll('iframe')) frame.style.pointerEvents = '';
+  };
+  grid?.addEventListener('mousedown', event => {
+    if (desktop() && event.target.closest('.panel-header')
+      && !event.target.closest('button,input,select,summary,a,.panel-menu')) {
+      event.stopImmediatePropagation(); event.preventDefault();
+    }
+  }, true);
+  grid?.addEventListener('pointerdown', event => {
+    const header = event.target.closest('.panel-header'), item = header?.closest('.grid-stack-item');
+    if (!desktop() || event.button > 0 || !header || !slots.has(item)
+      || item.classList.contains('is-maximized')
+      || event.target.closest('button,input,select,summary,a,.panel-menu')) return;
+    moving = {header, item, id:event.pointerId, x:event.clientX, y:event.clientY, moved:false};
+    header.setPointerCapture(event.pointerId);
+    event.stopImmediatePropagation(); event.preventDefault();
+  }, true);
+  grid?.addEventListener('pointermove', event => {
+    if (!moving || moving.id !== event.pointerId) return;
+    if (Math.hypot(event.clientX-moving.x, event.clientY-moving.y) < 6) return;
+    moving.moved = true; moving.item.classList.add('pond-moving');
+    for (const frame of grid.querySelectorAll('iframe')) frame.style.pointerEvents = 'none';
+    event.preventDefault();
+  });
+  grid?.addEventListener('pointerup', event => {
+    if (!moving || moving.id !== event.pointerId) return;
+    const {item, moved} = moving;
+    if (moved && desktop()) {
+      const rect = grid.getBoundingClientRect();
+      const column = event.clientX >= rect.left + (rect.width - 16) * 2/3 + 8 ? 1 : 0;
+      const before = orderedCards().find(other => other !== item && slots.get(other).column === column
+        && event.clientY < other.getBoundingClientRect().top + other.getBoundingClientRect().height / 2);
+      moveCard(item, column, before);
+    }
+    clearMove(); restoreFocus(event.target);
+  });
+  for (const name of ['pointercancel','lostpointercapture']) grid?.addEventListener(name, clearMove);
+  globalThis.addEventListener?.('blur', clearMove);
+  globalThis.addEventListener?.('resize', () => { clearMove(); requestFlow(); });
+  grid?.addEventListener('click', event => {
+    const button = event.target.closest('[data-action]'), action = button?.dataset.action;
+    const item = button?.closest('.grid-stack-item');
+    if (!desktop() || !slots.has(item) || !/^(move-(left|right|up|down)|grow|shrink)$/.test(action)) return;
+    event.stopImmediatePropagation(); event.preventDefault();
+    if (action === 'grow' || action === 'shrink') {
+      const handle = item.querySelector('.pond-resize-handle');
+      for (const key of action === 'grow' ? ['ArrowRight','ArrowDown'] : ['ArrowLeft','ArrowUp'])
+        handle?.dispatchEvent(new KeyboardEvent('keydown', {key, bubbles:true}));
+    } else {
+      const slot = slots.get(item), list = orderedCards().filter(other => slots.get(other).column === slot.column);
+      const index = list.indexOf(item);
+      if (action === 'move-left' || action === 'move-right') moveCard(item, action === 'move-right' ? 1 : 0);
+      else if (action === 'move-up' && index > 0) moveCard(item, slot.column, list[index-1]);
+      else if (action === 'move-down' && index < list.length-1) moveCard(item, slot.column, list[index+2]);
+    }
+    item.querySelector('.panel-menu').open = false;
+  }, true);
   let layoutRequest;
   const flow = () => {
     layoutRequest = null;
     if (!grid || globalThis.matchMedia?.('(max-width: 767px)').matches) return;
     const next = [1, 1];
-    for (const item of grid.children) {
+    const items = desktop() ? orderedCards() : [...grid.children]
+      .sort((a, b) => (compactOrder.get(a.dataset.panel) ?? preset.length)
+        - (compactOrder.get(b.dataset.panel) ?? preset.length));
+    for (const item of items) {
       const card = item.querySelector('.panel-card'); if (!card) continue;
-      const column = ['map', 'pond-water', 'pond-weather'].includes(item.dataset.panel) ? 0 : 1;
+      const column = desktop() ? slots.get(item).column
+        : ['map', 'pond-water', 'pond-weather'].includes(item.dataset.panel) ? 0 : 1;
       const height = item.classList.contains('is-collapsed') ? 56 : Math.ceil(card.getBoundingClientRect().height);
       item.style.gridColumn = String(column + 1);
       item.style.gridRow = `${next[column]} / span ${height + 16}`;
@@ -522,14 +623,24 @@ export function installPondShell(container, app) {
       if (!observed.has(card)) { observed.add(card); cardSizes.observe(card); }
     }
     for (const item of grid?.children || []) {
-      if (!resized.has(item)) {
-        resized.add(item);
-        bindPondPanelResize(item, grid, {
-          isPhone: () => globalThis.matchMedia?.('(max-width: 767px)').matches,
-          onSize: requestFlow, onDone: restoreFocus,
-        });
+      if (item.querySelector('.panel-card') && !slots.has(item)) {
+        const newSelection = item.dataset.panel === 'selection' && !initialItems.has(item);
+        slots.set(item, {column: newSelection || item.gridstackNode?.x >= 8 ? 1 : 0,
+          order: (item.gridstackNode?.y || 0) * 12 + (item.gridstackNode?.x || 0)});
+        if (newSelection) grid.gridstack?.update(item, {x:8, w:4});
       }
+      // Both interactions belong to this flowing layout. Public update lets
+      // GridStack destroy its own helpers before we create the pond handle;
+      // removing a live vendor helper directly breaks later reset cleanup.
+      const node = item.gridstackNode;
+      if (node && (!node.noMove || !node.noResize))
+        grid.gridstack?.update(item, {noMove:true, noResize:true});
+      bindPondPanelResize(item, grid, {
+        isPhone: () => globalThis.matchMedia?.('(max-width: 767px)').matches,
+        onSize: requestFlow, onDone: restoreFocus,
+      });
     }
+    for (const item of slots.keys()) if (item.parentElement !== grid) slots.delete(item);
     requestFlow();
   };
   watchCards();
