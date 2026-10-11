@@ -191,6 +191,10 @@ html[data-pond-ui=true] .panel-grid>.grid-stack-item.menu-open{z-index:80!import
 html[data-pond-ui=true] .panel-actions{position:fixed;right:auto;bottom:auto;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);z-index:60}
 html[data-pond-ui=true] .panel-actions :is([data-action^=move-],[data-action=grow],[data-action=shrink]){display:none}
 @media(min-width:1024px){
+ /* Will's 2026-10-12 rehearsal: disclosures scroll inside the right cards,
+    keeping the narrative and selected twin beside the first-screen map.
+    An explicit visitor resize still owns its chosen height. */
+ html[data-pond-ui=true] .panel-grid>:is([data-panel=pond-notifications],[data-panel=pond-scada],[data-panel=pond-provenance]):not(.is-maximized)>.panel-card{max-height:var(--pond-panel-height,40dvh)}
  html[data-pond-ui=true] .panel-header{cursor:grab;touch-action:none}
  html[data-pond-ui=true] .pond-moving{outline:2px solid #a2dec9;z-index:45}
  html[data-pond-ui=true] .pond-moving .panel-header{cursor:grabbing}

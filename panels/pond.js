@@ -64,6 +64,11 @@ const english = {
   '章末摘要':'Chapter-end summary', '回應時間':'Response time', '未採取回應':'No response taken',
   '腳本備援':'Script fallback',
   '目前影格狀態':'Current frame state', '目前取樣 · 模擬':'Current samples · Simulated',
+  '人員角色':'Staff role', '場務人員':'Farm staff', '目前任務':'Current task', '任務狀態':'Task status',
+  '任務魚塭':'Task pond', '任務設備':'Task equipment', '人員、任務與出處':'Staff, tasks and sources',
+  '待命':'Standby', '沿塭岸出勤':'On bank duty', '出勤中':'Responding', '準備中':'Preparing',
+  '搬運中':'Transporting', '放置中':'Placing', '放置設備':'Placing equipment', '監看中':'Monitoring',
+  '已接受':'Accepted', '備援運轉':'Backup running', '已完成':'Completed', '已暫停':'Paused',
   '設備與取樣的出處':'Equipment and sample sources', '技術細節':'Technical details', '模擬資料來源':'Simulation source',
   '靜態範圍':'Static footprint', '目前 DO':'Current DO', '魚塭與取樣的出處':'Pond and sample sources',
   '腳本備援（A；模擬情境；非操作建議）':'Script fallback (A; simulated scenario; not operating advice)',
@@ -665,6 +670,30 @@ const pondEquipmentStates = {fault:'故障', standby:'待命', transporting:'搬
 const relationshipLabels = {serves:'服務魚塭',powered_by:'供電來源',feeds:'供電至',fed_from:'進水來源',drains_to:'排水至',
   houses:'屋內設備',backup_supply:'備援來源',cable_along:'沿塭岸配線',transfer:'切換方式',responds_to:'處置對象'};
 
+// Presentation filtering only: preserve the supplied catalog and canonical samples.
+// Zero rated power declares a nonpowered twin; a powered twin stopped at zero
+// runtime power still displays its actual rating and sample in both views.
+function twinDisplayFacts(twin, telemetry, projection) {
+  const person = twin.kind === 'worker', nonpowered = twin.specs?.rated_kw === 0;
+  const visible = key => !(nonpowered && ['rated_kw','power_kw'].includes(key));
+  const specs = person ? [] : Object.entries(twin.specs || {}).filter(([key]) => visible(key));
+  const samples = telemetry.filter(row => person ? row.metric === 'equipment_state' : visible(row.metric));
+  const personFacts = [];
+  if (person) {
+    personFacts.push({label:'人員角色',value:twin.role || pondTwinKindLabel(twin.kind),authored:!!twin.role});
+    const response = projection.story?.response;
+    if ((response?.actorId ?? response?.actor_id) === twin.id && response.task) {
+      const task = response.task, title = task.label || task.title;
+      if (title) personFacts.push({label:'目前任務',value:title,authored:true});
+      if (task.status) personFacts.push({label:'任務狀態',value:({idle:'待命',accepted:'已接受',responding:'出勤中',
+        placing:'放置設備',running:'備援運轉',completed:'已完成'})[task.status] || task.status});
+      if (task.pond_id) personFacts.push({label:'任務魚塭',value:pondEntityLabel(projection, task.pond_id),authored:true});
+      if (task.backup_id) personFacts.push({label:'任務設備',value:pondEntityLabel(projection, task.backup_id),authored:true});
+    }
+  }
+  return {specs, telemetry:samples, personFacts};
+}
+
 function sourceLink(link, fallback) {
   if (!link) return el('span', '模擬資料來源');
   const anchor = element('a', pondSourceLabel(link)); anchor.href = link.href; anchor.target = '_blank'; anchor.rel = 'noopener';
@@ -672,7 +701,8 @@ function sourceLink(link, fallback) {
 }
 
 function drawTwinFacts(content, details, projection, site) {
-  const {twin, pondIds, telemetry, transform, sources} = details;
+  const {twin, pondIds, sources} = details;
+  const {specs, telemetry, personFacts} = twinDisplayFacts(twin, details.telemetry, projection);
   const pond = twin.type === 'Face' && twin.kind === 'pond';
   const facts = el('dl', null, 'pond-twin-facts');
   const add = (label, value) => facts.append(el('dt', label), el('dd', value));
@@ -687,7 +717,8 @@ function drawTwinFacts(content, details, projection, site) {
     const state = telemetry.find(row => row.metric === 'equipment_state');
     add('目前影格狀態', state ? (pondEquipmentStates[state.state] || site.state_labels?.[state.state] || state.state) : '尚無影格狀態');
   }
-  for (const [key, value] of Object.entries(twin.specs || {})) add(specLabels[key] || '規格值', value);
+  for (const {label, value, authored} of personFacts) facts.append(el('dt', label), (authored ? element : el)('dd', value));
+  for (const [key, value] of specs) add(specLabels[key] || '規格值', value);
   for (const [kind, targets] of Object.entries(twin.relationships || {})) {
     const values = (Array.isArray(targets) ? targets : [targets]);
     add(relationshipLabels[kind] || '關聯', values.map(id => pondEntityLabel(projection, id)).join('、'));
@@ -743,6 +774,7 @@ function drawTwins(content, projection, site, candidate, interaction) {
     if (equipment) section.append(el('p', `${equipment}${status.degraded ? ' · 故障迴路仍隔離' : ''}`, 'pond-equipment-recovery'));
     const list = el('dl', null, 'pond-readings pond-scada-readings');
     for (const twin of twins) {
+      const display = twinDisplayFacts(twin, projection.telemetry.filter(row => row.entity_id === twin.id), projection);
       const state = projection.telemetry.find(row => row.entity_id === twin.id && row.metric === 'equipment_state');
       const label = el('dt'), choose = element('button', compactLabel(twin.label), 'farm-button pond-select-twin');
       choose.type = 'button'; choose.dataset.entityId = twin.id;
@@ -757,14 +789,19 @@ function drawTwins(content, projection, site, candidate, interaction) {
       value.dataset.entityId = twin.id;
       if (state?.state === 'fault') value.className = 'pond-critical';
       const details = el('details', null, 'pond-event-source'); details.dataset.detailKey = twin.id;
-      details.append(el('summary', '規格、連結與出處'), el('small', `${pondTwinKindLabel(twin.kind)} · ${pondAnchorLabel(projection, twin.anchor)}`));
-      for (const [key, number] of Object.entries(twin.specs || {})) details.append(el('div', `${specLabels[key] || '規格值'}：${number}`));
+      details.append(el('summary', twin.kind === 'worker' ? '人員、任務與出處' : '規格、連結與出處'),
+        el('small', twin.kind === 'worker' ? `靜態錨點：${pondAnchorLabel(projection, twin.anchor)}`
+          : `${pondTwinKindLabel(twin.kind)} · ${pondAnchorLabel(projection, twin.anchor)}`));
+      for (const {label, value, authored} of display.personFacts) {
+        const field = el('div'); field.append(el('span', `${label}：`), (authored ? element : el)('span', value)); details.append(field);
+      }
+      for (const [key, number] of display.specs) details.append(el('div', `${specLabels[key] || '規格值'}：${number}`));
       for (const [kind, targets] of Object.entries(twin.relationships || {})) {
         const label = relationshipLabels[kind] || '關聯';
         const text = (Array.isArray(targets) ? targets : [targets]).map(target => pondEntityLabel(projection, target)).join('、');
         details.append(el('div', `${label}：${text}`));
       }
-      for (const sample of projection.telemetry.filter(row => row.entity_id === twin.id && channelLabels[row.metric])) {
+      for (const sample of display.telemetry.filter(row => channelLabels[row.metric])) {
         details.append(el('div', `${pondMetricLabel(sample.metric, twin, site)}：${pondReading(sample, site)}`));
       }
       for (const ref of twin.provenance_refs || []) {
