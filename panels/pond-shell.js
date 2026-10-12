@@ -183,10 +183,9 @@ export function bindPondZoomFloor(frame, options = SITE.presentation?.viewer || 
   const maximumPolar = controls.maxPolarAngle;
   const cursorZoom = controls.zoomToCursor;
   const fixedPivot = options.fixed_orbit_pivot === true;
-  const target = controls.target, originalScaledAdd = target.addScaledVector;
+  const target = controls.target;
   const touches = new Set(), listeners = [];
-  let touchPlane, mouseGesture;
-  let cursorReset, touchReset;
+  let mouseGesture, cursorReset;
   const listen = (source, name, callback, capture = true) => {
     source?.addEventListener?.(name, callback, capture);
     listeners.push([source, name, callback, capture]);
@@ -214,23 +213,13 @@ export function bindPondZoomFloor(frame, options = SITE.presentation?.viewer || 
       target.z = plane;
     }
   };
-  // DT's touch tilt solver translates the target before constructing the
-  // camera from target + offset. Preserve the plane at that existing seam,
-  // rather than correcting the camera after rendering.
-  const planeScaledAdd = function (...args) {
-    const result = originalScaledAdd.apply(this, args);
-    if (touchPlane !== undefined) this.z = touchPlane;
-    return result;
-  };
-  if (fixedPivot && typeof originalScaledAdd === 'function') target.addScaledVector = planeScaledAdd;
   const viewer = win.__dtEmbed, originalPose = viewer?.setCameraPose;
   const setPose = function (...args) {
     // Interactive constraints never reject an authored reset/chapter pose.
     controls.minDistance = minimum;
     if (fixedPivot) {
       controls.maxPolarAngle = maximumPolar;
-      clearTimeout(touchReset);
-      touches.clear(); touchPlane = undefined; restoreMouse();
+      touches.clear(); restoreMouse();
     }
     return originalPose.apply(this, args);
   };
@@ -250,28 +239,10 @@ export function bindPondZoomFloor(frame, options = SITE.presentation?.viewer || 
       ? Math.min(maximumPolar, Math.acos(Math.max(-1, Math.min(1, height / range)))) : maximumPolar;
     const floorDistance = height > 0 && offset.z > 0
       ? Math.max(minimum, Math.min(controls.maxDistance, height * range / offset.z)) : minimum;
-    let nearDistance = minimum;
-    if (fixedPivot && Number.isFinite(options.near_plane_surface_z)
-      && Number.isFinite(range) && range > 0 && offset.z > 0
-      && Number.isFinite(camera.near) && camera.near > 0
-      && Number.isFinite(camera.fov) && camera.fov > 0 && camera.fov < 180) {
-      // Keep the lower near-frustum edge above the authored surface. This
-      // constrains native input without changing DT's near plane or FOV.
-      const vertical = offset.z / range, horizontal = Math.hypot(offset.x, offset.y) / range;
-      const surfaceHeight = Math.max(0, options.near_plane_surface_z - target.z);
-      const nearHalfHeight = camera.near * Math.tan(camera.fov * Math.PI / 360);
-      nearDistance = Math.min(controls.maxDistance,
-        camera.near + (nearHalfHeight * horizontal + surfaceHeight) / vertical);
-      const amplitude = Math.hypot(range - camera.near, nearHalfHeight);
-      const minimumPitch = Math.atan2(nearHalfHeight, range - camera.near)
-        + Math.asin(Math.max(-1, Math.min(1, surfaceHeight / amplitude)));
-      controls.maxPolarAngle = Math.min(controls.maxPolarAngle,
-        Math.max(0, Math.min(maximumPolar, Math.PI / 2 - minimumPitch)));
-    }
     const bounds = options.close_zoom_bounds_xy;
     const outside = bounds?.length === 4 && (target.x < bounds[0] || target.y < bounds[1]
       || target.x > bounds[2] || target.y > bounds[3]);
-    controls.minDistance = Math.min(controls.maxDistance, Math.max(floorDistance, nearDistance,
+    controls.minDistance = Math.min(controls.maxDistance, Math.max(floorDistance,
       outside && Number.isFinite(options.context_zoom_min_distance_m) ? options.context_zoom_min_distance_m : minimum));
   };
   listen(doc, 'wheel', limit);
@@ -282,10 +253,7 @@ export function bindPondZoomFloor(frame, options = SITE.presentation?.viewer || 
     listen(doc, 'pointerdown', event => {
       if (event.target?.tagName !== 'CANVAS') return;
       if (event.pointerType === 'touch') {
-        clearTimeout(touchReset);
-        if (!touches.size) projectPivot();
         touches.add(event.pointerId);
-        if (touches.size === 2) touchPlane = target.z;
         limit();
       } else if ((event.ctrlKey || event.metaKey) && [0, 2].includes(event.button)) {
         restoreMouse(); projectPivot();
@@ -304,18 +272,13 @@ export function bindPondZoomFloor(frame, options = SITE.presentation?.viewer || 
       if (touches.has(event.pointerId) || mouseGesture) limit();
     });
     const release = event => {
-      if (touches.delete(event.pointerId)) {
-        // DT flushes its pending two-finger frame in pointerup. Keep the plane
-        // through that handler, then release it before the next gesture.
-        clearTimeout(touchReset);
-        touchReset = setTimeout(() => { if (touches.size < 2) touchPlane = undefined; }, 0);
-      }
+      touches.delete(event.pointerId);
       if (event.pointerType !== 'touch') restoreMouse();
     };
     for (const name of ['pointerup', 'pointercancel', 'lostpointercapture']) listen(doc, name, release);
-    listen(win, 'blur', () => { clearTimeout(touchReset); touches.clear(); touchPlane = undefined; restoreMouse(); });
+    listen(win, 'blur', () => { touches.clear(); restoreMouse(); });
     listen(doc, 'visibilitychange', () => {
-      if (doc.hidden) { clearTimeout(touchReset); touches.clear(); touchPlane = undefined; restoreMouse(); }
+      if (doc.hidden) { touches.clear(); restoreMouse(); }
     });
     listen(doc, 'click', event => {
       if (event.target?.closest?.('#btn-zoom-in,#btn-zoom-out')) limit();
@@ -326,9 +289,7 @@ export function bindPondZoomFloor(frame, options = SITE.presentation?.viewer || 
     controls.minDistance = minimum;
     if (fixedPivot) {
       controls.maxPolarAngle = maximumPolar;
-      clearTimeout(touchReset);
-      touches.clear(); touchPlane = undefined; restoreMouse();
-      if (target.addScaledVector === planeScaledAdd) target.addScaledVector = originalScaledAdd;
+      touches.clear(); restoreMouse();
     }
     clearTimeout(cursorReset);
     controls.zoomToCursor = cursorZoom;
@@ -369,14 +330,6 @@ export function bindPondNativeMovement(frame, mode, inspect = () => {}) {
     if (boundary) for (const [i, axis] of ['x', 'y'].entries()) {
       if (delta[axis]) fraction = Math.min(fraction, Math.max(0,
         ((delta[axis] > 0 ? boundary.max[i] : boundary.min[i]) - this[axis]) / delta[axis]));
-    }
-    // Q must stop the pair before either point reaches its floor. DT has
-    // already translated the camera; its render-loop clamp runs later.
-    if (delta.z < 0) {
-      const ground = dt.terrainSampler?.(this.x, this.y);
-      const targetFloor = Number.isFinite(ground) ? ground : win.DT_SITE.cameraTargetZ;
-      fraction = Math.min(fraction, Math.max(0, (this.z - targetFloor) / -delta.z),
-        Math.max(0, (camera.position.z - delta.z - win.DT_SITE.cameraFloorZ) / -delta.z));
     }
     const accepted = delta.clone().multiplyScalar(fraction);
     camera.position.sub(delta.clone().sub(accepted));

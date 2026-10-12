@@ -1,25 +1,25 @@
 {
-  "built_at": "2026-10-12T03:32:17+00:00",
-  "build": "e53aff3d36e8c52c",
-  "dt_base": "dt/35e449324827e8ca/",
-  "label": "yilan-pond-fixes-20261011",
-  "farm_commit": "a20116554cc6be041c7bbe99fb392950ed74442c",
+  "built_at": "2026-10-12T19:47:29+00:00",
+  "build": "111448afcf0c24e3",
+  "dt_base": "dt/72d78bf53685a181/",
+  "label": "yilan-pond-fixes-r8b-20261013",
+  "farm_commit": "d9c6db30c42e3759259c5106ff0a92593bd5919e",
   "farm_panel_dirty": false,
   "dt_generation": {
-    "name": "dt-yilan-pond-fixes-r1b-20261011",
-    "sourceRevision": "7116d70b9517e7d2aad1925c669b0e5341724469",
+    "name": "dt-yilan-pond-bdd5ccde-r7mounts-20261013",
+    "sourceRevision": "bdd5ccded507fb8f1bd04d6a79b3e314a6449697",
     "mounts": [
       "yilan-pond-canonical",
       "yilan-pond-no-response-canonical",
       "yilan-pond-static"
     ],
-    "digest": "ba406469aaaac006d24df28023bcedad68f002690e48f8136b0b64281bcbb123"
+    "digest": "9bbcd34243742092f9ebc568f55bc602206fd583a1e37f0050e44bb8a7a3f0bf"
   },
   "staging": {
-    "farm_commit": "a20116554cc6be041c7bbe99fb392950ed74442c",
-    "dt_commit": "73c2cfd6312b84ce0c319a3e5983ec325c3d6db9",
+    "farm_commit": "d9c6db30c42e3759259c5106ff0a92593bd5919e",
+    "dt_commit": "bdd5ccded507fb8f1bd04d6a79b3e314a6449697",
     "status": "local-assembled",
-    "recorded_at": "2026-10-12T03:32:16.191697+00:00"
+    "recorded_at": "2026-10-12T19:47:27.611474+00:00"
   },
   "panel_core": {
     "sourceCommit": "84fc525548df6d5b38b40cc3db9d0ed53fc5a028",
@@ -607,18 +607,19 @@
     "外框為 NLSC 正射影像經 SAM3 AI 衍生（存取日 2026-10-10 與 2026-10-11），水面、土岸及高程偏移為模擬靜態展示；非測繪或土地利用認定。 來源及每個外框 lineage 見 receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
     "2026-10-11 Codex provisional presentation: context wheel zoom retains the selected target and a 250 m contextual scale; fishbelt display target uses the nearest admitted AI pond centroid, yilan-context-fishpond-90f4613becebd34d, in inputs/context-fishponds-public-20261011-pass2.geojson. This is a simulated display anchor, not field surveying or operational advice. Decision: decisions/2026-10-11-pond-fixes-r2-context-zoom.md.",
     "周邊魚塭外框以 NLSC 正射影像為來源，由 AI 描繪（存取日 2026-10-10、2026-10-11）；海岸位置取自凍結的 OpenStreetMap／Geofabrik 來源。水面、土岸、高程偏移、藍色海面、沙丘與防風林色帶皆為模擬靜態展示，非現地測繪、土地利用或植被調查、即時監測、即時海況或養殖操作建議。",
-    "Codex provisional camera and update presentation, 2026-10-12, under Will’s corrected R7 brief and Farm AGENTS.md Director mandate. See decisions/2026-10-12-pond-fixes-r7-camera-floor.md; the farm team may supersede this mockup choice."
+    "Codex provisional camera and update presentation, 2026-10-12, under Will’s corrected R7 brief and Farm AGENTS.md Director mandate. See decisions/2026-10-12-pond-fixes-r7-camera-floor.md; the farm team may supersede this mockup choice.",
+    "2026-10-13 Codex provisional camera settings under Will round-eight brief and Farm AGENTS.md Director mandate; DT bdd5ccde. See decisions/2026-10-13-pond-fixes-r8-camera.md."
   ],
   "transforms": [
-    "dt/35e449324827e8ca/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
-    "dt/35e449324827e8ca/docs/viewer-3d/index.html: boot-error relay added to generated shell"
+    "dt/72d78bf53685a181/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
+    "dt/72d78bf53685a181/docs/viewer-3d/index.html: boot-error relay added to generated shell"
   ],
   "leak_scan_not_scanned": "GLB BIN chunks (vertex data, where short path patterns match by chance); each GLB JSON chunk is scanned",
   "meshopt": {
     "tool": "DT-Tourism scripts/terrain/meshopt_glb.mjs",
-    "tool_commit": "73c2cfd6312b84ce0c319a3e5983ec325c3d6db9",
+    "tool_commit": "cb0c541f1e8d704188651a4fafcec2a6ba55ff9e",
     "tool_dirty": false,
-    "tool_sha256": "5c083f7e9d6a2ffc162ca9e317d9b6a2078363ad6b23b98bf55befe02f6b9ccd",
+    "tool_sha256": "b6575bb33cca9583c201793dfc0794ce57dfd464e134ee201160c159ac043510",
     "encoder": "meshoptimizer",
     "encoder_version": "0.24.0",
     "settings": "the script has no options; as for penghu: every bufferView packed with EXT_meshopt_compression, positions and all other views exact, normals octahedral-quantised at most 2 degrees, fallback buffer kept",
@@ -628,7 +629,7 @@
     ],
     "files": [
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-buildings.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-buildings.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -640,7 +641,7 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-near-buildings.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-near-buildings.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -652,7 +653,7 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-near-roads.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-near-roads.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -664,7 +665,7 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-near-water.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-near-water.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -676,7 +677,7 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-roads.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-roads.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -688,7 +689,7 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-water.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-water.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -700,7 +701,7 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/terrain.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/terrain.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -712,7 +713,7 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-coast-round2-r2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-coast-round2-r2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -727,7 +728,7 @@
         "max_normal_angular_error_degrees": 0.8833957223389439
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/edges.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/edges.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -741,7 +742,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/nodes.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/nodes.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -755,7 +756,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-1-1.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-1-1.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -769,7 +770,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-1-2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-1-2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -783,7 +784,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-1-3.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-1-3.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -797,7 +798,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-1-4.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-1-4.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -811,7 +812,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-2-1.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-2-1.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -825,7 +826,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-2-2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-2-2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -839,7 +840,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-2-3.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-2-3.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -853,7 +854,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-2-4.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-2-4.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -867,7 +868,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-3-1.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-3-1.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -881,7 +882,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-3-2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-3-2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -895,7 +896,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-3-3.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-3-3.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -909,7 +910,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/aerator-3-4.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-3-4.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -923,7 +924,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/backup-aerator-3.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/backup-aerator-3.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -937,7 +938,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/circuit-1-a.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-1-a.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -951,7 +952,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/circuit-1-b.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-1-b.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -965,7 +966,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/circuit-2-a.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-2-a.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -979,7 +980,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/circuit-2-b.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-2-b.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -993,7 +994,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/circuit-3-a.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-3-a.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1007,7 +1008,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/circuit-3-b.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-3-b.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1021,7 +1022,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/control-panel.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/control-panel.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1035,7 +1036,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/feeder-1-1.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-1-1.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1049,7 +1050,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/feeder-1-2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-1-2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1063,7 +1064,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/feeder-2-1.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-2-1.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1077,7 +1078,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/feeder-2-2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-2-2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1091,7 +1092,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/feeder-3-1.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-3-1.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1105,7 +1106,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/feeder-3-2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-3-2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1119,7 +1120,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/power-generator.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/power-generator.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1133,7 +1134,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/power-mains.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/power-mains.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1147,7 +1148,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/pump-1.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/pump-1.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1161,7 +1162,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/pump-2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/pump-2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1175,7 +1176,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/pump-3.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/pump-3.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1189,7 +1190,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/sluice-1.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/sluice-1.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1203,7 +1204,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/sluice-2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/sluice-2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1217,7 +1218,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/sluice-3.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/sluice-3.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1231,7 +1232,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/weather-site.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/weather-site.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1245,7 +1246,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/worker-pond-response.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/worker-pond-response.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1259,7 +1260,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/assets/workshop-shed.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/workshop-shed.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1273,7 +1274,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/faces/canal-drain-centre.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-drain-centre.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1287,7 +1288,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/faces/canal-drain-east.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-drain-east.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1301,7 +1302,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/faces/canal-drain-north.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-drain-north.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1315,7 +1316,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/faces/canal-inlet-south.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-inlet-south.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1329,7 +1330,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/faces/canal-inlet-west.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-inlet-west.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1343,7 +1344,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/faces/pond-1.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/pond-1.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1357,7 +1358,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/faces/pond-2.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/pond-2.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1371,7 +1372,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/faces/pond-3.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/pond-3.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -1385,7 +1386,7 @@
         "lossless": true
       },
       {
-        "published": "dt/35e449324827e8ca/data/yilan-pond-static/props/faces/shed-footprint.glb",
+        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/shed-footprint.glb",
         "source": {
           "mount": "yilan-pond-static",
           "mount_folder": "pond-static-fishpass2-r2-20261011",
@@ -3660,67 +3661,67 @@
     }
   },
   "pond_precache": "shell and generation inventory after viewer first paint; candidates cached on use",
-  "files": 469,
-  "bytes": 42324392,
+  "files": 473,
+  "bytes": 42347058,
   "gzip": {
-    "files": 431,
-    "bytes": 7640545
+    "files": 434,
+    "bytes": 7648430
   },
   "workshop_budget": {
     "authority": "Will, 2026-10-04 pond Pages-ready brief",
     "file_limit_exclusive": 50000000,
     "total_limit_exclusive": 120000000,
-    "total_uncompressed_bytes": 42481755,
+    "total_uncompressed_bytes": 42504614,
     "stretch_goal_bytes": 60000000,
     "stretch_goal_met": true,
-    "files": 901,
+    "files": 908,
     "largest_files": [
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-water.glb",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-water.glb",
         "byte_count": 3700316
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-canonical/composed-frames.json",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-canonical/composed-frames.json",
         "byte_count": 3230836
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-no-response-canonical/composed-frames.json",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-no-response-canonical/composed-frames.json",
         "byte_count": 3154971
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-water.glb.gz",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-water.glb.gz",
         "byte_count": 2534382
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-canonical/inputs/context-fishponds-public-20261011-pass2.geojson",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-canonical/inputs/context-fishponds-public-20261011-pass2.geojson",
         "byte_count": 1802785
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-no-response-canonical/inputs/context-fishponds-public-20261011-pass2.geojson",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-no-response-canonical/inputs/context-fishponds-public-20261011-pass2.geojson",
         "byte_count": 1802785
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-static/inputs/context-fishponds-public-20261011-pass2.geojson",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-static/inputs/context-fishponds-public-20261011-pass2.geojson",
         "byte_count": 1802785
       },
       {
-        "path": "dt/35e449324827e8ca/node_modules/three/build/three.module.js",
+        "path": "dt/72d78bf53685a181/node_modules/three/build/three.module.js",
         "byte_count": 1314681
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-static/meshes/context-buildings.glb",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-buildings.glb",
         "byte_count": 1261692
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-canonical/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-canonical/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
         "byte_count": 1074678
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-no-response-canonical/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-no-response-canonical/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
         "byte_count": 1074678
       },
       {
-        "path": "dt/35e449324827e8ca/data/yilan-pond-static/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
+        "path": "dt/72d78bf53685a181/data/yilan-pond-static/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
         "byte_count": 1074678
       }
     ],
