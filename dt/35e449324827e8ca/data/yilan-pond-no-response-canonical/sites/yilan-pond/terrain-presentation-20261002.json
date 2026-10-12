@@ -1,0 +1,33 @@
+{
+  "schema_version": "yilan-terrain-presentation/v1",
+  "recorded_on": "2026-10-02",
+  "authority_notice": "2026-10-02 工作分派記錄的暫供展示選擇：柯林由東北側朝西南看向緩坡；員山與海岸保留已驗看的視角。只作靜態區域背景，不作導航或現地測繪。",
+  "viewpoint_camera_offsets": {
+    "02-kelin": [600, 1050, 320],
+    "04-lansnow": [350, -550, 250]
+  },
+  "coast_viewpoint": {
+    "id": "06-coast",
+    "label": "壯圍｜OSM 海岸與平坦海面（背景）",
+    "probe_xy": [0, 0],
+    "camera_offset": [-650, -450, 250],
+    "target_z_offset": 0.3
+  },
+  "ground_label": "宜蘭 MOI 2025 官方 DTM 區域背景（1×；海面 0 m；workshop 人工整平）",
+  "canonical_notice_summary_suffix": " · 官方 DTM 1×／海面 0 m",
+  "canonical_notice_remove_prefixes": ["高程與"],
+  "canonical_notices": [
+    "背景陸地高程採內政部 2025 年 20 m DTM，1× 高程；海面為人工平坦 0 m。",
+    "workshop 以來源取樣高程人工整平；三塭、塭岸及設備仍為模擬幾何，canonical 狀態及本地 XY 均保留。",
+    "背景建築缺漏高度、道路及線性水道寬度為人工展示設定；寒流提醒是模擬公告。"
+  ],
+  "provenance_titles": {
+    "decision": "官方 DTM、人工整平與背景視角的暫供選擇",
+    "dem_notice": "MOI DTM 使用聲明與人工展示政策"
+  },
+  "outputs": {
+    "static": "outputs/pond-static-20261001-terrain-v3",
+    "candidate": "outputs/pond-night-candidate-20261001-terrain-v3",
+    "receipt": "receipts/20261002-pond-night-terrain-v3.receipt.json"
+  }
+}

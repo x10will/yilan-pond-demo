@@ -46,18 +46,36 @@ if('serviceWorker' in navigator&&!globalThis.__farmBoot?.recovering){
  // keeps an old shell under a new build's worker. The static build's worker also tells every
  // open tab its build when it activates, and refuses the tabs it replaced until they reload.
  // Listening starts before registering, so a message sent at activation is never missed.
+ // A pond site may author manual delivery to keep a visitor's current scene until they choose to update.
  const build=globalThis.FARM_DEPLOYMENT?.build;
+ const manualUpdates=site.presentation?.kind==='pond-night'&&site.presentation?.delivery?.auto_update===false;
  let updateRequested=false,refreshing=false;
- const reload=()=>{if(refreshing)return;refreshing=true;try{window.app.save();}catch{}location.reload();};
+ const reload=(save=true)=>{if(refreshing)return;refreshing=true;if(save)try{window.app.save();}catch{}location.reload();};
+ let updateButton,waitingWorker;
+ const offerManual=worker=>{
+  if(worker)waitingWorker=worker;
+  if(updateButton)return;
+  updateButton=document.createElement('button');updateButton.className='update-button';
+  const language=new URLSearchParams(location.search).get('lang')||document.documentElement.lang;
+  updateButton.textContent=/^en(?:-|$)/i.test(language)?'Update available · Reload':'有新版示範 · 重新載入';
+  updateButton.onclick=()=>{
+   if(updateRequested)return;
+   try{window.app.save();}catch{}
+   updateRequested=true;
+   if(waitingWorker&&waitingWorker.state!=='activated'&&waitingWorker.state!=='redundant')waitingWorker.postMessage({type:'SKIP_WAITING'});else reload(false);
+  };
+  document.body.append(updateButton);
+ };
  const ask=()=>{if(build)navigator.serviceWorker.controller?.postMessage({type:'FARM_BUILD?'});};
- navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='FARM_BUILD'&&build&&event.data.build!==build)reload();});
- navigator.serviceWorker.addEventListener('controllerchange',()=>{if(updateRequested)reload();else ask();});
+ navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='FARM_BUILD'&&build&&event.data.build!==build){if(manualUpdates)offerManual();else reload();}});
+ navigator.serviceWorker.addEventListener('controllerchange',()=>{if(updateRequested)reload(!manualUpdates);else ask();});
  ask();
  navigator.serviceWorker.register(new URL('./sw.js',import.meta.url),{scope:'./',updateViaCache:'none'}).then(reg=>{
   if(globalThis.__farmBoot?.recovering){void reg.unregister();return;}
   if(site.presentation?.kind==='pond-night')void reg.update().catch(()=>{});
   function offer(worker){
    if(!worker||!navigator.serviceWorker.controller)return;
+   if(manualUpdates){offerManual(worker);return;}
    const button=document.createElement('button');button.className='update-button';button.textContent=site.presentation?.kind === 'pond-night' ? '有新版示範 · 重新載入' : 'Update available · Reload';
    button.onclick=()=>{window.app.save();updateRequested=true;worker.postMessage({type:'SKIP_WAITING'});};document.body.append(button);
   }

@@ -1,0 +1,108 @@
+{
+  "acquisition_path": "inputs/osm/geofabrik-20261001-v1/acquisition.json",
+  "bbox": {
+    "east": 121.87,
+    "north": 24.93,
+    "south": 24.59,
+    "west": 121.6
+  },
+  "buildings": {
+    "color": [
+      216,
+      209,
+      193,
+      255
+    ],
+    "fallback_height_m": 4
+  },
+  "center": {
+    "lat": 24.746,
+    "lng": 121.814
+  },
+  "decision_path": "decisions/2026-10-01-yilan-moi2025-terrain.md",
+  "revision": "yilan-moi2025-dtm-context-20261001-v1",
+  "roads": {
+    "color": [
+      133,
+      137,
+      128,
+      255
+    ],
+    "widths": {
+      "motorway": 12,
+      "motorway_link": 6,
+      "primary": 8,
+      "primary_link": 5,
+      "residential": 3,
+      "secondary": 6,
+      "secondary_link": 4,
+      "tertiary": 5,
+      "tertiary_link": 3,
+      "trunk": 10,
+      "trunk_link": 5,
+      "unclassified": 4
+    },
+    "z_offset": 0.03
+  },
+  "surface": {
+    "dem": {
+      "coast_transition_m": 20,
+      "coastal_nodata_floor_m": 0.1,
+      "coastal_nodata_max_distance_m": 110,
+      "geoid_offset_m": 0,
+      "mesh_step_m": 20,
+      "notice_path": "inputs/dem/source-notice.md",
+      "source_receipt_path": "inputs/dem/moi-2025-yilan.acquisition.json",
+      "vertical_exaggeration": 1,
+      "workshop_pad": {
+        "bounds_xy": [
+          -20,
+          -20,
+          120,
+          100
+        ],
+        "sample_xy": [
+          0,
+          0
+        ],
+        "transition_m": 40
+      },
+      "zone": 121
+    },
+    "land_color": [
+      172,
+      194,
+      143,
+      255
+    ],
+    "land_probe": {
+      "lat": 24.746,
+      "lng": 121.601
+    },
+    "land_z": 0,
+    "sea_color": [
+      79,
+      149,
+      184,
+      255
+    ],
+    "sea_z": 0,
+    "tile_m": 2000
+  },
+  "water": {
+    "color": [
+      88,
+      156,
+      181,
+      255
+    ],
+    "widths": {
+      "canal": 5,
+      "ditch": 1,
+      "drain": 2,
+      "river": 20,
+      "stream": 4
+    },
+    "z_offset": 0.01
+  }
+}

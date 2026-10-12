@@ -180,12 +180,58 @@ export function bindPondZoomFloor(frame, options = SITE.presentation?.viewer || 
   const {camera, controls} = win?.__dt || {};
   if (!camera || !controls) return;
   const minimum = controls.minDistance;
+  const maximumPolar = controls.maxPolarAngle;
   const cursorZoom = controls.zoomToCursor;
-  let cursorReset;
+  const fixedPivot = options.fixed_orbit_pivot === true;
+  const target = controls.target, originalScaledAdd = target.addScaledVector;
+  const touches = new Set(), listeners = [];
+  let touchPlane, mouseGesture;
+  let cursorReset, touchReset;
+  const listen = (source, name, callback, capture = true) => {
+    source?.addEventListener?.(name, callback, capture);
+    listeners.push([source, name, callback, capture]);
+  };
+  const restoreMouse = () => {
+    if (!mouseGesture) return;
+    // Native modifier keyup may have restored plain-drag mappings while the
+    // pointer remains held. Preserve that newer native state at cleanup.
+    if (!mouseGesture.modifierReleased) {
+      controls.mouseButtons.LEFT = mouseGesture.left;
+      controls.mouseButtons.RIGHT = mouseGesture.right;
+    }
+    controls.rotateSpeed = mouseGesture.speed;
+    mouseGesture = null;
+  };
+  // Keep the view ray unchanged while moving its pivot onto the authored plane.
+  // Native orbit then turns around the point being looked at, without DT's
+  // cursor-pin solver changing target height behind the floor constraint.
+  const projectPivot = () => {
+    const plane = win.DT_SITE.cameraTargetZ;
+    const ray = target.clone().sub(camera.position);
+    const scale = (plane - camera.position.z) / ray.z;
+    if (Number.isFinite(plane) && ray.z < 0 && Number.isFinite(scale) && scale > 0) {
+      target.copy(camera.position).add(ray.multiplyScalar(scale));
+      target.z = plane;
+    }
+  };
+  // DT's touch tilt solver translates the target before constructing the
+  // camera from target + offset. Preserve the plane at that existing seam,
+  // rather than correcting the camera after rendering.
+  const planeScaledAdd = function (...args) {
+    const result = originalScaledAdd.apply(this, args);
+    if (touchPlane !== undefined) this.z = touchPlane;
+    return result;
+  };
+  if (fixedPivot && typeof originalScaledAdd === 'function') target.addScaledVector = planeScaledAdd;
   const viewer = win.__dtEmbed, originalPose = viewer?.setCameraPose;
   const setPose = function (...args) {
-    // A wheel limit belongs to interactive dolly, never an authored pose.
+    // Interactive constraints never reject an authored reset/chapter pose.
     controls.minDistance = minimum;
+    if (fixedPivot) {
+      controls.maxPolarAngle = maximumPolar;
+      clearTimeout(touchReset);
+      touches.clear(); touchPlane = undefined; restoreMouse();
+    }
     return originalPose.apply(this, args);
   };
   if (typeof originalPose === 'function') viewer.setCameraPose = setPose;
@@ -200,17 +246,90 @@ export function bindPondZoomFloor(frame, options = SITE.presentation?.viewer || 
     const offset = camera.position.clone().sub(controls.target);
     const range = Math.hypot(offset.x, offset.y, offset.z);
     const height = win.DT_SITE.cameraFloorZ - controls.target.z;
+    if (fixedPivot) controls.maxPolarAngle = range > 0 && Number.isFinite(height)
+      ? Math.min(maximumPolar, Math.acos(Math.max(-1, Math.min(1, height / range)))) : maximumPolar;
     const floorDistance = height > 0 && offset.z > 0
       ? Math.max(minimum, Math.min(controls.maxDistance, height * range / offset.z)) : minimum;
-    const bounds = options.close_zoom_bounds_xy, target = controls.target;
+    let nearDistance = minimum;
+    if (fixedPivot && Number.isFinite(options.near_plane_surface_z)
+      && Number.isFinite(range) && range > 0 && offset.z > 0
+      && Number.isFinite(camera.near) && camera.near > 0
+      && Number.isFinite(camera.fov) && camera.fov > 0 && camera.fov < 180) {
+      // Keep the lower near-frustum edge above the authored surface. This
+      // constrains native input without changing DT's near plane or FOV.
+      const vertical = offset.z / range, horizontal = Math.hypot(offset.x, offset.y) / range;
+      const surfaceHeight = Math.max(0, options.near_plane_surface_z - target.z);
+      const nearHalfHeight = camera.near * Math.tan(camera.fov * Math.PI / 360);
+      nearDistance = Math.min(controls.maxDistance,
+        camera.near + (nearHalfHeight * horizontal + surfaceHeight) / vertical);
+      const amplitude = Math.hypot(range - camera.near, nearHalfHeight);
+      const minimumPitch = Math.atan2(nearHalfHeight, range - camera.near)
+        + Math.asin(Math.max(-1, Math.min(1, surfaceHeight / amplitude)));
+      controls.maxPolarAngle = Math.min(controls.maxPolarAngle,
+        Math.max(0, Math.min(maximumPolar, Math.PI / 2 - minimumPitch)));
+    }
+    const bounds = options.close_zoom_bounds_xy;
     const outside = bounds?.length === 4 && (target.x < bounds[0] || target.y < bounds[1]
       || target.x > bounds[2] || target.y > bounds[3]);
-    controls.minDistance = Math.min(controls.maxDistance, Math.max(floorDistance,
+    controls.minDistance = Math.min(controls.maxDistance, Math.max(floorDistance, nearDistance,
       outside && Number.isFinite(options.context_zoom_min_distance_m) ? options.context_zoom_min_distance_m : minimum));
   };
-  doc.addEventListener('wheel', limit, true);
+  listen(doc, 'wheel', limit);
+  if (fixedPivot) {
+    listen(doc, 'keyup', event => {
+      if (mouseGesture && ['Control', 'Meta'].includes(event.key)) mouseGesture.modifierReleased = true;
+    });
+    listen(doc, 'pointerdown', event => {
+      if (event.target?.tagName !== 'CANVAS') return;
+      if (event.pointerType === 'touch') {
+        clearTimeout(touchReset);
+        if (!touches.size) projectPivot();
+        touches.add(event.pointerId);
+        if (touches.size === 2) touchPlane = target.z;
+        limit();
+      } else if ((event.ctrlKey || event.metaKey) && [0, 2].includes(event.button)) {
+        restoreMouse(); projectPivot();
+        mouseGesture = {left:controls.mouseButtons.LEFT, right:controls.mouseButtons.RIGHT, speed:controls.rotateSpeed};
+        // OrbitControls interprets Ctrl + PAN as native ROTATE.
+        controls.mouseButtons.LEFT = 2; controls.mouseButtons.RIGHT = 2;
+        controls.rotateSpeed = 1;
+        limit();
+      }
+    });
+    listen(doc, 'mousedown', event => {
+      if (event.target?.tagName === 'CANVAS' && (event.ctrlKey || event.metaKey)
+        && [0, 2].includes(event.button)) event.stopImmediatePropagation();
+    });
+    listen(doc, 'pointermove', event => {
+      if (touches.has(event.pointerId) || mouseGesture) limit();
+    });
+    const release = event => {
+      if (touches.delete(event.pointerId)) {
+        // DT flushes its pending two-finger frame in pointerup. Keep the plane
+        // through that handler, then release it before the next gesture.
+        clearTimeout(touchReset);
+        touchReset = setTimeout(() => { if (touches.size < 2) touchPlane = undefined; }, 0);
+      }
+      if (event.pointerType !== 'touch') restoreMouse();
+    };
+    for (const name of ['pointerup', 'pointercancel', 'lostpointercapture']) listen(doc, name, release);
+    listen(win, 'blur', () => { clearTimeout(touchReset); touches.clear(); touchPlane = undefined; restoreMouse(); });
+    listen(doc, 'visibilitychange', () => {
+      if (doc.hidden) { clearTimeout(touchReset); touches.clear(); touchPlane = undefined; restoreMouse(); }
+    });
+    listen(doc, 'click', event => {
+      if (event.target?.closest?.('#btn-zoom-in,#btn-zoom-out')) limit();
+    });
+  }
   return () => {
-    doc.removeEventListener('wheel', limit, true); controls.minDistance = minimum;
+    for (const [source, name, callback, capture] of listeners) source?.removeEventListener?.(name, callback, capture);
+    controls.minDistance = minimum;
+    if (fixedPivot) {
+      controls.maxPolarAngle = maximumPolar;
+      clearTimeout(touchReset);
+      touches.clear(); touchPlane = undefined; restoreMouse();
+      if (target.addScaledVector === planeScaledAdd) target.addScaledVector = originalScaledAdd;
+    }
     clearTimeout(cursorReset);
     controls.zoomToCursor = cursorZoom;
     if (viewer?.setCameraPose === setPose) viewer.setCameraPose = originalPose;

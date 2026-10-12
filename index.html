@@ -11,6 +11,8 @@
 #pond-boot-loading small{display:block;margin-top:12px;font-size:14px}
 #pond-boot-loading .pond-loading-track{height:4px;overflow:hidden;border-radius:4px;background:#d7e4de}
 #pond-boot-loading .pond-loading-track:after{content:"";display:block;width:35%;height:100%;border-radius:inherit;background:#548d77;animation:pond-loading 1.5s ease-in-out infinite alternate}
+.pond-runtime-error{position:fixed;left:16px;bottom:16px;z-index:10000;max-width:min(460px,calc(100vw - 64px));max-height:40vh;overflow:auto;padding:16px;border:1px solid #b86c55;border-radius:12px;background:#fff4eb;color:#4c251b;font:14px/1.5 system-ui,sans-serif;box-shadow:0 8px 24px #0003}
+.pond-runtime-error p{margin:0 0 8px}.pond-runtime-error pre{white-space:pre-wrap;overflow-wrap:anywhere}
 @keyframes pond-loading{to{transform:translateX(185%)}}
 @media(prefers-reduced-motion:reduce){#pond-boot-loading .pond-loading-track:after{animation:none;width:100%;opacity:.6}}
 </style>
@@ -35,8 +37,22 @@
   summary.textContent='技術細節';text.textContent=String(error?.stack||error?.message||error);
   details.append(summary,text);box.append(title,details);home.replaceChildren(box);
  };
+ let runtimeError;
+ const showRuntime=error=>{
+  console.error('Pond scene runtime error',error);
+  if(runtimeError)return;
+  runtimeError=document.createElement('div');runtimeError.className='pond-runtime-error';runtimeError.setAttribute('role','alert');
+  const language=new URLSearchParams(location.search).get('lang')||document.documentElement.lang;
+  const english=/^en(?:-|$)/i.test(language);
+  const title=document.createElement('p');
+  title.textContent=english?'The scene encountered a problem. Your view has been kept. Reload when you are ready.':'場景發生問題，已保留目前畫面。準備好後可重新整理。';
+  const details=document.createElement('details'),summary=document.createElement('summary'),message=document.createElement('pre');
+  summary.textContent=english?'Technical details':'技術細節';message.textContent=String(error?.stack||error?.message||error);
+  details.append(summary,message);runtimeError.append(title,details);document.body.append(runtimeError);
+ };
  const fail=async error=>{
-  if(failed||complete)return;failed=true;clearTimeout(timer);unsubscribe?.();
+  if(complete){showRuntime(error);return;}
+  if(failed)return;failed=true;clearTimeout(timer);unsubscribe?.();
   console.error('模擬資料載入失敗',error);
   let tried=false;
   try{tried=sessionStorage.getItem(key)==='1';if(!tried)sessionStorage.setItem(key,'1');}

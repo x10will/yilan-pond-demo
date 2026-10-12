@@ -1,0 +1,62 @@
+{
+  "schema_version": "farm-site-regional-anchors/v1",
+  "site_id": "yilan-pond",
+  "authority_scope": "context-only",
+  "decision_path": "decisions/2026-10-01-yilan-region-skeleton.md",
+  "bbox": {"south": 24.59, "west": 121.60, "north": 24.93, "east": 121.87},
+  "workshop": {
+    "id": "workshop",
+    "label": "壯圍戶外魚塭（模擬）",
+    "lat": 24.746,
+    "lng": 121.814,
+    "location_basis": "authored mock placement in the 壯圍 coastal pond belt; not a real farm or survey",
+    "simulation_label": "模擬"
+  },
+  "candidates": [
+    {
+      "id": "kelin",
+      "label": "柯林漁廠（候選場域，背景標示）",
+      "locality": "冬山鄉柯林一路／羅東溪休閒農業區",
+      "lat": 24.684,
+      "lng": 121.737,
+      "coordinate_basis": "rounded published visitor-map embed: 24.683887, 121.7367558; not surveyed",
+      "precision": "published visitor-map location, rounded; no footprint or entrance claim",
+      "sources": ["https://ezgo.ardswc.gov.tw/zh-tw/leisure-area/10/", "https://www.taiwanfarm.com.tw/products/nvwzl/"],
+      "authority_scope": "context-only"
+    },
+    {
+      "id": "renshan",
+      "label": "仁山漁廠（候選場域，背景標示；仁山植物園附近概略位置）",
+      "locality": "冬山鄉，brief 描述近仁山植物園",
+      "lat": 24.644,
+      "lng": 121.733,
+      "coordinate_basis": "authored approximate area marker for the published locality and brief landmark; no verified farm pin",
+      "precision": "area only, not surveyed; do not navigate to this marker",
+      "sources": ["https://www.rengsang.com.tw/sweet_about.html"],
+      "authority_scope": "context-only"
+    },
+    {
+      "id": "lansnow",
+      "label": "蘭鱈三隻魚（候選場域，背景標示；員山概略位置）",
+      "locality": "員山鄉",
+      "lat": 24.744,
+      "lng": 121.683,
+      "coordinate_basis": "authored township-area marker for the published locality; no verified farm pin",
+      "precision": "township only, not surveyed; do not navigate to this marker",
+      "sources": ["https://smiletaiwan.cw.com.tw/article/4619"],
+      "authority_scope": "context-only"
+    },
+    {
+      "id": "baoba",
+      "label": "寶爸的墨瑞鱈（候選場域，背景標示；頭城概略位置）",
+      "locality": "頭城鎮",
+      "lat": 24.861,
+      "lng": 121.819,
+      "coordinate_basis": "authored township-area marker for the published locality; no verified farm pin",
+      "precision": "township only, not surveyed; do not navigate to this marker",
+      "sources": ["https://www.facebook.com/profile.php/?id=100064880642056"],
+      "authority_scope": "context-only"
+    }
+  ],
+  "source_notice": "候選均依公開來源描述地區；除柯林的公開遊客地圖近似外，數值為作者編寫的區域背景點，未驗證農場 pin。不是測繪、界址、導航或 endorsement。真實農場沒有感測值、事件或警示。"
+}
