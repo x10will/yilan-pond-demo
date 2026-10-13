@@ -72,6 +72,19 @@ function readConfig(config) {
     }
     return position(row, row.id);
   });
+  if (config.surface_meshes !== undefined) {
+    const surfaces = config.surface_meshes;
+    if (surfaces?.schema_version !== 'pond-surface-meshes/v1' || typeof surfaces.decision_ref !== 'string'
+        || !surfaces.decision_ref || !Array.isArray(surfaces.meshes) || !surfaces.meshes.length
+        || surfaces.meshes.some(row => typeof row.name !== 'string' || !row.name
+          || !['water', 'contextWater', 'soil', 'bank', 'deepWater', 'path', 'rice'].includes(row.material)
+          || !Array.isArray(row.positions) || !row.positions.length || row.positions.length % 9
+          || !row.positions.every(Number.isFinite) || !Array.isArray(row.entity_ids)
+          || !Number.isInteger(row.top_triangle_count) || row.top_triangle_count < 0
+          || row.top_triangle_count * 9 > row.positions.length)) {
+      throw new TypeError('pond-world/v1: surface_meshes needs finite baked triangles and decision provenance');
+    }
+  }
   const sheds = rows('sheds').map(row => {
     if (typeof row?.id !== 'string' || !row.id || typeof row.label !== 'string' || !row.label
         || (row.scale !== undefined && (!Number.isFinite(row.scale) || row.scale <= 0))) {
@@ -313,14 +326,40 @@ export default async function install(api, input) {
       return corner.map((v, axis) => (1 - t) ** 2 * a[axis] + 2 * (1 - t) * t * v + t ** 2 * b[axis]);
     });
   });
+  // Static construction ownership is solved at bake time. The exact emitted
+  // triangles carry their audit identity; playback never re-clips or repairs
+  // them and never changes the authored elevations or canonical twins.
+  const bakedMeshes = config.surface_meshes ? new Map() : null;
+  if (bakedMeshes) for (const row of config.surface_meshes.meshes) {
+    const geometry = own(new THREE.BufferGeometry());
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(row.positions, 3));
+    geometry.computeVertexNormals();
+    const material = row.material === 'water' ? waterMaterial
+      : row.material === 'contextWater' ? contextWaterMaterial : materials[row.material];
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.name = row.name;
+    mesh.userData = {entity_id: row.entity_ids.length === 1 ? row.entity_ids[0] : undefined,
+      entity_ids: row.entity_ids, simulation_label: '模擬', source_ref: config.source_ref,
+      decision_ref: config.surface_meshes.decision_ref, farm_pond_surface: row.surface,
+      surface_partition_version: config.surface_meshes.schema_version,
+      top_triangle_count: row.top_triangle_count, side_triangle_count: row.side_triangle_count};
+    world.add(mesh); bakedMeshes.set(row.name, mesh);
+  }
   for (const row of [...config.context_ponds, ...config.ponds]) {
     const coast = /coast|ocean|sea|海岸|海面/.test(row.id + row.label);
     const canal = canonicalPlacement && /canal|channel|水溝/.test(row.id + row.label);
     // Presentation rounding only; all topology IDs/anchors remain untouched.
     const visual = coast || canal ? row : {...row, polygon: roundedWaterPolygon(row.polygon)};
-    const mesh = face(visual, config.ponds.includes(row) ? waterMaterial : contextWaterMaterial, 0.08);
+    const mesh = bakedMeshes ? bakedMeshes.get(`farm-pond-water-${row.id}`)
+      : face(visual, config.ponds.includes(row) ? waterMaterial : contextWaterMaterial, 0.08);
+    if (!mesh) {
+      if (config.ponds.includes(row)) throw new TypeError(`pond-world/v1: baked water is missing ${row.id}`);
+      continue; // A wholly owned canal junction contributes no duplicate face.
+    }
     mesh.userData.visual_corner_rounding = !coast && !canal;
-    if (canal) {
+    if (bakedMeshes) {
+      // Water and continuous construction volumes were emitted together.
+    } else if (canal) {
       // Narrow water channels retain narrow banks; they are not pond dikes.
       outerBank(row.polygon, 0.45, 0.32, row.z + 0.07, materials.soil);
       outerBank(row.polygon, 0.4, 0.12, row.z + 0.28, materials.bank);
@@ -353,16 +392,18 @@ export default async function install(api, input) {
       world.add(warning); pondWarnings.set(row.id, warning);
     }
   }
-  for (const row of config.paths) for (let index = 1; index < row.points.length; index++) {
+  if (!bakedMeshes) for (const row of config.paths) for (let index = 1; index < row.points.length; index++) {
     segment(row.points[index - 1], row.points[index], row.width, 0.18, row.z + 0.12, materials.path);
   }
-  for (const row of config.context_dikes) for (let index = 1; index < row.points.length; index++) {
+  if (!bakedMeshes) for (const row of config.context_dikes) for (let index = 1; index < row.points.length; index++) {
     segment(row.points[index - 1], row.points[index], row.width, 0.4, row.z, materials.soil);
     segment(row.points[index - 1], row.points[index], row.width * 0.8, 0.12, row.z + 0.25, materials.bank);
   }
   for (const row of config.paddies) {
-    const mesh = face(row, materials.rice, 0.07); mesh.name = `farm-pond-paddy-${row.id}`;
-    outline(row.polygon, 1.25, 0.28, row.z + 0.11, materials.bank);
+    const mesh = bakedMeshes ? bakedMeshes.get(`farm-pond-paddy-${row.id}`) : face(row, materials.rice, 0.07);
+    if (!mesh) throw new TypeError(`pond-world/v1: baked field is missing ${row.id}`);
+    mesh.name = `farm-pond-paddy-${row.id}`;
+    if (!bakedMeshes) outline(row.polygon, 1.25, 0.28, row.z + 0.11, materials.bank);
     // Rows are a decorative pattern clipped to the supplied paddy polygon.
     const ys = row.polygon.map(point => point[1]);
     for (let y = Math.min(...ys) + 1.4; y < Math.max(...ys); y += 2.5) {

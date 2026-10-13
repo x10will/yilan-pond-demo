@@ -1,25 +1,25 @@
 {
-  "built_at": "2026-10-12T19:47:29+00:00",
-  "build": "111448afcf0c24e3",
-  "dt_base": "dt/72d78bf53685a181/",
-  "label": "yilan-pond-fixes-r8b-20261013",
-  "farm_commit": "d9c6db30c42e3759259c5106ff0a92593bd5919e",
+  "built_at": "2026-10-13T00:17:17+00:00",
+  "build": "6165d1eb5acb8b0d",
+  "dt_base": "dt/30c08b02a106032d/",
+  "label": "r9-matched-ceilings-20261013",
+  "farm_commit": "e02b8ad01806f871cd79bb306c5b846a358b7064",
   "farm_panel_dirty": false,
   "dt_generation": {
-    "name": "dt-yilan-pond-bdd5ccde-r7mounts-20261013",
+    "name": "dt-yilan-pond-fixes-r9-matched-ceilings-20261013",
     "sourceRevision": "bdd5ccded507fb8f1bd04d6a79b3e314a6449697",
     "mounts": [
       "yilan-pond-canonical",
       "yilan-pond-no-response-canonical",
       "yilan-pond-static"
     ],
-    "digest": "9bbcd34243742092f9ebc568f55bc602206fd583a1e37f0050e44bb8a7a3f0bf"
+    "digest": "8bde1c048824ba282afe7e8f784a5af75227c4afc5097acdd7f8100955ff90ec"
   },
   "staging": {
-    "farm_commit": "d9c6db30c42e3759259c5106ff0a92593bd5919e",
+    "farm_commit": "e02b8ad01806f871cd79bb306c5b846a358b7064",
     "dt_commit": "bdd5ccded507fb8f1bd04d6a79b3e314a6449697",
     "status": "local-assembled",
-    "recorded_at": "2026-10-12T19:47:27.611474+00:00"
+    "recorded_at": "2026-10-13T00:17:13.908867+00:00"
   },
   "panel_core": {
     "sourceCommit": "84fc525548df6d5b38b40cc3db9d0ed53fc5a028",
@@ -208,6 +208,16 @@
         "sha256": "3858993baec88bb5d86e40960550b4b01398722e57636bf6614c666ec2d42bf0"
       },
       {
+        "byte_count": 1427,
+        "path": "decisions/2026-10-13-pond-fixes-r9-context-r8-tessellation.md",
+        "sha256": "a5b003c44d317f44d865c049f1ee6236a8a51dd5aabf0943ec9916df99a9fded"
+      },
+      {
+        "byte_count": 2194,
+        "path": "decisions/2026-10-13-pond-fixes-r9-water-ownership.md",
+        "sha256": "b5b440269090ab5e1f8fec443188a9411399e4174c03e34cd1d7ddf96255c41b"
+      },
+      {
         "byte_count": 2458,
         "path": "fishpond-packaging-fishbelt-20261011.json",
         "sha256": "ad0690944db1dd9da4be3e6d332433536f5264c679b31ed1fd797f8cf4a41330"
@@ -221,6 +231,26 @@
         "byte_count": 2917,
         "path": "fishpond-packaging-fishpass2-r2-20261011.json",
         "sha256": "d36090b5c58fb4beeaa59a8d7c91c9ee9b26cb2213ead8580d79fb271a032a86"
+      },
+      {
+        "byte_count": 2764,
+        "path": "fishpond-packaging-fixes-r9-20261013.json",
+        "sha256": "b73bb7cca2e535a01d692b7305e7fe5564e7a936dda9607ec89cc407d6e35876"
+      },
+      {
+        "byte_count": 3184,
+        "path": "fishpond-packaging-fixes-r9-matched-ceilings-20261013.json",
+        "sha256": "fa509af8e718f72921641e9ec27f8fb779dd54c87a1c900806ab5476cd0390de"
+      },
+      {
+        "byte_count": 886444,
+        "path": "inputs/context-fishponds-public-20261010-r3.geojson",
+        "sha256": "646f2ce14ed02fb607f95aa03890357d64a2311ce4432576a01ea03f3b70737d"
+      },
+      {
+        "byte_count": 1802785,
+        "path": "inputs/context-fishponds-public-20261011-pass2.geojson",
+        "sha256": "b7cdd6b8241cf770a02bd8d9c77597ec9e7abb3153420913c3ac62cbea92a066"
       },
       {
         "byte_count": 73001,
@@ -271,16 +301,6 @@
         "byte_count": 2754,
         "path": "inputs/context/terrain-compressed-20261007-v2/provenance.json",
         "sha256": "54b0597d5d99c7c86eb3c0fa96e4118efe39ba732e4591ac6aaac9a1a75ee32d"
-      },
-      {
-        "byte_count": 886444,
-        "path": "inputs/context-fishponds-public-20261010-r3.geojson",
-        "sha256": "646f2ce14ed02fb607f95aa03890357d64a2311ce4432576a01ea03f3b70737d"
-      },
-      {
-        "byte_count": 1802785,
-        "path": "inputs/context-fishponds-public-20261011-pass2.geojson",
-        "sha256": "b7cdd6b8241cf770a02bd8d9c77597ec9e7abb3153420913c3ac62cbea92a066"
       },
       {
         "byte_count": 8176,
@@ -423,6 +443,16 @@
         "sha256": "bc3fc8cc48a598a51218fa0ae696a209755294b1e695b57bdbbaa5e03a2fc5ee"
       },
       {
+        "byte_count": 12709,
+        "path": "inputs/pond-world-fixes-r9-20261013.json",
+        "sha256": "c890868ae16456ae0d1bf35984a10a3a893f03d2af1642745dfa992401969669"
+      },
+      {
+        "byte_count": 379456,
+        "path": "inputs/pond-world-fixes-r9-matched-ceilings-20261013.json",
+        "sha256": "8e5edf5d5070b70777f0fd4c7280da13c4728fc38c95a5875726da53c9baeddf"
+      },
+      {
         "byte_count": 30601,
         "path": "inputs/pond-world-merge-ai-20261004.json",
         "sha256": "1c68031f98e2424c995c093ba43d25fea958acbdad3ee1e4e504f7732d1ad225"
@@ -471,6 +501,16 @@
         "byte_count": 10156,
         "path": "panel-site-fishbelt-round2-r2-20261011.json",
         "sha256": "1f51f169de09df524cf05b77c2f03a7e16db273b2cc6b7d6e281d3e7c410d336"
+      },
+      {
+        "byte_count": 14912,
+        "path": "panel-site-fixes-r8-20261013.json",
+        "sha256": "f563cf1c2ec05b27cdf22182f8ddc2e31ab91d212cc75013811cb261ea9354ac"
+      },
+      {
+        "byte_count": 13226,
+        "path": "panel-site-fixes-r9-20261013.json",
+        "sha256": "21388739027aa522126ceaabc0b47071efd1aeca33efcbef5c50f249fc86eabe"
       },
       {
         "byte_count": 9145,
@@ -528,6 +568,16 @@
         "sha256": "7e51f2860fb745a1845b078dd29c81d59ddc63a6e319a37b83fc80cfadf5dbe1"
       },
       {
+        "byte_count": 1259427,
+        "path": "receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json",
+        "sha256": "4ca392b637fbb559338118b3d864af4b0f539d4be620be18d55b5a8375115bcd"
+      },
+      {
+        "byte_count": 1105408,
+        "path": "receipts/20261013-pond-fixes-r9-water-bake.receipt.json",
+        "sha256": "2524b3aa54066df5c29582293bc27aadc520bda90c99978b35e2930c00814444"
+      },
+      {
         "byte_count": 16015,
         "path": "scenarios/pond-night-response-fix-content-20261004.json",
         "sha256": "a64b1fc52e350fb4994c94ffb62b0cb0d58ec904e1b30fd36536fcfe2399314e"
@@ -558,9 +608,9 @@
         "sha256": "83214511a81c8c4ebe52060ded31f09551909853e5192337a48c88866dc64b2f"
       },
       {
-        "byte_count": 59147,
+        "byte_count": 59874,
         "path": "static-manifest.json",
-        "sha256": "ab5cc1eab9ffa528d5668acf38757fa5e4c19c4fe4ab8db925eebc2ac3a63dd4"
+        "sha256": "eccbd67cbe17b818162ebbef1f8c46b4b84e635fbf6881cb39bec5bb23aa3663"
       },
       {
         "byte_count": 43349,
@@ -608,11 +658,13 @@
     "2026-10-11 Codex provisional presentation: context wheel zoom retains the selected target and a 250 m contextual scale; fishbelt display target uses the nearest admitted AI pond centroid, yilan-context-fishpond-90f4613becebd34d, in inputs/context-fishponds-public-20261011-pass2.geojson. This is a simulated display anchor, not field surveying or operational advice. Decision: decisions/2026-10-11-pond-fixes-r2-context-zoom.md.",
     "周邊魚塭外框以 NLSC 正射影像為來源，由 AI 描繪（存取日 2026-10-10、2026-10-11）；海岸位置取自凍結的 OpenStreetMap／Geofabrik 來源。水面、土岸、高程偏移、藍色海面、沙丘與防風林色帶皆為模擬靜態展示，非現地測繪、土地利用或植被調查、即時監測、即時海況或養殖操作建議。",
     "Codex provisional camera and update presentation, 2026-10-12, under Will’s corrected R7 brief and Farm AGENTS.md Director mandate. See decisions/2026-10-12-pond-fixes-r7-camera-floor.md; the farm team may supersede this mockup choice.",
-    "2026-10-13 Codex provisional camera settings under Will round-eight brief and Farm AGENTS.md Director mandate; DT bdd5ccde. See decisions/2026-10-13-pond-fixes-r8-camera.md."
+    "2026-10-13 Codex provisional camera settings under Will round-eight brief and Farm AGENTS.md Director mandate; DT bdd5ccde. See decisions/2026-10-13-pond-fixes-r8-camera.md.",
+    "外框為 NLSC 正射影像經 SAM3 AI 衍生（存取日 2026-10-10 與 2026-10-11），水面、土岸及高程偏移為模擬靜態展示；非測繪或土地利用認定。 來源及每個外框 lineage 見 receipts/20261013-pond-fixes-r9-water-bake.receipt.json",
+    "外框為 NLSC 正射影像經 SAM3 AI 衍生（存取日 2026-10-10 與 2026-10-11），水面、土岸及高程偏移為模擬靜態展示；非測繪或土地利用認定。 來源及每個外框 lineage 見 receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json"
   ],
   "transforms": [
-    "dt/72d78bf53685a181/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
-    "dt/72d78bf53685a181/docs/viewer-3d/index.html: boot-error relay added to generated shell"
+    "dt/30c08b02a106032d/docs/viewer-common/site-layer-consumer.js: machine-local source comment removed",
+    "dt/30c08b02a106032d/docs/viewer-3d/index.html: boot-error relay added to generated shell"
   ],
   "leak_scan_not_scanned": "GLB BIN chunks (vertex data, where short path patterns match by chance); each GLB JSON chunk is scanned",
   "meshopt": {
@@ -629,10 +681,10 @@
     ],
     "files": [
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-buildings.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-buildings.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/context-buildings.glb"
         },
         "source_sha256": "8ce12b5693e67935d9fa54b79533af61fc15d817522163d53d99dc88c0820e1f",
@@ -641,10 +693,10 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-near-buildings.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-near-buildings.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/context-near-buildings.glb"
         },
         "source_sha256": "b6f969ab2ebc4e226c1873432ea95cfd7895822b6addf838434b826f3acfac6d",
@@ -653,10 +705,10 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-near-roads.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-near-roads.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/context-near-roads.glb"
         },
         "source_sha256": "7457fea06e4cbacaa3d2a6079810e5e0ef5e4a664d4376374531a463f70abaa8",
@@ -665,22 +717,22 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-near-water.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-near-water.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/context-near-water.glb"
         },
-        "source_sha256": "639c5e64074f7a3d006eee2fb871bdec2248198c2d6ee8fb95b4133f5e2c510a",
-        "output_sha256": "639c5e64074f7a3d006eee2fb871bdec2248198c2d6ee8fb95b4133f5e2c510a",
+        "source_sha256": "ef19f57ab34723893bbe63a026b9ec0e65572ce78cc11357f95d9db6812941a9",
+        "output_sha256": "ef19f57ab34723893bbe63a026b9ec0e65572ce78cc11357f95d9db6812941a9",
         "packed": false,
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-roads.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-roads.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/context-roads.glb"
         },
         "source_sha256": "df4b14288f3103bcf39eb130247fb3b4b4ae7e86d5a35db0332a3dc086739953",
@@ -689,34 +741,34 @@
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-water.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-water.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/context-water.glb"
         },
-        "source_sha256": "793126adfc24934b6fc45dcd24e80aadbca32192a8f4a231b3623383f0f36cc7",
-        "output_sha256": "793126adfc24934b6fc45dcd24e80aadbca32192a8f4a231b3623383f0f36cc7",
+        "source_sha256": "4318c69bfcab70f24e7e6a8dc5cce09944e2a785183a19bd3357ac9f6d5c4096",
+        "output_sha256": "4318c69bfcab70f24e7e6a8dc5cce09944e2a785183a19bd3357ac9f6d5c4096",
         "packed": false,
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/terrain.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/terrain.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/terrain.glb"
         },
-        "source_sha256": "dcb0611a77e5c5b22ab5ac01b5d7a5b0bdc543a3c8ee02df4eb04dc936772fec",
-        "output_sha256": "dcb0611a77e5c5b22ab5ac01b5d7a5b0bdc543a3c8ee02df4eb04dc936772fec",
+        "source_sha256": "3920b4f91ed26eaf11a509178a5d881dca0599b35e5a3b17db8907a16b6597bb",
+        "output_sha256": "3920b4f91ed26eaf11a509178a5d881dca0599b35e5a3b17db8907a16b6597bb",
         "packed": false,
         "note": "already packed in the package, copied"
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-coast-round2-r2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-coast-round2-r2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/context-coast-round2-r2.glb"
         },
         "source_sha256": "0741134036b2be7768fcd563ecc44936c9adae6c63c85386d046daafe5ccdb14",
@@ -728,24 +780,24 @@
         "max_normal_angular_error_degrees": 0.8833957223389439
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/edges.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/edges.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/edges.glb"
         },
-        "source_sha256": "c9021f22b94f283c4ed617801709088ce7fadd2d0d24652899da59891c366872",
-        "output_sha256": "c9021f22b94f283c4ed617801709088ce7fadd2d0d24652899da59891c366872",
-        "source_bytes": 7048,
-        "output_bytes": 7048,
+        "source_sha256": "54da71fc2fd984aca2b2cb27501bd8c9c9b1116560df2fa2b816feabc4f0911a",
+        "output_sha256": "54da71fc2fd984aca2b2cb27501bd8c9c9b1116560df2fa2b816feabc4f0911a",
+        "source_bytes": 168,
+        "output_bytes": 168,
         "packed": false,
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/nodes.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/nodes.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "meshes/nodes.glb"
         },
         "source_sha256": "4d5342739b7c7383555e33b2d1fd35582a9cf86936e110a97527a5f4e7866c4b",
@@ -756,10 +808,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-1-1.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-1-1.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-1-1.glb"
         },
         "source_sha256": "22cd190b77519109b74aae35876462b2e0fd00c6bae1e9cdb669dcfedfe62ec8",
@@ -770,10 +822,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-1-2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-1-2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-1-2.glb"
         },
         "source_sha256": "cbdeb958838d7b86d7b1a918fb29dbe17ecf7bfca1e6de6490eee15384a51df4",
@@ -784,10 +836,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-1-3.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-1-3.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-1-3.glb"
         },
         "source_sha256": "4097b448b61be5763da01db739391c6efa3b993b583d767f6716a62b55110cff",
@@ -798,10 +850,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-1-4.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-1-4.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-1-4.glb"
         },
         "source_sha256": "fdd98e3d0093b4391df8fe931cbb575b7c03249119a4a8d5320a4c539266a631",
@@ -812,10 +864,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-2-1.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-2-1.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-2-1.glb"
         },
         "source_sha256": "ec550fe6331977c2e43091e465d25e0e342426aa9e4f3b0d7018b66bbfc17167",
@@ -826,10 +878,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-2-2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-2-2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-2-2.glb"
         },
         "source_sha256": "004f214ac170a3e17f88621a6a73680602634775eacfdfa12f399861763a48d2",
@@ -840,10 +892,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-2-3.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-2-3.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-2-3.glb"
         },
         "source_sha256": "a54df30df11964019b0ca9418793f1b9698aef712aa8efcfc909674399f5ae4e",
@@ -854,10 +906,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-2-4.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-2-4.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-2-4.glb"
         },
         "source_sha256": "ecc43383e132203b0372239b5747aa8f76ed0be62c03c3fc17afba9ee83d6a80",
@@ -868,10 +920,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-3-1.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-3-1.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-3-1.glb"
         },
         "source_sha256": "400ca27137c5067891896bd64f6fbda2792fa1323737ce6a7249a9d02fedac28",
@@ -882,10 +934,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-3-2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-3-2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-3-2.glb"
         },
         "source_sha256": "1ba2a35c3441d82e2d1401c0d52320f6a7e118b1cb8b10fd1763b42f95df59a5",
@@ -896,10 +948,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-3-3.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-3-3.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-3-3.glb"
         },
         "source_sha256": "221ad9371783a4446ba16fa4cdd61975a06d0c6e03242adbeaefbab201ae87cc",
@@ -910,10 +962,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/aerator-3-4.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/aerator-3-4.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/aerator-3-4.glb"
         },
         "source_sha256": "a2e30c067744a78d94cde590a2e3b25dbb8682c0c54f134c9fb2ade3f942a924",
@@ -924,10 +976,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/backup-aerator-3.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/backup-aerator-3.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/backup-aerator-3.glb"
         },
         "source_sha256": "ae2969d955cb2b1d25cafaf473032d3567281745aff641840cd098e360f4f902",
@@ -938,10 +990,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-1-a.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/circuit-1-a.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/circuit-1-a.glb"
         },
         "source_sha256": "e93bf27cf164a1aa339fcc058df921bb2a2a66fa3ec86bee405986c62287c75f",
@@ -952,10 +1004,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-1-b.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/circuit-1-b.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/circuit-1-b.glb"
         },
         "source_sha256": "57648fe7cde2cdb767a6fe5e0f13b3586ac0bfc7e18abd60dfe252ef6847cb0a",
@@ -966,10 +1018,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-2-a.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/circuit-2-a.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/circuit-2-a.glb"
         },
         "source_sha256": "2f6084a10578d45711fec6387846b340fcc9efbf367a36e41a9e2eb8944cf4e0",
@@ -980,10 +1032,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-2-b.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/circuit-2-b.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/circuit-2-b.glb"
         },
         "source_sha256": "f14a0b4faa6de746fc7b8c5676f79e422f953f4f282ca6d7eb05742f20de59b0",
@@ -994,10 +1046,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-3-a.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/circuit-3-a.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/circuit-3-a.glb"
         },
         "source_sha256": "fa44befc72e67b8ad1ec0396c3de91761267a93ed04c92fe2dafaa7191a4e3b7",
@@ -1008,10 +1060,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/circuit-3-b.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/circuit-3-b.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/circuit-3-b.glb"
         },
         "source_sha256": "d0e87c38f19fda63bf78dea73590b67b768dd0a2d73476e177d567a61eb2e7ab",
@@ -1022,10 +1074,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/control-panel.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/control-panel.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/control-panel.glb"
         },
         "source_sha256": "ca34c17d53577446d12adcf785b4716bf7d8477197bd8173d7d90ca104ee43a0",
@@ -1036,10 +1088,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-1-1.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/feeder-1-1.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/feeder-1-1.glb"
         },
         "source_sha256": "4e38408fbb6de21c102054be23bf199422cfc952142b5cb1d96f1d7b0f90d403",
@@ -1050,10 +1102,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-1-2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/feeder-1-2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/feeder-1-2.glb"
         },
         "source_sha256": "2b743c40a77280e6263fe90add67bbaf7356a31651c186c20a5d9ef5cacc0a19",
@@ -1064,10 +1116,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-2-1.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/feeder-2-1.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/feeder-2-1.glb"
         },
         "source_sha256": "89abf6d69cd0260ac3b0ea8f54e7b4a737fc2d6b638413b0bfe7d57dd4b9f370",
@@ -1078,10 +1130,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-2-2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/feeder-2-2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/feeder-2-2.glb"
         },
         "source_sha256": "bc511c969e2c530dad0c1760b96ef4f7e95668728becdb6cc1ae1c4985876482",
@@ -1092,10 +1144,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-3-1.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/feeder-3-1.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/feeder-3-1.glb"
         },
         "source_sha256": "f885968ae807281a8baeb5cc0b26cbb21bd95233ede8811a225c8260da2e2f30",
@@ -1106,10 +1158,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/feeder-3-2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/feeder-3-2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/feeder-3-2.glb"
         },
         "source_sha256": "31f30bca5e5013d60f7aa3ea7faf8702d677c8eb8036c3e13a14a58b4bd36fa6",
@@ -1120,10 +1172,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/power-generator.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/power-generator.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/power-generator.glb"
         },
         "source_sha256": "af4beb54639c92efcf26be6eeca6e2ccf0f575adc09ec3d01e025fc8020cfa16",
@@ -1134,10 +1186,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/power-mains.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/power-mains.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/power-mains.glb"
         },
         "source_sha256": "f7c1f14f6c4b14c9bf2e8450561b03773e02db41c74914ec89d5d6202fe18325",
@@ -1148,10 +1200,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/pump-1.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/pump-1.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/pump-1.glb"
         },
         "source_sha256": "500a13f9e21f6f350c11f3bada0ea1dfd80965c42aadfeb98c44f374dacc4697",
@@ -1162,10 +1214,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/pump-2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/pump-2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/pump-2.glb"
         },
         "source_sha256": "9060f31a28985e66812901b8891b620ca6f91fb5f0e5ab9859e62fafb1462a7f",
@@ -1176,10 +1228,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/pump-3.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/pump-3.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/pump-3.glb"
         },
         "source_sha256": "89491a561334dc62bd79e1d571a0dd1f68a95ff676c3698c40cec501d6027d0a",
@@ -1190,10 +1242,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/sluice-1.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/sluice-1.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/sluice-1.glb"
         },
         "source_sha256": "692d30888102496a4e86e77a36a30f55c03f6be0d747c66adaba4327ecc75432",
@@ -1204,10 +1256,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/sluice-2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/sluice-2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/sluice-2.glb"
         },
         "source_sha256": "04f77fb692d5e4b988a3f699c3679f3e003cf9fd0177853bcb7765b5db3e4010",
@@ -1218,10 +1270,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/sluice-3.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/sluice-3.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/sluice-3.glb"
         },
         "source_sha256": "0d26dd053a9dfc74e628e80ca0271ee720ead5dfb4adf592dedb615818197737",
@@ -1232,10 +1284,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/weather-site.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/weather-site.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/weather-site.glb"
         },
         "source_sha256": "597b559b0fc6c8fcdbb63b64d9dbb68a5eec257e6090eb4e9fc17e25d690ef00",
@@ -1246,10 +1298,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/worker-pond-response.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/worker-pond-response.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/worker-pond-response.glb"
         },
         "source_sha256": "a4e20e2fa2dd0ddde0f0e842ac834ca6db10499202d6d22619cd7b592f7a030b",
@@ -1260,10 +1312,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/assets/workshop-shed.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/assets/workshop-shed.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/assets/workshop-shed.glb"
         },
         "source_sha256": "31bc2e87d03c3cf495445785ce38d040dfeb4219955497c0f156f8c0389d113e",
@@ -1274,10 +1326,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-drain-centre.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/faces/canal-drain-centre.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/faces/canal-drain-centre.glb"
         },
         "source_sha256": "b0e9c8b2f9141b72e665676f2688da75b1c3cfc09fc321a3808dd68935021bf7",
@@ -1288,10 +1340,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-drain-east.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/faces/canal-drain-east.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/faces/canal-drain-east.glb"
         },
         "source_sha256": "74a7e1a11cd7ae6d549f2d453a7bd8b61fc77ab9cbe0bb435c776f22c0c5d61e",
@@ -1302,10 +1354,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-drain-north.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/faces/canal-drain-north.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/faces/canal-drain-north.glb"
         },
         "source_sha256": "d801a02f7f9592da781ae050ceb10a62721366f8b53367bd3f2010c571d77892",
@@ -1316,10 +1368,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-inlet-south.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/faces/canal-inlet-south.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/faces/canal-inlet-south.glb"
         },
         "source_sha256": "ad12be33284bfd63fb1b2d21ccfb5969fc442b2111b1adc0043d78821a31e9d5",
@@ -1330,10 +1382,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/canal-inlet-west.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/faces/canal-inlet-west.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/faces/canal-inlet-west.glb"
         },
         "source_sha256": "dd29a5eb93b1fea17700fb5aa68528aae1f8242cf12c908622b0afa6a57e110a",
@@ -1344,10 +1396,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/pond-1.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/faces/pond-1.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/faces/pond-1.glb"
         },
         "source_sha256": "777bc370fb9708ae4b9a6d4bf509622937142872bccf1d89ae2fbf9286240ea8",
@@ -1358,10 +1410,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/pond-2.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/faces/pond-2.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/faces/pond-2.glb"
         },
         "source_sha256": "00a1173fbb946f61de11cdeacbba046db862c03511b237d6aa116cf9c738f27d",
@@ -1372,10 +1424,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/pond-3.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/faces/pond-3.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/faces/pond-3.glb"
         },
         "source_sha256": "ffb17460f78449c30ae9d8d73cec813803ba82dec2e851a98c8e5c6c18ee3cc4",
@@ -1386,10 +1438,10 @@
         "lossless": true
       },
       {
-        "published": "dt/72d78bf53685a181/data/yilan-pond-static/props/faces/shed-footprint.glb",
+        "published": "dt/30c08b02a106032d/data/yilan-pond-static/props/faces/shed-footprint.glb",
         "source": {
           "mount": "yilan-pond-static",
-          "mount_folder": "pond-static-fishpass2-r2-20261011",
+          "mount_folder": "pond-static-fixes-r9-matched-ceilings-20261013",
           "path": "props/faces/shed-footprint.glb"
         },
         "source_sha256": "fd089769a0f4f98e94e02fa8301e74816e46141b0809e627ecf6ff65e9725174",
@@ -1461,6 +1513,30 @@
       "transport": {
         "byte_count": 1246,
         "sha256": "c45f72d74728ed3a5526442ade418b11c778e9f941fd7d3211f6f137cb8ec367"
+      }
+    },
+    "data/yilan-pond-canonical/fishpond-packaging-fixes-r9-20261013.json": {
+      "path": "data/yilan-pond-canonical/fishpond-packaging-fixes-r9-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 2764,
+        "sha256": "b73bb7cca2e535a01d692b7305e7fe5564e7a936dda9607ec89cc407d6e35876"
+      },
+      "transport": {
+        "byte_count": 1220,
+        "sha256": "f4be6386dc75274f56b733cefcabee7d886325a0b31fb9a4dedfd5a90aa6a785"
+      }
+    },
+    "data/yilan-pond-canonical/fishpond-packaging-fixes-r9-matched-ceilings-20261013.json": {
+      "path": "data/yilan-pond-canonical/fishpond-packaging-fixes-r9-matched-ceilings-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 3184,
+        "sha256": "fa509af8e718f72921641e9ec27f8fb779dd54c87a1c900806ab5476cd0390de"
+      },
+      "transport": {
+        "byte_count": 1288,
+        "sha256": "aedd445309cedf3db78c7cfe0348f82a5789676690d3566eb4ccddf5c308c361"
       }
     },
     "data/yilan-pond-canonical/inputs/context/base-terrain-20261001-v1/provenance.json": {
@@ -1847,6 +1923,30 @@
         "sha256": "99c6c86a2e1e7633804670d3133d7a08abd7d89bdeeee0bdfb312795900bb8b9"
       }
     },
+    "data/yilan-pond-canonical/inputs/pond-world-fixes-r9-20261013.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-fixes-r9-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 12709,
+        "sha256": "c890868ae16456ae0d1bf35984a10a3a893f03d2af1642745dfa992401969669"
+      },
+      "transport": {
+        "byte_count": 2878,
+        "sha256": "b002375fae91504cd5d0f49b0ab490279a4faf2fda315a22b5e14955b0dbb58f"
+      }
+    },
+    "data/yilan-pond-canonical/inputs/pond-world-fixes-r9-matched-ceilings-20261013.json": {
+      "path": "data/yilan-pond-canonical/inputs/pond-world-fixes-r9-matched-ceilings-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 379456,
+        "sha256": "8e5edf5d5070b70777f0fd4c7280da13c4728fc38c95a5875726da53c9baeddf"
+      },
+      "transport": {
+        "byte_count": 35745,
+        "sha256": "609daa202516402d00b2c2d0ed4fb0b61bd3603aa2112512220dc0da4967bb1e"
+      }
+    },
     "data/yilan-pond-canonical/inputs/pond-world-merge-ai-20261004.json": {
       "path": "data/yilan-pond-canonical/inputs/pond-world-merge-ai-20261004.json.gz",
       "encoding": "gzip",
@@ -1935,12 +2035,12 @@
       "path": "data/yilan-pond-canonical/manifest.json.gz",
       "encoding": "gzip",
       "source": {
-        "byte_count": 64447,
-        "sha256": "baaa4fc8d426e75280f559dbff6d2731f822b1d700ac89f6cfad3fe2854d0ab0"
+        "byte_count": 66293,
+        "sha256": "c2ca955e62ed20bf923bd46056f33c0393d6548f13a87041dbd3116fd504568d"
       },
       "transport": {
-        "byte_count": 14005,
-        "sha256": "e1339c8e70db5707ca38a05bb7551cc339bb1ab0df408293d07df88f31ea1c90"
+        "byte_count": 14562,
+        "sha256": "dc4a54d3a168f3a4669ae035bac7bdf8f2ef16a510d56a082a2e41959eeb3feb"
       }
     },
     "data/yilan-pond-canonical/panel-site-fishbelt-round2-r2-20261011.json": {
@@ -1953,6 +2053,30 @@
       "transport": {
         "byte_count": 4525,
         "sha256": "b5b1c3476e1b59fd8dfd07428a57d109eceb583649c936635c1129ef3e879253"
+      }
+    },
+    "data/yilan-pond-canonical/panel-site-fixes-r8-20261013.json": {
+      "path": "data/yilan-pond-canonical/panel-site-fixes-r8-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14912,
+        "sha256": "f563cf1c2ec05b27cdf22182f8ddc2e31ab91d212cc75013811cb261ea9354ac"
+      },
+      "transport": {
+        "byte_count": 5404,
+        "sha256": "d8dad7175769a5157e4a87d09d587a3c7f0663500712a25e3cf568760c355001"
+      }
+    },
+    "data/yilan-pond-canonical/panel-site-fixes-r9-20261013.json": {
+      "path": "data/yilan-pond-canonical/panel-site-fixes-r9-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 13226,
+        "sha256": "21388739027aa522126ceaabc0b47071efd1aeca33efcbef5c50f249fc86eabe"
+      },
+      "transport": {
+        "byte_count": 5271,
+        "sha256": "81610b89415f69f0fce1e88b0a921c0c513b7dcb575bcc285e006508ec302332"
       }
     },
     "data/yilan-pond-canonical/panel-source-fishponds-portrait-20261010.json": {
@@ -2075,6 +2199,30 @@
         "sha256": "fa925c644b121fa5a68aaf7828f80df6e28e0f3118f83457deb23017b896fa65"
       }
     },
+    "data/yilan-pond-canonical/receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json": {
+      "path": "data/yilan-pond-canonical/receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1259427,
+        "sha256": "4ca392b637fbb559338118b3d864af4b0f539d4be620be18d55b5a8375115bcd"
+      },
+      "transport": {
+        "byte_count": 156077,
+        "sha256": "8d2cb8447bde2ee3bc5f511f732b8420d48518a67a0b7b0a7551f545770685d0"
+      }
+    },
+    "data/yilan-pond-canonical/receipts/20261013-pond-fixes-r9-water-bake.receipt.json": {
+      "path": "data/yilan-pond-canonical/receipts/20261013-pond-fixes-r9-water-bake.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1105408,
+        "sha256": "2524b3aa54066df5c29582293bc27aadc520bda90c99978b35e2930c00814444"
+      },
+      "transport": {
+        "byte_count": 150378,
+        "sha256": "aa97eedaa7f6284cde533fe36a386620625dfc5b20024dad42a7b365c8fa2138"
+      }
+    },
     "data/yilan-pond-canonical/scenarios/pond-night-response-fix-content-20261004.json": {
       "path": "data/yilan-pond-canonical/scenarios/pond-night-response-fix-content-20261004.json.gz",
       "encoding": "gzip",
@@ -2139,12 +2287,12 @@
       "path": "data/yilan-pond-canonical/static-manifest.json.gz",
       "encoding": "gzip",
       "source": {
-        "byte_count": 59147,
-        "sha256": "ab5cc1eab9ffa528d5668acf38757fa5e4c19c4fe4ab8db925eebc2ac3a63dd4"
+        "byte_count": 59874,
+        "sha256": "eccbd67cbe17b818162ebbef1f8c46b4b84e635fbf6881cb39bec5bb23aa3663"
       },
       "transport": {
-        "byte_count": 12636,
-        "sha256": "37fa7b0df6682bb4cf74593a7ce76abcd89719c1ec2b4ddbadf8227c278cc0ba"
+        "byte_count": 12884,
+        "sha256": "f499af07fde9364ebf33b431d270861bfb55f039b9b98ff54dc6e44b00307811"
       }
     },
     "data/yilan-pond-canonical/static-snapshot.json": {
@@ -2217,6 +2365,30 @@
       "transport": {
         "byte_count": 1246,
         "sha256": "c45f72d74728ed3a5526442ade418b11c778e9f941fd7d3211f6f137cb8ec367"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/fishpond-packaging-fixes-r9-20261013.json": {
+      "path": "data/yilan-pond-no-response-canonical/fishpond-packaging-fixes-r9-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 2764,
+        "sha256": "b73bb7cca2e535a01d692b7305e7fe5564e7a936dda9607ec89cc407d6e35876"
+      },
+      "transport": {
+        "byte_count": 1220,
+        "sha256": "f4be6386dc75274f56b733cefcabee7d886325a0b31fb9a4dedfd5a90aa6a785"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/fishpond-packaging-fixes-r9-matched-ceilings-20261013.json": {
+      "path": "data/yilan-pond-no-response-canonical/fishpond-packaging-fixes-r9-matched-ceilings-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 3184,
+        "sha256": "fa509af8e718f72921641e9ec27f8fb779dd54c87a1c900806ab5476cd0390de"
+      },
+      "transport": {
+        "byte_count": 1288,
+        "sha256": "aedd445309cedf3db78c7cfe0348f82a5789676690d3566eb4ccddf5c308c361"
       }
     },
     "data/yilan-pond-no-response-canonical/inputs/context/base-terrain-20261001-v1/provenance.json": {
@@ -2591,6 +2763,30 @@
         "sha256": "99c6c86a2e1e7633804670d3133d7a08abd7d89bdeeee0bdfb312795900bb8b9"
       }
     },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-fixes-r9-20261013.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-fixes-r9-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 12709,
+        "sha256": "c890868ae16456ae0d1bf35984a10a3a893f03d2af1642745dfa992401969669"
+      },
+      "transport": {
+        "byte_count": 2878,
+        "sha256": "b002375fae91504cd5d0f49b0ab490279a4faf2fda315a22b5e14955b0dbb58f"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/inputs/pond-world-fixes-r9-matched-ceilings-20261013.json": {
+      "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-fixes-r9-matched-ceilings-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 379456,
+        "sha256": "8e5edf5d5070b70777f0fd4c7280da13c4728fc38c95a5875726da53c9baeddf"
+      },
+      "transport": {
+        "byte_count": 35745,
+        "sha256": "609daa202516402d00b2c2d0ed4fb0b61bd3603aa2112512220dc0da4967bb1e"
+      }
+    },
     "data/yilan-pond-no-response-canonical/inputs/pond-world-merge-ai-20261004.json": {
       "path": "data/yilan-pond-no-response-canonical/inputs/pond-world-merge-ai-20261004.json.gz",
       "encoding": "gzip",
@@ -2679,12 +2875,12 @@
       "path": "data/yilan-pond-no-response-canonical/manifest.json.gz",
       "encoding": "gzip",
       "source": {
-        "byte_count": 62826,
-        "sha256": "6922176faafcc7e0576cc35fb19f9d3e531062be267670352f892fc878c748af"
+        "byte_count": 64672,
+        "sha256": "2f2d92a95394c29aac4a43dac3690e05b125cd9d52a1daf814ce11983842768c"
       },
       "transport": {
-        "byte_count": 13883,
-        "sha256": "3e64a538367694a70a4c372ef774e335c78a98496f0b0324fedaf3d6b8b74cbc"
+        "byte_count": 14444,
+        "sha256": "f5ee1b4b7bf4b790e390697410c707a10f16e7ace90682c6d5068369c9234868"
       }
     },
     "data/yilan-pond-no-response-canonical/panel-site-fishbelt-round2-r2-20261011.json": {
@@ -2697,6 +2893,30 @@
       "transport": {
         "byte_count": 4525,
         "sha256": "b5b1c3476e1b59fd8dfd07428a57d109eceb583649c936635c1129ef3e879253"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/panel-site-fixes-r8-20261013.json": {
+      "path": "data/yilan-pond-no-response-canonical/panel-site-fixes-r8-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 14912,
+        "sha256": "f563cf1c2ec05b27cdf22182f8ddc2e31ab91d212cc75013811cb261ea9354ac"
+      },
+      "transport": {
+        "byte_count": 5404,
+        "sha256": "d8dad7175769a5157e4a87d09d587a3c7f0663500712a25e3cf568760c355001"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/panel-site-fixes-r9-20261013.json": {
+      "path": "data/yilan-pond-no-response-canonical/panel-site-fixes-r9-20261013.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 13226,
+        "sha256": "21388739027aa522126ceaabc0b47071efd1aeca33efcbef5c50f249fc86eabe"
+      },
+      "transport": {
+        "byte_count": 5271,
+        "sha256": "81610b89415f69f0fce1e88b0a921c0c513b7dcb575bcc285e006508ec302332"
       }
     },
     "data/yilan-pond-no-response-canonical/panel-source-fishponds-portrait-20261010.json": {
@@ -2819,6 +3039,30 @@
         "sha256": "fa925c644b121fa5a68aaf7828f80df6e28e0f3118f83457deb23017b896fa65"
       }
     },
+    "data/yilan-pond-no-response-canonical/receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json": {
+      "path": "data/yilan-pond-no-response-canonical/receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1259427,
+        "sha256": "4ca392b637fbb559338118b3d864af4b0f539d4be620be18d55b5a8375115bcd"
+      },
+      "transport": {
+        "byte_count": 156077,
+        "sha256": "8d2cb8447bde2ee3bc5f511f732b8420d48518a67a0b7b0a7551f545770685d0"
+      }
+    },
+    "data/yilan-pond-no-response-canonical/receipts/20261013-pond-fixes-r9-water-bake.receipt.json": {
+      "path": "data/yilan-pond-no-response-canonical/receipts/20261013-pond-fixes-r9-water-bake.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1105408,
+        "sha256": "2524b3aa54066df5c29582293bc27aadc520bda90c99978b35e2930c00814444"
+      },
+      "transport": {
+        "byte_count": 150378,
+        "sha256": "aa97eedaa7f6284cde533fe36a386620625dfc5b20024dad42a7b365c8fa2138"
+      }
+    },
     "data/yilan-pond-no-response-canonical/scenarios/pond-night-no-response-fix-content-20261004.json": {
       "path": "data/yilan-pond-no-response-canonical/scenarios/pond-night-no-response-fix-content-20261004.json.gz",
       "encoding": "gzip",
@@ -2883,12 +3127,12 @@
       "path": "data/yilan-pond-no-response-canonical/static-manifest.json.gz",
       "encoding": "gzip",
       "source": {
-        "byte_count": 59147,
-        "sha256": "ab5cc1eab9ffa528d5668acf38757fa5e4c19c4fe4ab8db925eebc2ac3a63dd4"
+        "byte_count": 59874,
+        "sha256": "eccbd67cbe17b818162ebbef1f8c46b4b84e635fbf6881cb39bec5bb23aa3663"
       },
       "transport": {
-        "byte_count": 12636,
-        "sha256": "37fa7b0df6682bb4cf74593a7ce76abcd89719c1ec2b4ddbadf8227c278cc0ba"
+        "byte_count": 12884,
+        "sha256": "f499af07fde9364ebf33b431d270861bfb55f039b9b98ff54dc6e44b00307811"
       }
     },
     "data/yilan-pond-no-response-canonical/static-snapshot.json": {
@@ -2927,16 +3171,16 @@
         "sha256": "1522017117cbb1c7e0f56d456318bc290f51114338ac3c93003084882bd36724"
       }
     },
-    "data/yilan-pond-static/fishpond-packaging-fishpass2-r2-20261011.json": {
-      "path": "data/yilan-pond-static/fishpond-packaging-fishpass2-r2-20261011.json.gz",
+    "data/yilan-pond-static/fishpond-packaging-fixes-r9-matched-ceilings-20261013.json": {
+      "path": "data/yilan-pond-static/fishpond-packaging-fixes-r9-matched-ceilings-20261013.json.gz",
       "encoding": "gzip",
       "source": {
-        "byte_count": 2917,
-        "sha256": "d36090b5c58fb4beeaa59a8d7c91c9ee9b26cb2213ead8580d79fb271a032a86"
+        "byte_count": 3184,
+        "sha256": "fa509af8e718f72921641e9ec27f8fb779dd54c87a1c900806ab5476cd0390de"
       },
       "transport": {
-        "byte_count": 1246,
-        "sha256": "c45f72d74728ed3a5526442ade418b11c778e9f941fd7d3211f6f137cb8ec367"
+        "byte_count": 1288,
+        "sha256": "aedd445309cedf3db78c7cfe0348f82a5789676690d3566eb4ccddf5c308c361"
       }
     },
     "data/yilan-pond-static/inputs/context/base-terrain-20261001-v1/provenance.json": {
@@ -3275,16 +3519,16 @@
         "sha256": "29df5e204e7458c7d37a546cb293266f204e87338ac0547940b8ed3e34f5b45d"
       }
     },
-    "data/yilan-pond-static/inputs/pond-world-fishpass2-r2-20261011.json": {
-      "path": "data/yilan-pond-static/inputs/pond-world-fishpass2-r2-20261011.json.gz",
+    "data/yilan-pond-static/inputs/pond-world-fixes-r9-matched-ceilings-20261013.json": {
+      "path": "data/yilan-pond-static/inputs/pond-world-fixes-r9-matched-ceilings-20261013.json.gz",
       "encoding": "gzip",
       "source": {
-        "byte_count": 12716,
-        "sha256": "bc3fc8cc48a598a51218fa0ae696a209755294b1e695b57bdbbaa5e03a2fc5ee"
+        "byte_count": 379456,
+        "sha256": "8e5edf5d5070b70777f0fd4c7280da13c4728fc38c95a5875726da53c9baeddf"
       },
       "transport": {
-        "byte_count": 2873,
-        "sha256": "99c6c86a2e1e7633804670d3133d7a08abd7d89bdeeee0bdfb312795900bb8b9"
+        "byte_count": 35745,
+        "sha256": "609daa202516402d00b2c2d0ed4fb0b61bd3603aa2112512220dc0da4967bb1e"
       }
     },
     "data/yilan-pond-static/inputs/pond-world-merge-ai-20261004.json": {
@@ -3375,12 +3619,12 @@
       "path": "data/yilan-pond-static/manifest.json.gz",
       "encoding": "gzip",
       "source": {
-        "byte_count": 59147,
-        "sha256": "ab5cc1eab9ffa528d5668acf38757fa5e4c19c4fe4ab8db925eebc2ac3a63dd4"
+        "byte_count": 59874,
+        "sha256": "eccbd67cbe17b818162ebbef1f8c46b4b84e635fbf6881cb39bec5bb23aa3663"
       },
       "transport": {
-        "byte_count": 12636,
-        "sha256": "37fa7b0df6682bb4cf74593a7ce76abcd89719c1ec2b4ddbadf8227c278cc0ba"
+        "byte_count": 12884,
+        "sha256": "f499af07fde9364ebf33b431d270861bfb55f039b9b98ff54dc6e44b00307811"
       }
     },
     "data/yilan-pond-static/meshes/poi_labels.json": {
@@ -3395,16 +3639,16 @@
         "sha256": "03b20e7319d68f260ea349ccb379605508aa0f5c5caa0260b793b161f193804c"
       }
     },
-    "data/yilan-pond-static/panel-site-fishbelt-round2-r2-20261011.json": {
-      "path": "data/yilan-pond-static/panel-site-fishbelt-round2-r2-20261011.json.gz",
+    "data/yilan-pond-static/panel-site-fixes-r9-20261013.json": {
+      "path": "data/yilan-pond-static/panel-site-fixes-r9-20261013.json.gz",
       "encoding": "gzip",
       "source": {
-        "byte_count": 10156,
-        "sha256": "1f51f169de09df524cf05b77c2f03a7e16db273b2cc6b7d6e281d3e7c410d336"
+        "byte_count": 13226,
+        "sha256": "21388739027aa522126ceaabc0b47071efd1aeca33efcbef5c50f249fc86eabe"
       },
       "transport": {
-        "byte_count": 4525,
-        "sha256": "b5b1c3476e1b59fd8dfd07428a57d109eceb583649c936635c1129ef3e879253"
+        "byte_count": 5271,
+        "sha256": "81610b89415f69f0fce1e88b0a921c0c513b7dcb575bcc285e006508ec302332"
       }
     },
     "data/yilan-pond-static/panel-source-fishponds-portrait-20261010.json": {
@@ -3527,18 +3771,6 @@
         "sha256": "98761ad17a333b1c642d94b2143607f7b595512c5077468d844b7aa3059264d3"
       }
     },
-    "data/yilan-pond-static/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json": {
-      "path": "data/yilan-pond-static/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json.gz",
-      "encoding": "gzip",
-      "source": {
-        "byte_count": 1074678,
-        "sha256": "5f0b3fc9ebab4059d6469b3c9490662871428ae3756f2ce27e113a4ff4e27fcf"
-      },
-      "transport": {
-        "byte_count": 147581,
-        "sha256": "7371bb5667182d9f5b1c0e12b9d598d1acd9ac9fa735e078be7bd3c0967306db"
-      }
-    },
     "data/yilan-pond-static/receipts/20261011-context-fishponds-public-pass2.receipt.json": {
       "path": "data/yilan-pond-static/receipts/20261011-context-fishponds-public-pass2.receipt.json.gz",
       "encoding": "gzip",
@@ -3549,6 +3781,18 @@
       "transport": {
         "byte_count": 78233,
         "sha256": "fa925c644b121fa5a68aaf7828f80df6e28e0f3118f83457deb23017b896fa65"
+      }
+    },
+    "data/yilan-pond-static/receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json": {
+      "path": "data/yilan-pond-static/receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json.gz",
+      "encoding": "gzip",
+      "source": {
+        "byte_count": 1259427,
+        "sha256": "4ca392b637fbb559338118b3d864af4b0f539d4be620be18d55b5a8375115bcd"
+      },
+      "transport": {
+        "byte_count": 156077,
+        "sha256": "8d2cb8447bde2ee3bc5f511f732b8420d48518a67a0b7b0a7551f545770685d0"
       }
     },
     "data/yilan-pond-static/reports/20261011-pond-fishpass2/pipeline/prepared-base-static.json": {
@@ -3651,78 +3895,78 @@
       "path": "data/yilan-pond-static/viewer-site.json.gz",
       "encoding": "gzip",
       "source": {
-        "byte_count": 17795,
-        "sha256": "0d5bedda1817541b6ab5f831749c89303e549d4f23b581842ad492149fc26769"
+        "byte_count": 17813,
+        "sha256": "de149d9ee768e758b015d13276bf283d8fd6bff08e5f448a6b9d5a7bbd45ee2a"
       },
       "transport": {
-        "byte_count": 3421,
-        "sha256": "3e571c9fc7ac9bdeecb6dd9de1194453ef14965d91538bec79eb568a1e4e8498"
+        "byte_count": 3430,
+        "sha256": "8f4cd91c1dcfc28886f9f75542f9da59c46d1ea7c452487f4b1e43b075b3039b"
       }
     }
   },
   "pond_precache": "shell and generation inventory after viewer first paint; candidates cached on use",
-  "files": 473,
-  "bytes": 42347058,
+  "files": 494,
+  "bytes": 49100552,
   "gzip": {
-    "files": 434,
-    "bytes": 7648430
+    "files": 454,
+    "bytes": 8878270
   },
   "workshop_budget": {
     "authority": "Will, 2026-10-04 pond Pages-ready brief",
     "file_limit_exclusive": 50000000,
     "total_limit_exclusive": 120000000,
-    "total_uncompressed_bytes": 42504614,
+    "total_uncompressed_bytes": 49269686,
     "stretch_goal_bytes": 60000000,
     "stretch_goal_met": true,
-    "files": 908,
+    "files": 949,
     "largest_files": [
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-water.glb",
-        "byte_count": 3700316
+        "path": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-water.glb",
+        "byte_count": 3734632
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-canonical/composed-frames.json",
+        "path": "dt/30c08b02a106032d/data/yilan-pond-canonical/composed-frames.json",
         "byte_count": 3230836
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-no-response-canonical/composed-frames.json",
+        "path": "dt/30c08b02a106032d/data/yilan-pond-no-response-canonical/composed-frames.json",
         "byte_count": 3154971
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-water.glb.gz",
-        "byte_count": 2534382
+        "path": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-water.glb.gz",
+        "byte_count": 2557814
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-canonical/inputs/context-fishponds-public-20261011-pass2.geojson",
+        "path": "dt/30c08b02a106032d/data/yilan-pond-canonical/inputs/context-fishponds-public-20261011-pass2.geojson",
         "byte_count": 1802785
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-no-response-canonical/inputs/context-fishponds-public-20261011-pass2.geojson",
+        "path": "dt/30c08b02a106032d/data/yilan-pond-no-response-canonical/inputs/context-fishponds-public-20261011-pass2.geojson",
         "byte_count": 1802785
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-static/inputs/context-fishponds-public-20261011-pass2.geojson",
+        "path": "dt/30c08b02a106032d/data/yilan-pond-static/inputs/context-fishponds-public-20261011-pass2.geojson",
         "byte_count": 1802785
       },
       {
-        "path": "dt/72d78bf53685a181/node_modules/three/build/three.module.js",
+        "path": "dt/30c08b02a106032d/node_modules/three/build/three.module.js",
         "byte_count": 1314681
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-static/meshes/context-buildings.glb",
+        "path": "dt/30c08b02a106032d/data/yilan-pond-static/meshes/context-buildings.glb",
         "byte_count": 1261692
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-canonical/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
-        "byte_count": 1074678
+        "path": "dt/30c08b02a106032d/data/yilan-pond-canonical/receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json",
+        "byte_count": 1259427
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-no-response-canonical/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
-        "byte_count": 1074678
+        "path": "dt/30c08b02a106032d/data/yilan-pond-no-response-canonical/receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json",
+        "byte_count": 1259427
       },
       {
-        "path": "dt/72d78bf53685a181/data/yilan-pond-static/receipts/20261011-context-fishponds-pass2-r2-bake.receipt.json",
-        "byte_count": 1074678
+        "path": "dt/30c08b02a106032d/data/yilan-pond-static/receipts/20261013-pond-fixes-r9-context-water-matched-ceilings-bake.receipt.json",
+        "byte_count": 1259427
       }
     ],
     "over_file_limit": [],
