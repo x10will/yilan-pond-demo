@@ -1,0 +1,466 @@
+{
+  "assets": [
+    {
+      "layer": "terrain",
+      "output": {
+        "byte_count": 376916,
+        "path": "inputs/context/terrain-compressed-20261007-v2/meshes/terrain.glb",
+        "sha256": "dcb0611a77e5c5b22ab5ac01b5d7a5b0bdc543a3c8ee02df4eb04dc936772fec"
+      },
+      "proof": {
+        "exact_core_source_faces": 648,
+        "exact_source_vertices": 26431,
+        "max_quantization_axis_error_metres": 0.0050048828125,
+        "meshopt": {
+          "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+          "encoded_bytes": 376916,
+          "encoded_sha256": "dcb0611a77e5c5b22ab5ac01b5d7a5b0bdc543a3c8ee02df4eb04dc936772fec",
+          "encoder": "meshoptimizer",
+          "encoder_version": "0.24.0",
+          "filter": "OCTAHEDRAL",
+          "lossless": false,
+          "max_normal_angular_error_degrees": 1.0887379332836318,
+          "max_position_error_m": 0,
+          "positions_exact": true,
+          "quantization": true,
+          "quantized_attributes": [
+            "NORMAL"
+          ],
+          "raw_bytes": 1436900,
+          "raw_sha256": "dd6049d705784b567517e640db946fc8e433ed74a90ee72697fd8271b8d20a25",
+          "views": 4
+        },
+        "output_bounds": [
+          [
+            -21634.91796875,
+            -17365.919921875,
+            0.0
+          ],
+          [
+            5661.47412109375,
+            20482.880859375,
+            1413.8753662109375
+          ]
+        ],
+        "output_byte_count": 376916,
+        "output_faces": 48196,
+        "output_sha256": "dcb0611a77e5c5b22ab5ac01b5d7a5b0bdc543a3c8ee02df4eb04dc936772fec",
+        "output_vertices": 30617,
+        "quantization_metres": 0.01,
+        "recorded_at": "2026-10-07T07:06:48.314948+00:00",
+        "render_tiles": 1,
+        "runtime_authority": false,
+        "simplification_mode": "distance samples and XY Delaunay",
+        "source_bounds": [
+          [
+            -21634.91796875,
+            -17365.919921875,
+            0.0
+          ],
+          [
+            5661.47412109375,
+            20482.880859375,
+            1413.8753662109375
+          ]
+        ],
+        "source_faces": 5189846,
+        "source_sha256": "3254af9503b9af4508a68dfeac9f152004cfe439970903ab4e62e693e2027142",
+        "source_vertices": 2659991
+      },
+      "proof_path": "inputs/context/terrain-compressed-20261007-v2/proofs/terrain.proof.json",
+      "settings": {
+        "distance_bands_m": [
+          [
+            0,
+            40
+          ],
+          [
+            1000,
+            100
+          ],
+          [
+            4000,
+            240
+          ],
+          [
+            10000,
+            400
+          ]
+        ],
+        "exact_core_xy_m": [
+          -160,
+          -160,
+          200,
+          200
+        ],
+        "near_paint_srgb": [
+          161,
+          139,
+          99
+        ],
+        "simplify": true
+      },
+      "source": {
+        "byte_count": 136759320,
+        "path": "inputs/context/base-terrain-20261001-v1/meshes/terrain.glb",
+        "sha256": "3254af9503b9af4508a68dfeac9f152004cfe439970903ab4e62e693e2027142"
+      }
+    },
+    {
+      "layer": "roads",
+      "output": {
+        "byte_count": 3817320,
+        "path": "inputs/context/terrain-compressed-20261007-v2/meshes/roads.glb",
+        "sha256": "f98712629e167b46f7d11ba9c3194f3601f897ba68a32fe86e74dbafc18e63a8"
+      },
+      "proof": {
+        "exact_source_vertices": 321334,
+        "max_quantization_axis_error_metres": 0.0,
+        "meshopt": {
+          "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+          "encoded_bytes": 3817320,
+          "encoded_sha256": "f98712629e167b46f7d11ba9c3194f3601f897ba68a32fe86e74dbafc18e63a8",
+          "encoder": "meshoptimizer",
+          "encoder_version": "0.24.0",
+          "filter": "OCTAHEDRAL",
+          "lossless": false,
+          "max_normal_angular_error_degrees": 1.0622900897173553,
+          "max_position_error_m": 0,
+          "positions_exact": true,
+          "quantization": true,
+          "quantized_attributes": [
+            "NORMAL"
+          ],
+          "raw_bytes": 12735556,
+          "raw_sha256": "9577d8c6e91b02f0b54e0bf8ca6ecc29f72e3766c9ad9a2439c641014d53a52e",
+          "views": 743
+        },
+        "output_bounds": [
+          [
+            -21634.91796875,
+            -17365.919921875,
+            0.05357639864087105
+          ],
+          [
+            5661.4736328125,
+            20482.87890625,
+            865.8345336914062
+          ]
+        ],
+        "output_byte_count": 3817320,
+        "output_faces": 290668,
+        "output_sha256": "f98712629e167b46f7d11ba9c3194f3601f897ba68a32fe86e74dbafc18e63a8",
+        "output_vertices": 321334,
+        "quantization_metres": 0.01,
+        "recorded_at": "2026-10-07T06:45:40.129791+00:00",
+        "render_tiles": 187,
+        "runtime_authority": false,
+        "simplification_mode": "source connectivity preserved",
+        "source_bounds": [
+          [
+            -21634.91796875,
+            -17365.919921875,
+            0.05357639864087105
+          ],
+          [
+            5661.4736328125,
+            20482.87890625,
+            865.8345336914062
+          ]
+        ],
+        "source_faces": 290668,
+        "source_sha256": "30288f708453b9f655bb48104dc78c5b833b3a52fd2213ed17901f6de8a0fc47",
+        "source_vertices": 321334
+      },
+      "proof_path": "inputs/context/terrain-compressed-20261007-v2/proofs/roads.proof.json",
+      "reused_verified_derivative_from": "receipts/20261007-yilan-terrain-compressed-lf.receipt.json",
+      "settings": {
+        "distance_bands_m": [
+          [
+            0,
+            40
+          ],
+          [
+            1000,
+            100
+          ],
+          [
+            4000,
+            240
+          ],
+          [
+            10000,
+            400
+          ]
+        ],
+        "exact_core_xy_m": [
+          -160,
+          -160,
+          200,
+          200
+        ],
+        "simplify": false
+      },
+      "source": {
+        "byte_count": 12486676,
+        "path": "inputs/context/base-terrain-20261001-v1/meshes/roads.glb",
+        "sha256": "30288f708453b9f655bb48104dc78c5b833b3a52fd2213ed17901f6de8a0fc47"
+      }
+    },
+    {
+      "layer": "buildings",
+      "output": {
+        "byte_count": 6580944,
+        "path": "inputs/context/terrain-compressed-20261007-v2/meshes/buildings.glb",
+        "sha256": "9171dd1b764af9d567a2a50492eaa788b1954796b460b86df322cba3c8958c7b"
+      },
+      "proof": {
+        "exact_source_vertices": 453074,
+        "max_quantization_axis_error_metres": 0.0,
+        "meshopt": {
+          "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+          "encoded_bytes": 6580944,
+          "encoded_sha256": "9171dd1b764af9d567a2a50492eaa788b1954796b460b86df322cba3c8958c7b",
+          "encoder": "meshoptimizer",
+          "encoder_version": "0.24.0",
+          "filter": "OCTAHEDRAL",
+          "lossless": false,
+          "max_normal_angular_error_degrees": 1.2425448679455409,
+          "max_position_error_m": 0,
+          "positions_exact": true,
+          "quantization": true,
+          "quantized_attributes": [
+            "NORMAL"
+          ],
+          "raw_bytes": 20726248,
+          "raw_sha256": "d48521a9048d73f57e513ee99158977ce0f5f6ad8f55ebd0b64b318aae9591c3",
+          "views": 663
+        },
+        "output_bounds": [
+          [
+            -21627.751953125,
+            -17365.919921875,
+            0.08196613192558289
+          ],
+          [
+            5661.4736328125,
+            20482.87890625,
+            1005.3431396484375
+          ]
+        ],
+        "output_byte_count": 6580944,
+        "output_faces": 649630,
+        "output_sha256": "9171dd1b764af9d567a2a50492eaa788b1954796b460b86df322cba3c8958c7b",
+        "output_vertices": 453074,
+        "quantization_metres": 0.01,
+        "recorded_at": "2026-10-07T06:45:43.057429+00:00",
+        "render_tiles": 171,
+        "runtime_authority": false,
+        "simplification_mode": "source connectivity preserved",
+        "source_bounds": [
+          [
+            -21627.751953125,
+            -17365.919921875,
+            0.08196613192558289
+          ],
+          [
+            5661.4736328125,
+            20482.87890625,
+            1005.3431396484375
+          ]
+        ],
+        "source_faces": 649630,
+        "source_sha256": "b55687589482f15e522d3421b3f7169cff28c096c22a256f6ce122f1e0760e03",
+        "source_vertices": 453074
+      },
+      "proof_path": "inputs/context/terrain-compressed-20261007-v2/proofs/buildings.proof.json",
+      "reused_verified_derivative_from": "receipts/20261007-yilan-terrain-compressed-lf.receipt.json",
+      "settings": {
+        "distance_bands_m": [
+          [
+            0,
+            40
+          ],
+          [
+            1000,
+            100
+          ],
+          [
+            4000,
+            240
+          ],
+          [
+            10000,
+            400
+          ]
+        ],
+        "exact_core_xy_m": [
+          -160,
+          -160,
+          200,
+          200
+        ],
+        "simplify": false
+      },
+      "source": {
+        "byte_count": 20482880,
+        "path": "inputs/context/base-terrain-20261001-v1/meshes/buildings.glb",
+        "sha256": "b55687589482f15e522d3421b3f7169cff28c096c22a256f6ce122f1e0760e03"
+      }
+    },
+    {
+      "layer": "water",
+      "output": {
+        "byte_count": 18770388,
+        "path": "inputs/context/terrain-compressed-20261007-v2/meshes/water.glb",
+        "sha256": "bbdf0918167f0a391ce719b757f287b2ad57e8b43a20e4b8f0a0ec20774edf19"
+      },
+      "proof": {
+        "exact_source_vertices": 1661894,
+        "max_quantization_axis_error_metres": 0.0,
+        "meshopt": {
+          "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+          "encoded_bytes": 18770388,
+          "encoded_sha256": "bbdf0918167f0a391ce719b757f287b2ad57e8b43a20e4b8f0a0ec20774edf19",
+          "encoder": "meshoptimizer",
+          "encoder_version": "0.24.0",
+          "filter": "OCTAHEDRAL",
+          "lossless": false,
+          "max_normal_angular_error_degrees": 1.1183160108994565,
+          "max_position_error_m": 0,
+          "positions_exact": true,
+          "quantization": true,
+          "quantized_attributes": [
+            "NORMAL"
+          ],
+          "raw_bytes": 66046884,
+          "raw_sha256": "7bc75f61760c0779ec97fed7287ae616dddbec851aa6cfe25ea716eacaa2226d",
+          "views": 1024
+        },
+        "output_bounds": [
+          [
+            -21634.91796875,
+            -17365.919921875,
+            0.009999999776482582
+          ],
+          [
+            5661.4736328125,
+            20482.87890625,
+            1348.93310546875
+          ]
+        ],
+        "output_byte_count": 18770388,
+        "output_faces": 1590954,
+        "output_sha256": "bbdf0918167f0a391ce719b757f287b2ad57e8b43a20e4b8f0a0ec20774edf19",
+        "output_vertices": 1661231,
+        "quantization_metres": 0.01,
+        "recorded_at": "2026-10-07T06:45:51.081166+00:00",
+        "render_tiles": 257,
+        "runtime_authority": false,
+        "simplification_mode": "source connectivity preserved",
+        "source_bounds": [
+          [
+            -21634.91796875,
+            -17365.919921875,
+            0.009999999776482582
+          ],
+          [
+            5661.4736328125,
+            20482.87890625,
+            1348.93310546875
+          ]
+        ],
+        "source_faces": 1591802,
+        "source_sha256": "3f5013f477257f93798d93e9a80729b73bbead36cd975ac4c7913b795c2d00f3",
+        "source_vertices": 1661894
+      },
+      "proof_path": "inputs/context/terrain-compressed-20261007-v2/proofs/water.proof.json",
+      "reused_verified_derivative_from": "receipts/20261007-yilan-terrain-compressed-lf.receipt.json",
+      "settings": {
+        "distance_bands_m": [
+          [
+            0,
+            40
+          ],
+          [
+            1000,
+            100
+          ],
+          [
+            4000,
+            240
+          ],
+          [
+            10000,
+            400
+          ]
+        ],
+        "exact_core_xy_m": [
+          -160,
+          -160,
+          200,
+          200
+        ],
+        "simplify": false
+      },
+      "source": {
+        "byte_count": 65635928,
+        "path": "inputs/context/base-terrain-20261001-v1/meshes/water.glb",
+        "sha256": "3f5013f477257f93798d93e9a80729b73bbead36cd975ac4c7913b795c2d00f3"
+      }
+    }
+  ],
+  "authority": "Will 2026-10-07: “we had a big area. now it's one fishfarm was this a view or we changed it”; “oh. you didn't compress it”.",
+  "outputs": [
+    {
+      "byte_count": 376916,
+      "path": "inputs/context/terrain-compressed-20261007-v2/meshes/terrain.glb",
+      "sha256": "dcb0611a77e5c5b22ab5ac01b5d7a5b0bdc543a3c8ee02df4eb04dc936772fec"
+    },
+    {
+      "byte_count": 3817320,
+      "path": "inputs/context/terrain-compressed-20261007-v2/meshes/roads.glb",
+      "sha256": "f98712629e167b46f7d11ba9c3194f3601f897ba68a32fe86e74dbafc18e63a8"
+    },
+    {
+      "byte_count": 6580944,
+      "path": "inputs/context/terrain-compressed-20261007-v2/meshes/buildings.glb",
+      "sha256": "9171dd1b764af9d567a2a50492eaa788b1954796b460b86df322cba3c8958c7b"
+    },
+    {
+      "byte_count": 18770388,
+      "path": "inputs/context/terrain-compressed-20261007-v2/meshes/water.glb",
+      "sha256": "bbdf0918167f0a391ce719b757f287b2ad57e8b43a20e4b8f0a0ec20774edf19"
+    },
+    {
+      "byte_count": 13592,
+      "path": "inputs/context/terrain-compressed-20261007-v2/lineage.json",
+      "sha256": "24c0f92e080caf655acd9d2da89d8ed93615af78df92aa6b021b1493455e7d11"
+    },
+    {
+      "byte_count": 2754,
+      "path": "inputs/context/terrain-compressed-20261007-v2/provenance.json",
+      "sha256": "54b0597d5d99c7c86eb3c0fa96e4118efe39ba732e4591ac6aaac9a1a75ee32d"
+    }
+  ],
+  "recorded_at": "2026-10-07T07:06:48.794456+00:00",
+  "runtime_authority": false,
+  "schema_version": "farm-yilan-regional-terrain-compression/v1",
+  "settings": {
+    "byte_count": 1415,
+    "path": "sites/yilan-pond/terrain-compression-20261007-r2.json",
+    "sha256": "836200a5a5f4d084c0cdfd9f964d94157bba6d01df270e30c207ffcc0b7abf38"
+  },
+  "source_base": "inputs/context/base-terrain-20261001-v1",
+  "source_lineage": {
+    "byte_count": 8391865,
+    "path": "inputs/context/base-terrain-20261001-v1/lineage.json",
+    "sha256": "346c3f5759621d36c5f9d8d8309c0282cb4b156b72d8bf781aac808644f25595"
+  },
+  "source_receipt": {
+    "byte_count": 64143,
+    "path": "receipts/20261001-base-terrain-v1.receipt.json",
+    "sha256": "c0b0f01b22d085d927616e66ea11674475bd00d44a5ecd22d2805c3f19dff6e8"
+  },
+  "source_revision": "yilan-moi2025-dtm-context-20261001-v1"
+}

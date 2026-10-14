@@ -1,0 +1,299 @@
+{
+  "acquired_at": "2026-10-01T15:13:23.949917+00:00",
+  "archive": ".local_build/dem/taiwan-20m-2025-merged.zip",
+  "archive_members": [
+    {
+      "byte_count": 26,
+      "name": "DEM_tawiwan_V2025.tfw"
+    },
+    {
+      "byte_count": 756870860,
+      "name": "DEM_tawiwan_V2025.tif"
+    },
+    {
+      "byte_count": 74,
+      "name": "manifest.csv"
+    },
+    {
+      "byte_count": 50002,
+      "name": "Metadata.xml"
+    }
+  ],
+  "authority_scope": "Official DTM provides regional display relief; workshop ponds and internal geometry remain authored 模擬. Acquisition inspection is not browser acceptance.",
+  "bbox_wgs84": {
+    "east": 121.87,
+    "north": 24.93,
+    "south": 24.59,
+    "west": 121.6
+  },
+  "dataset_title": "2025年版全臺灣20公尺網格數值地形模型DTM資料",
+  "dataset_url": "https://data.gov.tw/dataset/176927",
+  "download_started_at": "2026-10-01T15:13:20.326515+00:00",
+  "horizontal_policy": "Catalogue and XML specify TWD97 TM2 zone 121 (EPSG:3826); GeoTIFF specifies custom WGS84 TM2 zone 121. Use explicit EPSG:3826, preserve source tags, PixelIsPoint centers; no invented half-cell correction.",
+  "inspection": {
+    "land_probe_count": 22841,
+    "missing_count": 4,
+    "missing_examples": [
+      {
+        "distance_from_coast_m": 23.846465601362496,
+        "lat": 24.71306863097377,
+        "lon": 121.83640486203194
+      },
+      {
+        "distance_from_coast_m": 11.93575544666454,
+        "lat": 24.84601868487244,
+        "lon": 121.8284917285748
+      },
+      {
+        "distance_from_coast_m": 9.066872803457706,
+        "lat": 24.856798418972332,
+        "lon": 121.83442657866766
+      },
+      {
+        "distance_from_coast_m": 5.49713879412759,
+        "lat": 24.881951131872082,
+        "lon": 121.84629627885336
+      }
+    ],
+    "missing_more_than_100m_inland": 0,
+    "probes": {
+      "kelin": {
+        "lat": 24.684,
+        "lon": 121.737,
+        "z_m": 14.951480822336212
+      },
+      "northwest": {
+        "lat": 24.928,
+        "lon": 121.601,
+        "z_m": 274.9687010993631
+      },
+      "workshop": {
+        "lat": 24.746,
+        "lon": 121.814,
+        "z_m": 1.683419886247877
+      },
+      "yuanshan": {
+        "lat": 24.744,
+        "lon": 121.683,
+        "z_m": 37.620869639054185
+      }
+    },
+    "step_m": 200
+  },
+  "license": {
+    "attribution_text": "內政部地政司 2025「2025年版全臺灣20公尺網格數值地形模型DTM資料」。此開放資料依政府資料開放授權條款（Open Government Data License）第1版進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。政府資料開放授權條款：https://data.gov.tw/license。資料集：https://data.gov.tw/dataset/176927。本宜蘭模擬場景由 site-yilan-pond 裁切、重採樣、套用 OSM 岸線、網格化及編寫 workshop 展示平台；非原提供機關原始成果。",
+    "name": "政府資料開放授權條款-第1版",
+    "spdx": "OGDL-Taiwan-1.0",
+    "url": "https://data.gov.tw/license"
+  },
+  "raster": {
+    "cols": 10035,
+    "rows": 18852,
+    "source": {
+      "crs_policy": "Explicit caller-selected TWD97 TM2 zone; original GeoTIFF claims retained",
+      "effective_crs": "EPSG:3826",
+      "format": "GeoTIFF",
+      "geotiff_tags": {
+        "33550": [
+          20.0,
+          20.0,
+          1.0
+        ],
+        "33922": [
+          0.0,
+          0.0,
+          0.0,
+          150980.0,
+          2799160.0,
+          0.0
+        ],
+        "34735": [
+          1,
+          1,
+          0,
+          31,
+          1024,
+          0,
+          1,
+          1,
+          1025,
+          0,
+          1,
+          2,
+          1026,
+          34737,
+          13,
+          0,
+          2048,
+          0,
+          1,
+          4326,
+          2054,
+          0,
+          1,
+          9102,
+          2056,
+          0,
+          1,
+          7030,
+          2057,
+          34736,
+          1,
+          0,
+          2058,
+          34736,
+          1,
+          1,
+          2059,
+          34736,
+          1,
+          2,
+          3072,
+          0,
+          1,
+          32767,
+          3074,
+          0,
+          1,
+          32767,
+          3075,
+          0,
+          1,
+          1,
+          3076,
+          0,
+          1,
+          9001,
+          3078,
+          34736,
+          1,
+          3,
+          3079,
+          34736,
+          1,
+          4,
+          3080,
+          34736,
+          1,
+          5,
+          3081,
+          34736,
+          1,
+          6,
+          3082,
+          34736,
+          1,
+          7,
+          3083,
+          34736,
+          1,
+          8,
+          3084,
+          34736,
+          1,
+          9,
+          3085,
+          34736,
+          1,
+          10,
+          3086,
+          34736,
+          1,
+          11,
+          3087,
+          34736,
+          1,
+          12,
+          3088,
+          34736,
+          1,
+          13,
+          3089,
+          34736,
+          1,
+          14,
+          3090,
+          34736,
+          1,
+          15,
+          3091,
+          34736,
+          1,
+          16,
+          3092,
+          34736,
+          1,
+          17,
+          3094,
+          34736,
+          1,
+          18,
+          3095,
+          34736,
+          1,
+          19,
+          4099,
+          0,
+          1,
+          9001
+        ],
+        "34736": [
+          6378137.0,
+          6356752.314245,
+          298.257223560493,
+          0.0,
+          0.0,
+          121.0,
+          0.0,
+          250000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.9999,
+          0.0,
+          0.0
+        ],
+        "34737": "GCS_WGS_1984|"
+      },
+      "input_sha256": "2e1cd738b3c3abbcfdbce79ac18a5818a6ec80aa32c2813f0e21cfd909be295c",
+      "member": "DEM_tawiwan_V2025.tif",
+      "member_sha256": "59e5e980000d6e3f5a7734c6af197934a1a5432482b6caa789a1ec90b624015d",
+      "raster_type": "PixelIsPoint",
+      "source_nodata": -32767.0
+    },
+    "spacing_m": 20.0
+  },
+  "rejected_county_resource": {
+    "reason": "County update sheets omit 4165 of 22841 land probes on a 200 m inspection lattice; 4161 missing probes are over 100 m inland. The merged official 2025 resource covers those inland locations.",
+    "resource_url": "https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/fd54d8f2-ad3b-4afe-b30d-cf86ad845cae/分幅_宜蘭縣20MDEM(2025).zip",
+    "sha256": "58bc0be27689a26faee41ed2f27ac13b1ec7b33576e89166d9209ebc56299cf3",
+    "size_bytes": 37050371
+  },
+  "resource_index": {
+    "selected_row": "不分幅_台灣20MDEM(2025),航空攝影測量,數值高程模型資料,TWD97(N、E、H),2025年,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/528530be-0710-431e-954e-2f2f5e98b0c5/不分幅_全台20MDEM(2025).zip",
+    "sha256": "5f6e853ccb044d7b76dbe95f4a8a3890f9d5f0613105e0428743f36658aa8869",
+    "size_bytes": 5546,
+    "url": "https://opdadm.moi.gov.tw/api/v1/no-auth/resource/api/dataset/A964612F-0D64-4C81-BFE5-6C1F2BA61DED/resource/A0B94F67-8ADF-48A1-8DF0-C60719AD2B28/download"
+  },
+  "resource_title": "不分幅_台灣20MDEM(2025)",
+  "resource_url": "https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/528530be-0710-431e-954e-2f2f5e98b0c5/不分幅_全台20MDEM(2025).zip",
+  "response_headers": {
+    "Content-Length": "268985841",
+    "Content-Type": "application/x-zip-compressed",
+    "ETag": "\"02eccb25321dc1:0\"",
+    "Last-Modified": "Tue, 09 Sep 2025 06:33:48 GMT"
+  },
+  "schema_version": "site-official-dem-acquisition/v1",
+  "sha256": "2e1cd738b3c3abbcfdbce79ac18a5818a6ec80aa32c2813f0e21cfd909be295c",
+  "site_id": "yilan-pond",
+  "size_bytes": 268985841,
+  "supplier": "內政部地政司",
+  "tls_policy": "default certificate and hostname validation; VERIFY_X509_STRICT cleared as in Penghu precedent",
+  "vertical_source_evidence": "Merged raster has metre elevations but no explicit vertical datum tag. The inspected Yilan sheet headers declare TWVD2001; merged and sheet workshop samples agree to float32 precision. No vertical datum transformation is claimed."
+}

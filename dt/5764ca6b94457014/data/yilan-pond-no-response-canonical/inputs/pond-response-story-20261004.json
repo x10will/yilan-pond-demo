@@ -1,0 +1,529 @@
+{
+  "schema_version": "farm-pond-response-story/v1",
+  "site_id": "yilan-pond",
+  "simulation_label": "模擬",
+  "decision_path": "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+  "source_notice": "人工編寫的模擬回應；非現地測繪、即時監測、電氣程序或養殖操作建議。",
+  "response": {
+    "actor_id": "worker-pond-response",
+    "actor_label": "場務人員（模擬）",
+    "backup_id": "backup-aerator-3",
+    "generator_id": "power-generator",
+    "pond_id": "pond-3",
+    "feeder_ids": [
+      "feeder-3-1",
+      "feeder-3-2"
+    ],
+    "task_id": "pond-3-backup-response",
+    "route": {
+      "selection": "scenario-preselected",
+      "member_ids": [
+        "pond-3-corner-0",
+        "pond-3-bank-0",
+        "pond-3-corner-1",
+        "pond-3-bank-1",
+        "pond-3-corner-2"
+      ]
+    },
+    "route_node_arrival_offsets_seconds": [
+      15,
+      30,
+      45
+    ],
+    "warning_threshold_mg_l": 4.0,
+    "resolution_threshold_mg_l": 4.2,
+    "offsets_from_alert_seconds": {
+      "suggestion": 5,
+      "accepted": 10,
+      "departed": 15,
+      "arrived": 45,
+      "backup_running": 55
+    },
+    "backup_running_transform": {
+      "position": [
+        36,
+        79,
+        1.993
+      ],
+      "rotation": 0,
+      "scale": 0.52
+    },
+    "accepted_action": "移入並啟動 3 塭備援曝氣機，暫停 3 塭晨間投餌；故障迴路保持隔離。",
+    "suggestion_label": "AI 腳本示範（模擬；非操作建議）",
+    "suggestion_text": "腳本示範：移入備援曝氣機並暫停晨間投餌。此內容為人工腳本，非養殖、電氣或現場操作建議。",
+    "avoided_risk": "示範中避免持續低溶氧造成的浮頭風險；非生理門檻或死亡率預測。",
+    "summary_notice": "完全模擬；回升僅由新增曝氣供氧造成，投餌氧需求不在模型中。"
+  },
+  "chapters": [
+    {
+      "id": "normal",
+      "title": "22:00 夜間正常",
+      "caption": "三塭持續曝氣、溶氧健康；夜燈照亮塭岸。（模擬）",
+      "timing": {
+        "elapsed_seconds": 0
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            5,
+            -66,
+            76.683
+          ],
+          "target": [
+            45,
+            33,
+            1.983
+          ]
+        },
+        "phone": {
+          "position": [
+            45,
+            -38,
+            78.683
+          ],
+          "target": [
+            45,
+            33,
+            1.983
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "fault",
+      "title": "斷路器跳脫",
+      "caption": "3 塭 A 迴路跳脫，三部水車停止；泡沫消失、故障標記亮起。（模擬）",
+      "timing": {
+        "elapsed_seconds": 200
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            -14,
+            23,
+            48
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        },
+        "phone": {
+          "position": [
+            20,
+            20,
+            65
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "detection",
+      "title": "偵測溶氧下降",
+      "caption": "氧收支模型算出 3 塭供氧不足，面板趨勢開始向下。（模擬）",
+      "timing": {
+        "elapsed_seconds": 240
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            -14,
+            23,
+            48
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        },
+        "phone": {
+          "position": [
+            20,
+            20,
+            65
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "warning",
+      "title": "低溶氧警示",
+      "caption": "模型首次跨過 4.0 mg/L 警戒線；警示由計算結果觸發。（模擬）",
+      "timing": {
+        "beat": "alert"
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            -14,
+            23,
+            48
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        },
+        "phone": {
+          "position": [
+            20,
+            20,
+            65
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "suggestion",
+      "title": "AI 腳本建議",
+      "caption": "腳本示範：移入備援曝氣機並暫停晨間投餌；不是操作建議。（模擬）",
+      "timing": {
+        "beat": "suggestion"
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            -14,
+            23,
+            48
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        },
+        "phone": {
+          "position": [
+            20,
+            20,
+            65
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "accepted",
+      "title": "場務人員接受",
+      "caption": "模擬場務人員接受腳本建議，兩部投餌機暫停；決策人、時間和動作留在事件中。",
+      "timing": {
+        "beat": "accepted"
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            3,
+            8,
+            62
+          ],
+          "target": [
+            23,
+            62,
+            2.32
+          ]
+        },
+        "phone": {
+          "position": [
+            21,
+            7,
+            77
+          ],
+          "target": [
+            23,
+            62,
+            2.32
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "responding",
+      "title": "沿塭岸出勤",
+      "caption": "場務人員由工作屋門廊出發，沿既有塭岸路線運送備援機；路線與位置事先烘焙。",
+      "timing": {
+        "beat": "departed"
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            3,
+            8,
+            62
+          ],
+          "target": [
+            23,
+            62,
+            2.32
+          ]
+        },
+        "phone": {
+          "position": [
+            21,
+            7,
+            77
+          ],
+          "target": [
+            23,
+            62,
+            2.32
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "arrived",
+      "title": "抵達 3 塭",
+      "caption": "場務人員抵達既有角點，準備放置備援曝氣機；迴路仍保持隔離。（模擬）",
+      "timing": {
+        "beat": "arrived"
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            23,
+            57,
+            22
+          ],
+          "target": [
+            37,
+            79,
+            2.0
+          ]
+        },
+        "phone": {
+          "position": [
+            35,
+            54,
+            34
+          ],
+          "target": [
+            37,
+            79,
+            2.0
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "backup-running",
+      "title": "備援曝氣啟動",
+      "caption": "手動備援發電機供電，新增曝氣供氧進入同一模型；3 塭投餌維持暫停。（模擬）",
+      "timing": {
+        "beat": "backup_running"
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            23,
+            57,
+            22
+          ],
+          "target": [
+            37,
+            79,
+            2.0
+          ]
+        },
+        "phone": {
+          "position": [
+            35,
+            54,
+            34
+          ],
+          "target": [
+            37,
+            79,
+            2.0
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "resolved",
+      "title": "溶氧回升、警示解除",
+      "caption": "新增曝氣使溶氧回升，首次達 4.2 mg/L 時解除低溶氧警示；故障迴路仍隔離。（模擬）",
+      "timing": {
+        "beat": "resolved"
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            -14,
+            23,
+            48
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        },
+        "phone": {
+          "position": [
+            20,
+            20,
+            65
+          ],
+          "target": [
+            20,
+            63,
+            1.983
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    },
+    {
+      "id": "dawn",
+      "title": "天亮，三塭回到範圍",
+      "caption": "三塭溶氧均在示範範圍內；備援仍運轉，晨間投餌暫停。（模擬）",
+      "timing": {
+        "elapsed_seconds": 500
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            5,
+            -66,
+            76.683
+          ],
+          "target": [
+            45,
+            33,
+            1.983
+          ]
+        },
+        "phone": {
+          "position": [
+            45,
+            -38,
+            78.683
+          ],
+          "target": [
+            45,
+            33,
+            1.983
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ],
+      "no_response_title": "天亮，無回應對照",
+      "no_response_caption": "無回應對照：3 塭溶氧持續下降；1、2 塭保持正常。（模擬）"
+    },
+    {
+      "id": "summary",
+      "title": "事件回顧",
+      "caption": "回顧故障、回應時間和最低溶氧；以無回應模型對照說明示範中的浮頭風險。（模擬）",
+      "timing": {
+        "elapsed_seconds": 595
+      },
+      "camera": {
+        "desktop": {
+          "position": [
+            5,
+            -66,
+            76.683
+          ],
+          "target": [
+            45,
+            33,
+            1.983
+          ]
+        },
+        "phone": {
+          "position": [
+            45,
+            -38,
+            78.683
+          ],
+          "target": [
+            45,
+            33,
+            1.983
+          ]
+        }
+      },
+      "simulation_label": "模擬",
+      "provenance_refs": [
+        "decisions/2026-10-04-pond-fault-response-and-chapters.md",
+        "inputs/pond-response-story-20261004.json"
+      ]
+    }
+  ]
+}

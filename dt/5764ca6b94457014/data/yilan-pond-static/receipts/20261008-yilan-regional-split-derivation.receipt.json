@@ -1,0 +1,573 @@
+{
+  "assets": [
+    {
+      "far": {
+        "byte_count": 851672,
+        "path": "inputs/context/regional-split-20261008/meshes/roads-far.glb",
+        "sha256": "df4b14288f3103bcf39eb130247fb3b4b4ae7e86d5a35db0332a3dc086739953"
+      },
+      "geometry": {
+        "far": {
+          "bounds": [
+            [
+              -21634.0,
+              -17366.0,
+              0.0
+            ],
+            [
+              5662.0,
+              20482.0,
+              866.0
+            ]
+          ],
+          "byte_count": 851672,
+          "faces": 55463,
+          "meshopt": {
+            "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+            "encoded_bytes": 851672,
+            "encoded_sha256": "df4b14288f3103bcf39eb130247fb3b4b4ae7e86d5a35db0332a3dc086739953",
+            "encoder": "meshoptimizer",
+            "encoder_version": "0.24.0",
+            "filter": "OCTAHEDRAL",
+            "lossless": false,
+            "max_normal_angular_error_degrees": 1.0773641329205434,
+            "max_position_error_m": 0,
+            "positions_exact": true,
+            "quantization": true,
+            "quantized_attributes": [
+              "NORMAL"
+            ],
+            "raw_bytes": 2700356,
+            "raw_sha256": "ef4aef889de33168b3ca6c1923459c5d0a65a005e8a3e1140116a3c3c565ea1c",
+            "views": 727
+          },
+          "sha256": "df4b14288f3103bcf39eb130247fb3b4b4ae7e86d5a35db0332a3dc086739953",
+          "vertices": 65167
+        },
+        "far_quantization": {
+          "maximum_axis_rounding_m": 1.0,
+          "pinned_boundary_vertices": 18,
+          "quantization_bands_m": [
+            [
+              1500,
+              0.25
+            ],
+            [
+              4000,
+              1
+            ],
+            [
+              10000,
+              2
+            ]
+          ],
+          "rounded_vertices": 65182
+        },
+        "far_reduction": {
+          "boundary": "only shared near/far vertices locked; distant outlines simplified",
+          "locked_near_seam_vertices": 18,
+          "maximum_error_m": 4.987205505371094,
+          "output_faces": 55597,
+          "requested_error_m": 5,
+          "source_faces": 288772,
+          "target_ratio": 0.12
+        },
+        "far_welding": {
+          "colours_exact": true,
+          "positions_exact": true,
+          "source_vertices": 319342,
+          "welded_vertices": 302495
+        },
+        "near": {
+          "bounds": [
+            [
+              -1393.30908203125,
+              -1502.1392822265625,
+              0.7118921279907227
+            ],
+            [
+              657.8961181640625,
+              1499.03759765625,
+              10.191304206848145
+            ]
+          ],
+          "byte_count": 31384,
+          "faces": 1896,
+          "meshopt": {
+            "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+            "encoded_bytes": 31384,
+            "encoded_sha256": "7457fea06e4cbacaa3d2a6079810e5e0ef5e4a664d4376374531a463f70abaa8",
+            "encoder": "meshoptimizer",
+            "encoder_version": "0.24.0",
+            "filter": "OCTAHEDRAL",
+            "lossless": false,
+            "max_normal_angular_error_degrees": 0.45674045827764065,
+            "max_position_error_m": 0,
+            "positions_exact": true,
+            "quantization": true,
+            "quantized_attributes": [
+              "NORMAL"
+            ],
+            "raw_bytes": 84136,
+            "raw_sha256": "12b3e7191713e9254407f263d28796f2e707f3ef96028aaeb6cdc39f83842847",
+            "views": 16
+          },
+          "sha256": "7457fea06e4cbacaa3d2a6079810e5e0ef5e4a664d4376374531a463f70abaa8",
+          "vertices": 2010
+        },
+        "recorded_at": "2026-10-08T15:34:47.009276+00:00",
+        "runtime_authority": false,
+        "source_byte_count": 12486676,
+        "source_sha256": "30288f708453b9f655bb48104dc78c5b833b3a52fd2213ed17901f6de8a0fc47",
+        "split": {
+          "far_source_faces": 288772,
+          "near_source_connectivity_exact": true,
+          "near_source_faces": 1896,
+          "selection": "complete triangles whose XY bounding box touches the near radius",
+          "source_faces": 290668
+        },
+        "zero_area_far_faces_removed_after_quantization": 134,
+        "zero_area_source_faces_removed": 0
+      },
+      "layer": "roads",
+      "near": {
+        "byte_count": 31384,
+        "path": "inputs/context/regional-split-20261008/meshes/roads-near.glb",
+        "sha256": "7457fea06e4cbacaa3d2a6079810e5e0ef5e4a664d4376374531a463f70abaa8"
+      },
+      "proof": {
+        "byte_count": 2529,
+        "path": "inputs/context/regional-split-20261008/proofs/roads.proof.json",
+        "sha256": "9fae6aadbd55a08b2ee6e17122d5df874d2ca4fca6ed9ba9461be771be8354cd"
+      },
+      "source": {
+        "byte_count": 12486676,
+        "path": "inputs/context/base-terrain-20261001-v1/meshes/roads.glb",
+        "sha256": "30288f708453b9f655bb48104dc78c5b833b3a52fd2213ed17901f6de8a0fc47"
+      }
+    },
+    {
+      "far": {
+        "byte_count": 1261692,
+        "path": "inputs/context/regional-split-20261008/meshes/buildings-far.glb",
+        "sha256": "8ce12b5693e67935d9fa54b79533af61fc15d817522163d53d99dc88c0820e1f"
+      },
+      "geometry": {
+        "far": {
+          "bounds": [
+            [
+              -21628.0,
+              -17366.0,
+              0.0
+            ],
+            [
+              5662.0,
+              20482.0,
+              1006.0
+            ]
+          ],
+          "byte_count": 1261692,
+          "faces": 144980,
+          "meshopt": {
+            "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+            "encoded_bytes": 1261692,
+            "encoded_sha256": "8ce12b5693e67935d9fa54b79533af61fc15d817522163d53d99dc88c0820e1f",
+            "encoder": "meshoptimizer",
+            "encoder_version": "0.24.0",
+            "filter": "OCTAHEDRAL",
+            "lossless": false,
+            "max_normal_angular_error_degrees": 1.1702828008662907,
+            "max_position_error_m": 0,
+            "positions_exact": true,
+            "quantization": true,
+            "quantized_attributes": [
+              "NORMAL"
+            ],
+            "raw_bytes": 4577120,
+            "raw_sha256": "e8e6b08d383a6c8b642943b88335a82e8ed884857705e55c27595b037df45618",
+            "views": 633
+          },
+          "sha256": "8ce12b5693e67935d9fa54b79533af61fc15d817522163d53d99dc88c0820e1f",
+          "vertices": 95157
+        },
+        "far_quantization": {
+          "maximum_axis_rounding_m": 1.0,
+          "pinned_boundary_vertices": 36,
+          "quantization_bands_m": [
+            [
+              1500,
+              0.25
+            ],
+            [
+              4000,
+              1
+            ],
+            [
+              10000,
+              2
+            ]
+          ],
+          "rounded_vertices": 95829
+        },
+        "far_reduction": {
+          "boundary": "only shared near/far vertices locked; distant outlines simplified",
+          "locked_near_seam_vertices": 36,
+          "maximum_error_m": 4.963621139526367,
+          "output_faces": 150429,
+          "requested_error_m": 5,
+          "source_faces": 647600,
+          "target_ratio": 0.12
+        },
+        "far_welding": {
+          "colours_exact": true,
+          "positions_exact": true,
+          "source_vertices": 451747,
+          "welded_vertices": 377593
+        },
+        "near": {
+          "bounds": [
+            [
+              -1404.2174072265625,
+              -1481.5467529296875,
+              1.289725661277771
+            ],
+            [
+              649.8361206054688,
+              1186.9383544921875,
+              9.044163703918457
+            ]
+          ],
+          "byte_count": 27712,
+          "faces": 2030,
+          "meshopt": {
+            "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+            "encoded_bytes": 27712,
+            "encoded_sha256": "b6f969ab2ebc4e226c1873432ea95cfd7895822b6addf838434b826f3acfac6d",
+            "encoder": "meshoptimizer",
+            "encoder_version": "0.24.0",
+            "filter": "OCTAHEDRAL",
+            "lossless": false,
+            "max_normal_angular_error_degrees": 1.0172797043565605,
+            "max_position_error_m": 0,
+            "positions_exact": true,
+            "quantization": true,
+            "quantized_attributes": [
+              "NORMAL"
+            ],
+            "raw_bytes": 67312,
+            "raw_sha256": "be01ab7d6f95c232589cd90eba449820f7fd5e37fdb5105eb7e3db1d46993680",
+            "views": 16
+          },
+          "sha256": "b6f969ab2ebc4e226c1873432ea95cfd7895822b6addf838434b826f3acfac6d",
+          "vertices": 1363
+        },
+        "recorded_at": "2026-10-08T15:34:48.455444+00:00",
+        "runtime_authority": false,
+        "source_byte_count": 20482880,
+        "source_sha256": "b55687589482f15e522d3421b3f7169cff28c096c22a256f6ce122f1e0760e03",
+        "split": {
+          "far_source_faces": 647600,
+          "near_source_connectivity_exact": true,
+          "near_source_faces": 2030,
+          "selection": "complete triangles whose XY bounding box touches the near radius",
+          "source_faces": 649630
+        },
+        "zero_area_far_faces_removed_after_quantization": 5449,
+        "zero_area_source_faces_removed": 0
+      },
+      "layer": "buildings",
+      "near": {
+        "byte_count": 27712,
+        "path": "inputs/context/regional-split-20261008/meshes/buildings-near.glb",
+        "sha256": "b6f969ab2ebc4e226c1873432ea95cfd7895822b6addf838434b826f3acfac6d"
+      },
+      "proof": {
+        "byte_count": 2536,
+        "path": "inputs/context/regional-split-20261008/proofs/buildings.proof.json",
+        "sha256": "ed253ca62a44361410fd9606e4ef7819985f7c58e7c7454e405c9d60a449ddbe"
+      },
+      "source": {
+        "byte_count": 20482880,
+        "path": "inputs/context/base-terrain-20261001-v1/meshes/buildings.glb",
+        "sha256": "b55687589482f15e522d3421b3f7169cff28c096c22a256f6ce122f1e0760e03"
+      }
+    },
+    {
+      "far": {
+        "byte_count": 3152328,
+        "path": "inputs/context/regional-split-20261008/meshes/water-far.glb",
+        "sha256": "499684ce4d598fc28d88f94982f2974642ec47e0def15195e2608176bdccf5e6"
+      },
+      "geometry": {
+        "far": {
+          "bounds": [
+            [
+              -21634.0,
+              -17366.0,
+              0.0
+            ],
+            [
+              5662.0,
+              20482.0,
+              1348.0
+            ]
+          ],
+          "byte_count": 3152328,
+          "faces": 316563,
+          "meshopt": {
+            "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+            "encoded_bytes": 3152328,
+            "encoded_sha256": "499684ce4d598fc28d88f94982f2974642ec47e0def15195e2608176bdccf5e6",
+            "encoder": "meshoptimizer",
+            "encoder_version": "0.24.0",
+            "filter": "OCTAHEDRAL",
+            "lossless": false,
+            "max_normal_angular_error_degrees": 1.1517663811828485,
+            "max_position_error_m": 0,
+            "positions_exact": true,
+            "quantization": true,
+            "quantized_attributes": [
+              "NORMAL"
+            ],
+            "raw_bytes": 13113156,
+            "raw_sha256": "3af790523895f203d966f3f0d210ba264951e608b6e34f824dffadbbbcd71810",
+            "views": 1025
+          },
+          "sha256": "499684ce4d598fc28d88f94982f2974642ec47e0def15195e2608176bdccf5e6",
+          "vertices": 320359
+        },
+        "far_quantization": {
+          "maximum_axis_rounding_m": 1.0,
+          "pinned_boundary_vertices": 145,
+          "quantization_bands_m": [
+            [
+              1500,
+              0.25
+            ],
+            [
+              4000,
+              1
+            ],
+            [
+              10000,
+              2
+            ]
+          ],
+          "rounded_vertices": 323162
+        },
+        "far_reduction": {
+          "boundary": "only shared near/far vertices locked; distant outlines simplified",
+          "locked_near_seam_vertices": 145,
+          "maximum_error_m": 4.9681549072265625,
+          "output_faces": 327789,
+          "requested_error_m": 5,
+          "source_faces": 1579106,
+          "target_ratio": 0.12
+        },
+        "far_welding": {
+          "colours_exact": true,
+          "positions_exact": true,
+          "source_vertices": 1648949,
+          "welded_vertices": 1197404
+        },
+        "near": {
+          "bounds": [
+            [
+              -1476.96435546875,
+              -1504.5589599609375,
+              0.44301459193229675
+            ],
+            [
+              702.6192626953125,
+              1511.581298828125,
+              3.769577741622925
+            ]
+          ],
+          "byte_count": 154692,
+          "faces": 11848,
+          "meshopt": {
+            "decoder": "three/examples/jsm/libs/meshopt_decoder.module.js",
+            "encoded_bytes": 154692,
+            "encoded_sha256": "c4c30e1c881fc44e32b2d1acd8a67c6b847829bf9845d2c5861a632eb2f5864a",
+            "encoder": "meshoptimizer",
+            "encoder_version": "0.24.0",
+            "filter": "OCTAHEDRAL",
+            "lossless": false,
+            "max_normal_angular_error_degrees": 0.7661917418653335,
+            "max_position_error_m": 0,
+            "positions_exact": true,
+            "quantization": true,
+            "quantized_attributes": [
+              "NORMAL"
+            ],
+            "raw_bytes": 496676,
+            "raw_sha256": "277d6d0aca7e0698f47d7235ebf45617979c8ec53af746f24e7cfb6206a4a9ac",
+            "views": 16
+          },
+          "sha256": "c4c30e1c881fc44e32b2d1acd8a67c6b847829bf9845d2c5861a632eb2f5864a",
+          "vertices": 12420
+        },
+        "recorded_at": "2026-10-08T15:34:55.732484+00:00",
+        "runtime_authority": false,
+        "source_byte_count": 65635928,
+        "source_sha256": "3f5013f477257f93798d93e9a80729b73bbead36cd975ac4c7913b795c2d00f3",
+        "split": {
+          "far_source_faces": 1579106,
+          "near_source_connectivity_exact": true,
+          "near_source_faces": 11848,
+          "selection": "complete triangles whose XY bounding box touches the near radius",
+          "source_faces": 1590954
+        },
+        "zero_area_far_faces_removed_after_quantization": 11226,
+        "zero_area_source_faces_removed": 848
+      },
+      "layer": "water",
+      "near": {
+        "byte_count": 154692,
+        "path": "inputs/context/regional-split-20261008/meshes/water-near.glb",
+        "sha256": "c4c30e1c881fc44e32b2d1acd8a67c6b847829bf9845d2c5861a632eb2f5864a"
+      },
+      "proof": {
+        "byte_count": 2556,
+        "path": "inputs/context/regional-split-20261008/proofs/water.proof.json",
+        "sha256": "b46b897d034494be2f9caed67ab0843c92a8fecf6e7d2ff2e9e70ede10aa6f18"
+      },
+      "source": {
+        "byte_count": 65635928,
+        "path": "inputs/context/base-terrain-20261001-v1/meshes/water.glb",
+        "sha256": "3f5013f477257f93798d93e9a80729b73bbead36cd975ac4c7913b795c2d00f3"
+      }
+    }
+  ],
+  "authority": "Will, 2026-10-08, said \"fix\" after the cold-load and bare-ground-stage report",
+  "canonical_frames_touched": false,
+  "decision": {
+    "byte_count": 1673,
+    "path": "decisions/2026-10-08-pond-load.md",
+    "sha256": "56cf0ea8d0f507bb05372ed43e512127499b5aedb4022b2290172d24bb67c064"
+  },
+  "frozen_ai_input_touched": false,
+  "live_code_byte_bindings": false,
+  "outputs": [
+    {
+      "byte_count": 3408,
+      "path": "inputs/context/regional-split-20261008/delivery-manifest.json",
+      "sha256": "b7b1d351d25299c232ecc7eead53a8b93723cb9108b3cfd6f6f7ee797f828978"
+    },
+    {
+      "byte_count": 17106,
+      "path": "inputs/context/regional-split-20261008/lineage.json",
+      "sha256": "124eb21bdf7030c1d8c5a39ad20f2ec6b312ffa47b60670b19d0bb777be44c6f"
+    },
+    {
+      "byte_count": 1261692,
+      "path": "inputs/context/regional-split-20261008/meshes/buildings-far.glb",
+      "sha256": "8ce12b5693e67935d9fa54b79533af61fc15d817522163d53d99dc88c0820e1f"
+    },
+    {
+      "byte_count": 27712,
+      "path": "inputs/context/regional-split-20261008/meshes/buildings-near.glb",
+      "sha256": "b6f969ab2ebc4e226c1873432ea95cfd7895822b6addf838434b826f3acfac6d"
+    },
+    {
+      "byte_count": 851672,
+      "path": "inputs/context/regional-split-20261008/meshes/roads-far.glb",
+      "sha256": "df4b14288f3103bcf39eb130247fb3b4b4ae7e86d5a35db0332a3dc086739953"
+    },
+    {
+      "byte_count": 31384,
+      "path": "inputs/context/regional-split-20261008/meshes/roads-near.glb",
+      "sha256": "7457fea06e4cbacaa3d2a6079810e5e0ef5e4a664d4376374531a463f70abaa8"
+    },
+    {
+      "byte_count": 376916,
+      "path": "inputs/context/regional-split-20261008/meshes/terrain.glb",
+      "sha256": "dcb0611a77e5c5b22ab5ac01b5d7a5b0bdc543a3c8ee02df4eb04dc936772fec"
+    },
+    {
+      "byte_count": 3152328,
+      "path": "inputs/context/regional-split-20261008/meshes/water-far.glb",
+      "sha256": "499684ce4d598fc28d88f94982f2974642ec47e0def15195e2608176bdccf5e6"
+    },
+    {
+      "byte_count": 154692,
+      "path": "inputs/context/regional-split-20261008/meshes/water-near.glb",
+      "sha256": "c4c30e1c881fc44e32b2d1acd8a67c6b847829bf9845d2c5861a632eb2f5864a"
+    },
+    {
+      "byte_count": 2536,
+      "path": "inputs/context/regional-split-20261008/proofs/buildings.proof.json",
+      "sha256": "ed253ca62a44361410fd9606e4ef7819985f7c58e7c7454e405c9d60a449ddbe"
+    },
+    {
+      "byte_count": 2529,
+      "path": "inputs/context/regional-split-20261008/proofs/roads.proof.json",
+      "sha256": "9fae6aadbd55a08b2ee6e17122d5df874d2ca4fca6ed9ba9461be771be8354cd"
+    },
+    {
+      "byte_count": 2556,
+      "path": "inputs/context/regional-split-20261008/proofs/water.proof.json",
+      "sha256": "b46b897d034494be2f9caed67ab0843c92a8fecf6e7d2ff2e9e70ede10aa6f18"
+    },
+    {
+      "byte_count": 946,
+      "path": "inputs/context/regional-split-20261008/provenance.json",
+      "sha256": "801f22142fa5c79274df2c535e0d8e6eb2fe5bc4abac4e4dedc73f8a0875269b"
+    }
+  ],
+  "previous_terrain_derivation_receipt": {
+    "byte_count": 14725,
+    "path": "receipts/20261007-yilan-terrain-compressed-r2-derivation.receipt.json",
+    "sha256": "9e4c44499f8b03608bca006a4fd5a6fa5f9ba46a3ae2fb877a68fda5738de024"
+  },
+  "recorded_at": "2026-10-08T15:38:14.097162+00:00",
+  "retained_terrain": {
+    "byte_identical": true,
+    "output": {
+      "byte_count": 376916,
+      "path": "inputs/context/regional-split-20261008/meshes/terrain.glb",
+      "sha256": "dcb0611a77e5c5b22ab5ac01b5d7a5b0bdc543a3c8ee02df4eb04dc936772fec"
+    },
+    "source": {
+      "byte_count": 376916,
+      "path": "inputs/context/terrain-compressed-20261007-v2/meshes/terrain.glb",
+      "sha256": "dcb0611a77e5c5b22ab5ac01b5d7a5b0bdc543a3c8ee02df4eb04dc936772fec"
+    }
+  },
+  "runtime_authority": false,
+  "schema_version": "farm-yilan-regional-context-split-derivation/v1",
+  "settings": {
+    "byte_count": 1355,
+    "path": "sites/yilan-pond/regional-split-20261008.json",
+    "sha256": "89bf5431df9ae5a0f8645381ebd1ce7e98480e3af1a76c5d4d90300790649f15"
+  },
+  "source_inputs": [
+    {
+      "byte_count": 73001,
+      "path": "inputs/context/base-terrain-20261001-v1/provenance.json",
+      "sha256": "7e9266be9a8a0c2acc6bca6fb7cadff8bf70da961855b4e84e839b53108af05f"
+    },
+    {
+      "byte_count": 8391865,
+      "path": "inputs/context/base-terrain-20261001-v1/lineage.json",
+      "sha256": "346c3f5759621d36c5f9d8d8309c0282cb4b156b72d8bf781aac808644f25595"
+    }
+  ],
+  "source_receipt": {
+    "byte_count": 64143,
+    "path": "receipts/20261001-base-terrain-v1.receipt.json",
+    "sha256": "c0b0f01b22d085d927616e66ea11674475bd00d44a5ecd22d2805c3f19dff6e8"
+  },
+  "toolchain": {
+    "decoder": "existing DT three meshopt decoder; KHR_mesh_quantization normals",
+    "meshoptimizer": "0.24.0"
+  },
+  "verification": {
+    "browser_acceptance": false,
+    "far_near_seam_locked": true,
+    "geometry_unit_checks": 6,
+    "near_faces_source_connectivity_exact": true,
+    "near_positions_decoder_error_m": 0,
+    "water_second_execution_byte_identical": true
+  }
+}

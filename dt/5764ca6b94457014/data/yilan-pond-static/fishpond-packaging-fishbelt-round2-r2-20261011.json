@@ -1,0 +1,46 @@
+{
+  "schema_version": "farm-site-context-coast-packaging/v1",
+  "authority": "Will, 2026-10-11: \"i fail to see the new farms. you added some ponds near the sim farm and made it look out of place\" and \"please continue overnight and push as far as you can with discipline\"; delegated round 2 brief requests sea east of the coast, visible in 周邊魚塭, 1.5km and 宜蘭全景, with source lineage and cheap static scenery.",
+  "runtime_authority": false,
+  "decision": "decisions/2026-10-11-pond-fishbelt-round2-coast.md",
+  "coast_source": "inputs/osm/geofabrik-20261001-v1/coastline.json",
+  "source_acquisition": "inputs/osm/geofabrik-20261001-v1/acquisition.json",
+  "source_notice": "inputs/osm/geofabrik-20261001-v1/source-notice.md",
+  "mask_recipe": "sites/yilan-pond/terrain-scene-20261001.json",
+  "base_static": "outputs/pond-static-fishbelt-20261011",
+  "world_source": "inputs/pond-world-fishbelt-20261011.json",
+  "world_output": "inputs/pond-world-fishbelt-round2-r2-20261011.json",
+  "panel_source": "panel-site-fishbelt-20261011.json",
+  "panel_output": "panel-site-fishbelt-round2-r2-20261011.json",
+  "viewer_output": "inputs/viewer-fishbelt-round2-r2-20261011.json",
+  "no_response_viewer_output": "inputs/viewer-fishbelt-round2-r2-20261011-no-response.json",
+  "static_output": "outputs/pond-static-fishbelt-round2-r2-20261011",
+  "mesh_output": "meshes/context-coast-round2-r2.glb",
+  "generation_output": ".local_build/fishbelt-generation-round2-20261011/generations/dt-yilan-fishbelt-round2-r2-20261011",
+  "canonical_outputs": {
+    "yilan-pond-canonical": "outputs/pond-night-fishbelt-round2-r2-20261011",
+    "yilan-pond-no-response-canonical": "outputs/pond-night-no-response-fishbelt-round2-r2-20261011"
+  },
+  "receipt": "receipts/20261011-context-fishbelt-round2-r2-coast-bake.receipt.json",
+  "generation_receipt": "receipts/20261011-context-fishbelt-round2-r2-coast-generation.receipt.json",
+  "presentation": {
+    "sea_z_m": 0.24,
+    "sea_color": [69, 129, 153, 255],
+    "dune_width_m": 18,
+    "dune_lift_m": 0.18,
+    "dune_color": [178, 171, 131, 255],
+    "windbreak_inner_m": 25,
+    "windbreak_outer_m": 65,
+    "windbreak_lift_m": 1.4,
+    "windbreak_color": [88, 106, 80, 255],
+    "decoration_y_bounds_m": [-10000, 15000]
+  },
+  "viewpoints": {
+    "08-fishbelt": {
+      "label": "周邊魚塭｜AI 衍生背景·模擬",
+      "pos": [-1200, -3500, 2350],
+      "target": [500, -1100, 0],
+      "portrait": {"pos": [-1200, -3500, 3100], "target": [500, -1100, 0]}
+    }
+  }
+}
